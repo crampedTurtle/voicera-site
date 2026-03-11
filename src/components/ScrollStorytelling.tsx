@@ -3,6 +3,8 @@ import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 import SubtleGuideLines from "./SubtleGuideLines";
+import voiceraDemoGif from "@/assets/voicera-demo.gif";
+import SubtleGuideLines from "./SubtleGuideLines";
 
 const steps = [
   {
