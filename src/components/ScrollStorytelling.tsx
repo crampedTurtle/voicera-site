@@ -34,6 +34,29 @@ const ScrollStorytelling = () => {
       <FloatingCapsules variant="storytelling" />
       <SubtleGuideLines variant="vertical-center" className="opacity-40" />
       <SubtleGuideLines variant="flowing-curve" />
+
+      {/* Floating GIF thumbnail */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="absolute z-[2] pointer-events-none hidden lg:block"
+        style={{ top: "18%", right: "8%" }}
+      >
+        <div
+          className="overflow-hidden"
+          style={{
+            width: 200,
+            height: 130,
+            borderRadius: "1.25rem",
+            border: "2px solid hsl(var(--accent) / 0.3)",
+            boxShadow: "0 8px 32px hsl(var(--accent) / 0.1)",
+          }}
+        >
+          <img src={voiceraDemoGif} alt="Voicera AI demo" className="w-full h-full object-cover" />
+        </div>
+      </motion.div>
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">WHY VOICERA?</span>
