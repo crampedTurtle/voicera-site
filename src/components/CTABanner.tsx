@@ -1,15 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
-import SubtleGuideLines from "./SubtleGuideLines";
+
 
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
     {/* Floating capsules */}
     <FloatingCapsules variant="cta" count={16} />
-    <SubtleGuideLines variant="vertical-left" />
-    <SubtleGuideLines variant="vertical-right" />
-    <SubtleGuideLines variant="horizontal" className="top-0" />
     {/* Ambient orb */}
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"

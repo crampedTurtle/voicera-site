@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, BarChart3, Search } from "lucide-react";
-import SubtleGuideLines from "./SubtleGuideLines";
+
 
 const tabs = [
   {
@@ -36,9 +36,6 @@ const FeatureTabs = () => {
 
   return (
     <section id="solutions" className="section-padding relative overflow-hidden">
-      <SubtleGuideLines variant="vertical-left" />
-      <SubtleGuideLines variant="vertical-right" />
-      <SubtleGuideLines variant="horizontal" className="top-0" />
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>
