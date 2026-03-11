@@ -16,9 +16,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ScrollStorytelling />
+      <SocialProof />
       <FeatureTabs />
       <SolutionsSection />
-      <SocialProof />
       <Testimonial />
       <DarkSection />
       <PricingSection />
