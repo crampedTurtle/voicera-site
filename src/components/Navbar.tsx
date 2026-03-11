@@ -30,9 +30,9 @@ const Navbar = () => {
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "1px solid transparent",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center">
-          <img src={voiceraLogo} alt="Voicera" className="h-11 w-auto" />
+          <img src={voiceraLogo} alt="Voicera" className="h-[50px] w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
