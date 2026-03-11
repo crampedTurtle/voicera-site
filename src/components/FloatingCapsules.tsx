@@ -24,16 +24,16 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
   background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20] },
 };
 
-// Multiple gradient variants with white breaks to match the glassy reference
+// Muted versions of the brand gradient (#4B6EF5 → #9B4DEB → #F0187A → #F4621A) with white breaks
 const GRADIENTS = [
-  "linear-gradient(135deg, #A855F7 0%, rgba(255,255,255,0.85) 20%, #EC4899 40%, rgba(255,255,255,0.7) 60%, #86EFAC 80%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, #86EFAC 25%, rgba(255,255,255,0.7) 45%, #F9A8D4 65%, rgba(255,255,255,0.6) 85%, #A855F7 100%)",
-  "linear-gradient(135deg, #F97316 0%, rgba(255,255,255,0.75) 22%, #86EFAC 44%, rgba(255,255,255,0.8) 66%, #EC4899 88%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, #A855F7 20%, rgba(255,255,255,0.8) 40%, #86EFAC 60%, rgba(255,255,255,0.65) 80%, #F9A8D4 100%)",
+  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(155,77,235,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(240,24,122,0.35) 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(240,24,122,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(244,98,26,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
+  "linear-gradient(135deg, rgba(155,77,235,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(244,98,26,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(155,77,235,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(240,24,122,0.4) 100%)",
 ];
 
 const CAPSULE_SHADOW =
-  "inset 0 2px 10px rgba(255,255,255,0.5), inset 0 -4px 14px rgba(0,0,0,0.1), 0 8px 32px rgba(168, 85, 247, 0.15)";
+  "inset 0 2px 10px rgba(255,255,255,0.5), inset 0 -4px 14px rgba(0,0,0,0.08), 0 8px 32px rgba(75, 110, 245, 0.12)";
 
 // Deterministic pseudo-random
 function prand(seed: number): number {
@@ -202,8 +202,8 @@ const CapsuleElement = ({
             borderRadius: "40%",
             background: GRADIENTS[gradientVariant],
             backgroundSize: "200% 200%",
-            border: "1.5px solid rgba(74, 222, 128, 0.55)",
-            boxShadow: `${CAPSULE_SHADOW}, 0 0 12px rgba(74, 222, 128, 0.15)`,
+            border: "1.5px solid rgba(155, 77, 235, 0.3)",
+            boxShadow: `${CAPSULE_SHADOW}, 0 0 10px rgba(75, 110, 245, 0.1)`,
             opacity,
             filter: blur > 0 ? `blur(${blur}px)` : undefined,
             animation: `floatDrift ${floatDuration}s ease-in-out infinite, capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
