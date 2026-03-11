@@ -80,7 +80,7 @@ function generateHelixCapsules(
 
     const annotationIndices = [3, 7, 11];
     const hasAnnotation = variant === "storytelling" && annotationIndices.includes(i);
-    const annotationLabels = ["20% Sincere, 15% Neutral, 65% Likely Insincere", "0:34–0:51 | Speaker 2", "1:02–1:18 | Speaker 1"];
+    const annotationLabels = ["20% Sincere, 15% Neutral, 65% Likely Insincere", "0:34–0:51 | Speaker 2", "83% Sincere, 12% Neutral, 5% Likely Insincere"];
 
     capsules.push({
       id: s,
@@ -259,7 +259,7 @@ const CapsuleElement = ({
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
               <img
-                src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
+                src={annotationIndex === 1 || annotationIndex === 2 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
