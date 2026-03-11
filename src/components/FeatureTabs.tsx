@@ -7,7 +7,7 @@ const tabs = [
     id: "transcribe",
     label: "TRANSCRIBE API",
     icon: Mic,
-    title: "Not just speech. Then full picture.",
+    title: "Not just speech. The full picture.",
     desc: "Voicera goes beyond transcription. Our multimodal engine captures tone, pace, micro-expressions, and verbal patterns — giving sales teams the complete context behind every conversation.",
     features: ["Real-time transcription", "Speaker diarization", "Tone & pace analysis", "Multi-language support"],
   },
@@ -38,7 +38,7 @@ const FeatureTabs = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>
-          <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="type-display text-body mt-6">
             Not just speech.{" "}
             <br className="hidden md:block" />
             The full picture.
@@ -52,7 +52,7 @@ const FeatureTabs = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className="relative px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] rounded-full transition-colors duration-200"
+                className="relative px-6 py-2.5 type-tag rounded-full transition-colors duration-200"
               >
                 {activeTab === tab.id && (
                   <motion.div
@@ -80,8 +80,8 @@ const FeatureTabs = () => {
             className="grid md:grid-cols-2 gap-16 items-center"
           >
             <div>
-              <h3 className="text-3xl font-semibold text-body mb-4">{activeData.title}</h3>
-              <p className="text-body-muted text-lg mb-8" style={{ lineHeight: 1.7 }}>{activeData.desc}</p>
+              <h3 className="type-subheading text-body mb-4">{activeData.title}</h3>
+              <p className="type-body mb-8">{activeData.desc}</p>
               <div className="grid grid-cols-2 gap-3">
                 {activeData.features.map((f) => (
                   <div key={f} className="flex items-center gap-2 text-sm text-body-muted">
@@ -97,7 +97,7 @@ const FeatureTabs = () => {
               <div className="bg-alt rounded-lg p-6 space-y-4">
                 <div className="flex items-center gap-3 mb-4">
                   <activeData.icon size={20} strokeWidth={1.5} className="text-body-muted" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-body-muted">{activeData.label}</span>
+                  <span className="type-tag text-body-muted">{activeData.label}</span>
                 </div>
                 {/* Simulated code block */}
                 <div className="bg-foreground/5 rounded-lg p-4 font-mono text-xs text-body-muted space-y-1">

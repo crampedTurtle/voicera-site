@@ -31,10 +31,10 @@ const PricingSection = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-16">
         <span className="gradient-pill">PRICING</span>
-        <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
+        <h2 className="type-display text-body mt-6">
           Simple, transparent pricing
         </h2>
-        <p className="text-body-muted text-lg mt-4">Start free. Scale as your team grows.</p>
+        <p className="type-body mt-4">Start free. Scale as your team grows.</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -66,10 +66,10 @@ const PricingSection = () => (
               }} />
             )}
 
-            <h3 className="text-xl font-semibold text-body mb-1">{tier.name}</h3>
-            <p className="text-body-muted text-sm mb-6">{tier.desc}</p>
+            <h3 className="type-card-title text-body mb-1">{tier.name}</h3>
+            <p className="text-sm text-body-muted mb-6">{tier.desc}</p>
             <div className="mb-8">
-              <span className="text-4xl font-bold text-body">{tier.price}</span>
+              <span className="font-display text-4xl font-bold text-body tabular-nums">{tier.price}</span>
               {tier.period && <span className="text-body-muted text-base">{tier.period}</span>}
             </div>
             <ul className="space-y-3 mb-8 flex-1">
@@ -81,7 +81,7 @@ const PricingSection = () => (
               ))}
             </ul>
             <button
-              className={`w-full py-3 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.02] ${
+              className={`w-full py-3 rounded-full type-button transition-all duration-200 hover:scale-[1.02] ${
                 tier.highlight
                   ? "gradient-bg text-white hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]"
                   : "gradient-border gradient-text"

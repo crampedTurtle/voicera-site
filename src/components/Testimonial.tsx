@@ -10,11 +10,11 @@ const Testimonial = () => (
         transition={{ duration: 0.6 }}
       >
         <span className="gradient-pill mb-8 inline-block">WHAT SALES LEADERS SAY</span>
-        <blockquote className="text-2xl md:text-3xl font-semibold text-body leading-relaxed mt-8 mb-8" style={{ letterSpacing: "-0.01em" }}>
+        <blockquote className="type-subheading text-body leading-relaxed mt-8 mb-8">
           "Voicera gave us objective data on every sales call — we stopped guessing which reps needed coaching and
           started seeing a 34% increase in win rates within the first quarter."
         </blockquote>
-        <div className="text-body-muted text-sm">
+        <div className="text-sm text-body-muted">
           <span className="font-semibold text-body">Marcus Rivera</span> · VP of Sales Enablement, ScaleForce
         </div>
       </motion.div>

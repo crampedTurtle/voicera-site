@@ -26,7 +26,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         {/* Headline */}
-        <h1 className="mb-6" style={{ fontSize: "clamp(52px, 7vw, 96px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+        <h1 className="type-hero mb-6">
           <span className="gradient-text animate-shimmer inline-block" style={{
             background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
             backgroundSize: "200% 200%",
@@ -52,8 +52,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="text-lg text-body-muted max-w-2xl mx-auto mb-10"
-          style={{ lineHeight: 1.7 }}
+          className="type-body max-w-2xl mx-auto mb-10"
         >
           Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams
           coach reps, qualify prospects faster, and close deals with data-backed confidence.
@@ -66,10 +65,10 @@ const HeroSection = () => {
           transition={{ delay: 0.9, duration: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <button className="gradient-bg px-8 py-3.5 text-base font-semibold text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
+          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
             Start Free Trial
           </button>
-          <button className="gradient-border px-8 py-3.5 text-base font-semibold gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
+          <button className="gradient-border px-8 py-3.5 type-button gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
             Book a Demo
           </button>
         </motion.div>
