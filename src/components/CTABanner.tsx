@@ -33,11 +33,11 @@ const CTABanner = () => (
           Join hundreds of sales teams using Voicera to coach smarter, close faster, and build credibility at scale.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
-            Start Free Trial
+          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2">
+            Start Free Trial <ArrowUpRight className="w-4 h-4" />
           </button>
-          <button className="gradient-border px-8 py-3.5 type-button rounded-full hover:scale-[1.03] transition-transform duration-200">
-            <span className="btn-label">Talk to Sales</span>
+          <button className="gradient-border-rect px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-transform duration-200 inline-flex items-center gap-2">
+            <span className="btn-label inline-flex items-center gap-2">Talk to Sales <ArrowUpRight className="w-4 h-4" /></span>
           </button>
         </div>
       </motion.div>
