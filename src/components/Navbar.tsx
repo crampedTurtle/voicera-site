@@ -45,8 +45,8 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <button className="gradient-border px-5 py-2 type-button gradient-text rounded-full">
-            Try Free
+          <button className="gradient-border px-5 py-2 type-button rounded-full">
+            <span className="btn-label">Try Free</span>
           </button>
           <button className="gradient-bg px-5 py-2 type-button text-white rounded-full hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]">
             Book a Demo
