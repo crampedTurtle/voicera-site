@@ -97,19 +97,28 @@ const HeroSection = () => {
           className="hidden lg:flex items-center justify-center"
         >
           <div
-            className="w-[110%] aspect-video rounded-2xl overflow-hidden"
+            className="relative w-[110%] aspect-video rounded-2xl overflow-hidden cursor-pointer"
             style={{
               boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
               marginTop: "-50px",
             }}
+            onClick={() => setPlaying(true)}
           >
             <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/BSTZmbYonpI?start=10"
+              className="w-full h-full pointer-events-none"
+              style={playing ? { pointerEvents: "auto" } : undefined}
+              src={`https://www.youtube.com/embed/BSTZmbYonpI?start=10&modestbranding=1&rel=0&showinfo=0&controls=0&iv_load_policy=3${playing ? "&autoplay=1" : ""}`}
               title="Voicera Demo"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
+            {!playing && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity hover:bg-black/30">
+                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                  <Play className="w-7 h-7 text-foreground ml-1" fill="currentColor" />
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
