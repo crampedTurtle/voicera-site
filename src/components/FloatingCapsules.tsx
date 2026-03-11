@@ -260,6 +260,13 @@ const CapsuleElement = ({
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
               />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(135deg, hsla(270, 60%, 70%, 0.45) 0%, hsla(270, 60%, 80%, 0.2) 40%, transparent 70%)",
+                  borderRadius: "40%",
+                }}
+              />
             </div>
           )}
         </div>
