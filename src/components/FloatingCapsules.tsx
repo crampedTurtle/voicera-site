@@ -1,5 +1,6 @@
 import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import voiceraDemoGif from "@/assets/voicera-demo.gif";
 
 type DepthLayer = "foreground" | "midground" | "background";
 
