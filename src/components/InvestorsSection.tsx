@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Lock, Unlock, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
+import FloatingCapsules from "./FloatingCapsules";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
@@ -14,6 +15,15 @@ const InvestorsSection = () => {
   const [errors, setErrors] = useState<{ email?: string; consent?: string }>({});
   const [submitted, setSubmitted] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [40, -60]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [20, -80]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,36 +39,39 @@ const InvestorsSection = () => {
     }
     setErrors({});
     setSubmitted(true);
-    // Simulate unlock after brief animation
     setTimeout(() => setUnlocked(true), 1200);
   };
 
   return (
-    <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0F1629 0%, #141B2D 50%, #0F1629 100%)" }}>
-      {/* Ambient gradient orbs */}
-      <div
-        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none animate-float-orb"
-        style={{
-          background: "radial-gradient(circle, rgba(75,110,245,0.12) 0%, transparent 70%)",
-          top: "10%",
-          left: "-10%",
-        }}
-      />
-      <div
-        className="absolute w-[400px] h-[400px] rounded-full pointer-events-none animate-float-orb"
-        style={{
-          background: "radial-gradient(circle, rgba(155,77,235,0.08) 0%, transparent 70%)",
-          bottom: "10%",
-          right: "-5%",
-          animationDelay: "3s",
-        }}
-      />
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 30%, var(--bg-alt) 70%, hsl(0 0% 100%) 100%)",
+      }}
+    >
+      {/* Floating capsules in background */}
+      <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.35 }}>
+        <FloatingCapsules variant="cta" count={10} />
+      </div>
 
-      {/* Thin scanline grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+      {/* Parallax ambient orbs */}
+      <motion.div
+        className="absolute w-[450px] h-[450px] rounded-full pointer-events-none"
         style={{
-          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.5) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.5) 60px)",
+          background: "radial-gradient(circle, rgba(75,110,245,0.08) 0%, transparent 70%)",
+          top: "5%",
+          left: "-8%",
+          y: orbY1,
+        }}
+      />
+      <motion.div
+        className="absolute w-[350px] h-[350px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(155,77,235,0.06) 0%, transparent 70%)",
+          bottom: "5%",
+          right: "-3%",
+          y: orbY2,
         }}
       />
 
@@ -71,27 +84,11 @@ const InvestorsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-6"
-              style={{ color: "#4B6EF5" }}
-            >
-              THE THESIS
-            </span>
-            <h2
-              className="font-display font-bold tracking-tight mb-6"
-              style={{
-                fontSize: "clamp(36px, 4.5vw, 56px)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.03em",
-                color: "#FFFFFF",
-              }}
-            >
+            <span className="gradient-pill">THE THESIS</span>
+            <h2 className="type-display text-body mt-6 mb-6">
               The Trust Economy is the next Trillion-dollar market.
             </h2>
-            <p
-              className="mb-10 max-w-lg"
-              style={{ fontSize: "17px", lineHeight: 1.7, color: "rgba(255,255,255,0.5)" }}
-            >
+            <p className="type-body mb-10 max-w-lg">
               Deepfakes are skyrocketing. The demand for verification is
               outpacing supply.
             </p>
@@ -106,21 +103,21 @@ const InvestorsSection = () => {
                   className="space-y-5 max-w-md"
                 >
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.8)" }}>
+                    <label className="block text-sm font-medium mb-2 text-body">
                       Email<span style={{ color: "#F0187A" }}>*</span>
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "rgba(255,255,255,0.3)" }} />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-body-muted" />
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="johnsmith@company.com"
-                        className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm transition-all duration-200 focus:outline-none focus:ring-2"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
                         style={{
-                          background: "rgba(255,255,255,0.06)",
-                          borderColor: errors.email ? "#F0187A" : "rgba(255,255,255,0.1)",
-                          color: "#FFFFFF",
+                          background: "rgba(255,255,255,0.8)",
+                          borderColor: errors.email ? "#F0187A" : "rgba(0,0,0,0.1)",
+                          color: "var(--color-body)",
                         }}
                       />
                     </div>
@@ -138,16 +135,16 @@ const InvestorsSection = () => {
                         className="sr-only"
                       />
                       <div
-                        className="w-4.5 h-4.5 w-[18px] h-[18px] rounded border flex items-center justify-center transition-all duration-200"
+                        className="w-[18px] h-[18px] rounded border flex items-center justify-center transition-all duration-200"
                         style={{
-                          borderColor: errors.consent ? "#F0187A" : consent ? "#4B6EF5" : "rgba(255,255,255,0.2)",
+                          borderColor: errors.consent ? "#F0187A" : consent ? "#4B6EF5" : "rgba(0,0,0,0.15)",
                           background: consent ? "#4B6EF5" : "transparent",
                         }}
                       >
                         {consent && <CheckCircle2 className="w-3 h-3 text-white" />}
                       </div>
                     </div>
-                    <span className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <span className="text-xs leading-relaxed text-body-muted">
                       Consent to be added to our mailing list for any future updates<span style={{ color: "#F0187A" }}>*</span>
                     </span>
                   </label>
@@ -157,7 +154,7 @@ const InvestorsSection = () => {
 
                   <button
                     type="submit"
-                    className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2"
+                    className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.25)] inline-flex items-center gap-2"
                   >
                     Submit <ArrowRight className="w-4 h-4" />
                   </button>
@@ -169,10 +166,10 @@ const InvestorsSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-3 max-w-md"
                 >
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(75,110,245,0.15)" }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(75,110,245,0.1)" }}>
                     <CheckCircle2 className="w-5 h-5" style={{ color: "#4B6EF5" }} />
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  <p className="text-sm text-body-muted">
                     Access granted — enjoy the pitch.
                   </p>
                 </motion.div>
@@ -189,10 +186,9 @@ const InvestorsSection = () => {
             className="flex items-center justify-center"
           >
             <div
-              className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden"
+              className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden card-surface"
               style={{
-                background: "linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                border: "1px solid rgba(0,0,0,0.06)",
               }}
             >
               {/* Scanning line animation */}
@@ -205,8 +201,8 @@ const InvestorsSection = () => {
                     <motion.div
                       className="absolute left-0 right-0 h-px"
                       style={{
-                        background: "linear-gradient(90deg, transparent, rgba(75,110,245,0.6), transparent)",
-                        boxShadow: "0 0 20px rgba(75,110,245,0.3)",
+                        background: "linear-gradient(90deg, transparent, rgba(155,77,235,0.4), transparent)",
+                        boxShadow: "0 0 20px rgba(155,77,235,0.15)",
                       }}
                       animate={{ top: ["0%", "100%", "0%"] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -216,10 +212,27 @@ const InvestorsSection = () => {
               </AnimatePresence>
 
               {/* Corner accent marks */}
-              <div className="absolute top-3 left-3 w-5 h-5 pointer-events-none" style={{ borderTop: "1px solid rgba(75,110,245,0.4)", borderLeft: "1px solid rgba(75,110,245,0.4)" }} />
-              <div className="absolute top-3 right-3 w-5 h-5 pointer-events-none" style={{ borderTop: "1px solid rgba(75,110,245,0.4)", borderRight: "1px solid rgba(75,110,245,0.4)" }} />
-              <div className="absolute bottom-3 left-3 w-5 h-5 pointer-events-none" style={{ borderBottom: "1px solid rgba(75,110,245,0.4)", borderLeft: "1px solid rgba(75,110,245,0.4)" }} />
-              <div className="absolute bottom-3 right-3 w-5 h-5 pointer-events-none" style={{ borderBottom: "1px solid rgba(75,110,245,0.4)", borderRight: "1px solid rgba(75,110,245,0.4)" }} />
+              {[
+                { top: 12, left: 12, borderTop: true, borderLeft: true },
+                { top: 12, right: 12, borderTop: true, borderRight: true },
+                { bottom: 12, left: 12, borderBottom: true, borderLeft: true },
+                { bottom: 12, right: 12, borderBottom: true, borderRight: true },
+              ].map((corner, i) => (
+                <div
+                  key={i}
+                  className="absolute w-5 h-5 pointer-events-none"
+                  style={{
+                    ...corner.top !== undefined && { top: corner.top },
+                    ...corner.bottom !== undefined && { bottom: corner.bottom },
+                    ...corner.left !== undefined && { left: corner.left },
+                    ...corner.right !== undefined && { right: corner.right },
+                    ...(corner.borderTop && { borderTop: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderBottom && { borderBottom: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderLeft && { borderLeft: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderRight && { borderRight: "1px solid rgba(155,77,235,0.3)" }),
+                  }}
+                />
+              ))}
 
               {/* Center content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
@@ -231,7 +244,6 @@ const InvestorsSection = () => {
                       exit={{ opacity: 0, scale: 0.9 }}
                       className="flex flex-col items-center"
                     >
-                      {/* Animated lock icon */}
                       <motion.div
                         className="relative mb-6"
                         animate={submitted ? { scale: [1, 1.2, 0.8], rotateY: [0, 180, 360] } : {}}
@@ -240,32 +252,28 @@ const InvestorsSection = () => {
                         <div
                           className="w-16 h-16 rounded-2xl flex items-center justify-center"
                           style={{
-                            background: "linear-gradient(135deg, rgba(75,110,245,0.15), rgba(155,77,235,0.15))",
-                            border: "1px solid rgba(75,110,245,0.2)",
+                            background: "linear-gradient(135deg, rgba(75,110,245,0.1), rgba(155,77,235,0.1))",
+                            border: "1px solid rgba(155,77,235,0.15)",
                           }}
                         >
                           {submitted ? (
-                            <Unlock className="w-7 h-7" style={{ color: "#4B6EF5" }} />
+                            <Unlock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                           ) : (
-                            <Lock className="w-7 h-7" style={{ color: "#4B6EF5" }} />
+                            <Lock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                           )}
                         </div>
-                        {/* Pulse ring */}
                         <motion.div
                           className="absolute inset-0 rounded-2xl"
-                          style={{ border: "1px solid rgba(75,110,245,0.3)" }}
+                          style={{ border: "1px solid rgba(155,77,235,0.2)" }}
                           animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
                           transition={{ duration: 2, repeat: Infinity }}
                         />
                       </motion.div>
 
-                      <h3
-                        className="font-display font-bold text-xl mb-2"
-                        style={{ color: "#FFFFFF" }}
-                      >
+                      <h3 className="type-card-title text-body mb-2">
                         Investor Pitch
                       </h3>
-                      <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      <p className="text-sm text-body-muted">
                         Submit your email to unlock this video
                       </p>
 
@@ -275,13 +283,13 @@ const InvestorsSection = () => {
                           <motion.div
                             key={i}
                             className="w-1 rounded-full"
-                            style={{ background: "rgba(75,110,245,0.3)" }}
+                            style={{ background: "rgba(155,77,235,0.2)" }}
                             animate={{
                               height: [8, Math.random() * 24 + 8, 8],
                               background: [
-                                "rgba(75,110,245,0.2)",
-                                `rgba(${75 + i * 10},${110 - i * 3},245,0.5)`,
-                                "rgba(75,110,245,0.2)",
+                                "rgba(155,77,235,0.15)",
+                                `rgba(${75 + i * 10},${110 - i * 3},245,0.35)`,
+                                "rgba(155,77,235,0.15)",
                               ],
                             }}
                             transition={{
@@ -305,12 +313,12 @@ const InvestorsSection = () => {
                         <div
                           className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
                           style={{
-                            background: "linear-gradient(135deg, rgba(75,110,245,0.2), rgba(155,77,235,0.2))",
+                            background: "linear-gradient(135deg, rgba(75,110,245,0.1), rgba(155,77,235,0.1))",
                           }}
                         >
-                          <Unlock className="w-7 h-7" style={{ color: "#4B6EF5" }} />
+                          <Unlock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                         </div>
-                        <p className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
+                        <p className="text-sm font-medium text-body-muted">
                           Video unlocked — coming soon
                         </p>
                       </div>
