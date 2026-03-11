@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
+import SubtleGuideLines from "./SubtleGuideLines";
 
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
