@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
+import SubtleGuideLines from "./SubtleGuideLines";
 
 const steps = [
   {
@@ -30,6 +31,8 @@ const ScrollStorytelling = () => {
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
       <FloatingCapsules variant="storytelling" />
+      <SubtleGuideLines variant="vertical-center" className="opacity-40" />
+      <SubtleGuideLines variant="flowing-curve" />
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">WHY VOICERA?</span>

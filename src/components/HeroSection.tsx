@@ -3,6 +3,7 @@ import { Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
+import SubtleGuideLines from "./SubtleGuideLines";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
 
@@ -20,6 +21,10 @@ const HeroSection = () => {
         background: "linear-gradient(to right, hsl(270 40% 96%) 0%, hsl(330 30% 96%) 40%, hsl(0 0% 100%) 75%, hsl(0 0% 100%) 100%)",
       }}
     >
+      {/* Subtle guide lines */}
+      <SubtleGuideLines variant="vertical-left" />
+      <SubtleGuideLines variant="horizontal" className="bottom-0" />
+
       {/* Floating capsules */}
       <FloatingCapsules variant="hero" />
 
