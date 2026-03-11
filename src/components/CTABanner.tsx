@@ -40,8 +40,8 @@ const CTABanner = () => (
           <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
             Start Free Trial
           </button>
-          <button className="gradient-border px-8 py-3.5 type-button gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
-            Talk to Sales
+          <button className="gradient-border px-8 py-3.5 type-button rounded-full hover:scale-[1.03] transition-transform duration-200">
+            <span className="btn-label">Talk to Sales</span>
           </button>
         </div>
       </motion.div>

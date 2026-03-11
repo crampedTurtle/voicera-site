@@ -180,6 +180,15 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
+  /* When used with gradient-text, the text needs its own stacking context */
+  .gradient-border .btn-label {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+  }
 
   .gradient-card-border {
     position: relative;

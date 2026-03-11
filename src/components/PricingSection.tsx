@@ -84,10 +84,14 @@ const PricingSection = () => (
               className={`w-full py-3 rounded-full type-button transition-all duration-200 hover:scale-[1.02] ${
                 tier.highlight
                   ? "gradient-bg text-white hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]"
-                  : "gradient-border gradient-text"
+                  : "gradient-border"
               }`}
             >
-              {tier.price === "Custom" ? "Contact Sales" : "Get Started"}
+              {tier.highlight ? (
+                tier.price === "Custom" ? "Contact Sales" : "Get Started"
+              ) : (
+                <span className="btn-label">{tier.price === "Custom" ? "Contact Sales" : "Get Started"}</span>
+              )}
             </button>
           </motion.div>
         ))}
