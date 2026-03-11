@@ -27,7 +27,7 @@ const useCases = [
 
 const cardVariants = {
   rest: { y: 0 },
-  hover: { y: -4, transition: { duration: 0.2, ease: "easeOut" } },
+  hover: { y: -4, transition: { duration: 0.2, ease: "easeOut" as const } },
 };
 
 const SolutionsSection = () => (
