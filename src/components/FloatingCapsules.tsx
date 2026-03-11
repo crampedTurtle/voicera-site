@@ -98,6 +98,7 @@ function generateHelixCapsules(
       annotationLabel: hasAnnotation
         ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
+      annotationIndex: hasAnnotation ? annotationIndices.indexOf(i) : undefined,
     });
   }
 
