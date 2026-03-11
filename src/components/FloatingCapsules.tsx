@@ -78,9 +78,9 @@ function generateHelixCapsules(
     const tangentAngle = Math.cos(t * Math.PI * 2 * frequency + phase) * 30;
     const rotation = Math.round(tangentAngle + (p3 - 0.5) * 15);
 
-    const annotationIndices = [3, 7, 11];
+    const annotationIndices = [3, 7];
     const hasAnnotation = variant === "storytelling" && annotationIndices.includes(i);
-    const annotationLabels = ["20% Sincere, 15% Neutral, 65% Likely Insincere", "0:34–0:51 | Speaker 2", "1:02–1:18 | Speaker 1"];
+    const annotationLabels = ["20% Sincere, 15% Neutral, 65% Likely Insincere", "0:34–0:51 | Speaker 2"];
 
     capsules.push({
       id: s,
