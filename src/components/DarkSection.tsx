@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const DarkSection = () => (
   <section id="developers" className="relative overflow-hidden py-32" style={{ background: "#0A0A1A" }}>
@@ -50,8 +51,8 @@ const DarkSection = () => (
           </div>
         </div>
 
-        <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
-          Become a Partner
+        <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2">
+          Become a Partner <ArrowUpRight className="w-4 h-4" />
         </button>
       </motion.div>
     </div>

@@ -81,10 +81,10 @@ const PricingSection = () => (
               ))}
             </ul>
             <button
-              className={`w-full py-3 rounded-full type-button transition-all duration-200 hover:scale-[1.02] ${
+              className={`w-full py-3 rounded-xl type-button transition-all duration-200 hover:scale-[1.02] ${
                 tier.highlight
                   ? "gradient-bg text-white hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]"
-                  : "gradient-border"
+                  : "gradient-border-rect"
               }`}
             >
               {tier.highlight ? (
