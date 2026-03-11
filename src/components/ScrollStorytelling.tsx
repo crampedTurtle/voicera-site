@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
@@ -84,7 +84,9 @@ const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive:
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-40% 0px -40% 0px" });
 
-  if (inView) onView();
+  useEffect(() => {
+    if (inView) onView();
+  }, [inView, onView]);
 
   return (
     <div ref={ref} className="flex gap-6 items-start">
