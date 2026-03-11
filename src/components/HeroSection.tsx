@@ -23,7 +23,7 @@ const HeroSection = () => {
       {/* Floating capsules */}
       <FloatingCapsules variant="hero" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[7fr_5fr] gap-8 items-center">
         {/* Left: Text content */}
         <div>
           <h1 className="type-hero mb-6 text-left">
