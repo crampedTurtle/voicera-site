@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, BarChart3, Search } from "lucide-react";
-import SubtleGuideLines from "./SubtleGuideLines";
+
 
 const tabs = [
   {
