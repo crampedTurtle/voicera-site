@@ -17,9 +17,9 @@ const Index = () => {
       <HeroSection />
       <ScrollStorytelling />
       <FeatureTabs />
-      <SolutionsSection />
-      <Testimonial />
       <DarkSection />
+      <Testimonial />
+      <SolutionsSection />
       <InvestorsSection />
       <SocialProof />
       <CTABanner />
