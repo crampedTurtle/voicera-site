@@ -253,20 +253,13 @@ const CapsuleElement = ({
           }}
         >
           {hasAnnotation && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  width: 64,
-                  height: 48,
-                  borderRadius: 8,
-                  border: "2px solid rgba(255,255,255,0.5)",
-                  background: "rgba(0,0,0,0.1)",
-                  transform: `rotate(${-rotation}deg)`,
-                }}
-              >
-                <WaveformSVG />
-              </div>
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
+              <img
+                src={voiceraDemoGif}
+                alt="Voicera AI analysis"
+                className="w-full h-full object-cover"
+                style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
+              />
             </div>
           )}
         </div>
