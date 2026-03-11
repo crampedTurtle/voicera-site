@@ -23,9 +23,8 @@ const CTABanner = () => (
         transition={{ duration: 0.6 }}
       >
         <h2
-          className="text-4xl md:text-6xl font-bold mb-6 gradient-text animate-shimmer"
+          className="type-display gradient-text animate-shimmer mb-6"
           style={{
-            letterSpacing: "-0.03em",
             background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
             backgroundSize: "200% 200%",
             WebkitBackgroundClip: "text",
@@ -34,14 +33,14 @@ const CTABanner = () => (
         >
           Ready to turn every sales call into a growth lever?
         </h2>
-        <p className="text-body-muted text-lg max-w-xl mx-auto mb-10" style={{ lineHeight: 1.7 }}>
+        <p className="type-body max-w-xl mx-auto mb-10">
           Join hundreds of sales teams using Voicera to coach smarter, close faster, and build credibility at scale.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="gradient-bg px-8 py-3.5 text-base font-semibold text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
+          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
             Start Free Trial
           </button>
-          <button className="gradient-border px-8 py-3.5 text-base font-semibold gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
+          <button className="gradient-border px-8 py-3.5 type-button gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
             Talk to Sales
           </button>
         </div>

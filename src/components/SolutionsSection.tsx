@@ -35,10 +35,10 @@ const SolutionsSection = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-16">
         <span className="gradient-pill">USE CASES</span>
-        <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
+        <h2 className="type-display text-body mt-6">
           Solutions for Sales Teams
         </h2>
-        <p className="text-body-muted text-lg mt-4 max-w-2xl mx-auto">
+        <p className="type-body mt-4 max-w-2xl mx-auto">
           Purpose-built AI for revenue teams who need objective, scalable insights from every conversation.
         </p>
       </div>
@@ -74,15 +74,15 @@ const SolutionsSection = () => (
             </div>
 
             {/* Label */}
-            <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-body-muted mb-3">{uc.label}</span>
+            <span className="type-tag text-body-muted mb-3">{uc.label}</span>
 
             {/* Title */}
-            <h3 className="text-xl font-semibold text-body mb-3" style={{ lineHeight: 1.3 }}>
+            <h3 className="type-card-title text-body mb-3">
               {uc.title}
             </h3>
 
             {/* Description */}
-            <p className="text-body-muted text-sm mb-6 flex-1" style={{ lineHeight: 1.7 }}>
+            <p className="text-sm text-body-text mb-6 flex-1" style={{ lineHeight: 1.7 }}>
               {uc.desc}
             </p>
 

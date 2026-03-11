@@ -31,7 +31,7 @@ const ScrollStorytelling = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">WHY VOICERA?</span>
-          <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="type-display text-body mt-6">
             Why Voicera?
           </h2>
         </div>
@@ -68,8 +68,8 @@ const ScrollStorytelling = () => {
                   </linearGradient>
                 </defs>
               </svg>
-              <h3 className="text-2xl font-semibold text-body mb-3">{steps[active].title}</h3>
-              <p className="text-body-muted text-base" style={{ lineHeight: 1.7 }}>{steps[active].desc}</p>
+              <h3 className="type-subheading text-body mb-3">{steps[active].title}</h3>
+              <p className="type-body">{steps[active].desc}</p>
             </motion.div>
           </div>
         </div>
@@ -87,15 +87,16 @@ const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive:
   return (
     <div ref={ref} className="flex gap-6 items-start">
       <span
-        className={`text-3xl font-bold transition-all duration-300 ${isActive ? "gradient-text" : "text-body-muted opacity-30"}`}
+        className={`type-step text-3xl transition-all duration-300 ${isActive ? "gradient-text" : "opacity-30"}`}
+        style={{ fontWeight: 500, color: isActive ? undefined : "var(--color-step)" }}
       >
         {step.num}
       </span>
       <div>
-        <h3 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${isActive ? "text-body" : "text-body-muted"}`}>
+        <h3 className={`type-card-title mb-2 transition-colors duration-300 ${isActive ? "text-body" : "text-body-muted"}`}>
           {step.title}
         </h3>
-        <p className="text-body-muted text-base" style={{ lineHeight: 1.7 }}>{step.desc}</p>
+        <p className="type-body">{step.desc}</p>
       </div>
     </div>
   );

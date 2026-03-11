@@ -12,7 +12,7 @@ const SocialProof = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-6 text-2xl md:text-3xl font-semibold text-body"
+        className="type-subheading text-body mt-6"
       >
         Trusted by forward-thinking sales teams
       </motion.h3>
@@ -22,7 +22,7 @@ const SocialProof = () => (
         {[...logos, ...logos].map((name, i) => (
           <span
             key={i}
-            className="text-xl font-bold tracking-tight text-body-muted/30 hover:text-body-muted transition-colors duration-300 whitespace-nowrap select-none"
+            className="text-xl font-semibold tracking-tight text-body-muted/30 hover:text-body-muted transition-colors duration-300 whitespace-nowrap select-none"
           >
             {name}
           </span>

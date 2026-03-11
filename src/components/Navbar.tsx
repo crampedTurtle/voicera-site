@@ -30,14 +30,14 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="text-xl font-bold gradient-text">voicera</a>
+        <a href="/" className="text-xl font-bold font-display gradient-text">voicera</a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-body-muted hover:text-body transition-colors"
+              className="type-nav text-body-muted hover:text-body transition-colors"
             >
               {link.label}
             </a>
@@ -45,10 +45,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <button className="gradient-border px-5 py-2 text-sm font-semibold gradient-text rounded-full">
+          <button className="gradient-border px-5 py-2 type-button gradient-text rounded-full">
             Try Free
           </button>
-          <button className="gradient-bg px-5 py-2 text-sm font-semibold text-white rounded-full hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]">
+          <button className="gradient-bg px-5 py-2 type-button text-white rounded-full hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]">
             Book a Demo
           </button>
         </div>
@@ -65,15 +65,15 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} className="block text-sm font-medium text-body-muted" onClick={() => setMobileOpen(false)}>
+            <a key={link.label} href={link.href} className="block type-nav text-body-muted" onClick={() => setMobileOpen(false)}>
               {link.label}
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
-            <button className="gradient-border px-5 py-2 text-sm font-semibold gradient-text rounded-full">
+            <button className="gradient-border px-5 py-2 type-button gradient-text rounded-full">
               Try Free
             </button>
-            <button className="gradient-bg px-5 py-2 text-sm font-semibold text-white rounded-full">
+            <button className="gradient-bg px-5 py-2 type-button text-white rounded-full">
               Book a Demo
             </button>
           </div>
