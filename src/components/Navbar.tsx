@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import voiceraLogo from "@/assets/voicera-logo.png";
 
 const navLinks = [
   { label: "Product", href: "#product" },
