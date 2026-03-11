@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import FloatingCapsules from "./FloatingCapsules";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility."];
 
