@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const DarkSection = () => (
-  <section className="relative overflow-hidden py-32" style={{ background: "#0A0A1A" }}>
+  <section id="developers" className="relative overflow-hidden py-32" style={{ background: "#0A0A1A" }}>
     {/* Gradient orb */}
     <div
       className="absolute w-[600px] h-[600px] rounded-full animate-float-orb pointer-events-none"

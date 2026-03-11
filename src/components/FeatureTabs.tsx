@@ -34,7 +34,7 @@ const FeatureTabs = () => {
   const activeData = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section className="section-padding">
+    <section id="solutions" className="section-padding">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>

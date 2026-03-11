@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const navLinks = ["Product", "Solutions", "Developers", "Pricing", "Company"];
+const navLinks = [
+  { label: "Product", href: "#product" },
+  { label: "Solutions", href: "#solutions" },
+  { label: "Developers", href: "#developers" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Company", href: "#company" },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,11 +37,11 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+              key={link.label}
+              href={link.href}
               className="text-sm font-medium text-body-muted hover:text-body transition-colors"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
@@ -64,8 +70,8 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} className="block text-sm font-medium text-body-muted">
-              {link}
+            <a key={link.label} href={link.href} className="block text-sm font-medium text-body-muted" onClick={() => setMobileOpen(false)}>
+              {link.label}
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
