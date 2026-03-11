@@ -24,12 +24,12 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
   background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20] },
 };
 
-// Multiple gradient variants with white breaks to match the glassy reference
+// Muted versions of the brand gradient (#4B6EF5 → #9B4DEB → #F0187A → #F4621A) with white breaks
 const GRADIENTS = [
-  "linear-gradient(135deg, #A855F7 0%, rgba(255,255,255,0.85) 20%, #EC4899 40%, rgba(255,255,255,0.7) 60%, #86EFAC 80%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, #86EFAC 25%, rgba(255,255,255,0.7) 45%, #F9A8D4 65%, rgba(255,255,255,0.6) 85%, #A855F7 100%)",
-  "linear-gradient(135deg, #F97316 0%, rgba(255,255,255,0.75) 22%, #86EFAC 44%, rgba(255,255,255,0.8) 66%, #EC4899 88%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, #A855F7 20%, rgba(255,255,255,0.8) 40%, #86EFAC 60%, rgba(255,255,255,0.65) 80%, #F9A8D4 100%)",
+  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(155,77,235,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(240,24,122,0.35) 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(240,24,122,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(244,98,26,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
+  "linear-gradient(135deg, rgba(155,77,235,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(244,98,26,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(155,77,235,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(240,24,122,0.4) 100%)",
 ];
 
 const CAPSULE_SHADOW =
