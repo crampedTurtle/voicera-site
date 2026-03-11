@@ -8,12 +8,13 @@ interface CapsuleConfig {
   width: number;
   height: number;
   rotation: number;
-  x: number; // percent
-  y: number; // percent
+  x: number;
+  y: number;
   layer: DepthLayer;
   floatDuration: number;
   shimmerDuration: number;
-  gradientVariant: number; // 0-3 different gradient mixes
+  gradientVariant: number;
+  strand: number; // 0 or 1
   hasAnnotation?: boolean;
   annotationLabel?: string;
 }
@@ -24,7 +25,6 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
   background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20] },
 };
 
-// Muted versions of the brand gradient (#4B6EF5 → #9B4DEB → #F0187A → #F4621A) with white breaks
 const GRADIENTS = [
   "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(155,77,235,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(240,24,122,0.35) 88%, rgba(255,255,255,0.6) 100%)",
   "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(240,24,122,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(244,98,26,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
@@ -35,16 +35,10 @@ const GRADIENTS = [
 const CAPSULE_SHADOW =
   "inset 0 2px 10px rgba(255,255,255,0.5), inset 0 -4px 14px rgba(0,0,0,0.08), 0 8px 32px rgba(75, 110, 245, 0.12)";
 
-// Deterministic pseudo-random
 function prand(seed: number): number {
   return ((Math.sin(seed * 9301 + 49297) * 233280) % 1 + 1) % 1;
 }
 
-/**
- * Generate capsules in a DNA double-helix pattern.
- * Two sinusoidal strands weave along the vertical axis,
- * creating an intertwined chain effect.
- */
 function generateHelixCapsules(
   count: number,
   variant: "hero" | "storytelling" | "cta"
@@ -52,42 +46,34 @@ function generateHelixCapsules(
   const capsules: CapsuleConfig[] = [];
   const seed = variant === "hero" ? 1 : variant === "storytelling" ? 100 : 200;
 
-  // Helix parameters
-  const helixCenterX = 50; // center of the helix horizontally (%)
-  const helixAmplitude = variant === "cta" ? 38 : 35; // horizontal swing (%)
-  const strandCount = count;
+  const helixCenterX = 50;
+  const helixAmplitude = variant === "cta" ? 38 : 35;
 
-  for (let i = 0; i < strandCount; i++) {
+  for (let i = 0; i < count; i++) {
     const s = seed + i;
     const p1 = prand(s);
     const p2 = prand(s + 1000);
     const p3 = prand(s + 2000);
 
-    // Which strand (0 or 1) — alternating
     const strand = i % 2;
-
-    // Vertical position: evenly spaced along section height
-    const t = i / (strandCount - 1 || 1);
+    const t = i / (count - 1 || 1);
     const yPos = 5 + t * 90;
 
-    // Sinusoidal X: two strands are phase-offset by PI
     const phase = strand === 0 ? 0 : Math.PI;
-    const frequency = 1.5; // how many full waves across the section
+    const frequency = 1.5;
     const xPos = helixCenterX + Math.sin(t * Math.PI * 2 * frequency + phase) * helixAmplitude;
 
-    // Depth layer based on position in sine wave (crossing points = midground)
     const sinVal = Math.abs(Math.sin(t * Math.PI * 2 * frequency + phase));
     const layer: DepthLayer = sinVal > 0.7 ? "foreground" : sinVal > 0.3 ? "midground" : "background";
 
-    // Size based on layer
-    const sizeScale = layer === "foreground" ? 1.0 : layer === "midground" ? 0.7 : 0.5;
-    const baseWidth = 120 + p1 * 80; // 120-200
-    const width = Math.round(baseWidth * sizeScale);
-    const height = Math.round(width * 0.48); // slightly more rectangular
+    // Dramatic size variation: tiny (24px) to large (200px)
+    const sizeVariants = [0.15, 0.25, 0.4, 0.6, 0.8, 1.0, 0.3, 0.5, 0.7, 0.2, 0.9, 0.35, 0.55, 0.45, 0.65, 0.85, 0.18, 0.75];
+    const sizeT = sizeVariants[i % sizeVariants.length];
+    const width = Math.round(24 + sizeT * 176); // 24-200px
+    const height = Math.round(width * (0.42 + p2 * 0.12));
 
-    // Rotation follows the helix tangent direction
     const tangentAngle = Math.cos(t * Math.PI * 2 * frequency + phase) * 30;
-    const rotation = Math.round(tangentAngle + (p3 - 0.5) * 10);
+    const rotation = Math.round(tangentAngle + (p3 - 0.5) * 15);
 
     const annotationIndices = [3, 7, 11];
     const hasAnnotation = variant === "storytelling" && annotationIndices.includes(i);
@@ -101,6 +87,7 @@ function generateHelixCapsules(
       x: Math.max(0, Math.min(95, xPos + (p2 - 0.5) * 6)),
       y: yPos,
       layer,
+      strand,
       floatDuration: 5 + p1 * 4,
       shimmerDuration: 7 + p2 * 4,
       gradientVariant: Math.floor(p3 * GRADIENTS.length),
@@ -114,7 +101,41 @@ function generateHelixCapsules(
   return capsules;
 }
 
-// Mini waveform SVG
+/** Generate SVG path data for flowing strand lines connecting capsules */
+function generateStrandPaths(capsules: CapsuleConfig[]): { path: string; strand: number }[] {
+  const strands: CapsuleConfig[][] = [[], []];
+  capsules.forEach((c) => strands[c.strand].push(c));
+
+  // Sort each strand by Y position
+  strands.forEach((s) => s.sort((a, b) => a.y - b.y));
+
+  return strands
+    .filter((s) => s.length >= 2)
+    .map((strandCapsules, strandIdx) => {
+      // Build a smooth cubic bezier path through capsule centers
+      const points = strandCapsules.map((c) => ({
+        x: c.x,
+        y: c.y,
+      }));
+
+      let d = `M ${points[0].x} ${points[0].y}`;
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const curr = points[i];
+        const next = points[i + 1];
+        const midY = (curr.y + next.y) / 2;
+        // Control points create a smooth curve
+        const cp1x = curr.x;
+        const cp1y = midY;
+        const cp2x = next.x;
+        const cp2y = midY;
+        d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${next.x} ${next.y}`;
+      }
+
+      return { path: d, strand: strandIdx };
+    });
+}
+
 const WaveformSVG = () => (
   <svg width="48" height="32" viewBox="0 0 48 32" fill="none" style={{ opacity: 0.6 }}>
     {[4, 10, 16, 22, 28, 34, 40].map((cx, i) => {
@@ -140,6 +161,7 @@ const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesPr
     () => generateHelixCapsules(count ?? defaultCount, variant),
     [count, defaultCount, variant]
   );
+  const strandPaths = useMemo(() => generateStrandPaths(capsules), [capsules]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -151,6 +173,26 @@ const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesPr
       ref={containerRef}
       className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
     >
+      {/* Connecting strand lines */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        fill="none"
+        style={{ zIndex: 0 }}
+      >
+        {strandPaths.map(({ path, strand }, i) => (
+          <path
+            key={i}
+            d={path}
+            stroke={strand === 0 ? "rgba(155, 77, 235, 0.12)" : "rgba(75, 110, 245, 0.12)"}
+            strokeWidth="0.15"
+            fill="none"
+            strokeLinecap="round"
+          />
+        ))}
+      </svg>
+
       {capsules.map((c) => (
         <CapsuleElement key={c.id} config={c} scrollProgress={scrollYProgress} />
       ))}
@@ -209,7 +251,6 @@ const CapsuleElement = ({
             animation: `floatDrift ${floatDuration}s ease-in-out infinite, capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
           }}
         >
-          {/* Waveform inset for annotated capsules */}
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div
@@ -229,7 +270,6 @@ const CapsuleElement = ({
           )}
         </div>
 
-        {/* Annotation label */}
         {hasAnnotation && annotationLabel && (
           <div
             className="absolute flex flex-col items-center"
