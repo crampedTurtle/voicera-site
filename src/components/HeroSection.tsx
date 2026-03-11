@@ -95,10 +95,11 @@ const HeroSection = () => {
           className="hidden lg:flex items-center justify-center"
         >
           <div
-            className="w-full aspect-video rounded-2xl"
+            className="w-[110%] aspect-video rounded-2xl"
             style={{
               background: "linear-gradient(135deg, hsl(240 5% 96%), hsl(270 10% 94%), hsl(330 8% 95%))",
               boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
+              marginTop: "-50px",
             }}
           />
         </motion.div>
