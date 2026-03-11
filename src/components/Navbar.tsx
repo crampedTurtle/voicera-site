@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center">
-          <img src={voiceraLogo} alt="Voicera" className="h-8 w-auto" />
+          <img src={voiceraLogo} alt="Voicera" className="h-9 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
