@@ -51,31 +51,33 @@ const ScrollStorytelling = () => {
 
           {/* Right: Visual */}
           <div className="hidden md:flex sticky top-32 items-center justify-center min-h-[400px]">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4 }}
-              className="card-surface p-10 w-full max-w-md flex flex-col items-center text-center"
-            >
-              {(() => {
-                const Icon = steps[active].icon;
-                return <Icon size={56} strokeWidth={1.5} className="mb-6" style={{ stroke: "url(#iconGradient)" }} />;
-              })()}
-              <svg width="0" height="0">
-                <defs>
-                  <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#4B6EF5" />
-                    <stop offset="30%" stopColor="#9B4DEB" />
-                    <stop offset="65%" stopColor="#F0187A" />
-                    <stop offset="100%" stopColor="#F4621A" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <h3 className="type-subheading text-body mb-3">{steps[active].title}</h3>
-              <p className="type-body">{steps[active].desc}</p>
-            </motion.div>
+            {active >= 0 && (
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4 }}
+                className="card-surface p-10 w-full max-w-md flex flex-col items-center text-center"
+              >
+                {(() => {
+                  const Icon = steps[active].icon;
+                  return <Icon size={56} strokeWidth={1.5} className="mb-6" style={{ stroke: "url(#iconGradient)" }} />;
+                })()}
+                <svg width="0" height="0">
+                  <defs>
+                    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4B6EF5" />
+                      <stop offset="30%" stopColor="#9B4DEB" />
+                      <stop offset="65%" stopColor="#F0187A" />
+                      <stop offset="100%" stopColor="#F4621A" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <h3 className="type-subheading text-body mb-3">{steps[active].title}</h3>
+                <p className="type-body">{steps[active].desc}</p>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>
