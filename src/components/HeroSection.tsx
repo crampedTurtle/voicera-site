@@ -29,7 +29,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         {/* Headline */}
-        <h1 className="type-hero mb-6">
+        <h1 className="type-hero mb-6 relative inline-block">
           <span className="inline-block">
             {words.map((word, i) => (
               <motion.span
@@ -43,6 +43,17 @@ const HeroSection = () => {
               </motion.span>
             ))}
           </span>
+          <motion.span
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            className="block mx-auto mt-2 h-[3px] rounded-full origin-left animate-shimmer"
+            style={{
+              width: "60%",
+              background: "linear-gradient(90deg, #4B6EF5, #9B4DEB, #F0187A, #F4621A)",
+              backgroundSize: "200% 200%",
+            }}
+          />
         </h1>
 
         {/* Subtext */}
