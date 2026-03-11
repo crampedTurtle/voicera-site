@@ -77,7 +77,7 @@ function generateHelixCapsules(
 
     const annotationIndices = [3, 7, 11];
     const hasAnnotation = variant === "storytelling" && annotationIndices.includes(i);
-    const annotationLabels = ["0:12–0:28 | Speaker 1", "0:34–0:51 | Speaker 2", "1:02–1:18 | Speaker 1"];
+    const annotationLabels = ["20% Sincere, 15% Neutral, 65% Likely Insincere", "0:34–0:51 | Speaker 2", "1:02–1:18 | Speaker 1"];
 
     capsules.push({
       id: s,
