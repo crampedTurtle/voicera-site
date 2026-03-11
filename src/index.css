@@ -202,7 +202,8 @@
     mask-composite: exclude;
   }
   /* When used with gradient-text, the text needs its own stacking context */
-  .gradient-border .btn-label {
+  .gradient-border .btn-label,
+  .gradient-border-rect .btn-label {
     background: var(--gradient-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
