@@ -95,13 +95,20 @@ const HeroSection = () => {
           className="hidden lg:flex items-center justify-center"
         >
           <div
-            className="w-[110%] aspect-video rounded-2xl"
+            className="w-[110%] aspect-video rounded-2xl overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, hsl(240 5% 96%), hsl(270 10% 94%), hsl(330 8% 95%))",
               boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
               marginTop: "-50px",
             }}
-          />
+          >
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/BSTZmbYonpI?start=10"
+              title="Voicera Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </motion.div>
       </div>
     </section>
