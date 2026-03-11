@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
