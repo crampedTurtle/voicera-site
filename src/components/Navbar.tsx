@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import voiceraLogo from "@/assets/voicera-logo.png";
 
 const navLinks = [
   { label: "Product", href: "#product" },
@@ -30,7 +31,9 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="text-xl font-bold font-display gradient-text">voicera</a>
+        <a href="/" className="flex items-center">
+          <img src={voiceraLogo} alt="Voicera" className="h-6 w-auto" />
+        </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
