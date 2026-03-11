@@ -259,7 +259,7 @@ const CapsuleElement = ({
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
               <img
-                src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
+                src={annotationIndex === 1 || annotationIndex === 2 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
