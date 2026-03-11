@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ScrollStorytelling from "@/components/ScrollStorytelling";
 import FeatureTabs from "@/components/FeatureTabs";
+import SolutionsSection from "@/components/SolutionsSection";
 import SocialProof from "@/components/SocialProof";
 import Testimonial from "@/components/Testimonial";
 import DarkSection from "@/components/DarkSection";
@@ -16,6 +17,7 @@ const Index = () => {
       <HeroSection />
       <ScrollStorytelling />
       <FeatureTabs />
+      <SolutionsSection />
       <SocialProof />
       <Testimonial />
       <DarkSection />
