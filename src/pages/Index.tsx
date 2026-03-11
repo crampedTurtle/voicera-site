@@ -18,10 +18,10 @@ const Index = () => {
       <ScrollStorytelling />
       <SolutionsSection />
       <FeatureTabs />
+      <SocialProof />
       <DarkSection />
       <Testimonial />
       <InvestorsSection />
-      <SocialProof />
       <CTABanner />
       <Footer />
     </div>
