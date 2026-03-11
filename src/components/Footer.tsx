@@ -1,15 +1,15 @@
 const footerLinks = [
   {
     title: "Product",
-    links: ["Transcribe API", "Analyze API", "Voice Search API", "Playground", "Pricing"],
+    links: ["Transcribe API", "Analyze API", "Voice Search API", "Credibility Score", "Pricing"],
+  },
+  {
+    title: "Solutions",
+    links: ["Sales Enablement", "Sales Coaching", "Remote Hiring", "Investor Relations", "Compliance"],
   },
   {
     title: "Developers",
     links: ["Documentation", "API Reference", "SDKs", "Changelog", "Status"],
-  },
-  {
-    title: "Solutions",
-    links: ["Call Centers", "Media & Podcasts", "Healthcare", "Legal", "Education"],
   },
   {
     title: "Company",
@@ -17,7 +17,7 @@ const footerLinks = [
   },
   {
     title: "Legal",
-    links: ["Privacy Policy", "Terms of Service", "Security", "GDPR"],
+    links: ["Privacy Policy", "Terms of Service", "Security", "SOC 2", "GDPR"],
   },
 ];
 

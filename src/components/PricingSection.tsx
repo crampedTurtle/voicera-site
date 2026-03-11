@@ -5,23 +5,23 @@ const tiers = [
   {
     name: "Starter",
     price: "Free",
-    desc: "For individuals and small experiments",
-    features: ["600 mins/month", "Transcribe API", "Community support", "Standard models"],
+    desc: "For individual reps exploring AI coaching",
+    features: ["5 call analyses/month", "Basic credibility scoring", "Transcript export", "Community support"],
     highlight: false,
   },
   {
-    name: "Pro",
-    price: "$49",
-    period: "/mo",
-    desc: "For teams building production apps",
-    features: ["10,000 mins/month", "All APIs included", "Priority support", "Custom vocabulary", "Webhooks"],
+    name: "Team",
+    price: "$79",
+    period: "/seat/mo",
+    desc: "For sales teams scaling performance",
+    features: ["Unlimited call analyses", "Advanced credibility & sentiment", "Team leaderboards", "CRM integration", "Priority support"],
     highlight: true,
   },
   {
     name: "Enterprise",
     price: "Custom",
-    desc: "For organizations at scale",
-    features: ["Unlimited minutes", "Dedicated infrastructure", "SLA guarantee", "SSO & RBAC", "On-prem option"],
+    desc: "For organizations with complex needs",
+    features: ["Unlimited everything", "Custom AI models", "SSO & RBAC", "Dedicated CSM", "SLA & on-prem option"],
     highlight: false,
   },
 ];
@@ -34,7 +34,7 @@ const PricingSection = () => (
         <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
           Simple, transparent pricing
         </h2>
-        <p className="text-body-muted text-lg mt-4">Start free. Scale as you grow.</p>
+        <p className="text-body-muted text-lg mt-4">Start free. Scale as your team grows.</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -52,10 +52,9 @@ const PricingSection = () => (
           >
             {tier.highlight && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="gradient-pill text-[10px]">RECOMMENDED</span>
+                <span className="gradient-pill text-[10px]">MOST POPULAR</span>
               </div>
             )}
-            {/* Force gradient border visible for highlight */}
             {tier.highlight && (
               <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
                 padding: "1.5px",

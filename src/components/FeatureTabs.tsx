@@ -1,31 +1,31 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, BarChart3, Search } from "lucide-react";
+import { Mic, BarChart3, Search } from "lucide-react";
 
 const tabs = [
   {
     id: "transcribe",
     label: "TRANSCRIBE API",
-    icon: FileText,
-    title: "Convert speech to text with unmatched precision",
-    desc: "Production-grade transcription with speaker diarization, punctuation restoration, and custom vocabulary support. Process hours of audio in minutes.",
-    features: ["99%+ accuracy", "50+ languages", "Speaker diarization", "Real-time streaming"],
+    icon: Mic,
+    title: "Not just speech. Then full picture.",
+    desc: "Voicera goes beyond transcription. Our multimodal engine captures tone, pace, micro-expressions, and verbal patterns — giving sales teams the complete context behind every conversation.",
+    features: ["Real-time transcription", "Speaker diarization", "Tone & pace analysis", "Multi-language support"],
   },
   {
     id: "analyze",
     label: "ANALYZE API",
     icon: BarChart3,
-    title: "Extract intelligence from every conversation",
-    desc: "Go beyond words. Understand sentiment, detect emotions, identify key topics, and generate summaries automatically from any audio source.",
-    features: ["Sentiment analysis", "Emotion detection", "Topic extraction", "Auto-summarization"],
+    title: "API-first architecture for any workflow",
+    desc: "Integrate credibility scoring, sentiment analysis, and behavioral insights directly into your CRM, coaching platform, or sales enablement stack with our RESTful APIs.",
+    features: ["Credibility scoring", "Sentiment tracking", "Objection detection", "Deal risk signals"],
   },
   {
     id: "search",
     label: "VOICE SEARCH API",
     icon: Search,
-    title: "Find any moment using natural language",
-    desc: "Semantic search across your entire audio library. Ask questions in plain English and find the exact moment you're looking for.",
-    features: ["Natural language queries", "Semantic understanding", "Cross-file search", "Timestamp precision"],
+    title: "Search across every sales conversation",
+    desc: "Find the exact moment a prospect raised a concern, showed buying intent, or disengaged. Semantic search across your entire call library using natural language.",
+    features: ["Natural language queries", "Cross-call search", "Moment-level precision", "Behavioral tagging"],
   },
 ];
 
@@ -39,9 +39,9 @@ const FeatureTabs = () => {
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>
           <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
-            Multimodal AI that{" "}
+            Not just speech.{" "}
             <br className="hidden md:block" />
-            understands time and space.
+            The full picture.
           </h2>
         </div>
 

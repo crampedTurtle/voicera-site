@@ -9,14 +9,13 @@ const Testimonial = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="gradient-pill mb-8 inline-block">WHAT CUSTOMERS SAY</span>
+        <span className="gradient-pill mb-8 inline-block">WHAT SALES LEADERS SAY</span>
         <blockquote className="text-2xl md:text-3xl font-semibold text-body leading-relaxed mt-8 mb-8" style={{ letterSpacing: "-0.01em" }}>
-          "The world-class team at Voicera is leveraging cutting-edge
-          AI to transform how enterprises work with voice data, leading
-          to new ways for customers to take advantage of generative AI."
+          "Voicera gave us objective data on every sales call — we stopped guessing which reps needed coaching and
+          started seeing a 34% increase in win rates within the first quarter."
         </blockquote>
         <div className="text-body-muted text-sm">
-          <span className="font-semibold text-body">Sarah Chen</span> · VP of Engineering, TechCorp
+          <span className="font-semibold text-body">Marcus Rivera</span> · VP of Sales Enablement, ScaleForce
         </div>
       </motion.div>
     </div>

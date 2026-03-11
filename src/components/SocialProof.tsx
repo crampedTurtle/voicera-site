@@ -1,13 +1,23 @@
+import { motion } from "framer-motion";
+
 const logos = [
-  "NVIDIA", "Google Cloud", "Microsoft", "Spotify", "Zoom", "Salesforce", "Adobe", "Slack",
+  "Salesforce", "HubSpot", "Gong", "Outreach", "ZoomInfo", "Clari", "Chorus", "Drift",
 ];
 
 const SocialProof = () => (
   <section className="py-20 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-      <span className="gradient-pill">TRUSTED BY</span>
+    <div className="max-w-7xl mx-auto px-6 mb-4 text-center">
+      <span className="gradient-pill">SOCIAL PROOF</span>
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-6 text-2xl md:text-3xl font-semibold text-body"
+      >
+        Trusted by forward-thinking sales teams
+      </motion.h3>
     </div>
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden mt-10">
       <div className="animate-marquee flex gap-16 items-center w-max">
         {[...logos, ...logos].map((name, i) => (
           <span
