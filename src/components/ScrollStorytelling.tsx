@@ -94,7 +94,7 @@ const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive:
   return (
     <div ref={ref} className="flex gap-6 items-start">
       <span
-        className={`flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium shrink-0 transition-all duration-300 ${
+        className={`flex items-center justify-center px-3.5 py-1.5 rounded-full border text-xs font-medium shrink-0 transition-all duration-300 ${
           isActive
             ? "border-foreground text-foreground"
             : "border-border text-muted-foreground opacity-50"
