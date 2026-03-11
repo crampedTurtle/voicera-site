@@ -85,7 +85,7 @@ const ScrollStorytelling = () => {
 
 const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive: boolean; onView: () => void }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: "-40% 0px -40% 0px" });
+  const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
 
   useEffect(() => {
     if (inView) onView();
