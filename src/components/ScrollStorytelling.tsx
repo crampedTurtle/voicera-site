@@ -31,8 +31,6 @@ const ScrollStorytelling = () => {
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
       <FloatingCapsules variant="storytelling" />
-      <SubtleGuideLines variant="vertical-center" className="opacity-40" />
-      <SubtleGuideLines variant="flowing-curve" />
 
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
