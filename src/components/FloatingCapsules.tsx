@@ -19,6 +19,7 @@ interface CapsuleConfig {
   strand: number; // 0 or 1
   hasAnnotation?: boolean;
   annotationLabel?: string;
+  annotationIndex?: number;
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number] }> = {
