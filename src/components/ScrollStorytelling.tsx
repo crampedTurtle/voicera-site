@@ -94,8 +94,11 @@ const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive:
   return (
     <div ref={ref} className="flex gap-6 items-start">
       <span
-        className={`type-step text-3xl transition-all duration-300 ${isActive ? "gradient-text" : "opacity-30"}`}
-        style={{ fontWeight: 500, color: isActive ? undefined : "var(--color-step)" }}
+        className={`flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium shrink-0 transition-all duration-300 ${
+          isActive
+            ? "border-foreground text-foreground"
+            : "border-border text-muted-foreground opacity-50"
+        }`}
       >
         {step.num}
       </span>
