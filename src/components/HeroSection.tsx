@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import FloatingCapsules from "./FloatingCapsules";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility."];
 
@@ -10,6 +11,8 @@ const HeroSection = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Floating capsules */}
+      <FloatingCapsules variant="hero" />
       {/* Ambient orb */}
       <motion.div
         className="absolute w-[700px] h-[700px] rounded-full animate-float-orb pointer-events-none"
