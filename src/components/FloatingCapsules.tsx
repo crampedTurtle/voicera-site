@@ -1,6 +1,7 @@
 import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
+import voiceraInterviewGif from "@/assets/voicera-interview.gif";
 
 type DepthLayer = "foreground" | "midground" | "background";
 
@@ -18,6 +19,7 @@ interface CapsuleConfig {
   strand: number; // 0 or 1
   hasAnnotation?: boolean;
   annotationLabel?: string;
+  annotationIndex?: number;
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number] }> = {
@@ -96,6 +98,7 @@ function generateHelixCapsules(
       annotationLabel: hasAnnotation
         ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
+      annotationIndex: hasAnnotation ? annotationIndices.indexOf(i) : undefined,
     });
   }
 
@@ -220,6 +223,7 @@ const CapsuleElement = ({
     gradientVariant,
     hasAnnotation,
     annotationLabel,
+    annotationIndex,
   } = config;
   const { opacity, blur, parallaxRange } = layerProps[layer];
 
@@ -255,7 +259,7 @@ const CapsuleElement = ({
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
               <img
-                src={voiceraDemoGif}
+                src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
