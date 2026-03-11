@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Product", href: "#product" },
   { label: "Solutions", href: "#solutions" },
-  { label: "Developers", href: "#developers" },
+  { label: "Partners", href: "#developers" },
   { label: "Pricing", href: "#pricing" },
   { label: "Company", href: "#company" },
 ];
@@ -30,10 +30,8 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <a href="/" className="text-xl font-bold gradient-text">voicera</a>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -46,23 +44,20 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
           <button className="gradient-border px-5 py-2 text-sm font-semibold gradient-text rounded-full">
-            Try Playground
+            Try Free
           </button>
           <button className="gradient-bg px-5 py-2 text-sm font-semibold text-white rounded-full hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]">
-            Talk to Sales
+            Book a Demo
           </button>
         </div>
 
-        {/* Mobile menu toggle */}
         <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -76,10 +71,10 @@ const Navbar = () => {
           ))}
           <div className="flex flex-col gap-3 pt-4">
             <button className="gradient-border px-5 py-2 text-sm font-semibold gradient-text rounded-full">
-              Try Playground
+              Try Free
             </button>
             <button className="gradient-bg px-5 py-2 text-sm font-semibold text-white rounded-full">
-              Talk to Sales
+              Book a Demo
             </button>
           </div>
         </motion.div>

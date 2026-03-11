@@ -22,16 +22,36 @@ const DarkSection = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
+        <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80 border border-white/20 mb-8">
+          PARTNER PROGRAM
+        </span>
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{ letterSpacing: "-0.03em" }}>
-          Find any scene in{" "}
+          Join the Voicera{" "}
           <br />
-          natural language
+          Partner Program
         </h2>
         <p className="text-white/60 text-lg max-w-xl mx-auto mb-10" style={{ lineHeight: 1.7 }}>
-          Ask questions about your audio in plain English. Voicera understands context, emotion, and meaning — not just keywords.
+          Integrate Voicera into your sales enablement platform, CRM, or coaching tool.
+          Access our APIs, co-marketing resources, and dedicated partner support.
         </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto mb-10">
+          <div className="border border-white/10 rounded-xl p-5 text-center">
+            <div className="text-2xl font-bold text-white mb-1">Early Access</div>
+            <p className="text-white/50 text-xs">New features & APIs before public release</p>
+          </div>
+          <div className="border border-white/10 rounded-xl p-5 text-center">
+            <div className="text-2xl font-bold text-white mb-1">Co-Marketing</div>
+            <p className="text-white/50 text-xs">Joint case studies, webinars & events</p>
+          </div>
+          <div className="border border-white/10 rounded-xl p-5 text-center">
+            <div className="text-2xl font-bold text-white mb-1">Revenue Share</div>
+            <p className="text-white/50 text-xs">Earn recurring commissions on referrals</p>
+          </div>
+        </div>
+
         <button className="gradient-bg px-8 py-3.5 text-base font-semibold text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
-          Explore Voice Search
+          Become a Partner
         </button>
       </motion.div>
     </div>

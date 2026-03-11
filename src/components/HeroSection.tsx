@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const words = ["Search", "and", "Understand", "Your", "Voice", "—", "with", "AI"];
+const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility."];
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,8 +55,8 @@ const HeroSection = () => {
           className="text-lg text-body-muted max-w-2xl mx-auto mb-10"
           style={{ lineHeight: 1.7 }}
         >
-          Voicera's multimodal AI understands speech the way people do — context,
-          emotion, intent. Build powerful voice applications with our APIs.
+          Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams
+          coach reps, qualify prospects faster, and close deals with data-backed confidence.
         </motion.p>
 
         {/* CTAs */}
@@ -67,11 +67,36 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <button className="gradient-bg px-8 py-3.5 text-base font-semibold text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
-            Get Started Free
+            Start Free Trial
           </button>
           <button className="gradient-border px-8 py-3.5 text-base font-semibold gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
-            Watch Demo
+            Book a Demo
           </button>
+        </motion.div>
+
+        {/* Trust bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs text-body-muted"
+        >
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full gradient-bg" />
+            SOC 2 Compliant
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full gradient-bg" />
+            GDPR Ready
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full gradient-bg" />
+            99.9% Uptime SLA
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full gradient-bg" />
+            Enterprise Ready
+          </span>
         </motion.div>
       </div>
     </section>

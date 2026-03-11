@@ -1,25 +1,25 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mic, BrainCircuit, Search } from "lucide-react";
+import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 
 const steps = [
   {
     num: "01",
-    title: "Capture Every Word",
-    desc: "Real-time transcription with 99%+ accuracy across 50+ languages. Our models understand accents, dialects, and domain-specific jargon.",
-    icon: Mic,
+    title: "The Problem",
+    desc: "Sales leaders rely on subjective gut feelings to evaluate rep performance, qualify deals, and forecast pipeline — leading to inconsistent coaching, missed signals, and lost revenue.",
+    icon: AlertTriangle,
   },
   {
     num: "02",
-    title: "Understand Meaning",
-    desc: "Go beyond transcription. Detect sentiment, identify speakers, extract topics, and understand the context behind every conversation.",
+    title: "The Solution",
+    desc: "Voicera's multimodal AI analyzes every sales conversation in real time — detecting credibility signals, buyer sentiment, objection patterns, and engagement levels that humans miss.",
     icon: BrainCircuit,
   },
   {
     num: "03",
-    title: "Search & Discover",
-    desc: "Find any moment in hours of audio using natural language. Our semantic search understands what was said, who said it, and how it was said.",
-    icon: Search,
+    title: "The Delivery",
+    desc: "Get actionable scorecards after every call. Identify top-performer patterns, replicate winning behaviors across your team, and build a data-driven coaching culture that scales.",
+    icon: TrendingUp,
   },
 ];
 
@@ -30,11 +30,9 @@ const ScrollStorytelling = () => {
     <section id="product" className="section-padding bg-alt">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="gradient-pill">HOW IT WORKS</span>
+          <span className="gradient-pill">WHY VOICERA?</span>
           <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-body" style={{ letterSpacing: "-0.02em" }}>
-            People everywhere are moving to voice.{" "}
-            <br className="hidden md:block" />
-            Our AI hears voice like people do.
+            Why Voicera?
           </h2>
         </div>
 

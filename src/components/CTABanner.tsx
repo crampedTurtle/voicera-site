@@ -32,14 +32,14 @@ const CTABanner = () => (
             WebkitTextFillColor: "transparent",
           }}
         >
-          Ready to unlock your voice data?
+          Ready to turn every sales call into a growth lever?
         </h2>
         <p className="text-body-muted text-lg max-w-xl mx-auto mb-10" style={{ lineHeight: 1.7 }}>
-          Start building with Voicera today. Free to start, scales with your needs.
+          Join hundreds of sales teams using Voicera to coach smarter, close faster, and build credibility at scale.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="gradient-bg px-8 py-3.5 text-base font-semibold text-white rounded-full hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)]">
-            Start Building Free
+            Start Free Trial
           </button>
           <button className="gradient-border px-8 py-3.5 text-base font-semibold gradient-text rounded-full hover:scale-[1.03] transition-transform duration-200">
             Talk to Sales
