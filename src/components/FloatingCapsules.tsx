@@ -8,86 +8,109 @@ interface CapsuleConfig {
   width: number;
   height: number;
   rotation: number;
-  x: string;
-  y: string;
+  x: number; // percent
+  y: number; // percent
   layer: DepthLayer;
   floatDuration: number;
   shimmerDuration: number;
+  gradientVariant: number; // 0-3 different gradient mixes
   hasAnnotation?: boolean;
   annotationLabel?: string;
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number] }> = {
-  foreground: { opacity: 0.92, blur: 0, parallaxRange: [0, -120] },
-  midground: { opacity: 0.7, blur: 0.8, parallaxRange: [0, -60] },
-  background: { opacity: 0.4, blur: 1.5, parallaxRange: [0, -20] },
+  foreground: { opacity: 0.9, blur: 0, parallaxRange: [0, -120] },
+  midground: { opacity: 0.65, blur: 1, parallaxRange: [0, -60] },
+  background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20] },
 };
 
-const CAPSULE_GRADIENT =
-  "linear-gradient(135deg, #A855F7 0%, #EC4899 25%, #F97316 50%, #A855F7 75%, #6366F1 100%)";
+// Multiple gradient variants with white breaks to match the glassy reference
+const GRADIENTS = [
+  "linear-gradient(135deg, #A855F7 0%, rgba(255,255,255,0.85) 20%, #EC4899 40%, rgba(255,255,255,0.7) 60%, #86EFAC 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, #86EFAC 25%, rgba(255,255,255,0.7) 45%, #F9A8D4 65%, rgba(255,255,255,0.6) 85%, #A855F7 100%)",
+  "linear-gradient(135deg, #F97316 0%, rgba(255,255,255,0.75) 22%, #86EFAC 44%, rgba(255,255,255,0.8) 66%, #EC4899 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, #A855F7 20%, rgba(255,255,255,0.8) 40%, #86EFAC 60%, rgba(255,255,255,0.65) 80%, #F9A8D4 100%)",
+];
 
 const CAPSULE_SHADOW =
-  "inset 0 2px 8px rgba(255,255,255,0.4), inset 0 -4px 12px rgba(0,0,0,0.15), 0 8px 32px rgba(168, 85, 247, 0.2)";
+  "inset 0 2px 10px rgba(255,255,255,0.5), inset 0 -4px 14px rgba(0,0,0,0.1), 0 8px 32px rgba(168, 85, 247, 0.15)";
 
-function generateCapsules(count: number, variant: "hero" | "storytelling" | "cta"): CapsuleConfig[] {
+// Deterministic pseudo-random
+function prand(seed: number): number {
+  return ((Math.sin(seed * 9301 + 49297) * 233280) % 1 + 1) % 1;
+}
+
+/**
+ * Generate capsules in a DNA double-helix pattern.
+ * Two sinusoidal strands weave along the vertical axis,
+ * creating an intertwined chain effect.
+ */
+function generateHelixCapsules(
+  count: number,
+  variant: "hero" | "storytelling" | "cta"
+): CapsuleConfig[] {
   const capsules: CapsuleConfig[] = [];
   const seed = variant === "hero" ? 1 : variant === "storytelling" ? 100 : 200;
 
-  for (let i = 0; i < count; i++) {
+  // Helix parameters
+  const helixCenterX = 50; // center of the helix horizontally (%)
+  const helixAmplitude = variant === "cta" ? 38 : 35; // horizontal swing (%)
+  const strandCount = count;
+
+  for (let i = 0; i < strandCount; i++) {
     const s = seed + i;
-    const layerIdx = i % 3;
-    const layer: DepthLayer = layerIdx === 0 ? "foreground" : layerIdx === 1 ? "midground" : "background";
+    const p1 = prand(s);
+    const p2 = prand(s + 1000);
+    const p3 = prand(s + 2000);
 
-    const widthRanges: Record<DepthLayer, [number, number]> = {
-      foreground: [160, 220],
-      midground: [100, 140],
-      background: [60, 90],
-    };
-    const [minW, maxW] = widthRanges[layer];
-    const pseudo = ((Math.sin(s * 9301 + 49297) * 233280) % 1 + 1) % 1;
-    const pseudo2 = ((Math.sin(s * 7919 + 12347) * 181081) % 1 + 1) % 1;
-    const pseudo3 = ((Math.sin(s * 3571 + 77711) * 104729) % 1 + 1) % 1;
+    // Which strand (0 or 1) — alternating
+    const strand = i % 2;
 
-    const width = Math.round(minW + pseudo * (maxW - minW));
-    const height = Math.round(width * (0.45 + pseudo2 * 0.1));
-    const rotation = Math.round(-35 + pseudo3 * 70);
+    // Vertical position: evenly spaced along section height
+    const t = i / (strandCount - 1 || 1);
+    const yPos = 5 + t * 90;
 
-    // Diagonal distribution: bottom-left to top-right
-    const diagT = i / (count - 1 || 1);
-    let xBase: number, yBase: number;
+    // Sinusoidal X: two strands are phase-offset by PI
+    const phase = strand === 0 ? 0 : Math.PI;
+    const frequency = 1.5; // how many full waves across the section
+    const xPos = helixCenterX + Math.sin(t * Math.PI * 2 * frequency + phase) * helixAmplitude;
 
-    if (variant === "hero") {
-      xBase = 5 + diagT * 85 + (pseudo - 0.5) * 20;
-      yBase = 80 - diagT * 70 + (pseudo2 - 0.5) * 25;
-    } else if (variant === "storytelling") {
-      // Scatter on both sides
-      xBase = i % 2 === 0 ? 2 + pseudo * 18 : 80 + pseudo * 18;
-      yBase = 10 + pseudo2 * 80;
-    } else {
-      xBase = 10 + pseudo * 80;
-      yBase = 10 + pseudo2 * 80;
-    }
+    // Depth layer based on position in sine wave (crossing points = midground)
+    const sinVal = Math.abs(Math.sin(t * Math.PI * 2 * frequency + phase));
+    const layer: DepthLayer = sinVal > 0.7 ? "foreground" : sinVal > 0.3 ? "midground" : "background";
 
-    const hasAnnotation = variant === "storytelling" && (i === 2 || i === 5 || i === 8 || i === 11);
+    // Size based on layer
+    const sizeScale = layer === "foreground" ? 1.0 : layer === "midground" ? 0.7 : 0.5;
+    const baseWidth = 120 + p1 * 80; // 120-200
+    const width = Math.round(baseWidth * sizeScale);
+    const height = Math.round(width * 0.48); // slightly more rectangular
+
+    // Rotation follows the helix tangent direction
+    const tangentAngle = Math.cos(t * Math.PI * 2 * frequency + phase) * 30;
+    const rotation = Math.round(tangentAngle + (p3 - 0.5) * 10);
+
+    const annotationIndices = [3, 7, 11];
+    const hasAnnotation = variant === "storytelling" && annotationIndices.includes(i);
+    const annotationLabels = ["0:12–0:28 | Speaker 1", "0:34–0:51 | Speaker 2", "1:02–1:18 | Speaker 1"];
 
     capsules.push({
       id: s,
       width,
       height,
       rotation,
-      x: `${Math.max(2, Math.min(92, xBase))}%`,
-      y: `${Math.max(5, Math.min(90, yBase))}%`,
+      x: Math.max(0, Math.min(95, xPos + (p2 - 0.5) * 6)),
+      y: yPos,
       layer,
-      floatDuration: 4 + pseudo * 4,
-      shimmerDuration: 6 + pseudo2 * 4,
+      floatDuration: 5 + p1 * 4,
+      shimmerDuration: 7 + p2 * 4,
+      gradientVariant: Math.floor(p3 * GRADIENTS.length),
       hasAnnotation,
       annotationLabel: hasAnnotation
-        ? [`0:12–0:28 | Speaker 1`, `0:34–0:51 | Speaker 2`, `1:02–1:18 | Speaker 1`, `0:45–1:01 | Speaker 2`][
-            [2, 5, 8, 11].indexOf(i)
-          ]
+        ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
     });
   }
+
   return capsules;
 }
 
@@ -112,8 +135,11 @@ interface FloatingCapsulesProps {
 
 const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const defaultCount = variant === "cta" ? 16 : variant === "hero" ? 14 : 12;
-  const capsules = useMemo(() => generateCapsules(count ?? defaultCount, variant), [count, defaultCount, variant]);
+  const defaultCount = variant === "cta" ? 18 : variant === "hero" ? 16 : 14;
+  const capsules = useMemo(
+    () => generateHelixCapsules(count ?? defaultCount, variant),
+    [count, defaultCount, variant]
+  );
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -121,7 +147,10 @@ const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesPr
   });
 
   return (
-    <div ref={containerRef} className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       {capsules.map((c) => (
         <CapsuleElement key={c.id} config={c} scrollProgress={scrollYProgress} />
       ))}
@@ -136,33 +165,42 @@ const CapsuleElement = ({
   config: CapsuleConfig;
   scrollProgress: ReturnType<typeof useScroll>["scrollYProgress"];
 }) => {
-  const { layer, width, height, rotation, x, y, floatDuration, shimmerDuration, hasAnnotation, annotationLabel } =
-    config;
+  const {
+    layer,
+    width,
+    height,
+    rotation,
+    x,
+    y,
+    floatDuration,
+    shimmerDuration,
+    gradientVariant,
+    hasAnnotation,
+    annotationLabel,
+  } = config;
   const { opacity, blur, parallaxRange } = layerProps[layer];
 
   const translateY = useTransform(scrollProgress, [0, 1], parallaxRange);
-  const rotateOffset = useTransform(scrollProgress, [0, 1], [-5, 5]);
+  const rotateOffset = useTransform(scrollProgress, [0, 1], [-4, 4]);
 
   return (
     <motion.div
       className="absolute"
       style={{
-        left: x,
-        top: y,
+        left: `${x}%`,
+        top: `${y}%`,
         translateY,
         zIndex: layer === "foreground" ? 3 : layer === "midground" ? 2 : 1,
       }}
     >
-      <motion.div
-        style={{ rotate: rotation, rotateZ: rotateOffset }}
-      >
+      <motion.div style={{ rotate: rotation, rotateZ: rotateOffset }}>
         <div
           className="relative"
           style={{
             width,
             height,
-            borderRadius: 999,
-            background: CAPSULE_GRADIENT,
+            borderRadius: "40%",
+            background: GRADIENTS[gradientVariant],
             backgroundSize: "200% 200%",
             boxShadow: CAPSULE_SHADOW,
             opacity,
@@ -180,7 +218,7 @@ const CapsuleElement = ({
                   height: 48,
                   borderRadius: 8,
                   border: "2px solid rgba(255,255,255,0.5)",
-                  background: "rgba(0,0,0,0.15)",
+                  background: "rgba(0,0,0,0.1)",
                   transform: `rotate(${-rotation}deg)`,
                 }}
               >
@@ -200,18 +238,24 @@ const CapsuleElement = ({
               transform: `translateX(-50%) rotate(${-rotation}deg)`,
             }}
           >
-            <div style={{ width: 2, height: 16, background: "rgba(255,255,255,0.4)" }} />
+            <div
+              style={{
+                width: 2,
+                height: 16,
+                background: "rgba(168, 85, 247, 0.3)",
+              }}
+            />
             <span
               className="whitespace-nowrap"
               style={{
                 fontSize: 10,
                 fontWeight: 500,
                 color: "rgba(168, 85, 247, 0.8)",
-                background: "rgba(255,255,255,0.9)",
+                background: "rgba(255,255,255,0.92)",
                 borderRadius: 4,
                 padding: "2px 6px",
                 marginTop: 2,
-                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
               }}
             >
               {annotationLabel}
