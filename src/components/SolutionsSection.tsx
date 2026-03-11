@@ -239,6 +239,15 @@ const SolutionsSection = () => {
       className="relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, var(--bg-alt) 0%, hsl(0 0% 100%) 15%)" }}
     >
+      {/* Timeline line – center, entering from above into the branching line */}
+      <div
+        className="absolute left-1/2 top-0 w-px pointer-events-none"
+        style={{
+          height: "280px",
+          background: "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.12) 100%)",
+        }}
+      />
+
       {/* Bleeding capsules from section above */}
       <div className="absolute top-0 left-0 right-0 h-[300px] pointer-events-none overflow-hidden" style={{ opacity: 0.4 }}>
         <FloatingCapsules variant="storytelling" count={8} />

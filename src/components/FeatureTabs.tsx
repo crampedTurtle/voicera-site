@@ -36,6 +36,15 @@ const FeatureTabs = () => {
 
   return (
     <section id="solutions" className="section-padding relative overflow-hidden">
+      {/* Timeline line – left side framing */}
+      <div
+        className="absolute top-16 bottom-16 w-px pointer-events-none hidden md:block"
+        style={{
+          left: "calc(50% - 560px)",
+          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent 100%)",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>

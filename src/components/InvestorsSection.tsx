@@ -50,6 +50,15 @@ const InvestorsSection = () => {
         background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 30%, var(--bg-alt) 70%, hsl(0 0% 100%) 100%)",
       }}
     >
+      {/* Timeline line – left side framing */}
+      <div
+        className="absolute top-0 bottom-0 w-px pointer-events-none hidden md:block"
+        style={{
+          left: "calc(50% - 560px)",
+          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.05) 75%, transparent 100%)",
+        }}
+      />
+
       {/* Floating capsules in background */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.35 }}>
         <FloatingCapsules variant="cta" count={10} />

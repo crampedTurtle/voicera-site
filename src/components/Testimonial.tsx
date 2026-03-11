@@ -1,7 +1,16 @@
 import { motion } from "framer-motion";
 
 const Testimonial = () => (
-  <section className="section-padding">
+  <section className="section-padding relative overflow-hidden">
+    {/* Timeline line – right side framing */}
+    <div
+      className="absolute top-0 bottom-0 w-px pointer-events-none hidden md:block"
+      style={{
+        right: "calc(50% - 480px)",
+        background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 70%, transparent 100%)",
+      }}
+    />
+
     <div className="max-w-4xl mx-auto px-6 text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
