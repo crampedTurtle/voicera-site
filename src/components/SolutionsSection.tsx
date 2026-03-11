@@ -32,7 +32,9 @@ const cardVariants = {
 };
 
 const SolutionsSection = () => (
-  <section className="section-padding bg-alt">
+  <section className="section-padding bg-alt relative overflow-hidden">
+    <SubtleGuideLines variant="horizontal" className="top-0" />
+    <SubtleGuideLines variant="flowing-curve" className="opacity-60" />
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-16">
         <span className="gradient-pill">USE CASES</span>
