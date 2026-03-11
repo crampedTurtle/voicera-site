@@ -66,7 +66,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-14 flex flex-wrap items-start gap-6 text-xs text-body-muted"
+            className="mt-14 flex items-center justify-between text-xs text-body-muted w-full"
           >
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full gradient-bg" />
