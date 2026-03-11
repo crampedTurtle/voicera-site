@@ -70,8 +70,8 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} className="block text-sm font-medium text-body-muted">
-              {link}
+            <a key={link.label} href={link.href} className="block text-sm font-medium text-body-muted" onClick={() => setMobileOpen(false)}>
+              {link.label}
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
