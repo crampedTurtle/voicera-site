@@ -16,12 +16,12 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ScrollStorytelling />
-      <SocialProof />
       <FeatureTabs />
       <SolutionsSection />
       <Testimonial />
       <DarkSection />
       <PricingSection />
+      <SocialProof />
       <CTABanner />
       <Footer />
     </div>
