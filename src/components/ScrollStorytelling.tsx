@@ -27,7 +27,7 @@ const ScrollStorytelling = () => {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="section-padding bg-alt">
+    <section id="product" className="section-padding bg-alt">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">HOW IT WORKS</span>
