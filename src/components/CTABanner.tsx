@@ -3,6 +3,8 @@ import FloatingCapsules from "./FloatingCapsules";
 
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
+    {/* Floating capsules */}
+    <FloatingCapsules variant="cta" count={16} />
     {/* Ambient orb */}
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"
