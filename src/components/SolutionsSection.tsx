@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Users, Video, ShieldCheck } from "lucide-react";
-import SubtleGuideLines from "./SubtleGuideLines";
+
 
 const useCases = [
   {
