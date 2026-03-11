@@ -41,8 +41,8 @@ const ScrollStorytelling = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="absolute z-[2] pointer-events-none hidden lg:block"
-        style={{ top: "18%", right: "8%" }}
+        className="absolute z-[4] pointer-events-none hidden lg:block"
+        style={{ top: "15%", left: "45%" }}
       >
         <div
           className="overflow-hidden"
