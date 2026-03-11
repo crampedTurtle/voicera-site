@@ -6,7 +6,7 @@ import SolutionsSection from "@/components/SolutionsSection";
 import SocialProof from "@/components/SocialProof";
 import Testimonial from "@/components/Testimonial";
 import DarkSection from "@/components/DarkSection";
-import ClientTestimonial from "@/components/ClientTestimonial";
+import PricingSection from "@/components/PricingSection";
 import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 
@@ -21,7 +21,7 @@ const Index = () => {
       <SocialProof />
       <Testimonial />
       <DarkSection />
-      <ClientTestimonial />
+      <PricingSection />
       <CTABanner />
       <Footer />
     </div>
