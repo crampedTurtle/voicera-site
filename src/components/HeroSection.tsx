@@ -6,6 +6,7 @@ import FloatingCapsules from "./FloatingCapsules";
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility."];
 
 const HeroSection = () => {
+  const [playing, setPlaying] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const orbY = useTransform(scrollYProgress, [0, 1], [0, 200]);
