@@ -84,7 +84,9 @@ const StepItem = ({ step, isActive, onView }: { step: typeof steps[0]; isActive:
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-40% 0px -40% 0px" });
 
-  if (inView) onView();
+  useEffect(() => {
+    if (inView) onView();
+  }, [inView, onView]);
 
   return (
     <div ref={ref} className="flex gap-6 items-start">
