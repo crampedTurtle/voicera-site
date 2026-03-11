@@ -223,6 +223,7 @@ const CapsuleElement = ({
     gradientVariant,
     hasAnnotation,
     annotationLabel,
+    annotationIndex,
   } = config;
   const { opacity, blur, parallaxRange } = layerProps[layer];
 
