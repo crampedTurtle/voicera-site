@@ -32,11 +32,6 @@ const ScrollStorytelling = () => {
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
       <FloatingCapsules variant="storytelling" />
 
-      {/* Timeline line – center, full height */}
-      <div
-        className="absolute left-1/2 top-0 bottom-0 w-px pointer-events-none"
-        style={{ background: "rgba(0,0,0,0.06)" }}
-      />
 
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
