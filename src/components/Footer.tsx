@@ -22,7 +22,7 @@ const footerLinks = [
 ];
 
 const Footer = () => (
-  <footer className="bg-alt relative">
+  <footer id="company" className="bg-alt relative">
     {/* Gradient accent at top */}
     <div className="h-px w-full gradient-bg opacity-30" />
 
