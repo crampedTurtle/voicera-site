@@ -26,7 +26,7 @@ const steps = [
 ];
 
 const ScrollStorytelling = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(-1);
 
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
