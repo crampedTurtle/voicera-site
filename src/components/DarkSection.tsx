@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const DarkSection = () => (
   <section id="developers" className="relative overflow-hidden py-32" style={{ background: "#0A0A1A" }}>
