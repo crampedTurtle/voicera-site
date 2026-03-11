@@ -70,8 +70,8 @@ const Navbar = () => {
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
-            <button className="gradient-border px-5 py-2 type-button gradient-text rounded-full">
-              Try Free
+            <button className="gradient-border px-5 py-2 type-button rounded-full">
+              <span className="btn-label">Try Free</span>
             </button>
             <button className="gradient-bg px-5 py-2 type-button text-white rounded-full">
               Book a Demo
