@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import FloatingCapsules from "./FloatingCapsules";
 
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
