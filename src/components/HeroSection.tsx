@@ -30,12 +30,7 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         {/* Headline */}
         <h1 className="type-hero mb-6">
-          <span className="gradient-text animate-shimmer inline-block" style={{
-            background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
-            backgroundSize: "200% 200%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}>
+          <span className="inline-block">
             {words.map((word, i) => (
               <motion.span
                 key={i}
