@@ -25,15 +25,7 @@ const CTABanner = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2
-          className="type-display gradient-text animate-shimmer mb-6"
-          style={{
-            background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
-            backgroundSize: "200% 200%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
+        <h2 className="type-display mb-6">
           Ready to turn every sales call into a growth lever?
         </h2>
         <p className="type-body max-w-xl mx-auto mb-10">
