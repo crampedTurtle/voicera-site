@@ -21,6 +21,14 @@ const HeroSection = () => {
         background: "linear-gradient(to right, hsl(270 40% 96%) 0%, hsl(330 30% 96%) 40%, hsl(0 0% 100%) 75%, hsl(0 0% 100%) 100%)",
       }}
     >
+      {/* Timeline line – center, bottom half */}
+      <div
+        className="absolute left-1/2 bottom-0 w-px pointer-events-none"
+        style={{
+          height: "40%",
+          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.08) 100%)",
+        }}
+      />
 
       {/* Floating capsules */}
       <FloatingCapsules variant="hero" />

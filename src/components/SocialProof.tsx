@@ -10,7 +10,17 @@ const logos = [
 ];
 
 const SocialProof = () => (
-  <section className="py-20 overflow-hidden bg-alt" style={{ background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 40%, var(--bg-alt) 60%, hsl(0 0% 100%) 100%)" }}>
+  <section className="py-20 overflow-hidden relative" style={{ background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 40%, var(--bg-alt) 60%, hsl(0 0% 100%) 100%)" }}>
+    {/* Timeline line – center with node dot */}
+    <div
+      className="absolute left-1/2 top-0 bottom-0 w-px pointer-events-none"
+      style={{ background: "rgba(0,0,0,0.06)" }}
+    />
+    <div
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full pointer-events-none"
+      style={{ background: "rgba(0,0,0,0.08)" }}
+    />
+
     <div className="max-w-7xl mx-auto px-6 mb-4 text-center">
       <span className="gradient-pill">PILOTING NOW</span>
       <motion.h3
