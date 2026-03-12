@@ -102,11 +102,11 @@
   }
 
   .type-body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--color-body-text);
   }
 
