@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, BarChart3, Search } from "lucide-react";
+import platformBg from "@/assets/platform-bg.jpg";
 
 
 const tabs = [
@@ -35,7 +36,7 @@ const FeatureTabs = () => {
   const activeData = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="solutions" className="section-padding relative overflow-hidden">
+    <section id="solutions" className="section-padding relative overflow-hidden" style={{ backgroundImage: `url(${platformBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
       {/* Timeline line – left side framing */}
       <div
         className="absolute top-16 bottom-16 w-px pointer-events-none hidden md:block"
