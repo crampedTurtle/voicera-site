@@ -31,7 +31,7 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center">
+        <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center">
           <img src={voiceraLogo} alt="Voicera" className="h-[50px] w-auto" />
         </a>
 
@@ -39,8 +39,9 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={link.href}
-              className="type-nav text-body-muted hover:text-body transition-colors"
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
             >
               {link.label}
             </a>
@@ -68,7 +69,7 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} className="block type-nav text-body-muted" onClick={() => setMobileOpen(false)}>
+            <a key={link.label} href="#" onClick={(e) => { e.preventDefault(); setMobileOpen(false); }} className="block type-nav text-body-muted cursor-pointer">
               {link.label}
             </a>
           ))}
