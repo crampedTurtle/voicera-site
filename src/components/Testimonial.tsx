@@ -16,6 +16,7 @@ const Testimonial = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="text-center"
         >
           <span className="gradient-pill mb-8 inline-block">SINCERITY™ BY VOICERA</span>
 
