@@ -36,7 +36,18 @@ const FeatureTabs = () => {
   const activeData = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="solutions" className="section-padding relative overflow-hidden" style={{ backgroundImage: `url(${platformBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <section id="solutions" className="section-padding relative overflow-visible">
+      {/* Background image bleeding into section above */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${platformBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          top: "-200px",
+          opacity: 1,
+        }}
+      />
       {/* Timeline line – left side framing */}
       <div
         className="absolute top-16 bottom-16 w-px pointer-events-none hidden md:block"
