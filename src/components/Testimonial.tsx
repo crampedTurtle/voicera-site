@@ -17,7 +17,7 @@ const Testimonial = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="gradient-pill mb-8 inline-block">INTRODUCING SINCERITY™ BY VOICERA</span>
+          <span className="gradient-pill mb-8 inline-block">SINCERITY™ BY VOICERA</span>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-8 items-center">
             {/* Left – text */}
