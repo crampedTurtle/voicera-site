@@ -21,11 +21,10 @@ const Testimonial = () => {
           <span className="gradient-pill mb-8 inline-block">SINCERITY™ BY VOICERA</span>
 
           <div
-            className="relative mt-8 mx-auto overflow-hidden cursor-pointer"
+            className="relative mt-8 mx-auto overflow-hidden cursor-pointer w-full md:w-[75%]"
             style={{
-              aspectRatio: "21/9",
-              borderRadius: "2.5rem",
-              width: "75%",
+              aspectRatio: "16/9",
+              borderRadius: "1.5rem",
               padding: "3px",
               background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.18) 40%, rgba(168, 85, 247, 0.05) 70%, transparent 100%)",
               boxShadow: "0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.08)",
@@ -33,8 +32,8 @@ const Testimonial = () => {
             onClick={() => !playing && setPlaying(true)}
           >
             <div
-              className="relative w-full h-full overflow-hidden"
-              style={{ borderRadius: "2.25rem" }}
+              className="relative w-full h-full overflow-hidden md:rounded-[2.25rem]"
+              style={{ borderRadius: "1.25rem" }}
             >
             {!playing ? (
               <>
