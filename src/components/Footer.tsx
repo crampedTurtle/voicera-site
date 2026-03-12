@@ -1,4 +1,7 @@
 import voiceraLogoBlack from "@/assets/voicera-logo-black.png";
+import badgeSoc from "@/assets/badge-soc.png";
+import badgeGdpr from "@/assets/badge-gdpr.png";
+import badgeTpn from "@/assets/badge-tpn.png";
 
 const footerLinks = [
   {
@@ -17,10 +20,12 @@ const footerLinks = [
     title: "Company",
     links: ["About", "Blog", "Careers", "Press", "Contact"],
   },
-  {
-    title: "Legal",
-    links: ["Privacy Policy", "Terms of Service", "Security", "SOC 2", "GDPR"],
-  },
+];
+
+const complianceBadges = [
+  { src: badgeSoc, alt: "AICPA SOC Certified" },
+  { src: badgeGdpr, alt: "GDPR Compliant" },
+  { src: badgeTpn, alt: "TPN Trusted Partner Network" },
 ];
 
 const Footer = () => (
@@ -44,6 +49,25 @@ const Footer = () => (
             </ul>
           </div>
         ))}
+
+        {/* Compliance badges column */}
+        <div>
+          <h4 className="type-button text-body mb-4">Legal</h4>
+          <ul className="space-y-2.5 mb-5">
+            <li><a href="#" className="type-footer hover:text-body transition-colors">Privacy Policy</a></li>
+            <li><a href="#" className="type-footer hover:text-body transition-colors">Terms of Service</a></li>
+          </ul>
+          <div className="flex items-center gap-3">
+            {complianceBadges.map((badge) => (
+              <img
+                key={badge.alt}
+                src={badge.src}
+                alt={badge.alt}
+                className="h-9 w-auto opacity-50 hover:opacity-70 transition-opacity duration-200"
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border">
