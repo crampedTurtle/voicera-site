@@ -85,7 +85,7 @@
   }
 
   .type-subheading {
-    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(24px, 2.5vw, 36px);
     font-weight: 600;
     letter-spacing: -0.02em;
