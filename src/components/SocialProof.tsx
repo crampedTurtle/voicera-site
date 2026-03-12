@@ -23,19 +23,17 @@ const SocialProof = () => (
         Trusted by forward-thinking teams
       </motion.h3>
     </div>
-    <div className="flex justify-center items-center gap-16 mt-10 px-6">
-      {logos.map((logo, i) => (
-        <motion.img
-          key={i}
-          src={logo.src}
-          alt={logo.alt}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.1 }}
-          className="h-10 max-w-[180px] object-contain grayscale brightness-0 opacity-40 hover:opacity-70 transition-opacity duration-300"
-        />
-      ))}
+    <div className="relative mt-10 overflow-hidden">
+      <div className="flex animate-marquee w-max gap-16 items-center">
+        {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
+          <img
+            key={i}
+            src={logo.src}
+            alt={logo.alt}
+            className="h-10 max-w-[180px] object-contain grayscale brightness-0 opacity-40 flex-shrink-0"
+          />
+        ))}
+      </div>
     </div>
   </section>
 );
