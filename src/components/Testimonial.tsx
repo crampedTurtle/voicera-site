@@ -65,6 +65,7 @@ const Testimonial = () => {
                 title="Sincerity by Voicera"
               />
             )}
+            </div>
           </div>
         </motion.div>
       </div>
