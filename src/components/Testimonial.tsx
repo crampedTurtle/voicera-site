@@ -53,9 +53,9 @@ const Testimonial = () => {
                   <p className="text-white/80 font-normal mb-6" style={{ fontSize: "clamp(18px, 2vw, 24px)" }}>
                     For Enhancing Confidence in the Truth
                   </p>
-                  <button className="inline-flex items-center gap-2 gradient-bg text-primary-foreground type-button px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
-                    <Play className="w-4 h-4" fill="currentColor" />
+                  <button className="inline-flex items-center gap-2 bg-black/80 text-white type-button px-6 py-3 rounded-xl hover:bg-black/90 transition-colors backdrop-blur-sm">
                     Watch
+                    <ArrowUpRight className="w-4 h-4" />
                   </button>
                 </div>
               </>
