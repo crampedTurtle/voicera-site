@@ -39,8 +39,9 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={link.href}
-              className="type-nav text-body-muted hover:text-body transition-colors"
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
             >
               {link.label}
             </a>
