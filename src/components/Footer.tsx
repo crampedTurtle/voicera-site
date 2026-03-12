@@ -1,3 +1,5 @@
+import voiceraLogoBlack from "@/assets/voicera-logo-black.png";
+
 const footerLinks = [
   {
     title: "Product",
