@@ -63,7 +63,7 @@
 @layer utilities {
   /* ---- Typography utilities ---- */
   .font-display {
-    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   .type-hero {
