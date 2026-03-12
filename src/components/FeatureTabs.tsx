@@ -45,19 +45,18 @@ const FeatureTabs = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           top: "-200px",
-          opacity: 1,
+          opacity: 0.45,
         }}
       />
-      {/* Timeline line – left side framing */}
+      {/* White fade overlay for text readability */}
       <div
-        className="absolute top-16 bottom-16 w-px pointer-events-none hidden md:block"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          left: "calc(50% - 560px)",
-          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent 100%)",
+          background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,0.3) 100%)",
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="gradient-pill">PLATFORM</span>
           <h2 className="type-display text-body mt-6">
