@@ -134,9 +134,9 @@
   }
 
   .type-step {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Mono', monospace;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-step);
