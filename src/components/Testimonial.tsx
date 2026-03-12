@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const YOUTUBE_ID = "GhrtJO3R-80";
+const YOUTUBE_ID = "GhrtJO3R-80"; // video id
 const THUMB_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
 
 const Testimonial = () => {
