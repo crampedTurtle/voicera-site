@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const YOUTUBE_ID = "GhrtJO3R-80";
 const THUMB_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
@@ -21,20 +21,23 @@ const Testimonial = () => {
           <span className="gradient-pill mb-8 inline-block">SINCERITY™ BY VOICERA</span>
 
           <div
-            className="relative mt-8 mx-auto overflow-hidden cursor-pointer w-full md:w-[75%]"
-            style={{
-              aspectRatio: "16/9",
-              borderRadius: "1.5rem",
-              padding: "3px",
-              background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.18) 40%, rgba(168, 85, 247, 0.05) 70%, transparent 100%)",
-              boxShadow: "0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.08)",
-              
-            }}
+            className="relative mt-8 mx-auto cursor-pointer w-full md:w-[75%]"
+            style={{ aspectRatio: "16/9" }}
             onClick={() => !playing && setPlaying(true)}
           >
+            {/* Purple glow layer behind the video */}
             <div
-              className="relative w-full h-full overflow-hidden md:rounded-[2.25rem]"
-              style={{ borderRadius: "1.25rem" }}
+              className="absolute rounded-[1.75rem] md:rounded-[2.5rem]"
+              style={{
+                inset: "-12px",
+                background: "linear-gradient(135deg, rgba(168, 85, 247, 0.5) 0%, rgba(130, 60, 220, 0.3) 30%, rgba(168, 85, 247, 0.15) 60%, transparent 100%)",
+                filter: "blur(16px)",
+                zIndex: 0,
+              }}
+            />
+            <div
+              className="relative w-full h-full overflow-hidden rounded-[1.25rem] md:rounded-[2rem]"
+              style={{ zIndex: 1 }}
             >
             {!playing ? (
               <>
@@ -50,9 +53,9 @@ const Testimonial = () => {
                   <p className="text-white/80 font-normal mb-6" style={{ fontSize: "clamp(18px, 2vw, 24px)" }}>
                     For Enhancing Confidence in the Truth
                   </p>
-                  <button className="inline-flex items-center gap-2 gradient-bg text-primary-foreground type-button px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
-                    <Play className="w-4 h-4" fill="currentColor" />
+                  <button className="inline-flex items-center gap-2 bg-black/80 text-white type-button px-6 py-3 rounded-xl hover:bg-black/90 transition-colors backdrop-blur-sm">
                     Watch
+                    <ArrowUpRight className="w-4 h-4" />
                   </button>
                 </div>
               </>
