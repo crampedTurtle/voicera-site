@@ -76,7 +76,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-          className="hidden lg:flex items-center justify-center"
+          className="flex items-center justify-center mt-8 lg:mt-0"
         >
           <div
             className="relative w-full aspect-video rounded-2xl overflow-hidden cursor-pointer"
