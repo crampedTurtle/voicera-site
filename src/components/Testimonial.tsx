@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const YOUTUBE_ID = "GhrtJO3R-80";
 const THUMB_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
