@@ -69,7 +69,7 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} className="block type-nav text-body-muted" onClick={() => setMobileOpen(false)}>
+            <a key={link.label} href="#" onClick={(e) => { e.preventDefault(); setMobileOpen(false); }} className="block type-nav text-body-muted cursor-pointer">
               {link.label}
             </a>
           ))}
