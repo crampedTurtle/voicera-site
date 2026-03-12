@@ -33,7 +33,7 @@ const Testimonial = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
-                  <h2 className="type-display text-white mb-3">
+                  <h2 className="type-display mb-3" style={{ color: "white" }}>
                     AI Voice &amp; Video Insights
                   </h2>
                   <p className="text-white/80 font-normal mb-6" style={{ fontSize: "clamp(18px, 2vw, 24px)" }}>
