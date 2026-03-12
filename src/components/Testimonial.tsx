@@ -28,6 +28,7 @@ const Testimonial = () => {
               padding: "3px",
               background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.18) 40%, rgba(168, 85, 247, 0.05) 70%, transparent 100%)",
               boxShadow: "0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.08)",
+              animation: "glowPulse 3s ease-in-out infinite",
             }}
             onClick={() => !playing && setPlaying(true)}
           >
