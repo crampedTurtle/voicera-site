@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
 
 const steps = [
