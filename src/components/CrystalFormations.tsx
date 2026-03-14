@@ -18,7 +18,7 @@ interface CrystalConfig {
   facetLines: { x1: string; y1: string; x2: string; y2: string }[];
   isSpike: boolean;
   isIndependent: boolean;
-  glowIntensity: number; // 0-1 how strong the purple glow is
+  colorVariant: number; // 0=lavender, 1=peach, 2=white-frosted
 }
 
 interface ClusterConfig {
@@ -28,43 +28,47 @@ interface ClusterConfig {
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number]; useBackdrop: boolean }> = {
-  foreground: { opacity: 0.65, blur: 0, parallaxRange: [0, -120], useBackdrop: true },
-  midground: { opacity: 0.4, blur: 0, parallaxRange: [0, -60], useBackdrop: false },
-  background: { opacity: 0.18, blur: 2, parallaxRange: [0, -20], useBackdrop: false },
+  foreground: { opacity: 0.85, blur: 0, parallaxRange: [0, -120], useBackdrop: true },
+  midground: { opacity: 0.55, blur: 0, parallaxRange: [0, -60], useBackdrop: false },
+  background: { opacity: 0.3, blur: 1.5, parallaxRange: [0, -20], useBackdrop: false },
 };
 
-const CRYSTAL_GRADIENT =
-  "linear-gradient(135deg, rgba(168,85,247,0.55) 0%, rgba(236,72,153,0.4) 25%, rgba(249,115,22,0.35) 50%, rgba(99,102,241,0.45) 75%, rgba(168,85,247,0.55) 100%)";
+// Soft, frosted gradients matching the reference — mostly white with subtle color hints
+const CRYSTAL_GRADIENTS = [
+  // Lavender/purple frosted
+  "linear-gradient(135deg, rgba(200,180,240,0.5) 0%, rgba(255,255,255,0.7) 30%, rgba(180,160,220,0.35) 55%, rgba(255,255,255,0.65) 80%, rgba(190,170,235,0.4) 100%)",
+  // Warm peach/coral frosted
+  "linear-gradient(135deg, rgba(255,200,170,0.45) 0%, rgba(255,255,255,0.7) 25%, rgba(245,160,130,0.35) 50%, rgba(255,255,255,0.65) 75%, rgba(240,180,150,0.4) 100%)",
+  // Pure white frosted glass
+  "linear-gradient(135deg, rgba(220,210,245,0.3) 0%, rgba(255,255,255,0.8) 30%, rgba(240,235,250,0.4) 55%, rgba(255,255,255,0.75) 80%, rgba(210,200,240,0.25) 100%)",
+  // Lavender-to-peach blend
+  "linear-gradient(135deg, rgba(190,170,235,0.4) 0%, rgba(255,255,255,0.7) 25%, rgba(255,190,160,0.3) 50%, rgba(255,255,255,0.7) 75%, rgba(200,180,240,0.35) 100%)",
+];
 
 function prand(seed: number): number {
   return ((Math.sin(seed * 9301 + 49297) * 233280) % 1 + 1) % 1;
 }
 
-/** Generate quartz-like polygon: elongated, angular, with termination points */
 function generateQuartzClipPath(seed: number): string {
   const style = Math.floor(prand(seed) * 4);
 
   if (style === 0) {
-    // Hexagonal prism cross-section (classic quartz)
     const w1 = 15 + prand(seed + 1) * 10;
     const w2 = 20 + prand(seed + 2) * 15;
     return `polygon(${50 - w1}% 0%, ${50 + w1}% 0%, ${50 + w2}% 35%, ${50 + w1}% 100%, ${50 - w1}% 100%, ${50 - w2}% 35%)`;
   }
   if (style === 1) {
-    // Terminated crystal point — top tapers to a point
     const baseW = 18 + prand(seed + 3) * 14;
     const midW = 15 + prand(seed + 4) * 12;
     return `polygon(50% 0%, ${50 + midW}% 25%, ${50 + baseW}% 60%, ${50 + baseW - 3}% 100%, ${50 - baseW + 3}% 100%, ${50 - baseW}% 60%, ${50 - midW}% 25%)`;
   }
   if (style === 2) {
-    // Cleaved slab — wider, flatter, asymmetric
     const tl = 8 + prand(seed + 5) * 12;
     const tr = 65 + prand(seed + 6) * 25;
     const br = 70 + prand(seed + 7) * 20;
     const bl = 5 + prand(seed + 8) * 15;
     return `polygon(${tl}% 5%, ${tr}% 0%, 95% ${30 + prand(seed + 9) * 20}%, ${br}% 95%, ${bl}% 100%, 2% ${50 + prand(seed + 10) * 20}%)`;
   }
-  // Irregular fractured — 6-8 points
   const sides = 6 + Math.floor(prand(seed + 11) * 3);
   const points: string[] = [];
   for (let i = 0; i < sides; i++) {
@@ -78,18 +82,15 @@ function generateQuartzClipPath(seed: number): string {
   return `polygon(${points.join(", ")})`;
 }
 
-/** Generate a spike/prism — narrow, elongated quartz termination */
 function generateSpikeClipPath(seed: number): string {
   const baseWidth = 10 + prand(seed) * 14;
   const midWidth = baseWidth * (0.6 + prand(seed + 1) * 0.3);
-  // Asymmetric spike with a slight kink
   return `polygon(50% 0%, ${50 + midWidth * 0.7}% 40%, ${50 + baseWidth / 2}% 100%, ${50 - baseWidth / 2}% 100%, ${50 - midWidth * 0.5}% 45%)`;
 }
 
-/** Generate multiple facet lines to simulate internal crystal planes */
 function generateFacetLines(seed: number, isSpike: boolean): { x1: string; y1: string; x2: string; y2: string }[] {
   if (isSpike) return [];
-  const count = 1 + Math.floor(prand(seed + 500) * 2); // 1-2 facet lines
+  const count = 1 + Math.floor(prand(seed + 500) * 2);
   const lines: { x1: string; y1: string; x2: string; y2: string }[] = [];
   for (let i = 0; i < count; i++) {
     const p1 = prand(seed + 500 + i * 100);
@@ -108,7 +109,6 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
   const clusters: ClusterConfig[] = [];
   const seed = variant === "hero" ? 1 : variant === "storytelling" ? 200 : 400;
 
-  // Cluster positions
   const clusterPositions: { x: number; y: number }[] =
     variant === "hero"
       ? [
@@ -131,7 +131,6 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
             { x: 50, y: 8 },
           ];
 
-  // Independent scattered crystals (not in clusters)
   const independentPositions: { x: number; y: number }[] =
     variant === "hero"
       ? [
@@ -153,7 +152,6 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
             { x: 82, y: 52 },
           ];
 
-  // Generate cluster groups
   clusterPositions.forEach((pos, ci) => {
     const clusterSeed = seed + ci * 50;
     const shardCount = 3 + Math.floor(prand(clusterSeed) * 3);
@@ -185,8 +183,7 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
 
       crystals.push({
         id: s,
-        width,
-        height,
+        width, height,
         rotation: Math.round(rotation),
         x, y, layer,
         floatDuration: 7 + prand(s + 5) * 5,
@@ -196,14 +193,13 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
         facetLines: generateFacetLines(s, isSpike),
         isSpike,
         isIndependent: false,
-        glowIntensity: isAnchor ? 0.8 + prand(s + 8) * 0.2 : 0.4 + prand(s + 8) * 0.4,
+        colorVariant: Math.floor(prand(s + 8) * CRYSTAL_GRADIENTS.length),
       });
     }
 
     clusters.push({ crystals, originX: pos.x, originY: pos.y });
   });
 
-  // Generate independent scattered crystals
   independentPositions.forEach((pos, ii) => {
     const s = seed + 900 + ii * 30;
     const isSpike = prand(s + 50) > 0.6;
@@ -216,8 +212,7 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
     clusters.push({
       crystals: [{
         id: s,
-        width,
-        height,
+        width, height,
         rotation: Math.round((prand(s + 3) - 0.5) * 70),
         x: pos.x,
         y: pos.y,
@@ -229,7 +224,7 @@ function generateClusters(variant: "hero" | "storytelling" | "cta"): ClusterConf
         facetLines: generateFacetLines(s, isSpike),
         isSpike,
         isIndependent: true,
-        glowIntensity: 0.3 + prand(s + 7) * 0.4,
+        colorVariant: Math.floor(prand(s + 7) * CRYSTAL_GRADIENTS.length),
       }],
       originX: pos.x,
       originY: pos.y,
@@ -282,7 +277,7 @@ const CrystalElement = ({
   const {
     layer, width, height, rotation, x, y,
     floatDuration, shimmerDuration, rotateDriftDuration,
-    clipPath, facetLines, isSpike, glowIntensity,
+    clipPath, facetLines, isSpike, colorVariant,
   } = config;
   const { opacity, blur, parallaxRange, useBackdrop } = layerProps[layer];
 
@@ -291,10 +286,14 @@ const CrystalElement = ({
   const elRef = useRef<HTMLDivElement>(null);
   const inView = useInView(elRef, { once: true, margin: "-10% 0px" });
 
-  // Purple glow color with variable intensity
-  const glowAlpha = (glowIntensity * 0.5).toFixed(2);
-  const glowAlphaOuter = (glowIntensity * 0.3).toFixed(2);
-  const borderAlpha = (0.35 + glowIntensity * 0.35).toFixed(2);
+  const gradient = CRYSTAL_GRADIENTS[colorVariant % CRYSTAL_GRADIENTS.length];
+
+  // Subtle lavender outline — thin and soft like in the reference
+  const borderColor = layer === "foreground"
+    ? "rgba(180, 160, 220, 0.55)"
+    : layer === "midground"
+      ? "rgba(180, 160, 220, 0.4)"
+      : "rgba(180, 160, 220, 0.25)";
 
   return (
     <motion.div
@@ -316,71 +315,59 @@ const CrystalElement = ({
           animation: `crystalFloat ${floatDuration}s ease-in-out infinite, crystalRotateDrift ${rotateDriftDuration}s ease-in-out infinite`,
         }}
       >
-        {/* Outer glow halo — purple ambient light */}
-        <div
-          className="absolute"
-          style={{
-            inset: -6,
-            clipPath,
-            boxShadow: `0 0 18px rgba(168, 85, 247, ${glowAlpha}), 0 0 40px rgba(139, 92, 246, ${glowAlphaOuter})`,
-            opacity: opacity * 0.9,
-            animation: `crystalGlowPulse ${shimmerDuration + 2}s ease-in-out infinite`,
-          }}
-        />
-
-        {/* Crystal body */}
+        {/* Crystal body — frosted glass fill */}
         <div
           className="absolute inset-0"
           style={{
             clipPath,
-            background: CRYSTAL_GRADIENT,
+            background: gradient,
             backgroundSize: "200% 200%",
             opacity,
             animation: inView && layer === "foreground"
               ? `capsuleShimmer ${shimmerDuration}s ease-in-out infinite, crystalSpecular 0.6s ease-out`
               : `capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
-            filter: `drop-shadow(0 4px 20px rgba(168, 85, 247, ${glowAlpha})) drop-shadow(0 2px 6px rgba(139, 92, 246, ${glowAlphaOuter})) drop-shadow(0 1px 2px rgba(255,255,255,0.3))${blur > 0 ? ` blur(${blur}px)` : ""}`,
+            filter: `drop-shadow(0 4px 16px rgba(180, 160, 220, 0.2)) drop-shadow(0 1px 3px rgba(255,255,255,0.3))${blur > 0 ? ` blur(${blur}px)` : ""}`,
             ...(useBackdrop
-              ? { backdropFilter: "blur(4px) saturate(1.4)", WebkitBackdropFilter: "blur(4px) saturate(1.4)" }
+              ? { backdropFilter: "blur(6px) saturate(1.2)", WebkitBackdropFilter: "blur(6px) saturate(1.2)" }
               : {}),
           }}
         />
 
-        {/* Glowing purple border outline */}
+        {/* Soft lavender outline — the key detail from reference */}
         <div
           className="absolute inset-0"
           style={{
             clipPath,
-            boxShadow: `inset 0 0 0 1.5px rgba(168, 85, 247, ${borderAlpha}), inset 0 0 8px rgba(139, 92, 246, ${(glowIntensity * 0.2).toFixed(2)})`,
-            opacity: opacity * 0.9,
+            boxShadow: `inset 0 0 0 1.5px ${borderColor}`,
+            opacity: opacity * 1.1,
           }}
         />
 
-        {/* White specular edge highlight */}
+        {/* Subtle inner white edge for glass depth */}
         <div
           className="absolute inset-0"
           style={{
             clipPath,
-            boxShadow: "inset 0 0 0 0.5px rgba(255, 255, 255, 0.4)",
-            opacity: opacity * 0.6,
+            boxShadow: "inset 0 0 0 0.5px rgba(255, 255, 255, 0.35)",
+            opacity: opacity * 0.5,
           }}
         />
 
-        {/* Internal facet lines */}
+        {/* Internal facet lines — very subtle */}
         {facetLines.length > 0 && (
           <svg
             className="absolute inset-0 w-full h-full"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
-            style={{ clipPath, opacity: opacity * 0.6 }}
+            style={{ clipPath, opacity: opacity * 0.4 }}
           >
             {facetLines.map((fl, i) => (
               <line
                 key={i}
                 x1={fl.x1} y1={fl.y1}
                 x2={fl.x2} y2={fl.y2}
-                stroke="rgba(255,255,255,0.3)"
-                strokeWidth="0.8"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="0.6"
                 vectorEffect="non-scaling-stroke"
               />
             ))}
