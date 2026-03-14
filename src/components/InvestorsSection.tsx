@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Lock, Unlock, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
-import CrystalFormations from "./CrystalFormations";
+import FloatingCapsules from "./FloatingCapsules";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
@@ -61,7 +61,7 @@ const InvestorsSection = () => {
 
       {/* Floating capsules in background */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.35 }}>
-        <CrystalFormations variant="cta" />
+        <FloatingCapsules variant="cta" count={10} />
       </div>
 
       {/* Parallax ambient orbs */}

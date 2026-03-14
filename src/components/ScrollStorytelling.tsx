@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
-import CrystalFormations from "./CrystalFormations";
+import FloatingCapsules from "./FloatingCapsules";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
 
 const steps = [
@@ -30,7 +30,7 @@ const ScrollStorytelling = () => {
 
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
-      <CrystalFormations variant="storytelling" />
+      <FloatingCapsules variant="storytelling" />
 
 
 
