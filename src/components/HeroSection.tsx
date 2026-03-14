@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 import heroThumb from "@/assets/hero-video-thumb.jpg";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
@@ -31,7 +31,7 @@ const HeroSection = () => {
       />
 
       {/* Floating capsules */}
-      <FloatingCapsules variant="hero" />
+      <CrystalFormations variant="hero" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 items-center">
         {/* Left: Text content */}
