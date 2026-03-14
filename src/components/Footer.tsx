@@ -79,7 +79,7 @@ const Footer = () => (
 
       <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border">
         <a href="#" onClick={(e) => e.preventDefault()} className="mb-4 md:mb-0">
-          <img src={voiceraLogoBlack} alt="Voicera" <img src={voiceraLogoBlack} alt="Voicera" className="h-[34px] w-auto" /> />
+          <img src={voiceraLogoBlack} alt="Voicera" className="h-[34px] w-auto" />
         </a>
         <p className="text-xs text-body-muted">© 2026 Voicera, Inc. All rights reserved.</p>
       </div>
