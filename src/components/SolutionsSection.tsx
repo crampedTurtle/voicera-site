@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Users, Video, ShieldCheck } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 
 const useCases = [
   {
@@ -250,7 +250,7 @@ const SolutionsSection = () => {
 
       {/* Bleeding capsules from section above */}
       <div className="absolute top-0 left-0 right-0 h-[300px] pointer-events-none overflow-hidden" style={{ opacity: 0.4 }}>
-        <FloatingCapsules variant="storytelling" count={8} />
+        <CrystalFormations variant="storytelling" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28">

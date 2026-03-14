@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import voiceraLogoBlack from "@/assets/voicera-logo-new.png";
+import voiceraLogoBlack from "@/assets/voicera-logo-black.png";
 import badgeSoc from "@/assets/badge-soc.png";
 import badgeGdpr from "@/assets/badge-gdpr.png";
 import badgeTpn from "@/assets/badge-tpn.png";
@@ -79,7 +79,7 @@ const Footer = () => (
 
       <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border">
         <a href="#" onClick={(e) => e.preventDefault()} className="mb-4 md:mb-0">
-          <img src={voiceraLogoBlack} alt="Voicera" className="h-[34px] w-auto" />
+          <img src={voiceraLogoBlack} alt="Voicera" className="h-8 w-auto" />
         </a>
         <p className="text-xs text-body-muted">© 2026 Voicera, Inc. All rights reserved.</p>
       </div>
