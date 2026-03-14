@@ -338,7 +338,7 @@ const CrystalElement = ({
           className="absolute inset-0"
           style={{
             clipPath,
-            boxShadow: `inset 0 0 0 1.5px ${borderColor}`,
+            boxShadow: `inset 0 0 0 1.8px ${borderColor}`,
             opacity: opacity * 1.1,
           }}
         />
