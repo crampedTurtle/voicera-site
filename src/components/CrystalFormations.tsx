@@ -290,10 +290,10 @@ const CrystalElement = ({
 
   // Subtle lavender outline — thin and soft like in the reference
   const borderColor = layer === "foreground"
-    ? "rgba(180, 160, 220, 0.55)"
+    ? "rgba(170, 145, 215, 0.7)"
     : layer === "midground"
-      ? "rgba(180, 160, 220, 0.4)"
-      : "rgba(180, 160, 220, 0.25)";
+      ? "rgba(175, 150, 220, 0.55)"
+      : "rgba(180, 160, 220, 0.4)";
 
   return (
     <motion.div
