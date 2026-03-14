@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import voiceraLogoBlack from "@/assets/voicera-logo-black.png";
+import voiceraLogoBlack from "@/assets/voicera-logo-new.png";
 import badgeSoc from "@/assets/badge-soc.png";
 import badgeGdpr from "@/assets/badge-gdpr.png";
 import badgeTpn from "@/assets/badge-tpn.png";
