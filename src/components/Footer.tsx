@@ -19,7 +19,7 @@ const footerLinks = [
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Careers", "Press", "Contact"],
+    links: ["About", "Blog", "Careers", "Press", "Contact", "Sitemap"],
   },
 ];
 
