@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Users, Video, ShieldCheck } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 
 const useCases = [
   {
