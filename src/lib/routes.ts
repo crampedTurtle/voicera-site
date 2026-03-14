@@ -1,0 +1,54 @@
+/**
+ * Centralized route registry — single source of truth for all pages.
+ * Add new routes here and they'll auto-appear in the sitemap, JSON-LD, and Sitemap page.
+ */
+
+export interface SiteRoute {
+  path: string;
+  title: string;
+  description: string;
+  /** Priority for sitemap.xml (0.0 – 1.0) */
+  priority: number;
+  /** Change frequency hint for crawlers */
+  changefreq: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  /** ISO date string of last modification */
+  lastmod?: string;
+  /** Whether to include in the visual sitemap page */
+  showInSitemap?: boolean;
+  /** Grouping category for the visual sitemap page */
+  category?: string;
+}
+
+export const SITE_URL = "https://voicera.ai";
+
+export const siteRoutes: SiteRoute[] = [
+  {
+    path: "/",
+    title: "Voicera — The Intelligence Layer for Human Credibility",
+    description:
+      "Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams coach reps, qualify prospects faster, and close deals with data-backed confidence.",
+    priority: 1.0,
+    changefreq: "weekly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Main",
+  },
+  {
+    path: "/sitemap",
+    title: "Sitemap — Voicera",
+    description: "Complete sitemap of all pages on the Voicera website.",
+    priority: 0.3,
+    changefreq: "monthly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Company",
+  },
+];
+
+/**
+ * Helper to add a new route at runtime or during development.
+ * In production the Vite plugin reads this file to generate sitemap.xml.
+ */
+export function getRoutes(): SiteRoute[] {
+  return siteRoutes;
+}

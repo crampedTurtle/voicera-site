@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import voiceraLogoBlack from "@/assets/voicera-logo-black.png";
 import badgeSoc from "@/assets/badge-soc.png";
 import badgeGdpr from "@/assets/badge-gdpr.png";
@@ -18,7 +19,7 @@ const footerLinks = [
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Careers", "Press", "Contact"],
+    links: ["About", "Blog", "Careers", "Press", "Contact", "Sitemap"],
   },
 ];
 
@@ -41,9 +42,15 @@ const Footer = () => (
             <ul className="space-y-2.5">
               {col.links.map((link) => (
                 <li key={link}>
-                  <a href="#" className="type-footer hover:text-body transition-colors">
-                    {link}
-                  </a>
+                  {link === "Sitemap" ? (
+                    <Link to="/sitemap" className="type-footer hover:text-body transition-colors">
+                      {link}
+                    </Link>
+                  ) : (
+                    <a href="#" className="type-footer hover:text-body transition-colors">
+                      {link}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
