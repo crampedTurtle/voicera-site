@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 import heroThumb from "@/assets/hero-video-thumb.jpg";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
