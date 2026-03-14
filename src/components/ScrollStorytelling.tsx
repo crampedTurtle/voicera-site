@@ -30,7 +30,7 @@ const ScrollStorytelling = () => {
 
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
-      <FloatingCapsules variant="storytelling" />
+      <CrystalFormations variant="storytelling" />
 
 
 

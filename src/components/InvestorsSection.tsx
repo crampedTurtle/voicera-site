@@ -61,7 +61,7 @@ const InvestorsSection = () => {
 
       {/* Floating capsules in background */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.35 }}>
-        <FloatingCapsules variant="cta" count={10} />
+        <CrystalFormations variant="cta" />
       </div>
 
       {/* Parallax ambient orbs */}

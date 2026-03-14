@@ -6,7 +6,7 @@ import CrystalFormations from "./CrystalFormations";
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
     {/* Floating capsules */}
-    <FloatingCapsules variant="cta" count={16} />
+    <CrystalFormations variant="cta" />
     {/* Ambient orb */}
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"
