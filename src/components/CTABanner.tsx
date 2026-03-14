@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import CrystalFormations from "./CrystalFormations";
+import FloatingCapsules from "./FloatingCapsules";
 
 
 const CTABanner = () => (
   <section className="section-padding relative overflow-hidden">
     {/* Floating capsules */}
-    <CrystalFormations variant="cta" />
+    <FloatingCapsules variant="cta" count={16} />
     {/* Ambient orb */}
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"
