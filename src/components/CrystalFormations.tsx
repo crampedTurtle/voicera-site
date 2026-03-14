@@ -326,7 +326,7 @@ const CrystalElement = ({
             animation: inView && layer === "foreground"
               ? `capsuleShimmer ${shimmerDuration}s ease-in-out infinite, crystalSpecular 0.6s ease-out`
               : `capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
-            filter: `drop-shadow(0 4px 16px rgba(180, 160, 220, 0.2)) drop-shadow(0 1px 3px rgba(255,255,255,0.3))${blur > 0 ? ` blur(${blur}px)` : ""}`,
+            filter: `drop-shadow(0 4px 16px rgba(170, 140, 215, 0.25)) drop-shadow(0 1px 3px rgba(255,255,255,0.3))${layer === "foreground" ? " drop-shadow(0 0 12px rgba(170, 140, 215, 0.18))" : ""}${blur > 0 ? ` blur(${blur}px)` : ""}`,
             ...(useBackdrop
               ? { backdropFilter: "blur(6px) saturate(1.2)", WebkitBackdropFilter: "blur(6px) saturate(1.2)" }
               : {}),
