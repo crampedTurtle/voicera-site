@@ -36,7 +36,7 @@ const HeroSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 items-center">
         {/* Left: Text content */}
         <div>
-          <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "10em" }}>
+          <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
             {words.map((word, i) => (
               <motion.span
                 key={i}
