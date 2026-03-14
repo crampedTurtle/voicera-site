@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Lock, Unlock, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
-import FloatingCapsules from "./FloatingCapsules";
+import CrystalFormations from "./CrystalFormations";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
