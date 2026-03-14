@@ -2,7 +2,6 @@ import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import voiceraDemoGif from "@/assets/voicera-capsule-1.gif";
 import voiceraInterviewGif from "@/assets/voicera-interview.gif";
-import CrystalShape from "./CrystalShape";
 
 type DepthLayer = "foreground" | "midground" | "background";
 
@@ -247,38 +246,18 @@ const CapsuleElement = ({
           style={{
             width,
             height,
+            borderRadius: "40%",
+            background: GRADIENTS[gradientVariant],
+            backgroundSize: "200% 200%",
+            border: "1.5px solid rgba(155, 77, 235, 0.3)",
+            boxShadow: `${CAPSULE_SHADOW}, 0 0 10px rgba(75, 110, 245, 0.1)`,
             opacity,
             filter: blur > 0 ? `blur(${blur}px)` : undefined,
             animation: `floatDrift ${floatDuration}s ease-in-out infinite, capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
           }}
         >
-          {/* SVG gradient definition */}
-          <svg width="0" height="0" style={{ position: "absolute" }}>
-            <defs>
-              <linearGradient id={`cg-${config.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="rgba(75,110,245,0.45)" />
-                <stop offset="22%" stopColor="rgba(255,255,255,0.7)" />
-                <stop offset="44%" stopColor="rgba(155,77,235,0.4)" />
-                <stop offset="66%" stopColor="rgba(255,255,255,0.65)" />
-                <stop offset="88%" stopColor={gradientVariant === 0 ? "rgba(240,24,122,0.35)" : gradientVariant === 1 ? "rgba(244,98,26,0.35)" : gradientVariant === 2 ? "rgba(244,98,26,0.35)" : "rgba(240,24,122,0.4)"} />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Crystal shape */}
-          <div className="absolute inset-0" style={{ filter: `drop-shadow(0 8px 32px rgba(75, 110, 245, 0.12)) drop-shadow(0 2px 10px rgba(255,255,255,0.15))` }}>
-            <CrystalShape
-              width={width}
-              height={height}
-              gradientId={`cg-${config.id}`}
-              variant={config.id % 6}
-              ghost={layer === "background"}
-            />
-          </div>
-
           {hasAnnotation && (
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ clipPath: "polygon(50% 2%, 80% 15%, 80% 75%, 62% 96%, 38% 96%, 20% 75%, 20% 15%)" }}>
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
               <img
                 src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
@@ -289,6 +268,7 @@ const CapsuleElement = ({
                 className="absolute inset-0"
                 style={{
                   background: "linear-gradient(135deg, hsla(270, 60%, 70%, 0.45) 0%, hsla(270, 60%, 80%, 0.2) 40%, transparent 70%)",
+                  borderRadius: "40%",
                 }}
               />
             </div>
