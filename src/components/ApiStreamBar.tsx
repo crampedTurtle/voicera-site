@@ -2,7 +2,7 @@ const streamContent = `POST /v1/analyze_stream { "stream_id": "call_8x92" }  →
 
 const ApiStreamBar = () => (
   <div className="w-full overflow-hidden bg-[hsl(var(--foreground))] py-2.5 select-none">
-    <div className="animate-marquee whitespace-nowrap font-mono text-[11px] tracking-wide text-[hsl(var(--muted-foreground))]">
+    <div className="animate-marquee whitespace-nowrap font-mono text-[11px] tracking-wide">
       {[0, 1, 2].map((i) => (
         <span key={i} className="inline-block">
           {streamContent.split("→").map((segment, j, arr) => {
@@ -12,19 +12,19 @@ const ApiStreamBar = () => (
             return (
               <span key={j}>
                 {isResult ? (
-                  <span className="text-emerald-400/80">{trimmed}</span>
+                  <span className="text-[hsl(270,68%,70%)]">{trimmed}</span>
                 ) : isStatus ? (
-                  <span className="text-emerald-400/60">{trimmed}</span>
+                  <span className="text-[hsl(228,89%,73%)]">{trimmed}</span>
                 ) : (
-                  <span className="text-white/30">{trimmed}</span>
+                  <span className="text-[hsl(var(--muted-foreground))/0.5]" style={{ color: "hsla(240,5%,46%,0.5)" }}>{trimmed}</span>
                 )}
                 {j < arr.length - 1 && (
-                  <span className="text-white/15 mx-3">→</span>
+                  <span style={{ color: "hsla(240,5%,46%,0.25)" }} className="mx-3">→</span>
                 )}
               </span>
             );
           })}
-          <span className="text-white/10 mx-6">|</span>
+          <span style={{ color: "hsla(240,5%,46%,0.2)" }} className="mx-6">|</span>
         </span>
       ))}
     </div>
