@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ApiStreamBar from "@/components/ApiStreamBar";
 import ScrollStorytelling from "@/components/ScrollStorytelling";
 import FeatureTabs from "@/components/FeatureTabs";
 import SolutionsSection from "@/components/SolutionsSection";
@@ -21,6 +22,7 @@ const Index = () => {
       />
       <Navbar />
       <HeroSection />
+      <ApiStreamBar />
       <SocialProof />
       <ScrollStorytelling />
       <SolutionsSection />
