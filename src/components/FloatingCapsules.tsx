@@ -375,6 +375,8 @@ const CapsuleElement = ({
       case 1: return <CrystalShardSVG {...props} />;
       case 2: return <CrystalWideSVG {...props} />;
       case 3: return <CrystalClusterSVG {...props} />;
+      case 4: return <CrystalTripleSVG {...props} />;
+      case 5: return <CrystalAsymSVG {...props} />;
       default: return <CrystalSVG {...props} />;
     }
   };
