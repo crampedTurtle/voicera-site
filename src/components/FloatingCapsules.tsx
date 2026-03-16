@@ -16,16 +16,17 @@ interface CapsuleConfig {
   floatDuration: number;
   shimmerDuration: number;
   gradientVariant: number;
-  strand: number; // 0 or 1
+  strand: number;
   hasAnnotation?: boolean;
   annotationLabel?: string;
   annotationIndex?: number;
+  crystalVariant: number; // 0-3 for different crystal shapes
 }
 
-const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number] }> = {
-  foreground: { opacity: 0.9, blur: 0, parallaxRange: [0, -120] },
-  midground: { opacity: 0.65, blur: 1, parallaxRange: [0, -60] },
-  background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20] },
+const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number]; glowScale: number }> = {
+  foreground: { opacity: 0.9, blur: 0, parallaxRange: [0, -120], glowScale: 1.0 },
+  midground: { opacity: 0.65, blur: 1, parallaxRange: [0, -60], glowScale: 0.55 },
+  background: { opacity: 0.38, blur: 2, parallaxRange: [0, -20], glowScale: 0.25 },
 };
 
 const GRADIENTS = [
@@ -34,9 +35,6 @@ const GRADIENTS = [
   "linear-gradient(135deg, rgba(155,77,235,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(244,98,26,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
   "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(155,77,235,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(240,24,122,0.4) 100%)",
 ];
-
-const CAPSULE_SHADOW =
-  "inset 0 2px 10px rgba(255,255,255,0.5), inset 0 -4px 14px rgba(0,0,0,0.08), 0 8px 32px rgba(75, 110, 245, 0.12)";
 
 function prand(seed: number): number {
   return ((Math.sin(seed * 9301 + 49297) * 233280) % 1 + 1) % 1;
@@ -69,10 +67,10 @@ function generateHelixCapsules(
     const sinVal = Math.abs(Math.sin(t * Math.PI * 2 * frequency + phase));
     const layer: DepthLayer = sinVal > 0.7 ? "foreground" : sinVal > 0.3 ? "midground" : "background";
 
-    // Dramatic size variation: tiny (24px) to large (200px)
     const sizeVariants = [0.15, 0.25, 0.4, 0.6, 0.8, 1.0, 0.3, 0.5, 0.7, 0.2, 0.9, 0.35, 0.55, 0.45, 0.65, 0.85, 0.18, 0.75];
     const sizeT = sizeVariants[i % sizeVariants.length];
-    const width = Math.round(24 + sizeT * 176); // 24-200px
+    // 30% larger than original (original: 24-200, now: ~31-260)
+    const width = Math.round((24 + sizeT * 176) * 1.3);
     const height = Math.round(width * (0.42 + p2 * 0.12));
 
     const tangentAngle = Math.cos(t * Math.PI * 2 * frequency + phase) * 30;
@@ -92,63 +90,288 @@ function generateHelixCapsules(
       layer,
       strand,
       floatDuration: 5 + p1 * 4,
-      shimmerDuration: 7 + p2 * 4,
+      shimmerDuration: 6 + p2 * 4, // 6-10s range for shimmer
       gradientVariant: Math.floor(p3 * GRADIENTS.length),
       hasAnnotation,
       annotationLabel: hasAnnotation
         ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
       annotationIndex: hasAnnotation ? annotationIndices.indexOf(i) : undefined,
+      crystalVariant: Math.floor(prand(s + 3000) * 4),
     });
   }
 
   return capsules;
 }
 
-/** Generate SVG path data for flowing strand lines connecting capsules */
 function generateStrandPaths(capsules: CapsuleConfig[]): { path: string; strand: number }[] {
   const strands: CapsuleConfig[][] = [[], []];
   capsules.forEach((c) => strands[c.strand].push(c));
-
-  // Sort each strand by Y position
   strands.forEach((s) => s.sort((a, b) => a.y - b.y));
 
   return strands
     .filter((s) => s.length >= 2)
     .map((strandCapsules, strandIdx) => {
-      // Build a smooth cubic bezier path through capsule centers
-      const points = strandCapsules.map((c) => ({
-        x: c.x,
-        y: c.y,
-      }));
-
+      const points = strandCapsules.map((c) => ({ x: c.x, y: c.y }));
       let d = `M ${points[0].x} ${points[0].y}`;
-
       for (let i = 0; i < points.length - 1; i++) {
         const curr = points[i];
         const next = points[i + 1];
         const midY = (curr.y + next.y) / 2;
-        // Control points create a smooth curve
-        const cp1x = curr.x;
-        const cp1y = midY;
-        const cp2x = next.x;
-        const cp2y = midY;
-        d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${next.x} ${next.y}`;
+        d += ` C ${curr.x} ${midY}, ${next.x} ${midY}, ${next.x} ${next.y}`;
       }
-
       return { path: d, strand: strandIdx };
     });
 }
 
-const WaveformSVG = () => (
-  <svg width="48" height="32" viewBox="0 0 48 32" fill="none" style={{ opacity: 0.6 }}>
-    {[4, 10, 16, 22, 28, 34, 40].map((cx, i) => {
-      const heights = [10, 18, 24, 14, 22, 12, 16];
-      const h = heights[i];
-      return (
-        <rect key={i} x={cx - 1.5} y={16 - h / 2} width="3" rx="1.5" height={h} fill="white" />
-      );
-    })}
+/** Crystal prism SVG shapes - elongated hexagonal prisms with pointed tips */
+const CrystalSVG = ({
+  w,
+  h,
+  filled,
+  gradient,
+  glowScale,
+}: {
+  w: number;
+  h: number;
+  filled: boolean;
+  gradient?: string;
+  glowScale: number;
+}) => {
+  // We'll draw inside a viewBox, scale via width/height
+  // Aspect: crystal is taller than wide
+  const vW = 60;
+  const vH = 100;
+
+  return (
+    <svg
+      width={w}
+      height={h}
+      viewBox={`0 0 ${vW} ${vH}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
+      }}
+    >
+      {filled && gradient && (
+        <defs>
+          <linearGradient id={`cg-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(155,77,235,0.35)" />
+            <stop offset="30%" stopColor="rgba(255,255,255,0.6)" />
+            <stop offset="60%" stopColor="rgba(75,110,245,0.3)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
+          </linearGradient>
+        </defs>
+      )}
+
+      {/* Main crystal body - elongated hexagonal prism with pointed tip */}
+      <polygon
+        points={`30,2 45,18 45,78 38,95 22,95 15,78 15,18`}
+        fill={filled ? `url(#cg-${w}-${h})` : "none"}
+        stroke="rgba(168,85,247,0.6)"
+        strokeWidth="1"
+      />
+
+      {/* Right face edge */}
+      <line x1="30" y1="2" x2="30" y2="95" stroke="rgba(255,255,255,0.3)" strokeWidth="0.7" />
+
+      {/* Tip facet lines */}
+      <line x1="30" y1="2" x2="15" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="30" y1="2" x2="45" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+
+      {/* Diagonal facet near tip */}
+      <line x1="20" y1="12" x2="40" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+      <line x1="18" y1="20" x2="35" y2="15" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+
+      {/* Bottom termination lines */}
+      <line x1="30" y1="95" x2="15" y2="78" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
+      <line x1="30" y1="95" x2="45" y2="78" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
+
+      {/* Outer highlight stroke */}
+      <polygon
+        points={`30,2 45,18 45,78 38,95 22,95 15,78 15,18`}
+        fill="none"
+        stroke="rgba(255,255,255,0.5)"
+        strokeWidth={filled ? 1 : 0.8}
+      />
+    </svg>
+  );
+};
+
+/** Small shard variant */
+const CrystalShardSVG = ({
+  w,
+  h,
+  filled,
+  glowScale,
+}: {
+  w: number;
+  h: number;
+  filled: boolean;
+  glowScale: number;
+}) => (
+  <svg
+    width={w}
+    height={h}
+    viewBox="0 0 40 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
+    }}
+  >
+    {filled && (
+      <defs>
+        <linearGradient id={`cs-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(240,24,122,0.25)" />
+          <stop offset="50%" stopColor="rgba(255,255,255,0.55)" />
+          <stop offset="100%" stopColor="rgba(155,77,235,0.3)" />
+        </linearGradient>
+      </defs>
+    )}
+    <polygon
+      points="20,2 35,20 32,65 20,78 8,65 5,20"
+      fill={filled ? `url(#cs-${w}-${h})` : "none"}
+      stroke="rgba(168,85,247,0.6)"
+      strokeWidth="1"
+    />
+    <line x1="20" y1="2" x2="20" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
+    <line x1="20" y1="2" x2="5" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+    <line x1="20" y1="2" x2="35" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+    <line x1="12" y1="14" x2="30" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+    <polygon
+      points="20,2 35,20 32,65 20,78 8,65 5,20"
+      fill="none"
+      stroke="rgba(255,255,255,0.5)"
+      strokeWidth={filled ? 1 : 0.8}
+    />
+  </svg>
+);
+
+/** Wide crystal variant */
+const CrystalWideSVG = ({
+  w,
+  h,
+  filled,
+  glowScale,
+}: {
+  w: number;
+  h: number;
+  filled: boolean;
+  glowScale: number;
+}) => (
+  <svg
+    width={w}
+    height={h}
+    viewBox="0 0 70 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
+    }}
+  >
+    {filled && (
+      <defs>
+        <linearGradient id={`cw-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(75,110,245,0.3)" />
+          <stop offset="40%" stopColor="rgba(255,255,255,0.6)" />
+          <stop offset="80%" stopColor="rgba(155,77,235,0.25)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
+        </linearGradient>
+      </defs>
+    )}
+    <polygon
+      points="35,2 55,15 58,75 45,95 25,95 12,75 15,15"
+      fill={filled ? `url(#cw-${w}-${h})` : "none"}
+      stroke="rgba(168,85,247,0.6)"
+      strokeWidth="1"
+    />
+    <line x1="35" y1="2" x2="35" y2="95" stroke="rgba(255,255,255,0.3)" strokeWidth="0.7" />
+    <line x1="35" y1="2" x2="15" y2="15" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+    <line x1="35" y1="2" x2="55" y2="15" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+    <line x1="22" y1="10" x2="48" y2="18" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+    <line x1="18" y1="16" x2="42" y2="12" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
+    <line x1="35" y1="95" x2="12" y2="75" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
+    <line x1="35" y1="95" x2="58" y2="75" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
+    <polygon
+      points="35,2 55,15 58,75 45,95 25,95 12,75 15,15"
+      fill="none"
+      stroke="rgba(255,255,255,0.5)"
+      strokeWidth={filled ? 1 : 0.8}
+    />
+  </svg>
+);
+
+/** Cluster crystal - two prisms together */
+const CrystalClusterSVG = ({
+  w,
+  h,
+  filled,
+  glowScale,
+}: {
+  w: number;
+  h: number;
+  filled: boolean;
+  glowScale: number;
+}) => (
+  <svg
+    width={w}
+    height={h}
+    viewBox="0 0 80 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
+    }}
+  >
+    {filled && (
+      <defs>
+        <linearGradient id={`cc-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(155,77,235,0.3)" />
+          <stop offset="50%" stopColor="rgba(255,255,255,0.6)" />
+          <stop offset="100%" stopColor="rgba(75,110,245,0.25)" />
+        </linearGradient>
+      </defs>
+    )}
+    {/* Main tall crystal */}
+    <polygon
+      points="30,2 42,16 42,72 36,88 24,88 18,72 18,16"
+      fill={filled ? `url(#cc-${w}-${h})` : "none"}
+      stroke="rgba(168,85,247,0.6)"
+      strokeWidth="1"
+    />
+    <line x1="30" y1="2" x2="30" y2="88" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
+    <line x1="30" y1="2" x2="18" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+    <line x1="30" y1="2" x2="42" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+    <line x1="23" y1="10" x2="38" y2="18" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+
+    {/* Smaller side crystal */}
+    <polygon
+      points="58,22 68,32 68,72 63,85 53,85 48,72 48,32"
+      fill={filled ? `url(#cc-${w}-${h})` : "none"}
+      stroke="rgba(168,85,247,0.5)"
+      strokeWidth="0.8"
+    />
+    <line x1="58" y1="22" x2="58" y2="85" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
+    <line x1="58" y1="22" x2="48" y2="32" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+    <line x1="58" y1="22" x2="68" y2="32" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+
+    {/* Tiny base shard */}
+    <polygon
+      points="12,55 18,62 17,85 12,92 7,85 6,62"
+      fill={filled ? `url(#cc-${w}-${h})` : "none"}
+      stroke="rgba(168,85,247,0.4)"
+      strokeWidth="0.6"
+    />
+
+    {/* Outer highlights */}
+    <polygon
+      points="30,2 42,16 42,72 36,88 24,88 18,72 18,16"
+      fill="none"
+      stroke="rgba(255,255,255,0.5)"
+      strokeWidth={filled ? 1 : 0.7}
+    />
   </svg>
 );
 
@@ -224,11 +447,26 @@ const CapsuleElement = ({
     hasAnnotation,
     annotationLabel,
     annotationIndex,
+    crystalVariant,
   } = config;
-  const { opacity, blur, parallaxRange } = layerProps[layer];
+  const { opacity, blur, parallaxRange, glowScale } = layerProps[layer];
 
   const translateY = useTransform(scrollProgress, [0, 1], parallaxRange);
   const rotateOffset = useTransform(scrollProgress, [0, 1], [-4, 4]);
+
+  const isFilled = layer !== "background";
+
+  // Pick crystal shape based on variant
+  const CrystalShape = () => {
+    const props = { w: width, h: height, filled: isFilled, glowScale };
+    switch (crystalVariant) {
+      case 0: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+      case 1: return <CrystalShardSVG {...props} />;
+      case 2: return <CrystalWideSVG {...props} />;
+      case 3: return <CrystalClusterSVG {...props} />;
+      default: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+    }
+  };
 
   return (
     <motion.div
@@ -246,18 +484,34 @@ const CapsuleElement = ({
           style={{
             width,
             height,
-            borderRadius: "40%",
-            background: GRADIENTS[gradientVariant],
-            backgroundSize: "200% 200%",
-            border: "1.5px solid rgba(155, 77, 235, 0.3)",
-            boxShadow: `${CAPSULE_SHADOW}, 0 0 10px rgba(75, 110, 245, 0.1)`,
             opacity,
             filter: blur > 0 ? `blur(${blur}px)` : undefined,
-            animation: `floatDrift ${floatDuration}s ease-in-out infinite, capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
+            animation: `floatDrift ${floatDuration}s ease-in-out infinite`,
           }}
         >
+          {/* Shimmer overlay for filled crystals */}
+          {isFilled && (
+            <div
+              className="absolute inset-0"
+              style={{
+                background: GRADIENTS[gradientVariant],
+                backgroundSize: "200% 200%",
+                animation: `capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
+                clipPath: "polygon(50% 0%, 85% 15%, 85% 78%, 70% 95%, 30% 95%, 15% 78%, 15% 15%)",
+                opacity: 0.5,
+              }}
+            />
+          )}
+
+          {/* Crystal SVG shape on top */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <CrystalShape />
+          </div>
+
           {hasAnnotation && (
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ borderRadius: "40%" }}>
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden"
+              style={{ clipPath: "polygon(50% 2%, 75% 18%, 75% 78%, 63% 95%, 37% 95%, 25% 78%, 25% 18%)" }}
+            >
               <img
                 src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
@@ -268,7 +522,6 @@ const CapsuleElement = ({
                 className="absolute inset-0"
                 style={{
                   background: "linear-gradient(135deg, hsla(270, 60%, 70%, 0.45) 0%, hsla(270, 60%, 80%, 0.2) 40%, transparent 70%)",
-                  borderRadius: "40%",
                 }}
               />
             </div>
