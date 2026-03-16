@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center">
-          <img src={voiceraLogo} alt="Voicera" className="h-[60px] w-auto" />
+          <img src={voiceraLogo} alt="Voicera" className="h-[72px] w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
