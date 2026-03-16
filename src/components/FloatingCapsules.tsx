@@ -67,11 +67,17 @@ function generateHelixCapsules(
     const sinVal = Math.abs(Math.sin(t * Math.PI * 2 * frequency + phase));
     const layer: DepthLayer = sinVal > 0.7 ? "foreground" : sinVal > 0.3 ? "midground" : "background";
 
-    const sizeVariants = [0.15, 0.25, 0.4, 0.6, 0.8, 1.0, 0.3, 0.5, 0.7, 0.2, 0.9, 0.35, 0.55, 0.45, 0.65, 0.85, 0.18, 0.75];
+    // Dramatic size variation — some tiny shards, some massive close-up crystals
+    const sizeVariants = [0.08, 0.12, 0.22, 0.35, 0.5, 1.0, 0.18, 0.65, 0.9, 0.1, 1.3, 0.28, 0.75, 0.4, 1.15, 0.55, 0.06, 1.2];
     const sizeT = sizeVariants[i % sizeVariants.length];
-    // 30% larger than original (original: 24-200, now: ~31-260)
-    const width = Math.round((24 + sizeT * 176) * 1.3);
-    const height = Math.round(width * (0.42 + p2 * 0.12));
+    // Foreground crystals get an extra 40% boost to feel "closer"
+    const depthScale = layer === "foreground" ? 1.4 : layer === "midground" ? 1.0 : 0.7;
+    // Base range 20-280, then 30% larger, then depth-scaled
+    const width = Math.round((20 + sizeT * 260) * 1.3 * depthScale);
+    // Vary aspect ratio widely — some squat/wide, some tall/narrow
+    const aspectVariants = [0.35, 0.55, 0.42, 0.7, 0.38, 0.48, 0.62, 0.44, 0.3, 0.58, 0.75, 0.40, 0.50, 0.68, 0.36, 0.52, 0.45, 0.60];
+    const aspect = aspectVariants[i % aspectVariants.length] + (p2 - 0.5) * 0.15;
+    const height = Math.round(width * Math.max(0.28, Math.min(0.85, aspect)));
 
     const tangentAngle = Math.cos(t * Math.PI * 2 * frequency + phase) * 30;
     const rotation = Math.round(tangentAngle + (p3 - 0.5) * 15);
