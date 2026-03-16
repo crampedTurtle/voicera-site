@@ -143,8 +143,7 @@ const GRAD_STOPS: [string, string, string][] = [
   ["rgba(155,77,235,0.3)", "rgba(255,255,255,0.6)", "rgba(75,110,245,0.25)"],
 ];
 
-let crystalIdCounter = 0;
-const useUniqueId = () => useMemo(() => `cr-${++crystalIdCounter}`, []);
+const useUniqueId = () => useId();
 
 const AnimatedGradient = ({ id, stops, dur }: { id: string; stops: [string, string, string]; dur: number }) => (
   <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
