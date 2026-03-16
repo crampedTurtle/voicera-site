@@ -457,14 +457,14 @@ const CapsuleElement = ({
   const isFilled = layer !== "background";
 
   // Pick crystal shape based on variant
-  const CrystalShape = () => {
-    const props = { w: width, h: height, filled: isFilled, glowScale };
+  const renderCrystal = () => {
+    const props = { w: width, h: height, filled: isFilled, glowScale, shimmerDuration, gradientVariant };
     switch (crystalVariant) {
-      case 0: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+      case 0: return <CrystalSVG {...props} />;
       case 1: return <CrystalShardSVG {...props} />;
       case 2: return <CrystalWideSVG {...props} />;
       case 3: return <CrystalClusterSVG {...props} />;
-      default: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+      default: return <CrystalSVG {...props} />;
     }
   };
 
@@ -480,33 +480,14 @@ const CapsuleElement = ({
     >
       <motion.div style={{ rotate: rotation, rotateZ: rotateOffset }}>
         <div
-          className="relative"
           style={{
-            width,
-            height,
             opacity,
             filter: blur > 0 ? `blur(${blur}px)` : undefined,
             animation: `floatDrift ${floatDuration}s ease-in-out infinite`,
+            position: "relative",
           }}
         >
-          {/* Shimmer overlay for filled crystals */}
-          {isFilled && (
-            <div
-              className="absolute inset-0"
-              style={{
-                background: GRADIENTS[gradientVariant],
-                backgroundSize: "200% 200%",
-                animation: `capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
-                clipPath: "polygon(50% 0%, 85% 15%, 85% 78%, 70% 95%, 30% 95%, 15% 78%, 15% 15%)",
-                opacity: 0.5,
-              }}
-            />
-          )}
-
-          {/* Crystal SVG shape on top */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <CrystalShape />
-          </div>
+          {renderCrystal()}
 
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden"
