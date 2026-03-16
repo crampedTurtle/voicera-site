@@ -20,7 +20,7 @@ interface CapsuleConfig {
   hasAnnotation?: boolean;
   annotationLabel?: string;
   annotationIndex?: number;
-  crystalVariant: number; // 0-3 for different crystal shapes
+  crystalVariant: number; // 0-5 for different crystal shapes
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number]; glowScale: number }> = {
