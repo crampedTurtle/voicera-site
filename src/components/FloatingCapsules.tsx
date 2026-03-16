@@ -1,4 +1,4 @@
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useId } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import voiceraDemoGif from "@/assets/voicera-capsule-1.gif";
 import voiceraInterviewGif from "@/assets/voicera-interview.gif";
