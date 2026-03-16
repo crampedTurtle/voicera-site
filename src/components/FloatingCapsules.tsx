@@ -143,12 +143,12 @@ const glowFilter = (gs: number) =>
   `drop-shadow(0 0 ${6 * gs}px rgba(168,85,247,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(236,72,153,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(168,85,247,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
-  ["rgba(255,255,255,0.75)", "rgba(236,72,153,0.3)", "rgba(255,255,255,0.65)"],   // white-pink-white
-  ["rgba(240,24,122,0.25)", "rgba(255,255,255,0.7)", "rgba(200,160,255,0.2)"],    // pink-white-lavender
-  ["rgba(255,255,255,0.7)", "rgba(155,77,235,0.2)", "rgba(255,220,240,0.4)"],     // white-light purple-blush
-  ["rgba(255,230,245,0.5)", "rgba(255,255,255,0.75)", "rgba(236,72,153,0.2)"],    // blush-white-pink
-  ["rgba(200,170,255,0.25)", "rgba(255,255,255,0.7)", "rgba(255,200,230,0.35)"],  // soft lavender-white-rose
-  ["rgba(255,255,255,0.8)", "rgba(255,180,220,0.3)", "rgba(255,255,255,0.6)"],    // white-rose-white
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(236,72,153,0.12)"],   // white-white-hint pink
+  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(200,160,255,0.1)"],     // white-white-hint lavender
+  ["rgba(255,255,255,0.85)", "rgba(255,245,250,0.7)", "rgba(155,77,235,0.1)"],     // white-frost-hint purple
+  ["rgba(255,250,253,0.8)", "rgba(255,255,255,0.8)", "rgba(236,72,153,0.08)"],     // frost-white-whisper pink
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(200,170,255,0.1)"],   // white-white-hint violet
+  ["rgba(255,255,255,0.9)", "rgba(255,248,252,0.75)", "rgba(255,180,220,0.1)"],    // white-frost-hint rose
 ];
 
 const useUniqueId = () => useId();
