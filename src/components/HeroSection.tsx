@@ -36,6 +36,14 @@ const HeroSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 items-center">
         {/* Left: Text content */}
         <div>
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0, duration: 0.5 }}
+            className="inline-block type-accent text-body-muted tracking-[0.15em] uppercase text-xs mb-4"
+          >
+            AI-Powered Credibility Analysis
+          </motion.span>
           <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
             {words.map((word, i) => (
               <motion.span
