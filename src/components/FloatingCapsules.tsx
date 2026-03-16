@@ -143,10 +143,12 @@ const glowFilter = (gs: number) =>
   `drop-shadow(0 0 ${6 * gs}px rgba(168,85,247,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(236,72,153,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(168,85,247,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
-  ["rgba(155,77,235,0.35)", "rgba(255,255,255,0.6)", "rgba(75,110,245,0.3)"],
-  ["rgba(240,24,122,0.25)", "rgba(255,255,255,0.55)", "rgba(155,77,235,0.3)"],
-  ["rgba(75,110,245,0.3)", "rgba(255,255,255,0.6)", "rgba(155,77,235,0.25)"],
-  ["rgba(155,77,235,0.3)", "rgba(255,255,255,0.6)", "rgba(75,110,245,0.25)"],
+  ["rgba(255,255,255,0.75)", "rgba(236,72,153,0.3)", "rgba(255,255,255,0.65)"],   // white-pink-white
+  ["rgba(240,24,122,0.25)", "rgba(255,255,255,0.7)", "rgba(200,160,255,0.2)"],    // pink-white-lavender
+  ["rgba(255,255,255,0.7)", "rgba(155,77,235,0.2)", "rgba(255,220,240,0.4)"],     // white-light purple-blush
+  ["rgba(255,230,245,0.5)", "rgba(255,255,255,0.75)", "rgba(236,72,153,0.2)"],    // blush-white-pink
+  ["rgba(200,170,255,0.25)", "rgba(255,255,255,0.7)", "rgba(255,200,230,0.35)"],  // soft lavender-white-rose
+  ["rgba(255,255,255,0.8)", "rgba(255,180,220,0.3)", "rgba(255,255,255,0.6)"],    // white-rose-white
 ];
 
 const useUniqueId = () => useId();
