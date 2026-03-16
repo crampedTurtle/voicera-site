@@ -97,7 +97,7 @@ function generateHelixCapsules(
         ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
       annotationIndex: hasAnnotation ? annotationIndices.indexOf(i) : undefined,
-      crystalVariant: Math.floor(prand(s + 3000) * 4),
+      crystalVariant: Math.floor(prand(s + 3000) * 6),
     });
   }
 
