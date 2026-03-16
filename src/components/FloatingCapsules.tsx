@@ -1,4 +1,4 @@
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useId } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import voiceraDemoGif from "@/assets/voicera-capsule-1.gif";
 import voiceraInterviewGif from "@/assets/voicera-interview.gif";
@@ -20,7 +20,7 @@ interface CapsuleConfig {
   hasAnnotation?: boolean;
   annotationLabel?: string;
   annotationIndex?: number;
-  crystalVariant: number; // 0-3 for different crystal shapes
+  crystalVariant: number; // 0-5 for different crystal shapes
 }
 
 const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRange: [number, number]; glowScale: number }> = {
@@ -97,7 +97,7 @@ function generateHelixCapsules(
         ? annotationLabels[annotationIndices.indexOf(i)]
         : undefined,
       annotationIndex: hasAnnotation ? annotationIndices.indexOf(i) : undefined,
-      crystalVariant: Math.floor(prand(s + 3000) * 4),
+      crystalVariant: Math.floor(prand(s + 3000) * 6),
     });
   }
 
@@ -124,256 +124,166 @@ function generateStrandPaths(capsules: CapsuleConfig[]): { path: string; strand:
     });
 }
 
-/** Crystal prism SVG shapes - elongated hexagonal prisms with pointed tips */
-const CrystalSVG = ({
-  w,
-  h,
-  filled,
-  gradient,
-  glowScale,
-}: {
+interface CrystalProps {
   w: number;
   h: number;
   filled: boolean;
-  gradient?: string;
   glowScale: number;
-}) => {
-  // We'll draw inside a viewBox, scale via width/height
-  // Aspect: crystal is taller than wide
-  const vW = 60;
-  const vH = 100;
+  shimmerDuration: number;
+  gradientVariant: number;
+}
 
+const glowFilter = (gs: number) =>
+  `drop-shadow(0 0 ${6 * gs}px rgba(168,85,247,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(236,72,153,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(168,85,247,${0.3 * gs}))`;
+
+const GRAD_STOPS: [string, string, string][] = [
+  ["rgba(155,77,235,0.35)", "rgba(255,255,255,0.6)", "rgba(75,110,245,0.3)"],
+  ["rgba(240,24,122,0.25)", "rgba(255,255,255,0.55)", "rgba(155,77,235,0.3)"],
+  ["rgba(75,110,245,0.3)", "rgba(255,255,255,0.6)", "rgba(155,77,235,0.25)"],
+  ["rgba(155,77,235,0.3)", "rgba(255,255,255,0.6)", "rgba(75,110,245,0.25)"],
+];
+
+const useUniqueId = () => useId();
+
+const AnimatedGradient = ({ id, stops, dur }: { id: string; stops: [string, string, string]; dur: number }) => (
+  <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
+    <stop offset="0%" stopColor={stops[0]}>
+      <animate attributeName="stop-color" values={`${stops[0]};${stops[1]};${stops[0]}`} dur={`${dur}s`} repeatCount="indefinite" />
+    </stop>
+    <stop offset="50%" stopColor={stops[1]}>
+      <animate attributeName="stop-color" values={`${stops[1]};${stops[2]};${stops[1]}`} dur={`${dur}s`} repeatCount="indefinite" />
+    </stop>
+    <stop offset="100%" stopColor={stops[2]}>
+      <animate attributeName="stop-color" values={`${stops[2]};${stops[0]};${stops[2]}`} dur={`${dur}s`} repeatCount="indefinite" />
+    </stop>
+  </linearGradient>
+);
+
+/** Tall singular quartz point */
+const CrystalSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[gradientVariant % GRAD_STOPS.length];
   return (
-    <svg
-      width={w}
-      height={h}
-      viewBox={`0 0 ${vW} ${vH}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{
-        filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
-      }}
-    >
-      {filled && gradient && (
-        <defs>
-          <linearGradient id={`cg-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(155,77,235,0.35)" />
-            <stop offset="30%" stopColor="rgba(255,255,255,0.6)" />
-            <stop offset="60%" stopColor="rgba(75,110,245,0.3)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
-          </linearGradient>
-        </defs>
-      )}
-
-      {/* Main crystal body - elongated hexagonal prism with pointed tip */}
-      <polygon
-        points={`30,2 45,18 45,78 38,95 22,95 15,78 15,18`}
-        fill={filled ? `url(#cg-${w}-${h})` : "none"}
-        stroke="rgba(168,85,247,0.6)"
-        strokeWidth="1"
-      />
-
-      {/* Right face edge */}
-      <line x1="30" y1="2" x2="30" y2="95" stroke="rgba(255,255,255,0.3)" strokeWidth="0.7" />
-
-      {/* Tip facet lines */}
-      <line x1="30" y1="2" x2="15" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-      <line x1="30" y1="2" x2="45" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-
-      {/* Diagonal facet near tip */}
-      <line x1="20" y1="12" x2="40" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-      <line x1="18" y1="20" x2="35" y2="15" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
-
-      {/* Bottom termination lines */}
-      <line x1="30" y1="95" x2="15" y2="78" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
-      <line x1="30" y1="95" x2="45" y2="78" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
-
-      {/* Outer highlight stroke */}
-      <polygon
-        points={`30,2 45,18 45,78 38,95 22,95 15,78 15,18`}
-        fill="none"
-        stroke="rgba(255,255,255,0.5)"
-        strokeWidth={filled ? 1 : 0.8}
-      />
+    <svg width={w} height={h} viewBox="0 0 40 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <line x1="20" y1="2" x2="20" y2="98" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
+      <line x1="20" y1="2" x2="8" y2="22" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="20" y1="2" x2="32" y2="22" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="12" y1="14" x2="28" y2="24" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+      <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
     </svg>
   );
 };
 
-/** Small shard variant */
-const CrystalShardSVG = ({
-  w,
-  h,
-  filled,
-  glowScale,
-}: {
-  w: number;
-  h: number;
-  filled: boolean;
-  glowScale: number;
-}) => (
-  <svg
-    width={w}
-    height={h}
-    viewBox="0 0 40 80"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{
-      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
-    }}
-  >
-    {filled && (
-      <defs>
-        <linearGradient id={`cs-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(240,24,122,0.25)" />
-          <stop offset="50%" stopColor="rgba(255,255,255,0.55)" />
-          <stop offset="100%" stopColor="rgba(155,77,235,0.3)" />
-        </linearGradient>
-      </defs>
-    )}
-    <polygon
-      points="20,2 35,20 32,65 20,78 8,65 5,20"
-      fill={filled ? `url(#cs-${w}-${h})` : "none"}
-      stroke="rgba(168,85,247,0.6)"
-      strokeWidth="1"
-    />
-    <line x1="20" y1="2" x2="20" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-    <line x1="20" y1="2" x2="5" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-    <line x1="20" y1="2" x2="35" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-    <line x1="12" y1="14" x2="30" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
-    <polygon
-      points="20,2 35,20 32,65 20,78 8,65 5,20"
-      fill="none"
-      stroke="rgba(255,255,255,0.5)"
-      strokeWidth={filled ? 1 : 0.8}
-    />
-  </svg>
-);
+/** Small narrow shard */
+const CrystalShardSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[(gradientVariant + 1) % GRAD_STOPS.length];
+  return (
+    <svg width={w} height={h} viewBox="0 0 24 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="0.8" strokeLinejoin="round" />
+      <line x1="12" y1="2" x2="12" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+      <line x1="12" y1="2" x2="4" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="12" y1="2" x2="20" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
+    </svg>
+  );
+};
 
-/** Wide crystal variant */
-const CrystalWideSVG = ({
-  w,
-  h,
-  filled,
-  glowScale,
-}: {
-  w: number;
-  h: number;
-  filled: boolean;
-  glowScale: number;
-}) => (
-  <svg
-    width={w}
-    height={h}
-    viewBox="0 0 70 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{
-      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
-    }}
-  >
-    {filled && (
-      <defs>
-        <linearGradient id={`cw-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(75,110,245,0.3)" />
-          <stop offset="40%" stopColor="rgba(255,255,255,0.6)" />
-          <stop offset="80%" stopColor="rgba(155,77,235,0.25)" />
-          <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
-        </linearGradient>
-      </defs>
-    )}
-    <polygon
-      points="35,2 55,15 58,75 45,95 25,95 12,75 15,15"
-      fill={filled ? `url(#cw-${w}-${h})` : "none"}
-      stroke="rgba(168,85,247,0.6)"
-      strokeWidth="1"
-    />
-    <line x1="35" y1="2" x2="35" y2="95" stroke="rgba(255,255,255,0.3)" strokeWidth="0.7" />
-    <line x1="35" y1="2" x2="15" y2="15" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-    <line x1="35" y1="2" x2="55" y2="15" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-    <line x1="22" y1="10" x2="48" y2="18" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
-    <line x1="18" y1="16" x2="42" y2="12" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
-    <line x1="35" y1="95" x2="12" y2="75" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
-    <line x1="35" y1="95" x2="58" y2="75" stroke="rgba(168,85,247,0.3)" strokeWidth="0.5" />
-    <polygon
-      points="35,2 55,15 58,75 45,95 25,95 12,75 15,15"
-      fill="none"
-      stroke="rgba(255,255,255,0.5)"
-      strokeWidth={filled ? 1 : 0.8}
-    />
-  </svg>
-);
+/** Wider stubby crystal */
+const CrystalWideSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[(gradientVariant + 2) % GRAD_STOPS.length];
+  return (
+    <svg width={w} height={h} viewBox="0 0 50 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <line x1="25" y1="2" x2="25" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
+      <line x1="25" y1="2" x2="8" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="25" y1="2" x2="42" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="14" y1="10" x2="36" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+      <line x1="25" y1="78" x2="10" y2="62" stroke="rgba(168,85,247,0.3)" strokeWidth="0.4" />
+      <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
+    </svg>
+  );
+};
 
-/** Cluster crystal - two prisms together */
-const CrystalClusterSVG = ({
-  w,
-  h,
-  filled,
-  glowScale,
-}: {
-  w: number;
-  h: number;
-  filled: boolean;
-  glowScale: number;
-}) => (
-  <svg
-    width={w}
-    height={h}
-    viewBox="0 0 80 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{
-      filter: `drop-shadow(0 0 ${6 * glowScale}px rgba(168, 85, 247, ${0.9 * glowScale})) drop-shadow(0 0 ${16 * glowScale}px rgba(236, 72, 153, ${0.6 * glowScale})) drop-shadow(0 0 ${32 * glowScale}px rgba(168, 85, 247, ${0.3 * glowScale}))`,
-    }}
-  >
-    {filled && (
-      <defs>
-        <linearGradient id={`cc-${w}-${h}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(155,77,235,0.3)" />
-          <stop offset="50%" stopColor="rgba(255,255,255,0.6)" />
-          <stop offset="100%" stopColor="rgba(75,110,245,0.25)" />
-        </linearGradient>
-      </defs>
-    )}
-    {/* Main tall crystal */}
-    <polygon
-      points="30,2 42,16 42,72 36,88 24,88 18,72 18,16"
-      fill={filled ? `url(#cc-${w}-${h})` : "none"}
-      stroke="rgba(168,85,247,0.6)"
-      strokeWidth="1"
-    />
-    <line x1="30" y1="2" x2="30" y2="88" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-    <line x1="30" y1="2" x2="18" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-    <line x1="30" y1="2" x2="42" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-    <line x1="23" y1="10" x2="38" y2="18" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+/** Cluster: tall + medium + tiny crystals growing together (like reference images) */
+const CrystalClusterSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[(gradientVariant + 3) % GRAD_STOPS.length];
+  return (
+    <svg width={w} height={h} viewBox="0 0 70 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      {/* Main tall crystal */}
+      <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <line x1="28" y1="2" x2="28" y2="92" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+      <line x1="28" y1="2" x2="18" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="28" y1="2" x2="38" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="22" y1="11" x2="35" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
+      {/* Medium right crystal, angled */}
+      <polygon points="52,18 60,30 59,72 52,84 45,72 44,30" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.5)" strokeWidth="0.8" strokeLinejoin="round" />
+      <line x1="52" y1="18" x2="52" y2="84" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
+      <line x1="52" y1="18" x2="44" y2="30" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+      <line x1="52" y1="18" x2="60" y2="30" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+      {/* Tiny base shard left */}
+      <polygon points="10,52 15,60 14,82 10,90 6,82 5,60" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" strokeLinejoin="round" />
+      <line x1="10" y1="52" x2="10" y2="90" stroke="rgba(255,255,255,0.2)" strokeWidth="0.3" />
+      {/* Outer highlights on main */}
+      <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
+    </svg>
+  );
+};
 
-    {/* Smaller side crystal */}
-    <polygon
-      points="58,22 68,32 68,72 63,85 53,85 48,72 48,32"
-      fill={filled ? `url(#cc-${w}-${h})` : "none"}
-      stroke="rgba(168,85,247,0.5)"
-      strokeWidth="0.8"
-    />
-    <line x1="58" y1="22" x2="58" y2="85" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" />
-    <line x1="58" y1="22" x2="48" y2="32" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
-    <line x1="58" y1="22" x2="68" y2="32" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+/** Triple cluster - three crystals at different angles (reference image style) */
+const CrystalTripleSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[gradientVariant % GRAD_STOPS.length];
+  return (
+    <svg width={w} height={h} viewBox="0 0 80 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      {/* Left crystal, tilted left */}
+      <g transform="rotate(-12, 22, 55)">
+        <polygon points="22,12 30,26 29,72 22,86 15,72 14,26" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.55)" strokeWidth="0.8" strokeLinejoin="round" />
+        <line x1="22" y1="12" x2="22" y2="86" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
+        <line x1="22" y1="12" x2="14" y2="26" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+        <line x1="22" y1="12" x2="30" y2="26" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+      </g>
+      {/* Center crystal, tallest */}
+      <polygon points="42,2 52,20 51,78 42,96 33,78 32,20" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <line x1="42" y1="2" x2="42" y2="96" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+      <line x1="42" y1="2" x2="32" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="42" y1="2" x2="52" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="36" y1="12" x2="49" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
+      {/* Right crystal, tilted right */}
+      <g transform="rotate(10, 62, 60)">
+        <polygon points="62,25 68,35 67,72 62,82 57,72 56,35" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.45)" strokeWidth="0.7" strokeLinejoin="round" />
+        <line x1="62" y1="25" x2="62" y2="82" stroke="rgba(255,255,255,0.2)" strokeWidth="0.35" />
+        <line x1="62" y1="25" x2="56" y2="35" stroke="rgba(168,85,247,0.3)" strokeWidth="0.45" />
+        <line x1="62" y1="25" x2="68" y2="35" stroke="rgba(168,85,247,0.3)" strokeWidth="0.45" />
+      </g>
+    </svg>
+  );
+};
 
-    {/* Tiny base shard */}
-    <polygon
-      points="12,55 18,62 17,85 12,92 7,85 6,62"
-      fill={filled ? `url(#cc-${w}-${h})` : "none"}
-      stroke="rgba(168,85,247,0.4)"
-      strokeWidth="0.6"
-    />
-
-    {/* Outer highlights */}
-    <polygon
-      points="30,2 42,16 42,72 36,88 24,88 18,72 18,16"
-      fill="none"
-      stroke="rgba(255,255,255,0.5)"
-      strokeWidth={filled ? 1 : 0.7}
-    />
-  </svg>
-);
+/** Asymmetric shard - irregular, more organic shape */
+const CrystalAsymSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant }: CrystalProps) => {
+  const uid = useUniqueId();
+  const stops = GRAD_STOPS[(gradientVariant + 1) % GRAD_STOPS.length];
+  return (
+    <svg width={w} height={h} viewBox="0 0 36 90" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
+      {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
+      <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="0.9" strokeLinejoin="round" />
+      <line x1="16" y1="2" x2="14" y2="85" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+      <line x1="16" y1="2" x2="4" y2="24" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="16" y1="2" x2="28" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="10" y1="14" x2="24" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
+      <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
+    </svg>
+  );
+};
 
 interface FloatingCapsulesProps {
   variant: "hero" | "storytelling" | "cta";
@@ -457,14 +367,16 @@ const CapsuleElement = ({
   const isFilled = layer !== "background";
 
   // Pick crystal shape based on variant
-  const CrystalShape = () => {
-    const props = { w: width, h: height, filled: isFilled, glowScale };
+  const renderCrystal = () => {
+    const props = { w: width, h: height, filled: isFilled, glowScale, shimmerDuration, gradientVariant };
     switch (crystalVariant) {
-      case 0: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+      case 0: return <CrystalSVG {...props} />;
       case 1: return <CrystalShardSVG {...props} />;
       case 2: return <CrystalWideSVG {...props} />;
       case 3: return <CrystalClusterSVG {...props} />;
-      default: return <CrystalSVG {...props} gradient={GRADIENTS[gradientVariant]} />;
+      case 4: return <CrystalTripleSVG {...props} />;
+      case 5: return <CrystalAsymSVG {...props} />;
+      default: return <CrystalSVG {...props} />;
     }
   };
 
@@ -480,33 +392,14 @@ const CapsuleElement = ({
     >
       <motion.div style={{ rotate: rotation, rotateZ: rotateOffset }}>
         <div
-          className="relative"
           style={{
-            width,
-            height,
             opacity,
             filter: blur > 0 ? `blur(${blur}px)` : undefined,
             animation: `floatDrift ${floatDuration}s ease-in-out infinite`,
+            position: "relative",
           }}
         >
-          {/* Shimmer overlay for filled crystals */}
-          {isFilled && (
-            <div
-              className="absolute inset-0"
-              style={{
-                background: GRADIENTS[gradientVariant],
-                backgroundSize: "200% 200%",
-                animation: `capsuleShimmer ${shimmerDuration}s ease-in-out infinite`,
-                clipPath: "polygon(50% 0%, 85% 15%, 85% 78%, 70% 95%, 30% 95%, 15% 78%, 15% 15%)",
-                opacity: 0.5,
-              }}
-            />
-          )}
-
-          {/* Crystal SVG shape on top */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <CrystalShape />
-          </div>
+          {renderCrystal()}
 
           {hasAnnotation && (
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden"
