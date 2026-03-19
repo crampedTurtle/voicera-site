@@ -81,6 +81,23 @@ const ScrollStorytelling = () => {
                 <p className="type-body">{steps[active].desc}</p>
               </motion.div>
             )}
+
+            {/* Integration logos callout */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-6 w-full max-w-md rounded-xl border border-border bg-background px-5 py-4 text-center"
+            >
+              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                Integrates Seamlessly with:
+              </span>
+              <div className="mt-3 flex items-center justify-center gap-8">
+                <img src={logoGong} alt="Gong" className="h-6 object-contain grayscale brightness-0 opacity-60" />
+                <img src={logoSalesforce} alt="Salesforce" className="h-7 object-contain grayscale brightness-0 opacity-60" />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
