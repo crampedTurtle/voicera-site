@@ -270,8 +270,8 @@ const SolutionsSection = () => {
           <BranchingLine />
         </div>
 
-        {/* Three product columns */}
-        <div className="grid md:grid-cols-3 gap-10 mt-0">
+        {/* Three product columns – desktop */}
+        <div className="hidden md:grid md:grid-cols-3 gap-10 mt-0">
           {useCases.map((uc, i) => {
             const Graphic = graphicComponents[uc.graphicType];
             return (
@@ -281,36 +281,28 @@ const SolutionsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 1.0 + i * 0.15, duration: 0.5 }}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center rounded-2xl p-8"
+                style={{
+                  background: "rgba(255,255,255,0.55)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                }}
               >
-                {/* Minimalistic icon + pill label */}
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ border: "1px solid rgba(0,0,0,0.1)" }}>
                     <uc.icon size={16} strokeWidth={1.5} className="text-body-muted" />
                   </div>
                   <span
                     className="type-tag px-3 py-1 rounded-full"
-                    style={{
-                      border: "1px solid rgba(0,0,0,0.1)",
-                      color: "var(--color-muted)",
-                      fontSize: "10px",
-                    }}
+                    style={{ border: "1px solid rgba(0,0,0,0.1)", color: "var(--color-muted)", fontSize: "10px" }}
                   >
                     {uc.label}
                   </span>
                 </div>
-
-                {/* Description */}
-                <p className="text-sm mb-8 max-w-xs" style={{ color: "var(--color-body-text)", lineHeight: 1.7 }}>
+                <p className="text-[15px] mb-8 max-w-xs" style={{ color: "var(--color-body-text)", lineHeight: 1.75 }}>
                   {uc.desc}
                 </p>
-
-                {/* Abstract graphic */}
-                <div className="w-full">
-                  <Graphic />
-                </div>
-
-                {/* Feature points – subtle beneath graphic */}
+                <div className="w-full"><Graphic /></div>
                 <ul className="mt-8 space-y-2">
                   {uc.points.map((point) => (
                     <li key={point} className="flex items-center gap-2 text-xs" style={{ color: "var(--color-muted)" }}>
@@ -323,6 +315,9 @@ const SolutionsSection = () => {
             );
           })}
         </div>
+
+        {/* Mobile carousel */}
+        <MobileCarousel />
       </div>
     </section>
   );
