@@ -12,7 +12,7 @@ const logos = [
 ];
 
 const SocialProof = () => (
-  <section className="py-20 overflow-hidden relative" style={{ background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 40%, var(--bg-alt) 60%, hsl(0 0% 100%) 100%)" }}>
+  <section className="py-12 overflow-hidden relative" style={{ background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 40%, var(--bg-alt) 60%, hsl(0 0% 100%) 100%)" }}>
 
     <div className="max-w-7xl mx-auto px-6 mb-4 text-center">
       <span className="gradient-pill">PILOTING NOW</span>
