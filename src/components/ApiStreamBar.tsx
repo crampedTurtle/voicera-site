@@ -1,7 +1,7 @@
 const streamContent = `POST /v1/analyze_stream { "stream_id": "call_8x92" }  →  Analyzing Audio (400Hz–2kHz)  →  Analyzing Micro-Expressions (FACS)  →  Fusion Layer  →  { "credibility_score": 0.98, "risk_flag": false, "intent": "sincere" }  →  Response 200 OK`;
 
 const ApiStreamBar = () => (
-  <div className="w-full overflow-hidden py-2.5 select-none" style={{ background: "linear-gradient(to right, hsl(270 40% 96%) 0%, hsl(330 30% 96%) 40%, hsl(0 0% 100%) 75%, hsl(0 0% 100%) 100%)" }}>
+  <div className="w-full overflow-hidden py-2.5 select-none bg-alt">
     <div className="animate-marquee whitespace-nowrap font-mono text-[13px] tracking-wide">
       {[0, 1, 2].map((i) => (
         <span key={i} className="inline-block">
