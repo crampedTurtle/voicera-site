@@ -61,10 +61,10 @@ const FeatureTabs = () => {
       {/* Purple glow shimmer on edges */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          background: "radial-gradient(ellipse at 0% 30%, hsla(270,70%,60%,0.12) 0%, transparent 50%), radial-gradient(ellipse at 100% 70%, hsla(280,60%,55%,0.10) 0%, transparent 50%), radial-gradient(ellipse at 50% 0%, hsla(260,65%,65%,0.08) 0%, transparent 40%), radial-gradient(ellipse at 50% 100%, hsla(290,55%,50%,0.08) 0%, transparent 40%)",
+          background: "radial-gradient(ellipse at 0% 30%, hsla(270,70%,60%,0.22) 0%, transparent 50%), radial-gradient(ellipse at 100% 70%, hsla(280,60%,55%,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 0%, hsla(260,65%,65%,0.15) 0%, transparent 40%), radial-gradient(ellipse at 50% 100%, hsla(290,55%,50%,0.15) 0%, transparent 40%)",
         }}
       />
       {/* White fade overlay for text readability */}
