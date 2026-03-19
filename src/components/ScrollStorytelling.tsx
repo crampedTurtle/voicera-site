@@ -95,7 +95,7 @@ const ScrollStorytelling = () => {
                   </span>
                   <div className="mt-3 flex items-center justify-center gap-7">
                     <img src={logoGong} alt="Gong" className="h-[30px] object-contain grayscale brightness-0 opacity-60" />
-                    <img src={logoSalesforce} alt="Salesforce" className="h-9 object-contain grayscale brightness-0 opacity-60" />
+                    <img src={logoSalesforce} alt="Salesforce" className="h-[43px] object-contain grayscale brightness-0 opacity-60" />
                   </div>
                 </motion.div>
               </div>
