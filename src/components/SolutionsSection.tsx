@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Users, Video, ShieldCheck } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
