@@ -301,7 +301,7 @@ interface FloatingCapsulesProps {
 
 const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const defaultCount = variant === "cta" ? 18 : variant === "hero" ? 16 : 14;
+  const defaultCount = variant === "cta" ? 10 : variant === "hero" ? 10 : 8;
   const capsules = useMemo(
     () => generateHelixCapsules(count ?? defaultCount, variant),
     [count, defaultCount, variant]
@@ -416,6 +416,8 @@ const CapsuleElement = ({
               <img
                 src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
               />

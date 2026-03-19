@@ -99,6 +99,9 @@ const HeroSection = () => {
                   src={heroThumb}
                   alt="Voicera Demo"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 flex items-center justify-center transition-opacity">
                   <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
