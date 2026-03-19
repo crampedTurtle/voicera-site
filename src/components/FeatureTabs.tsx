@@ -55,7 +55,7 @@ const FeatureTabs = () => {
           backgroundPosition: "center",
           top: "-100px",
           bottom: "-100px",
-          opacity: 0.35,
+          opacity: 0.5,
         }}
       />
       {/* Purple glow shimmer on edges */}
