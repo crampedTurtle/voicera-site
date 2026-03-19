@@ -62,7 +62,7 @@ const ScrollStorytelling = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.4 }}
-                  className="card-surface pt-16 p-10 w-full flex flex-col items-center text-center"
+                  className="card-surface pt-[72px] p-10 w-full flex flex-col items-center text-center"
                 >
                   {(() => {
                     const Icon = steps[active].icon;
