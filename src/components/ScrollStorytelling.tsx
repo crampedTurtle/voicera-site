@@ -87,7 +87,7 @@ const ScrollStorytelling = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="absolute -top-12 -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
+                  className="absolute -top-[56px] -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
                   style={{ transform: "rotate(3deg)" }}
                 >
                   <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
