@@ -416,6 +416,8 @@ const CapsuleElement = ({
               <img
                 src={annotationIndex === 1 ? voiceraInterviewGif : voiceraDemoGif}
                 alt="Voicera AI analysis"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 style={{ transform: `rotate(${-rotation}deg) scale(1.2)` }}
               />

@@ -1,16 +1,23 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ApiStreamBar from "@/components/ApiStreamBar";
-import ScrollStorytelling from "@/components/ScrollStorytelling";
-import FeatureTabs from "@/components/FeatureTabs";
-import SolutionsSection from "@/components/SolutionsSection";
-import SocialProof from "@/components/SocialProof";
-import Testimonial from "@/components/Testimonial";
-import DarkSection from "@/components/DarkSection";
-import InvestorsSection from "@/components/InvestorsSection";
-import CTABanner from "@/components/CTABanner";
-import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+
+// Lazy load below-fold sections
+const SocialProof = lazy(() => import("@/components/SocialProof"));
+const ScrollStorytelling = lazy(() => import("@/components/ScrollStorytelling"));
+const SolutionsSection = lazy(() => import("@/components/SolutionsSection"));
+const FeatureTabs = lazy(() => import("@/components/FeatureTabs"));
+const DarkSection = lazy(() => import("@/components/DarkSection"));
+const ApiStreamBar = lazy(() => import("@/components/ApiStreamBar"));
+const Testimonial = lazy(() => import("@/components/Testimonial"));
+const InvestorsSection = lazy(() => import("@/components/InvestorsSection"));
+const CTABanner = lazy(() => import("@/components/CTABanner"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionFallback = () => (
+  <div className="min-h-[200px]" />
+);
 
 const Index = () => {
   return (
@@ -22,16 +29,36 @@ const Index = () => {
       />
       <Navbar />
       <HeroSection />
-      <SocialProof />
-      <ScrollStorytelling />
-      <SolutionsSection />
-      <FeatureTabs />
-      <DarkSection />
-      <ApiStreamBar />
-      <Testimonial />
-      <InvestorsSection />
-      <CTABanner />
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <SocialProof />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ScrollStorytelling />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <SolutionsSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <FeatureTabs />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <DarkSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ApiStreamBar />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Testimonial />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <InvestorsSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <CTABanner />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
