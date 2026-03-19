@@ -87,15 +87,15 @@ const ScrollStorytelling = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="absolute -top-4 -right-6 z-20 rounded-xl border border-border bg-background px-5 py-3.5 text-center shadow-lg"
+                  className="absolute -top-6 -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
                   style={{ transform: "rotate(3deg)" }}
                 >
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
                     Integrates Seamlessly with:
                   </span>
-                  <div className="mt-2 flex items-center justify-center gap-5">
-                    <img src={logoGong} alt="Gong" className="h-5 object-contain grayscale brightness-0 opacity-60" />
-                    <img src={logoSalesforce} alt="Salesforce" className="h-6 object-contain grayscale brightness-0 opacity-60" />
+                  <div className="mt-3 flex items-center justify-center gap-7">
+                    <img src={logoGong} alt="Gong" className="h-[30px] object-contain grayscale brightness-0 opacity-60" />
+                    <img src={logoSalesforce} alt="Salesforce" className="h-9 object-contain grayscale brightness-0 opacity-60" />
                   </div>
                 </motion.div>
               </div>
