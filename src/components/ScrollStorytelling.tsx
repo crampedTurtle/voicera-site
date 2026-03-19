@@ -3,6 +3,8 @@ import { motion, useInView } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
+import logoGong from "@/assets/logo-gong.png";
+import logoSalesforce from "@/assets/logo-salesforce.webp";
 
 const steps = [
   {
