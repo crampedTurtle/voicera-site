@@ -64,7 +64,7 @@ function generateCrystals(count: number): CrystalConfig[] {
       height,
       width,
       rotation,
-      opacity: 0.12 + p4 * 0.18, // Very subtle: 0.12-0.30
+      opacity: 0.25 + p4 * 0.35, // More visible: 0.25-0.60
       sparkleDelay: p1 * 8,
       variant: Math.floor(p2 * 4),
       side,

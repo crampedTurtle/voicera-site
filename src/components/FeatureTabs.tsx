@@ -43,7 +43,8 @@ const FeatureTabs = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, hsla(0,0%,100%,0.45) 0%, hsla(0,0%,100%,0.82) 25%, hsla(0,0%,100%,0.82) 75%, hsla(0,0%,100%,0.45) 100%)",
+          background: "linear-gradient(180deg, hsla(0,0%,100%,0.25) 0%, hsla(0,0%,100%,0.5) 30%, hsla(0,0%,100%,0.5) 70%, hsla(0,0%,100%,0.25) 100%)",
+          zIndex: 1,
         }}
       />
 
