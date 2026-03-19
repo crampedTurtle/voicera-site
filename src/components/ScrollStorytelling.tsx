@@ -55,49 +55,51 @@ const ScrollStorytelling = () => {
           {/* Right: Visual */}
           <div className="hidden md:flex sticky top-32 items-center justify-center min-h-[400px]">
             {active >= 0 && (
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.4 }}
-                className="card-surface p-10 w-full max-w-md flex flex-col items-center text-center"
-              >
-                {(() => {
-                  const Icon = steps[active].icon;
-                  return <Icon size={56} strokeWidth={1.5} className="mb-6" style={{ stroke: "url(#iconGradient)" }} />;
-                })()}
-                <svg width="0" height="0">
-                  <defs>
-                    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4B6EF5" />
-                      <stop offset="30%" stopColor="#9B4DEB" />
-                      <stop offset="65%" stopColor="#F0187A" />
-                      <stop offset="100%" stopColor="#F4621A" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <h3 className="type-subheading text-body mb-3">{steps[active].title}</h3>
-                <p className="type-body">{steps[active].desc}</p>
-              </motion.div>
-            )}
+              <div className="relative w-full max-w-md">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="card-surface p-10 w-full flex flex-col items-center text-center"
+                >
+                  {(() => {
+                    const Icon = steps[active].icon;
+                    return <Icon size={56} strokeWidth={1.5} className="mb-6" style={{ stroke: "url(#iconGradient)" }} />;
+                  })()}
+                  <svg width="0" height="0">
+                    <defs>
+                      <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#4B6EF5" />
+                        <stop offset="30%" stopColor="#9B4DEB" />
+                        <stop offset="65%" stopColor="#F0187A" />
+                        <stop offset="100%" stopColor="#F4621A" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <h3 className="type-subheading text-body mb-3">{steps[active].title}</h3>
+                  <p className="type-body">{steps[active].desc}</p>
+                </motion.div>
 
-            {/* Integration logos callout */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-6 w-full max-w-md rounded-xl border border-border bg-background px-5 py-4 text-center"
-            >
-              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-                Integrates Seamlessly with:
-              </span>
-              <div className="mt-3 flex items-center justify-center gap-8">
-                <img src={logoGong} alt="Gong" className="h-6 object-contain grayscale brightness-0 opacity-60" />
-                <img src={logoSalesforce} alt="Salesforce" className="h-7 object-contain grayscale brightness-0 opacity-60" />
+                {/* Integration logos sticker overlay */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="absolute -top-4 -right-6 z-20 rounded-xl border border-border bg-background px-5 py-3.5 text-center shadow-lg"
+                  style={{ transform: "rotate(3deg)" }}
+                >
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                    Integrates Seamlessly with:
+                  </span>
+                  <div className="mt-2 flex items-center justify-center gap-5">
+                    <img src={logoGong} alt="Gong" className="h-5 object-contain grayscale brightness-0 opacity-60" />
+                    <img src={logoSalesforce} alt="Salesforce" className="h-6 object-contain grayscale brightness-0 opacity-60" />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
+            )}
           </div>
         </div>
       </div>
