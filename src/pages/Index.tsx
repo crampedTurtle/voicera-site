@@ -22,12 +22,12 @@ const Index = () => {
       />
       <Navbar />
       <HeroSection />
-      <ApiStreamBar />
       <SocialProof />
       <ScrollStorytelling />
       <SolutionsSection />
       <FeatureTabs />
       <DarkSection />
+      <ApiStreamBar />
       <Testimonial />
       <InvestorsSection />
       <CTABanner />
