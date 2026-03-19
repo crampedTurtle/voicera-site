@@ -74,9 +74,9 @@ const Navbar = () => {
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
-            <button className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
-              <span className="btn-label inline-flex items-center gap-1.5">Try Free <ArrowUpRight className="w-3.5 h-3.5" /></span>
-            </button>
+            <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
+              <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
+            </a>
             <button className="gradient-bg px-5 py-2 type-button text-white rounded-xl inline-flex items-center gap-1.5">
               Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
