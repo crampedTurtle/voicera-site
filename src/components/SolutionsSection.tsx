@@ -323,4 +323,67 @@ const SolutionsSection = () => {
   );
 };
 
+const MobileCarousel = () => {
+  const [active, setActive] = useState(0);
+  const uc = useCases[active];
+  const Graphic = graphicComponents[uc.graphicType];
+
+  return (
+    <div className="md:hidden mt-0">
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-2 mb-6">
+        {useCases.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+            style={{
+              background: active === i ? "var(--color-primary, #4B6EF5)" : "rgba(0,0,0,0.12)",
+              transform: active === i ? "scale(1.2)" : "scale(1)",
+            }}
+          />
+        ))}
+      </div>
+
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -30 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col items-center text-center rounded-2xl p-8"
+        style={{
+          background: "rgba(255,255,255,0.55)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(0,0,0,0.06)",
+        }}
+      >
+        <div className="flex items-center gap-2 mb-5">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ border: "1px solid rgba(0,0,0,0.1)" }}>
+            <uc.icon size={16} strokeWidth={1.5} className="text-body-muted" />
+          </div>
+          <span
+            className="type-tag px-3 py-1 rounded-full"
+            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "var(--color-muted)", fontSize: "10px" }}
+          >
+            {uc.label}
+          </span>
+        </div>
+        <p className="text-[15px] mb-8 max-w-xs" style={{ color: "var(--color-body-text)", lineHeight: 1.75 }}>
+          {uc.desc}
+        </p>
+        <div className="w-full"><Graphic /></div>
+        <ul className="mt-8 space-y-2">
+          {uc.points.map((point) => (
+            <li key={point} className="flex items-center gap-2 text-xs" style={{ color: "var(--color-muted)" }}>
+              <div className="w-1 h-1 rounded-full gradient-bg flex-shrink-0" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    </div>
+  );
+};
+
 export default SolutionsSection;
