@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, BarChart3, Search } from "lucide-react";
-import platformBg from "@/assets/platform-bg.png";
+import CrystalCaveBackground from "@/components/CrystalCaveBackground";
 
 
 const tabs = [
@@ -37,22 +37,13 @@ const FeatureTabs = () => {
 
   return (
     <section id="solutions" className="section-padding relative overflow-visible">
-      {/* Background image bleeding into section above */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url(${platformBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          top: "-200px",
-          opacity: 0.45,
-        }}
-      />
+      {/* Crystal cave background */}
+      <CrystalCaveBackground />
       {/* White fade overlay for text readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,0.3) 100%)",
+          background: "linear-gradient(180deg, hsla(0,0%,100%,0.45) 0%, hsla(0,0%,100%,0.82) 25%, hsla(0,0%,100%,0.82) 75%, hsla(0,0%,100%,0.45) 100%)",
         }}
       />
 
