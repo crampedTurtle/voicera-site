@@ -23,8 +23,8 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ApiStreamBar />
-      <SocialProof />
       <ScrollStorytelling />
+      <SocialProof />
       <SolutionsSection />
       <FeatureTabs />
       <DarkSection />
