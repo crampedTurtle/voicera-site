@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, BarChart3, Search } from "lucide-react";
-import platformBg from "@/assets/platform-bg.png";
+import crystalCaveBg from "@/assets/crystal-cave-bg.jpg";
 
 
 const tabs = [
@@ -36,23 +36,33 @@ const FeatureTabs = () => {
   const activeData = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="solutions" className="section-padding relative overflow-visible">
-      {/* Background image bleeding into section above */}
-      <div
+    <section id="solutions" className="section-padding relative overflow-hidden">
+      {/* Crystal cave background with subtle motion */}
+      <motion.div
         className="absolute inset-0 pointer-events-none"
+        animate={{
+          scale: [1, 1.05, 1],
+          x: [0, -10, 0],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
         style={{
-          backgroundImage: `url(${platformBg})`,
+          backgroundImage: `url(${crystalCaveBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          top: "-200px",
-          opacity: 0.45,
+          top: "-100px",
+          bottom: "-100px",
+          opacity: 0.35,
         }}
       />
       {/* White fade overlay for text readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,0.3) 100%)",
+          background: "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.8) 70%, rgba(255,255,255,0.4) 100%)",
         }}
       />
 
