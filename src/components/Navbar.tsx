@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
+import { solutions } from "@/pages/SolutionPage";
 
 const navLinks = [
   { label: "Product", href: "#product" },
-  { label: "Solutions", href: "#solutions" },
+  { label: "Solutions", href: "#solutions", hasDropdown: true },
   { label: "Media", href: "/media" },
   { label: "Partners", href: "#developers" },
   { label: "Pricing", href: "#pricing" },
@@ -16,8 +17,11 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -26,7 +30,6 @@ const Navbar = () => {
       setMobileOpen(false);
       return;
     }
-    // Hash links: if not on home, go home first
     if (location.pathname !== "/") {
       navigate("/" + href);
     } else {
@@ -34,6 +37,15 @@ const Navbar = () => {
       el?.scrollIntoView({ behavior: "smooth" });
     }
     setMobileOpen(false);
+  };
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setSolutionsOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setSolutionsOpen(false), 150);
   };
 
   useEffect(() => {
@@ -52,21 +64,66 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center">
+        <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center">
           <img src={voiceraLogo} alt="Voicera" className="h-[90px] w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <div
+                key={link.label}
+                className="relative"
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
+                >
+                  {link.label}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
+                </a>
+
+                <AnimatePresence>
+                  {solutionsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-xl border border-border bg-card shadow-lg overflow-hidden"
+                    >
+                      {solutions.map((s) => (
+                        <a
+                          key={s.slug}
+                          href={`/solutions/${s.slug}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setSolutionsOpen(false);
+                            navigate(`/solutions/${s.slug}`);
+                          }}
+                          className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                        >
+                          {s.name}
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -89,11 +146,42 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
-          {navLinks.map((link) => (
-            <a key={link.label} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="block type-nav text-body-muted cursor-pointer">
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <div key={link.label}>
+                <button
+                  onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                  className="flex items-center gap-1 type-nav text-body-muted cursor-pointer w-full"
+                >
+                  {link.label}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileSolutionsOpen && (
+                  <div className="pl-4 mt-2 space-y-2 border-l-2 border-border">
+                    {solutions.map((s) => (
+                      <a
+                        key={s.slug}
+                        href={`/solutions/${s.slug}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMobileOpen(false);
+                          setMobileSolutionsOpen(false);
+                          navigate(`/solutions/${s.slug}`);
+                        }}
+                        className="block type-nav text-body-muted hover:text-body text-sm"
+                      >
+                        {s.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a key={link.label} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="block type-nav text-body-muted cursor-pointer">
+                {link.label}
+              </a>
+            )
+          )}
           <div className="flex flex-col gap-3 pt-4">
             <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
               <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
