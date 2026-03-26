@@ -84,7 +84,7 @@ const InvestorsSection = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+      <div id="investors" className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left: Content */}
           <motion.div

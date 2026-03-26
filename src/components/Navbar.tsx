@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Solutions", href: "#solutions", hasDropdown: true },
   { label: "Media", href: "/media" },
   { label: "Partners", href: "#developers" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Investors", href: "#investors" },
   { label: "Company", href: "#company" },
 ];
 
