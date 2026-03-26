@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
@@ -6,6 +7,7 @@ import voiceraLogo from "@/assets/voicera-logo-new.png";
 const navLinks = [
   { label: "Product", href: "#product" },
   { label: "Solutions", href: "#solutions" },
+  { label: "Media", href: "/media" },
   { label: "Partners", href: "#developers" },
   { label: "Pricing", href: "#pricing" },
   { label: "Company", href: "#company" },
@@ -14,6 +16,25 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    if (href.startsWith("/")) {
+      navigate(href);
+      setMobileOpen(false);
+      return;
+    }
+    // Hash links: if not on home, go home first
+    if (location.pathname !== "/") {
+      navigate("/" + href);
+    } else {
+      const el = document.querySelector(href);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+    setMobileOpen(false);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -39,8 +60,8 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
             >
               {link.label}
@@ -69,7 +90,7 @@ const Navbar = () => {
           className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) => (
-            <a key={link.label} href="#" onClick={(e) => { e.preventDefault(); setMobileOpen(false); }} className="block type-nav text-body-muted cursor-pointer">
+            <a key={link.label} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="block type-nav text-body-muted cursor-pointer">
               {link.label}
             </a>
           ))}
