@@ -6,36 +6,12 @@ import kevinImg from "@/assets/team/kevin-wright.png";
 import ryanImg from "@/assets/team/ryan-park.png";
 
 const teamMembers = [
-  {
-    name: "Chandra",
-    title: "CEO",
-    image: chandraImg,
-  },
-  {
-    name: "Brett Wilson",
-    title: "Advisor",
-    image: brettImg,
-  },
-  {
-    name: "Britt Alexander",
-    title: "Advisor",
-    image: brittImg,
-  },
-  {
-    name: "Jasleen Deol",
-    title: "Advisor",
-    image: jasleenImg,
-  },
-  {
-    name: "Kevin Wright",
-    title: "Advisor",
-    image: kevinImg,
-  },
-  {
-    name: "Ryan Park",
-    title: "Advisor",
-    image: ryanImg,
-  },
+  { name: "Chandra", title: "CEO", image: chandraImg },
+  { name: "Kevin Wright", title: "Advisor", image: kevinImg },
+  { name: "Brett Wilson", title: "Advisor", image: brettImg },
+  { name: "Jasleen Deol", title: "Advisor", image: jasleenImg },
+  { name: "Ryan Park", title: "Advisor", image: ryanImg },
+  { name: "Britt Alexander", title: "Advisor", image: brittImg },
 ];
 
 const TeamSection = () => {
