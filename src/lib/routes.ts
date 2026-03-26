@@ -34,6 +34,17 @@ export const siteRoutes: SiteRoute[] = [
     category: "Main",
   },
   {
+    path: "/media",
+    title: "Media & Press — Voicera",
+    description:
+      "Latest news, product updates, engineering deep-dives, and press coverage from Voicera — the intelligence layer for human credibility.",
+    priority: 0.8,
+    changefreq: "weekly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Main",
+  },
+  {
     path: "/sitemap",
     title: "Sitemap — Voicera",
     description: "Complete sitemap of all pages on the Voicera website.",
