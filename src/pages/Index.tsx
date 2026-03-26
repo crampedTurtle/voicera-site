@@ -12,6 +12,7 @@ const DarkSection = lazy(() => import("@/components/DarkSection"));
 const ApiStreamBar = lazy(() => import("@/components/ApiStreamBar"));
 const Testimonial = lazy(() => import("@/components/Testimonial"));
 const InvestorsSection = lazy(() => import("@/components/InvestorsSection"));
+const TeamSection = lazy(() => import("@/components/TeamSection"));
 const CTABanner = lazy(() => import("@/components/CTABanner"));
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -52,6 +53,9 @@ const Index = () => {
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <InvestorsSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <TeamSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <CTABanner />
