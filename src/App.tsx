@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Sitemap from "./pages/Sitemap.tsx";
 import Media from "./pages/Media.tsx";
+import SolutionPageComponent, { getSolutionBySlug, solutions } from "./pages/SolutionPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,13 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
+            {solutions.map((s) => (
+              <Route
+                key={s.slug}
+                path={`/solutions/${s.slug}`}
+                element={<SolutionPageComponent solution={s} />}
+              />
+            ))}
             <Route path="/sitemap" element={<Sitemap />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
