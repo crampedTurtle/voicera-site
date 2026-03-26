@@ -1,38 +1,40 @@
+import chandraImg from "@/assets/team/chandra.png";
+import brettImg from "@/assets/team/brett-wilson.png";
+import brittImg from "@/assets/team/britt-alexander.png";
+import jasleenImg from "@/assets/team/jasleen-deol.png";
+import kevinImg from "@/assets/team/kevin-wright.png";
+import ryanImg from "@/assets/team/ryan-park.png";
+
 const teamMembers = [
   {
-    name: "Fei-Fei Li",
-    title: "Professor at Stanford University",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80",
+    name: "Chandra",
+    title: "CEO",
+    image: chandraImg,
   },
   {
-    name: "Silvio Savarese",
-    title: "Professor at Stanford University",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+    name: "Brett Wilson",
+    title: "Advisor",
+    image: brettImg,
   },
   {
-    name: "Jeffrey Katzenberg",
-    title: "Former Dreamworks Animation CEO",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    name: "Britt Alexander",
+    title: "Advisor",
+    image: brittImg,
   },
   {
-    name: "Alex Wang",
-    title: "Founder, CEO of Scale AI",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80",
+    name: "Jasleen Deol",
+    title: "Advisor",
+    image: jasleenImg,
   },
   {
-    name: "Lukas Biewald",
-    title: "Founder, CEO of Weights and Biases",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+    name: "Kevin Wright",
+    title: "Advisor",
+    image: kevinImg,
   },
   {
-    name: "Nicolas Dessaigne",
-    title: "Founder, CEO of Algolia",
-    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&q=80",
-  },
-  {
-    name: "Jay Simons",
-    title: "President of Atlassian",
-    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&q=80",
+    name: "Ryan Park",
+    title: "Advisor",
+    image: ryanImg,
   },
 ];
 
