@@ -11,7 +11,6 @@ const navLinks = [
   { label: "Media", href: "/media" },
   { label: "Partners", href: "#developers" },
   { label: "Investors", href: "#investors" },
-  { label: "Company", href: "#company" },
 ];
 
 const Navbar = () => {
