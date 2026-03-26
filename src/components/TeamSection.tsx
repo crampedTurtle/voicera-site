@@ -45,7 +45,7 @@ const TeamSection = () => {
         {/* Tag */}
         <div className="flex justify-center mb-6">
           <span className="type-tag border border-border rounded-full px-4 py-1.5 text-foreground">
-            OUR ADVISORS
+            OUR TEAM
           </span>
         </div>
 
