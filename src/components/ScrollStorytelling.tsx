@@ -1,10 +1,29 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
 import logoGong from "@/assets/logo-gong.png";
 import logoSalesforce from "@/assets/logo-salesforce.webp";
+
+const CountUp = ({ target, className }: { target: number; className?: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView || !ref.current) return;
+    const controls = animate(0, target, {
+      duration: 1.5,
+      ease: "easeOut",
+      onUpdate: (v) => {
+        if (ref.current) ref.current.textContent = Math.round(v) + "+";
+      },
+    });
+    return () => controls.stop();
+  }, [inView, target]);
+
+  return <span ref={ref} className={className}>0+</span>;
+};
 
 const steps = [
   {
@@ -33,26 +52,6 @@ const ScrollStorytelling = () => {
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
       <FloatingCapsules variant="storytelling" />
-
-const CountUp = ({ target, className }: { target: number; className?: string }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView || !ref.current) return;
-    const controls = animate(0, target, {
-      duration: 1.5,
-      ease: "easeOut",
-      onUpdate: (v) => {
-        if (ref.current) ref.current.textContent = Math.round(v) + "+";
-      },
-    });
-    return () => controls.stop();
-  }, [inView, target]);
-
-  return <span ref={ref} className={className}>0+</span>;
-};
-
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
