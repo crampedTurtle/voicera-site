@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import logoPoliceReports from "@/assets/logo-policereports.png";
 import logoErie from "@/assets/logo-erie.png";
 import logoScottRamey from "@/assets/logo-scottramey.png";
+import logoMoodMe from "@/assets/logo-moodme.png";
 
 const logos = [
   { src: logoPoliceReports, alt: "Policereports.ai" },
   { src: logoErie, alt: "City of Erie" },
   { src: logoScottRamey, alt: "Scott Ramey" },
+  { src: logoMoodMe, alt: "MoodMe" },
 ];
 
 const SocialProof = () => (
