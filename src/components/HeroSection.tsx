@@ -54,8 +54,9 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="type-body max-w-md mb-10 text-left"
           >
-            Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams
-            coach reps, qualify prospects faster, and close deals with data-backed confidence.
+            Voicera’s proprietary, science-backed data layer uses micro-expression and tonal analysis to decode
+            biometric and paralinguistic cues — helping sales teams coach reps, qualify prospects, and close
+            deals with data-backed confidence.
           </motion.p>
 
           <motion.div
