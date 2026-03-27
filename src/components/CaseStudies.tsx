@@ -2,15 +2,6 @@ import { motion } from "framer-motion";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
 
-const ROTATING_WORDS = [
-  "sales",
-  "hiring",
-  "legal",
-  "law enforcement",
-  "coaching",
-  "insurance",
-  "behavioral science",
-];
 
 const CASE_STUDIES = [
   {
