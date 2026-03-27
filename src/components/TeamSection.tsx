@@ -6,7 +6,7 @@ import kevinImg from "@/assets/team/kevin-wright.png";
 import ryanImg from "@/assets/team/ryan-park.png";
 
 const teamMembers = [
-  { name: "Chandra", title: "CEO", image: chandraImg },
+  { name: "Chandra de Keyser", title: "CEO", image: chandraImg },
   { name: "Kevin Wright", title: "Advisor", image: kevinImg },
   { name: "Brett Wilson", title: "Advisor", image: brettImg },
   { name: "Jasleen Deol", title: "Advisor", image: jasleenImg },
