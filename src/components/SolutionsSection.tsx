@@ -67,16 +67,17 @@ const SolutionsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl overflow-hidden"
+            className="rounded-2xl overflow-hidden max-w-[420px]"
             style={{
               background: "rgba(255,255,255,0.7)",
               backdropFilter: "blur(12px)",
               border: "1px solid rgba(0,0,0,0.08)",
+              fontSize: "0.9em",
             }}
           >
             {/* Card Header */}
-            <div className="text-center py-6 px-8 border-b" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
-              <h3 className="text-xl font-medium text-foreground">Sincerity</h3>
+            <div className="text-center py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
+              <h3 className="text-lg font-medium text-foreground">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
             </div>
 
             {/* Toggle */}
@@ -109,7 +110,7 @@ const SolutionsSection = () => {
             </div>
 
             {/* Analysis Section */}
-            <div className="px-8 pt-4">
+            <div className="px-7 pt-3">
               <div
                 className="text-sm font-medium text-foreground pb-2.5 mb-0"
                 style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
@@ -134,7 +135,7 @@ const SolutionsSection = () => {
             </div>
 
             {/* Infrastructure */}
-            <div className="px-8 pt-5">
+            <div className="px-7 pt-4">
               <div
                 className="text-sm font-medium text-foreground pb-2.5 mb-0"
                 style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
@@ -153,9 +154,9 @@ const SolutionsSection = () => {
             </div>
 
             {/* Platform Section */}
-            <div className="px-8 pt-2 pb-2">
+            <div className="px-7 pt-2 pb-2">
               <div className="text-center py-4">
-                <span className="text-lg font-normal text-foreground">Platform</span>
+                <span className="text-base font-normal text-foreground">Platform</span>
               </div>
               <div
                 className="text-sm font-medium text-foreground pb-2.5 mb-0"
@@ -193,7 +194,7 @@ const SolutionsSection = () => {
             </div>
 
             {/* Note */}
-            <p className="text-[11px] text-muted-foreground text-center px-8 py-4">
+            <p className="text-[10px] text-muted-foreground text-center px-7 py-3">
               Composite = audio + video (parallel) + fusion Lambda.
               <br />
               Worker cost: (processing min × $0.0039) + $0.001 overhead.
