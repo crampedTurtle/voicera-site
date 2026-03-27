@@ -11,7 +11,7 @@ const CTABanner = () => (
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"
       style={{
-        background: "linear-gradient(135deg, #4B6EF5 0%, #6366F1 30%, #818CF8 65%, #60A5FA 100%)",
+        background: "linear-gradient(135deg, #3B6FF5 0%, #4E7CF8 30%, #6B9BFA 65%, #52A0FC 100%)",
         filter: "blur(80px)",
         opacity: 0.12,
         top: "50%",

@@ -143,11 +143,11 @@ const glowFilter = (gs: number) =>
   `drop-shadow(0 0 ${6 * gs}px rgba(99,102,241,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(129,140,248,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(99,102,241,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(129,140,248,0.12)"],   // white-white-hint indigo
-  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(147,180,255,0.1)"],     // white-white-hint light blue
-  ["rgba(255,255,255,0.85)", "rgba(248,250,255,0.7)", "rgba(99,102,241,0.1)"],     // white-frost-hint indigo
-  ["rgba(250,252,255,0.8)", "rgba(255,255,255,0.8)", "rgba(129,140,248,0.08)"],     // frost-white-whisper blue
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(147,180,255,0.1)"],   // white-white-hint periwinkle
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(107,155,250,0.12)"],   // white-white-hint blue
+  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(130,180,255,0.1)"],     // white-white-hint light blue
+  ["rgba(255,255,255,0.85)", "rgba(248,250,255,0.7)", "rgba(78,124,248,0.1)"],     // white-frost-hint blue
+  ["rgba(250,252,255,0.8)", "rgba(255,255,255,0.8)", "rgba(107,155,250,0.08)"],     // frost-white-whisper blue
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(130,180,255,0.1)"],   // white-white-hint periwinkle
   ["rgba(255,255,255,0.9)", "rgba(248,250,255,0.75)", "rgba(147,180,255,0.1)"],    // white-frost-hint sky
 ];
 
