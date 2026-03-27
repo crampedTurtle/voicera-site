@@ -10,7 +10,7 @@ import raghavanImg from "@/assets/team/raghavan-rajagopalan.png";
 const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
   { name: "Kevin Wright", title: "CRO, ex-ContentSquare", image: kevinImg },
-  { name: "Brett Wilson", title: "CRO, ex-ContentSquare", image: brettImg },
+  { name: "Brett Wilson", title: "CTO, ex-VMware", image: brettImg },
   { name: "Jasleen Deol", title: "Head of Product, ex-AMD & L3Harris", image: jasleenImg },
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
   { name: "Britt Alexander", title: "Advisor", image: brittImg },
