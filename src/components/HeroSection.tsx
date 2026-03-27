@@ -1,9 +1,8 @@
-import { useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
-import heroThumb from "@/assets/hero-video-thumb.jpg";
+import HeroSphere from "./HeroSphere";
 
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
 
