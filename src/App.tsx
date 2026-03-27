@@ -8,6 +8,9 @@ import Index from "./pages/Index.tsx";
 import Sitemap from "./pages/Sitemap.tsx";
 import Media from "./pages/Media.tsx";
 import SolutionPageComponent, { getSolutionBySlug, solutions } from "./pages/SolutionPage.tsx";
+import AdminLogin from "./pages/AdminLogin.tsx";
+import AdminDashboard from "./pages/AdminDashboard.tsx";
+import AdminEditor from "./pages/AdminEditor.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,10 @@ const App = () => (
               />
             ))}
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/voicera-admin" element={<AdminLogin />} />
+            <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/voicera-admin/editor" element={<AdminEditor />} />
+            <Route path="/voicera-admin/editor/:id" element={<AdminEditor />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
