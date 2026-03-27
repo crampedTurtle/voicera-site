@@ -30,10 +30,10 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
 };
 
 const GRADIENTS = [
-  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(99,102,241,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(129,140,248,0.35) 88%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(129,140,248,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(96,165,250,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
-  "linear-gradient(135deg, rgba(99,102,241,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(96,165,250,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(99,102,241,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(129,140,248,0.4) 100%)",
+  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(59,111,245,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(107,155,250,0.35) 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(107,155,250,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(96,165,250,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
+  "linear-gradient(135deg, rgba(59,111,245,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(96,165,250,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(59,111,245,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(107,155,250,0.4) 100%)",
 ];
 
 function prand(seed: number): number {
@@ -140,7 +140,7 @@ interface CrystalProps {
 }
 
 const glowFilter = (gs: number) =>
-  `drop-shadow(0 0 ${6 * gs}px rgba(99,102,241,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(129,140,248,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(99,102,241,${0.3 * gs}))`;
+  `drop-shadow(0 0 ${6 * gs}px rgba(59,111,245,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(107,155,250,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(59,111,245,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
   ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(107,155,250,0.12)"],   // white-white-hint blue
@@ -175,10 +175,10 @@ const CrystalSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant 
     <svg width={w} height={h} viewBox="0 0 50 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       <g transform="translate(25,0) scale(1.25,1) translate(-20,0)">
-        <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="1" strokeLinejoin="round" />
+        <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="1" strokeLinejoin="round" />
         <line x1="20" y1="2" x2="20" y2="98" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-        <line x1="20" y1="2" x2="8" y2="22" stroke="rgba(99,102,241,0.4)" strokeWidth="0.7" />
-        <line x1="20" y1="2" x2="32" y2="22" stroke="rgba(99,102,241,0.4)" strokeWidth="0.7" />
+        <line x1="20" y1="2" x2="8" y2="22" stroke="rgba(59,111,245,0.4)" strokeWidth="0.7" />
+        <line x1="20" y1="2" x2="32" y2="22" stroke="rgba(59,111,245,0.4)" strokeWidth="0.7" />
         <line x1="12" y1="14" x2="28" y2="24" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
         <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
       </g>
@@ -194,10 +194,10 @@ const CrystalShardSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVar
     <svg width={w} height={h} viewBox="0 0 30 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       <g transform="translate(15,0) scale(1.25,1) translate(-12,0)">
-        <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="0.8" strokeLinejoin="round" />
+        <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="0.8" strokeLinejoin="round" />
         <line x1="12" y1="2" x2="12" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-        <line x1="12" y1="2" x2="4" y2="18" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
-        <line x1="12" y1="2" x2="20" y2="18" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
+        <line x1="12" y1="2" x2="4" y2="18" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
+        <line x1="12" y1="2" x2="20" y2="18" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
         <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
       </g>
     </svg>
@@ -212,12 +212,12 @@ const CrystalWideSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVari
     <svg width={w} height={h} viewBox="0 0 62 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       <g transform="translate(31,0) scale(1.25,1) translate(-25,0)">
-        <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="1" strokeLinejoin="round" />
+        <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="1" strokeLinejoin="round" />
         <line x1="25" y1="2" x2="25" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-        <line x1="25" y1="2" x2="8" y2="16" stroke="rgba(99,102,241,0.4)" strokeWidth="0.7" />
-        <line x1="25" y1="2" x2="42" y2="16" stroke="rgba(99,102,241,0.4)" strokeWidth="0.7" />
+        <line x1="25" y1="2" x2="8" y2="16" stroke="rgba(59,111,245,0.4)" strokeWidth="0.7" />
+        <line x1="25" y1="2" x2="42" y2="16" stroke="rgba(59,111,245,0.4)" strokeWidth="0.7" />
         <line x1="14" y1="10" x2="36" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
-        <line x1="25" y1="78" x2="10" y2="62" stroke="rgba(99,102,241,0.3)" strokeWidth="0.4" />
+        <line x1="25" y1="78" x2="10" y2="62" stroke="rgba(59,111,245,0.3)" strokeWidth="0.4" />
         <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
       </g>
     </svg>
@@ -233,18 +233,18 @@ const CrystalClusterSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientV
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       <g transform="translate(44,0) scale(1.25,1) translate(-35,0)">
         {/* Main tall crystal */}
-        <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="1" strokeLinejoin="round" />
+        <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="1" strokeLinejoin="round" />
         <line x1="28" y1="2" x2="28" y2="92" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-        <line x1="28" y1="2" x2="18" y2="18" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
-        <line x1="28" y1="2" x2="38" y2="18" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
+        <line x1="28" y1="2" x2="18" y2="18" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
+        <line x1="28" y1="2" x2="38" y2="18" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
         <line x1="22" y1="11" x2="35" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
         {/* Medium right crystal, angled */}
-        <polygon points="52,18 60,30 59,72 52,84 45,72 44,30" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.5)" strokeWidth="0.8" strokeLinejoin="round" />
+        <polygon points="52,18 60,30 59,72 52,84 45,72 44,30" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.5)" strokeWidth="0.8" strokeLinejoin="round" />
         <line x1="52" y1="18" x2="52" y2="84" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
-        <line x1="52" y1="18" x2="44" y2="30" stroke="rgba(99,102,241,0.35)" strokeWidth="0.5" />
-        <line x1="52" y1="18" x2="60" y2="30" stroke="rgba(99,102,241,0.35)" strokeWidth="0.5" />
+        <line x1="52" y1="18" x2="44" y2="30" stroke="rgba(59,111,245,0.35)" strokeWidth="0.5" />
+        <line x1="52" y1="18" x2="60" y2="30" stroke="rgba(59,111,245,0.35)" strokeWidth="0.5" />
         {/* Tiny base shard left */}
-        <polygon points="10,52 15,60 14,82 10,90 6,82 5,60" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" strokeLinejoin="round" />
+        <polygon points="10,52 15,60 14,82 10,90 6,82 5,60" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" strokeLinejoin="round" />
         <line x1="10" y1="52" x2="10" y2="90" stroke="rgba(255,255,255,0.2)" strokeWidth="0.3" />
         {/* Outer highlights on main */}
         <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
@@ -263,23 +263,23 @@ const CrystalTripleSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVa
       <g transform="translate(50,0) scale(1.25,1) translate(-40,0)">
         {/* Left crystal, tilted left */}
         <g transform="rotate(-12, 22, 55)">
-          <polygon points="22,12 30,26 29,72 22,86 15,72 14,26" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.55)" strokeWidth="0.8" strokeLinejoin="round" />
+          <polygon points="22,12 30,26 29,72 22,86 15,72 14,26" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.55)" strokeWidth="0.8" strokeLinejoin="round" />
           <line x1="22" y1="12" x2="22" y2="86" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
-          <line x1="22" y1="12" x2="14" y2="26" stroke="rgba(99,102,241,0.35)" strokeWidth="0.5" />
-          <line x1="22" y1="12" x2="30" y2="26" stroke="rgba(99,102,241,0.35)" strokeWidth="0.5" />
+          <line x1="22" y1="12" x2="14" y2="26" stroke="rgba(59,111,245,0.35)" strokeWidth="0.5" />
+          <line x1="22" y1="12" x2="30" y2="26" stroke="rgba(59,111,245,0.35)" strokeWidth="0.5" />
         </g>
         {/* Center crystal, tallest */}
-        <polygon points="42,2 52,20 51,78 42,96 33,78 32,20" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="1" strokeLinejoin="round" />
+        <polygon points="42,2 52,20 51,78 42,96 33,78 32,20" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="1" strokeLinejoin="round" />
         <line x1="42" y1="2" x2="42" y2="96" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-        <line x1="42" y1="2" x2="32" y2="20" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
-        <line x1="42" y1="2" x2="52" y2="20" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
+        <line x1="42" y1="2" x2="32" y2="20" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
+        <line x1="42" y1="2" x2="52" y2="20" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
         <line x1="36" y1="12" x2="49" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
         {/* Right crystal, tilted right */}
         <g transform="rotate(10, 62, 60)">
-          <polygon points="62,25 68,35 67,72 62,82 57,72 56,35" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.45)" strokeWidth="0.7" strokeLinejoin="round" />
+          <polygon points="62,25 68,35 67,72 62,82 57,72 56,35" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.45)" strokeWidth="0.7" strokeLinejoin="round" />
           <line x1="62" y1="25" x2="62" y2="82" stroke="rgba(255,255,255,0.2)" strokeWidth="0.35" />
-          <line x1="62" y1="25" x2="56" y2="35" stroke="rgba(99,102,241,0.3)" strokeWidth="0.45" />
-          <line x1="62" y1="25" x2="68" y2="35" stroke="rgba(99,102,241,0.3)" strokeWidth="0.45" />
+          <line x1="62" y1="25" x2="56" y2="35" stroke="rgba(59,111,245,0.3)" strokeWidth="0.45" />
+          <line x1="62" y1="25" x2="68" y2="35" stroke="rgba(59,111,245,0.3)" strokeWidth="0.45" />
         </g>
       </g>
     </svg>
@@ -294,10 +294,10 @@ const CrystalAsymSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVari
     <svg width={w} height={h} viewBox="0 0 45 90" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       <g transform="translate(22.5,0) scale(1.25,1) translate(-18,0)">
-        <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(99,102,241,0.6)" strokeWidth="0.9" strokeLinejoin="round" />
+        <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(59,111,245,0.6)" strokeWidth="0.9" strokeLinejoin="round" />
         <line x1="16" y1="2" x2="14" y2="85" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-        <line x1="16" y1="2" x2="4" y2="24" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
-        <line x1="16" y1="2" x2="28" y2="20" stroke="rgba(99,102,241,0.4)" strokeWidth="0.6" />
+        <line x1="16" y1="2" x2="4" y2="24" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
+        <line x1="16" y1="2" x2="28" y2="20" stroke="rgba(59,111,245,0.4)" strokeWidth="0.6" />
         <line x1="10" y1="14" x2="24" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
         <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
       </g>
