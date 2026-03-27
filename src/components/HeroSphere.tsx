@@ -31,18 +31,39 @@ function generateArcs(cx: number, cy: number, r: number, count: number) {
   return arcs;
 }
 
+/* Dot orbit: 4 stops matching capsule positions (top-left, top-right, bottom-right, bottom-left) */
+const ORBIT_DURATION = 10; // seconds for full loop
+const SEGMENT = ORBIT_DURATION / 4; // time per capsule
+
 const HeroSphere = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const rafRef = useRef<number>();
+  const startRef = useRef<number>(0);
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % SINCERITY_LEVELS.length);
-    }, 2800);
-    return () => clearInterval(intervalRef.current);
+    startRef.current = performance.now();
+    const tick = (now: number) => {
+      const elapsed = ((now - startRef.current) / 1000) % ORBIT_DURATION;
+      const idx = Math.floor(elapsed / SEGMENT);
+      setActiveIndex(idx);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   const cx = 250, cy = 300, rx = 160, ry = 240;
+
+  /* Dot keyframes: orbit ellipse hitting near each capsule
+     0: top (near capsule 0 top-left)
+     25%: right (near capsule 1 top-right)
+     50%: bottom (near capsule 3 bottom-right)  
+     75%: left (near capsule 2 bottom-left)
+     100%: back to top */
+  const dotKeyframes = {
+    top:  ["8%",  "28%", "82%", "72%", "8%"],
+    left: ["18%", "88%", "82%", "8%",  "18%"],
+  };
 
   return (
     <div className="relative w-full max-w-[520px] mx-auto" style={{ aspectRatio: "5/6" }}>
@@ -146,11 +167,11 @@ const HeroSphere = () => {
           boxShadow: "0 0 12px 4px hsl(222 85% 60% / 0.5)",
         }}
         animate={{
-          top: ["10%", "50%", "88%", "50%", "10%"],
-          left: ["50%", "95%", "50%", "3%", "50%"],
+          top: dotKeyframes.top,
+          left: dotKeyframes.left,
         }}
         transition={{
-          duration: 11.2,
+          duration: ORBIT_DURATION,
           repeat: Infinity,
           ease: "linear",
         }}
