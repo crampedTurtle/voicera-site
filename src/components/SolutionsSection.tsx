@@ -1,388 +1,210 @@
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { Users, Video, ShieldCheck } from "lucide-react";
-import FloatingCapsules from "./FloatingCapsules";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Headphones, Video, Layers, Server } from "lucide-react";
 
-const useCases = [
+type Unit = "minute" | "hour";
+
+const analysisItems = [
   {
-    icon: Users,
-    label: "SALES COACHING",
-    title: "Turn Subjective Coaching into Data-Driven Science",
-    desc: "Analyze every rep's calls automatically. Surface coachable moments, track improvement over time, and replicate top-performer behaviors across your entire team.",
-    points: ["Automated call scoring", "Rep performance trends", "Coachable moment detection", "Manager dashboards"],
-    graphicType: "timeline" as const,
+    icon: Headphones,
+    label: "Audio analysis",
+    perMinute: 0.006,
+    per5Min: 0.03,
   },
   {
     icon: Video,
-    label: "REMOTE HIRING",
-    title: "Remote Hiring Made Transparent",
-    desc: "Evaluate candidates objectively with AI-powered credibility and engagement scoring. Remove bias from interviews and make confident hiring decisions.",
-    points: ["Interview credibility scores", "Engagement & sentiment analysis", "Structured evaluation reports", "Bias-reduction framework"],
-    graphicType: "analyze" as const,
+    label: "Video analysis",
+    perMinute: 0.0018,
+    per5Min: 0.009,
   },
   {
-    icon: ShieldCheck,
-    label: "CREDIBILITY ASSESSMENT",
-    title: "Automate Credibility Assessment for High-Stakes Video",
-    desc: "Voicera scores verbal and non-verbal credibility signals so you can make faster, more informed decisions on the people that matter.",
-    points: ["Micro-expression analysis", "Verbal consistency scoring", "Confidence & conviction metrics", "Risk flagging alerts"],
-    graphicType: "network" as const,
+    icon: Layers,
+    label: "Composite analysis",
+    perMinute: 0.0076,
+    per5Min: 0.038,
   },
 ];
 
-/* ── Abstract graphics for each column ── */
+const platformItems = [
+  { icon: Headphones, label: "Audio", perMinute: 0.006 },
+  { icon: Video, label: "Video", perMinute: 0.0018 },
+  { icon: Layers, label: "Composite", perMinute: 0.0076 },
+];
 
-const TimelineGraphic = () => (
-  <motion.svg
-    viewBox="0 0 220 160"
-    fill="none"
-    className="w-full max-w-[220px] mx-auto"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: 0.4, duration: 0.6 }}
-  >
-    {/* Stacked capsule bars – like search timeline */}
-    {[
-      { x: 20, y: 20, w: 90, color: "rgba(155,77,235,0.2)" },
-      { x: 50, y: 50, w: 120, color: "rgba(240,24,122,0.18)" },
-      { x: 10, y: 80, w: 80, color: "rgba(75,110,245,0.22)" },
-      { x: 60, y: 110, w: 100, color: "rgba(244,98,26,0.18)" },
-    ].map((bar, i) => (
-      <g key={i}>
-        <rect x={bar.x} y={bar.y} width={bar.w} height={22} rx={11} fill={bar.color} stroke="rgba(0,0,0,0.08)" strokeWidth={0.8} />
-        {/* Colored dot inside */}
-        <circle cx={bar.x + 14} cy={bar.y + 11} r={5} fill={bar.color.replace(/0\.\d+\)/, "0.6)")} />
-      </g>
-    ))}
-    {/* Timestamp labels */}
-    <text x="115" y="15" fontSize="7" fontFamily="Inter" fill="rgba(0,0,0,0.35)" fontWeight={500}>0:03–1:45</text>
-    <text x="175" y="45" fontSize="7" fontFamily="Inter" fill="rgba(0,0,0,0.35)" fontWeight={500}>3:16–4:22</text>
-    {/* Connecting lines */}
-    <line x1="110" y1="31" x2="130" y2="15" stroke="rgba(0,0,0,0.1)" strokeWidth={0.6} />
-    <line x1="170" y1="61" x2="185" y2="45" stroke="rgba(0,0,0,0.1)" strokeWidth={0.6} />
-  </motion.svg>
-);
-
-const AnalyzeGraphic = () => (
-  <motion.svg
-    viewBox="0 0 200 160"
-    fill="none"
-    className="w-full max-w-[200px] mx-auto"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: 0.5, duration: 0.6 }}
-  >
-    {/* Central rounded rectangle – like a video frame */}
-    <defs>
-      <linearGradient id="analyzeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="rgba(240,24,122,0.25)" />
-        <stop offset="50%" stopColor="rgba(244,98,26,0.2)" />
-        <stop offset="100%" stopColor="rgba(155,77,235,0.15)" />
-      </linearGradient>
-    </defs>
-    <rect x="55" y="15" width="90" height="65" rx="14" fill="url(#analyzeGrad)" stroke="rgba(0,0,0,0.1)" strokeWidth={0.8} />
-    {/* Prompt pill above */}
-    <rect x="72" y="4" width="56" height="14" rx="7" fill="white" stroke="rgba(0,0,0,0.12)" strokeWidth={0.6} />
-    <text x="86" y="13" fontSize="6" fontFamily="Inter" fill="rgba(0,0,0,0.5)" fontWeight={600} letterSpacing="0.06em">PROMPT</text>
-    {/* Arrow down */}
-    <line x1="100" y1="80" x2="100" y2="100" stroke="rgba(0,0,0,0.15)" strokeWidth={0.8} />
-    <circle cx="100" cy="100" r="6" fill="white" stroke="rgba(0,0,0,0.12)" strokeWidth={0.6} />
-    {/* Output cards */}
-    <rect x="40" y="115" width="52" height="30" rx="4" fill="white" stroke="rgba(0,0,0,0.1)" strokeWidth={0.6} />
-    <rect x="108" y="115" width="52" height="30" rx="4" fill="white" stroke="rgba(0,0,0,0.1)" strokeWidth={0.6} />
-    {/* Lines inside cards */}
-    {[0, 1, 2].map((j) => (
-      <g key={`l-${j}`}>
-        <rect x={47} y={122 + j * 7} width={38} height={2.5} rx={1.2} fill="rgba(0,0,0,0.08)" />
-        <rect x={115} y={122 + j * 7} width={38} height={2.5} rx={1.2} fill="rgba(0,0,0,0.08)" />
-      </g>
-    ))}
-  </motion.svg>
-);
-
-const NetworkGraphic = () => (
-  <motion.svg
-    viewBox="0 0 220 160"
-    fill="none"
-    className="w-full max-w-[220px] mx-auto"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: 0.6, duration: 0.6 }}
-  >
-    {/* Multimodal embedding network */}
-    {/* Center cluster of colored spheres */}
-    {[
-      { cx: 90, cy: 70, r: 18, color: "rgba(155,77,235,0.25)" },
-      { cx: 115, cy: 55, r: 14, color: "rgba(75,110,245,0.22)" },
-      { cx: 105, cy: 95, r: 16, color: "rgba(240,24,122,0.2)" },
-      { cx: 130, cy: 80, r: 12, color: "rgba(244,98,26,0.2)" },
-      { cx: 78, cy: 50, r: 10, color: "rgba(75,110,245,0.18)" },
-    ].map((s, i) => (
-      <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill={s.color} stroke="rgba(0,0,0,0.06)" strokeWidth={0.5} />
-    ))}
-    {/* Surrounding node pills */}
-    {[
-      { x: 148, y: 25, label: "VERBAL" },
-      { x: 155, y: 60, label: "VISUAL" },
-      { x: 148, y: 95, label: "AUDIO" },
-      { x: 30, y: 40, label: "SIGNALS" },
-    ].map((n, i) => (
-      <g key={i}>
-        <rect x={n.x} y={n.y} width={46} height={14} rx={7} fill="white" stroke="rgba(0,0,0,0.12)" strokeWidth={0.6} />
-        <text x={n.x + 23} y={n.y + 10} fontSize="5.5" fontFamily="Inter" fill="rgba(0,0,0,0.5)" fontWeight={600} textAnchor="middle" letterSpacing="0.06em">{n.label}</text>
-      </g>
-    ))}
-    {/* Connection lines from center to pills */}
-    {[
-      { x1: 115, y1: 55, x2: 148, y2: 32 },
-      { x1: 130, y1: 80, x2: 155, y2: 67 },
-      { x1: 105, y1: 95, x2: 148, y2: 102 },
-      { x1: 78, y1: 50, x2: 76, y2: 47 },
-    ].map((l, i) => (
-      <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="rgba(0,0,0,0.08)" strokeWidth={0.6} strokeDasharray="2 2" />
-    ))}
-    {/* Small hexagonal nodes */}
-    {[
-      { cx: 160, cy: 48 },
-      { cx: 140, cy: 110 },
-      { cx: 60, cy: 105 },
-    ].map((h, i) => (
-      <circle key={`h-${i}`} cx={h.cx} cy={h.cy} r={4} fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth={0.6} />
-    ))}
-  </motion.svg>
-);
-
-const graphicComponents = {
-  timeline: TimelineGraphic,
-  analyze: AnalyzeGraphic,
-  network: NetworkGraphic,
+const formatPrice = (value: number, unit: Unit) => {
+  if (unit === "hour") {
+    const hourly = value * 60;
+    return `$${hourly.toFixed(2)} / hour`;
+  }
+  return `$${value.toFixed(4).replace(/0+$/, "").replace(/\.$/, "")} / minute`;
 };
 
-/* ── Branching SVG line ── */
-const BranchingLine = () => {
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.svg
-      ref={ref}
-      viewBox="0 0 900 200"
-      fill="none"
-      className="w-full max-w-5xl mx-auto"
-      style={{ height: 200, marginBottom: -2 }}
-      preserveAspectRatio="xMidYMid meet"
-    >
-      {/* Main vertical trunk */}
-      <motion.line
-        x1="450" y1="0" x2="450" y2="100"
-        stroke="rgba(0,0,0,0.15)"
-        strokeWidth="1.2"
-        initial={{ pathLength: 0 }}
-        animate={inView ? { pathLength: 1 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      />
-      {/* Horizontal bar */}
-      <motion.line
-        x1="150" y1="100" x2="750" y2="100"
-        stroke="rgba(0,0,0,0.15)"
-        strokeWidth="1.2"
-        initial={{ pathLength: 0 }}
-        animate={inView ? { pathLength: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-      />
-      {/* Three vertical drops */}
-      {[150, 450, 750].map((x, i) => (
-        <motion.line
-          key={x}
-          x1={x} y1="100" x2={x} y2="200"
-          stroke="rgba(0,0,0,0.15)"
-          strokeWidth="1.2"
-          initial={{ pathLength: 0 }}
-          animate={inView ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.9 + i * 0.15, ease: "easeOut" }}
-        />
-      ))}
-      {/* Corner arcs for smooth branching */}
-      {/* Left corner */}
-      <motion.path
-        d="M 450 90 Q 450 100 440 100 L 160 100 Q 150 100 150 110"
-        stroke="rgba(0,0,0,0.0)"
-        strokeWidth="0"
-        fill="none"
-      />
-      {/* Terminal dots */}
-      {[150, 450, 750].map((x, i) => (
-        <motion.circle
-          key={`dot-${x}`}
-          cx={x} cy="200"
-          r="3"
-          fill="rgba(0,0,0,0.12)"
-          initial={{ scale: 0 }}
-          animate={inView ? { scale: 1 } : {}}
-          transition={{ delay: 1.3 + i * 0.1, duration: 0.3 }}
-        />
-      ))}
-    </motion.svg>
-  );
-};
-
-/* ── Main Section ── */
 const SolutionsSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const [unit, setUnit] = useState<Unit>("minute");
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, var(--bg-alt) 0%, hsl(0 0% 100%) 15%)" }}
     >
-      {/* Timeline line – center, entering from above into the branching line */}
-      <div
-        className="absolute left-1/2 top-0 w-px pointer-events-none"
-        style={{
-          height: "280px",
-          background: "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.12) 100%)",
-        }}
-      />
-
-      {/* Bleeding capsules from section above */}
-      <div className="absolute top-0 left-0 right-0 h-[300px] pointer-events-none overflow-hidden" style={{ opacity: 0.4 }}>
-        <FloatingCapsules variant="storytelling" count={8} />
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28">
-        {/* Section header */}
-        <div className="text-center mb-4">
-          <span className="gradient-pill">USE CASES</span>
+        {/* Header — left aligned */}
+        <div className="mb-10 max-w-xl">
+          <span className="gradient-pill">PRICING</span>
           <h2 className="type-display text-body mt-6">
-            Solutions for Sales Teams
+            Simple, usage-based pricing
           </h2>
-          <p className="type-body mt-4 max-w-2xl mx-auto">
-            Purpose-built AI for revenue teams who need objective, scalable insights from every conversation.
+          <p className="type-body mt-4">
+            Pay only for what you analyze. No seat fees, no minimums.
           </p>
         </div>
 
-        {/* Branching line */}
-        <div className="mt-12">
-          <BranchingLine />
-        </div>
+        {/* Layout: card left, empty right for future image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Pricing Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            {/* Card Header */}
+            <div className="text-center py-6 px-8 border-b" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
+              <h3 className="text-xl font-medium text-foreground">Sincerity</h3>
+            </div>
 
-        {/* Three product columns – desktop */}
-        <div className="hidden md:grid md:grid-cols-3 gap-10 mt-0">
-          {useCases.map((uc, i) => {
-            const Graphic = graphicComponents[uc.graphicType];
-            return (
-              <motion.div
-                key={uc.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.0 + i * 0.15, duration: 0.5 }}
-                className="flex flex-col items-center text-center rounded-2xl p-8"
-                style={{
-                  background: "rgba(255,255,255,0.55)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(0,0,0,0.06)",
-                }}
+            {/* Toggle */}
+            <div className="flex justify-center py-4">
+              <div
+                className="inline-flex rounded-full p-0.5"
+                style={{ background: "rgba(0,0,0,0.05)" }}
               >
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ border: "1px solid rgba(0,0,0,0.1)" }}>
-                    <uc.icon size={16} strokeWidth={1.5} className="text-body-muted" />
-                  </div>
-                  <span
-                    className="type-tag px-3 py-1 rounded-full"
-                    style={{ border: "1px solid rgba(0,0,0,0.1)", color: "var(--color-muted)", fontSize: "10px" }}
-                  >
-                    {uc.label}
+                <button
+                  onClick={() => setUnit("minute")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                    unit === "minute"
+                      ? "bg-white text-foreground shadow-sm"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  Per Minute
+                </button>
+                <button
+                  onClick={() => setUnit("hour")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                    unit === "hour"
+                      ? "bg-white text-foreground shadow-sm"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  Per Hour
+                </button>
+              </div>
+            </div>
+
+            {/* Analysis Section */}
+            <div className="px-8 pt-4">
+              <div
+                className="text-sm font-medium text-foreground pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+              >
+                Analysis (per job)
+              </div>
+              {analysisItems.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex justify-between items-center py-3"
+                  style={{ borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}
+                >
+                  <span className="flex items-center gap-2 text-sm text-foreground">
+                    <item.icon size={16} className="opacity-40" />
+                    {item.label}
+                  </span>
+                  <span className="text-sm text-muted-foreground tabular-nums">
+                    {formatPrice(unit === "minute" ? item.per5Min / 5 : item.per5Min / 5, unit)}
                   </span>
                 </div>
-                <p className="text-[15px] mb-8 max-w-xs" style={{ color: "var(--color-body-text)", lineHeight: 1.75 }}>
-                  {uc.desc}
-                </p>
-                <div className="w-full"><Graphic /></div>
-                <ul className="mt-8 space-y-2">
-                  {uc.points.map((point) => (
-                    <li key={point} className="flex items-center gap-2 text-xs" style={{ color: "var(--color-muted)" }}>
-                      <div className="w-1 h-1 rounded-full gradient-bg flex-shrink-0" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
-          })}
-        </div>
+              ))}
+            </div>
 
-        {/* Mobile carousel */}
-        <MobileCarousel />
+            {/* Infrastructure */}
+            <div className="px-8 pt-5">
+              <div
+                className="text-sm font-medium text-foreground pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+              >
+                Infrastructure (Monthly)
+              </div>
+              <div
+                className="flex justify-between items-center py-3"
+              >
+                <span className="flex items-center gap-2 text-sm text-foreground">
+                  <Server size={16} className="opacity-40" />
+                  Platform hosting
+                </span>
+                <span className="text-sm text-muted-foreground">$1,089 / month</span>
+              </div>
+            </div>
+
+            {/* Platform Section */}
+            <div className="px-8 pt-2 pb-2">
+              <div className="text-center py-4">
+                <span className="text-lg font-normal text-foreground">Platform</span>
+              </div>
+              <div
+                className="text-sm font-medium text-foreground pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+              >
+                Per-{unit} rate by input type
+              </div>
+              {platformItems.map((item, i) => (
+                <div
+                  key={item.label}
+                  className="flex justify-between items-center py-3"
+                  style={i < platformItems.length - 1 ? { borderBottom: "0.5px solid rgba(0,0,0,0.06)" } : undefined}
+                >
+                  <span className="flex items-center gap-2 text-sm text-foreground">
+                    <item.icon size={16} className="opacity-40" />
+                    {item.label}
+                  </span>
+                  <span className="text-sm text-muted-foreground tabular-nums">
+                    {formatPrice(item.perMinute, unit)}
+                  </span>
+                </div>
+              ))}
+
+              {/* Hourly cap */}
+              <div
+                className="flex justify-between items-center py-3 mt-1"
+                style={{ borderTop: "0.5px solid rgba(0,0,0,0.06)" }}
+              >
+                <span className="flex items-center gap-2 text-sm text-foreground">
+                  <Layers size={16} className="opacity-40" />
+                  Hourly cap (composite)
+                </span>
+                <span className="text-sm text-muted-foreground">$0.37 / hour</span>
+              </div>
+            </div>
+
+            {/* Note */}
+            <p className="text-[11px] text-muted-foreground text-center px-8 py-4">
+              Composite = audio + video (parallel) + fusion Lambda.
+              <br />
+              Worker cost: (processing min × $0.0039) + $0.001 overhead.
+            </p>
+          </motion.div>
+
+          {/* Right side — intentionally empty for future background image */}
+          <div className="hidden lg:block" />
+        </div>
       </div>
     </section>
-  );
-};
-
-const MobileCarousel = () => {
-  const [active, setActive] = useState(0);
-  const uc = useCases[active];
-  const Graphic = graphicComponents[uc.graphicType];
-
-  return (
-    <div className="md:hidden mt-0">
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mb-6">
-        {useCases.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            className="w-2.5 h-2.5 rounded-full transition-all duration-300"
-            style={{
-              background: active === i ? "var(--color-primary, #3B6FF5)" : "rgba(0,0,0,0.12)",
-              transform: active === i ? "scale(1.2)" : "scale(1)",
-            }}
-          />
-        ))}
-      </div>
-
-      <motion.div
-        key={active}
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -30 }}
-        transition={{ duration: 0.3 }}
-        className="flex flex-col items-center text-center rounded-2xl p-8"
-        style={{
-          background: "rgba(255,255,255,0.55)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(0,0,0,0.06)",
-        }}
-      >
-        <div className="flex items-center gap-2 mb-5">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ border: "1px solid rgba(0,0,0,0.1)" }}>
-            <uc.icon size={16} strokeWidth={1.5} className="text-body-muted" />
-          </div>
-          <span
-            className="type-tag px-3 py-1 rounded-full"
-            style={{ border: "1px solid rgba(0,0,0,0.1)", color: "var(--color-muted)", fontSize: "10px" }}
-          >
-            {uc.label}
-          </span>
-        </div>
-        <p className="text-[15px] mb-8 max-w-xs" style={{ color: "var(--color-body-text)", lineHeight: 1.75 }}>
-          {uc.desc}
-        </p>
-        <div className="w-full"><Graphic /></div>
-        <ul className="mt-8 space-y-2">
-          {uc.points.map((point) => (
-            <li key={point} className="flex items-center gap-2 text-xs" style={{ color: "var(--color-muted)" }}>
-              <div className="w-1 h-1 rounded-full gradient-bg flex-shrink-0" />
-              {point}
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-    </div>
   );
 };
 
