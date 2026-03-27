@@ -58,7 +58,7 @@ const SolutionsSection = () => {
       />
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1 }} />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-11 pb-20">
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
           <span className="gradient-pill">PRICING</span>
