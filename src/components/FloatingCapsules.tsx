@@ -30,10 +30,10 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
 };
 
 const GRADIENTS = [
-  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(155,77,235,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(240,24,122,0.35) 88%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(240,24,122,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(244,98,26,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
-  "linear-gradient(135deg, rgba(155,77,235,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(244,98,26,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(155,77,235,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(240,24,122,0.4) 100%)",
+  "linear-gradient(135deg, rgba(66,133,244,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(234,67,53,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(52,168,83,0.35) 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(251,188,4,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(66,133,244,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(234,67,53,0.4) 100%)",
+  "linear-gradient(135deg, rgba(52,168,83,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(251,188,4,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(66,133,244,0.4) 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(234,67,53,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(52,168,83,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(251,188,4,0.4) 100%)",
 ];
 
 function prand(seed: number): number {
@@ -140,15 +140,15 @@ interface CrystalProps {
 }
 
 const glowFilter = (gs: number) =>
-  `drop-shadow(0 0 ${6 * gs}px rgba(168,85,247,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(236,72,153,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(168,85,247,${0.3 * gs}))`;
+  `drop-shadow(0 0 ${6 * gs}px rgba(66,133,244,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(234,67,53,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(52,168,83,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(236,72,153,0.12)"],   // white-white-hint pink
-  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(200,160,255,0.1)"],     // white-white-hint lavender
-  ["rgba(255,255,255,0.85)", "rgba(255,245,250,0.7)", "rgba(155,77,235,0.1)"],     // white-frost-hint purple
-  ["rgba(255,250,253,0.8)", "rgba(255,255,255,0.8)", "rgba(236,72,153,0.08)"],     // frost-white-whisper pink
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(200,170,255,0.1)"],   // white-white-hint violet
-  ["rgba(255,255,255,0.9)", "rgba(255,248,252,0.75)", "rgba(255,180,220,0.1)"],    // white-frost-hint rose
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(66,133,244,0.12)"],   // white-white-hint blue
+  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(234,67,53,0.1)"],       // white-white-hint red
+  ["rgba(255,255,255,0.85)", "rgba(255,245,250,0.7)", "rgba(52,168,83,0.1)"],      // white-frost-hint green
+  ["rgba(255,250,253,0.8)", "rgba(255,255,255,0.8)", "rgba(251,188,4,0.1)"],       // frost-white-hint gold
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(66,133,244,0.1)"],    // white-white-hint blue
+  ["rgba(255,255,255,0.9)", "rgba(255,248,252,0.75)", "rgba(234,67,53,0.1)"],      // white-frost-hint red
 ];
 
 const useUniqueId = () => useId();
