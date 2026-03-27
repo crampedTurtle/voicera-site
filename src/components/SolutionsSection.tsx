@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Headphones, Video, Layers, Server } from "lucide-react";
 import PricingCapsules from "./PricingCapsules";
+import FreePricingCard from "./FreePricingCard";
 
 type Unit = "minute" | "hour";
 
@@ -73,14 +74,16 @@ const SolutionsSection = () => {
         </div>
 
         {/* Layout: card left, empty right for future image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Pricing Card */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Free Tier Card */}
+          <FreePricingCard />
+          {/* Paid Pricing Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl overflow-hidden max-w-[420px]"
+            className="rounded-2xl overflow-hidden max-w-[420px] h-full flex flex-col"
             style={{
               background: "rgba(255,255,255,0.95)",
               backdropFilter: "blur(16px)",
@@ -214,7 +217,7 @@ const SolutionsSection = () => {
             </p>
           </motion.div>
 
-          {/* Right side — intentionally empty for future background image */}
+          {/* Right side — empty for capsules overlay */}
           <div className="hidden lg:block" />
         </div>
       </div>
