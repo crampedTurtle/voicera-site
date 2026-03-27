@@ -54,9 +54,7 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="type-body max-w-md mb-10 text-left"
           >
-            Voicera’s proprietary, science-backed data layer uses micro-expression and tonal analysis to decode
-            biometric and paralinguistic cues — helping sales teams coach reps, qualify prospects, and close
-            deals with data-backed confidence.
+            Quantify sincerity, uncover hidden behavioral trends, and enable high-trust sales workflows with proprietary AI that can see micro-expressions, hear tonal shifts, and reason across paralinguistic cues.
           </motion.p>
 
           <motion.div
