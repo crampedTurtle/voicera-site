@@ -42,10 +42,10 @@ const HeroSphere = () => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
-  const cx = 250, cy = 250, r = 200;
+  const cx = 250, cy = 300, rx = 160, ry = 240;
 
   return (
-    <div className="relative w-full aspect-square max-w-[520px] mx-auto">
+    <div className="relative w-full max-w-[520px] mx-auto" style={{ aspectRatio: "5/6" }}>
       {/* Outer ring */}
       <div
         className="absolute inset-[-8%] rounded-full"
