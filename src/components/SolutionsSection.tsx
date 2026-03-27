@@ -62,10 +62,10 @@ const SolutionsSection = () => {
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
           <span className="gradient-pill">PRICING</span>
-          <h2 className="type-display text-body mt-6">
+          <h2 className="type-display text-white mt-6">
             Simple, usage-based pricing
           </h2>
-          <p className="type-body mt-4">
+          <p className="type-body mt-4 text-white/80">
             Pay only for what you analyze. No seat fees, no minimums.
           </p>
         </div>
