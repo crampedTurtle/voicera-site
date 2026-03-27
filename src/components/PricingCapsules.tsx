@@ -10,7 +10,7 @@ const capsules = [
 const positions = [
   { top: "28%", right: "14%" },
   { top: "48%", right: "8%" },
-  { top: "68%", right: "18%" },
+  { top: "calc(68% - 70px)", right: "18%" },
 ];
 
 const PricingCapsules = () => {
