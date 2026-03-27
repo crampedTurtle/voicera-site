@@ -1,4 +1,5 @@
 import chandraImg from "@/assets/team/chandra.png";
+import danImg from "@/assets/team/dan-stoks.png";
 import brettImg from "@/assets/team/brett-wilson.png";
 import brittImg from "@/assets/team/britt-alexander.png";
 import jasleenImg from "@/assets/team/jasleen-deol.png";
@@ -12,7 +13,7 @@ const teamMembers = [
   { name: "Jasleen Deol", title: "CTO, ex-VMware", image: jasleenImg },
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
   { name: "Britt Alexander", title: "Advisor", image: brittImg },
-  { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: "" },
+  { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: danImg },
   { name: "Raghavan Rajagopalan", title: "Advisor, 20yrs Pearson", image: "" },
 ];
 
