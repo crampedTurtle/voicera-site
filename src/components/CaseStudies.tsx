@@ -41,15 +41,6 @@ const CASE_STUDIES = [
 ];
 
 const CaseStudies = () => {
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="section-padding relative overflow-hidden bg-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -58,7 +49,7 @@ const CaseStudies = () => {
           <span className="gradient-pill inline-block">CASE STUDIES</span>
         </div>
 
-        {/* Headline with rotating text */}
+        {/* Headline */}
         <h2
           className="type-display text-center mx-auto mb-16"
           style={{
@@ -67,22 +58,9 @@ const CaseStudies = () => {
             lineHeight: 1.25,
           }}
         >
-          The platforms that run on trust, in
-          <br />
-          <span className="relative inline-block text-left" style={{ minWidth: "8em" }}>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={wordIndex}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="text-accent inline-block"
-              >
-                {ROTATING_WORDS[wordIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </span><span className="text-foreground">,</span>{" "}
+          The platforms that run on trust, in{" "}
+          <span className="text-accent">sales, hiring, legal, law enforcement, coaching, insurance,</span> and{" "}
+          <span className="text-accent">behavioral science</span>,{" "}
           choose Voicera where deep human understanding meets the science of
           credibility.
         </h2>
