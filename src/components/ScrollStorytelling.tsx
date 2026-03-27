@@ -57,7 +57,7 @@ const ScrollStorytelling = () => {
         <div className="text-center mb-16">
           <span className="gradient-pill">WHY VOICERA?</span>
           <h2 className="type-display text-body mt-6">
-            Multimodal AI that understands intent and integrity.
+            Multimodal AI that understands<br />intent and integrity.
           </h2>
         </div>
 
