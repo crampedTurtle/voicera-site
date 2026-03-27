@@ -8,9 +8,9 @@ import { solutions } from "@/pages/SolutionPage";
 const navLinks = [
   { label: "Product", href: "#product" },
   { label: "Solutions", href: "#solutions", hasDropdown: true },
-  { label: "Media", href: "/media" },
   { label: "Partners", href: "#developers" },
   { label: "Investors", href: "#investors" },
+  { label: "Media", href: "/media" },
 ];
 
 const Navbar = () => {
