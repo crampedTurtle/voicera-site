@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import scottRameyImg from "@/assets/case-study-scott-ramey.png";
+import srLogo from "@/assets/case-study-sr-logo.png";
 
 const ROTATING_WORDS = [
   "sales",
@@ -29,12 +31,13 @@ const CASE_STUDIES = [
     tags: ["HEALTHCARE", "PATIENT INTAKE"],
   },
   {
-    title: "Vanguard Legal",
+    title: "Scott Ramey",
     number: "03",
-    subtitle: "Vanguard Legal Deposition Intelligence",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
-    tags: ["LEGAL", "DEPOSITION ANALYSIS"],
+    subtitle: "Executive Coaching & Leadership Platform",
+    image: scottRameyImg,
+    logo: srLogo,
+    bgClass: "bg-black",
+    tags: ["COACHING", "LEADERSHIP"],
   },
 ];
 
