@@ -45,8 +45,17 @@ const SolutionsSection = () => {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, var(--bg-alt) 0%, hsl(0 0% 100%) 15%)" }}
     >
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 0 }}
+        src="/videos/pricing-bg.mp4"
+      />
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28">
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
