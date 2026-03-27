@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Headphones, Video, Layers, Server } from "lucide-react";
+import { Headphones, Video, Layers, Server, ArrowUpRight } from "lucide-react";
 import PricingCapsules from "./PricingCapsules";
 import FreePricingCard from "./FreePricingCard";
 
