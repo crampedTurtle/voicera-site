@@ -98,7 +98,7 @@ const CaseStudies = () => {
             >
               {/* Image card */}
               <div
-                className="relative rounded-2xl overflow-hidden aspect-square md:aspect-[4/3]"
+                className="relative rounded-2xl overflow-hidden aspect-square md:aspect-[3/4]"
               >
                 <img
                   src={cs.image}
@@ -106,14 +106,14 @@ const CaseStudies = () => {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Desktop: dark gradient overlay with text */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 hidden md:block" />
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/5 hidden md:block" />
 
-                {/* Logos overlay – visible on both */}
-                <div className="absolute bottom-4 left-5 right-5 z-10 flex items-center gap-3">
+                {/* Logo top-left (desktop) */}
+                <div className="absolute top-5 left-5 z-10 hidden md:flex items-center gap-2">
                   <svg
-                    width="36"
-                    height="36"
+                    width="32"
+                    height="32"
                     viewBox="0 0 40 40"
                     fill="none"
                     className="opacity-90"
@@ -121,27 +121,17 @@ const CaseStudies = () => {
                     <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
                     <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
                   </svg>
-                  <span className="text-white/60 text-sm hidden md:inline">|</span>
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                    className="opacity-90 hidden md:block"
-                  >
-                    <rect x="6" y="6" width="28" height="28" rx="14" stroke="white" strokeWidth="2" />
-                  </svg>
                 </div>
 
                 {/* Desktop-only bottom text */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10 hidden md:block">
-                  <h3 className="font-display text-white text-2xl md:text-3xl font-bold leading-tight">
+                  <h3 className="font-display text-white text-2xl lg:text-3xl font-bold leading-tight">
                     {cs.title}
                     <span className="text-white/50 text-base font-normal ml-1">
                       _{cs.number}
                     </span>
                   </h3>
-                  <p className="text-white/70 text-sm mt-1">{cs.subtitle}</p>
+                  <p className="text-white/60 text-sm mt-1">{cs.subtitle}</p>
                 </div>
               </div>
 
