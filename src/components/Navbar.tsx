@@ -55,12 +55,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: scrolled ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.95)",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "1px solid transparent",
-      }}
+      className="absolute top-0 left-0 right-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center">
