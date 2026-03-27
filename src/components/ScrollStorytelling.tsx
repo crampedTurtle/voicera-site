@@ -90,6 +90,7 @@ const ScrollStorytelling = () => {
                   className="absolute -top-[56px] -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
                   style={{ transform: "rotate(3deg)" }}
                 >
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">Join</span>
                   <span className="text-2xl font-bold text-foreground">850+</span>
                   <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mt-1">
                     Active Users
