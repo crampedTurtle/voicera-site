@@ -94,13 +94,13 @@ const SolutionsSection = () => {
             <div className="py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.1)" }}>
               <h3 className="text-[28px] font-medium text-black mb-1">Pro</h3>
               <p className="text-sm text-black/60 mb-5">Pay as you go</p>
-              <a
-                href="mailto:sales@voicera.io"
+              <button
+                onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })}
                 className="inline-flex items-center gap-2 bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
               >
                 Talk to Sales
                 <ArrowUpRight size={16} />
-              </a>
+              </button>
             </div>
 
             {/* Sincerity Model Header */}

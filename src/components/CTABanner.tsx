@@ -37,7 +37,7 @@ const CTABanner = () => (
           <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(99,102,241,0.35)] inline-flex items-center gap-2">
             Start Free Trial <ArrowUpRight className="w-4 h-4" />
           </button>
-          <button className="gradient-border-rect px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-transform duration-200 inline-flex items-center gap-2">
+          <button onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })} className="gradient-border-rect px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-transform duration-200 inline-flex items-center gap-2">
             <span className="btn-label inline-flex items-center gap-2">Talk to Sales <ArrowUpRight className="w-4 h-4" /></span>
           </button>
         </div>
