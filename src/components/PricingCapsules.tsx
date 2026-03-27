@@ -34,7 +34,7 @@ const PricingCapsules = () => {
           className="absolute flex items-center gap-2 rounded-full px-5 py-2.5 shadow-md"
           style={{
             ...pos,
-            background: "white",
+            background: "rgba(255,255,255,0.88)",
             border: `1.5px solid ${capsule.border}`,
           }}
           initial={{ opacity: 0, scale: 0.8, y: 12 }}
