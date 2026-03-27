@@ -65,7 +65,7 @@ const SolutionsSection = () => {
           <h2 className="type-display text-white mt-6">
             Simple, usage-based pricing
           </h2>
-          <p className="type-body mt-4 text-white/80">
+          <p className="type-body mt-4 text-white/90">
             Pay only for what you analyze. No seat fees, no minimums.
           </p>
         </div>
@@ -80,9 +80,9 @@ const SolutionsSection = () => {
             transition={{ duration: 0.5 }}
             className="rounded-2xl overflow-hidden max-w-[420px]"
             style={{
-              background: "rgba(0,0,0,0.55)",
+              background: "rgba(255,255,255,0.95)",
               backdropFilter: "blur(16px)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              border: "1px solid rgba(0,0,0,0.08)",
               fontSize: "0.9em",
             }}
           >
