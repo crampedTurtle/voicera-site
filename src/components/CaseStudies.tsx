@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
 
