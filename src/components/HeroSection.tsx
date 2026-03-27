@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 import HeroSphere from "./HeroSphere";
 
-const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
+const words = ["Quantify", "Human", "Sincerity", "through", "Micro-Expression", "and", "Tonal", "Analysis", "with", "AI"];
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
