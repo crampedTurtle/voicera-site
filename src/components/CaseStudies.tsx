@@ -81,8 +81,8 @@ const CaseStudies = () => {
           credibility.
         </h2>
 
-        {/* Case study cards – 3-col on desktop, stacked on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-3">
+        {/* Case study cards – 3-col overlay on desktop, stacked image+info on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-3">
           {CASE_STUDIES.map((cs) => (
             <motion.div
               key={cs.number}
@@ -90,50 +90,82 @@ const CaseStudies = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: Number(cs.number) * 0.1 }}
-              className="relative rounded-2xl overflow-hidden group cursor-pointer"
-              style={{ aspectRatio: "3/4" }}
+              className="group cursor-pointer"
             >
-              {/* Background image */}
-              <img
-                src={cs.image}
-                alt={cs.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+              {/* Image card */}
+              <div
+                className="relative rounded-2xl overflow-hidden"
+                style={{ aspectRatio: "4/3" }}
+              >
+                <img
+                  src={cs.image}
+                  alt={cs.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-              {/* Dark gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                {/* Desktop: dark gradient overlay with text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 hidden md:block" />
 
-              {/* Dummy logo top-left */}
-              <div className="absolute top-5 left-5 z-10">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                  fill="none"
-                  className="opacity-90"
-                >
-                  <rect
-                    x="4"
-                    y="4"
-                    width="32"
-                    height="32"
-                    rx="6"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                  <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
-                </svg>
+                {/* Logos overlay – visible on both */}
+                <div className="absolute bottom-4 left-5 right-5 z-10 flex items-center gap-3">
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    className="opacity-90"
+                  >
+                    <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
+                    <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
+                  </svg>
+                  <span className="text-white/60 text-sm hidden md:inline">|</span>
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    className="opacity-90 hidden md:block"
+                  >
+                    <rect x="6" y="6" width="28" height="28" rx="14" stroke="white" strokeWidth="2" />
+                  </svg>
+                </div>
+
+                {/* Desktop-only bottom text */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 hidden md:block">
+                  <h3 className="font-display text-white text-2xl md:text-3xl font-bold leading-tight">
+                    {cs.title}
+                    <span className="text-white/50 text-base font-normal ml-1">
+                      _{cs.number}
+                    </span>
+                  </h3>
+                  <p className="text-white/70 text-sm mt-1">{cs.subtitle}</p>
+                </div>
               </div>
 
-              {/* Bottom text */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                <h3 className="font-display text-white text-2xl md:text-3xl font-bold leading-tight">
+              {/* Mobile-only info block below image */}
+              <div className="md:hidden mt-0 rounded-b-2xl bg-muted p-5">
+                <h3 className="font-display text-foreground text-xl font-bold leading-tight">
                   {cs.title}
-                  <span className="text-white/50 text-base font-normal ml-1">
+                  <span className="text-muted-foreground text-sm font-normal ml-1">
                     _{cs.number}
                   </span>
                 </h3>
-                <p className="text-white/70 text-sm mt-1">{cs.subtitle}</p>
+                <p className="font-display text-foreground font-semibold text-sm mt-2">
+                  {cs.subtitle}
+                </p>
+                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {cs.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
