@@ -1,0 +1,2 @@
+ALTER TABLE public.blog_posts DROP CONSTRAINT blog_posts_category_check;
+ALTER TABLE public.blog_posts ADD CONSTRAINT blog_posts_category_check CHECK (category = ANY (ARRAY['press'::text, 'product'::text, 'engineering'::text, 'company'::text, 'sales-intelligence'::text, 'sales-enablement'::text, 'platform'::text, 'trust-credibility'::text, 'hr-hiring'::text]));
