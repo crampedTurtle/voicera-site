@@ -12,7 +12,7 @@ const DarkSection = lazy(() => import("@/components/DarkSection"));
 const ApiStreamBar = lazy(() => import("@/components/ApiStreamBar"));
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const InvestorsSection = lazy(() => import("@/components/InvestorsSection"));
-const TeamSection = lazy(() => import("@/components/TeamSection"));
+
 const CTABanner = lazy(() => import("@/components/CTABanner"));
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -39,7 +39,7 @@ const Index = () => {
         <ApiStreamBar />
         <CaseStudies />
         <InvestorsSection />
-        <TeamSection />
+        
         <CTABanner />
         <Footer />
       </Suspense>
