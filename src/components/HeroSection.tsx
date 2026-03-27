@@ -32,7 +32,7 @@ const HeroSection = () => {
             transition={{ delay: 0, duration: 0.5 }}
             className="inline-block type-accent text-body-muted tracking-[0.15em] uppercase text-xs mb-4"
           >
-            AI-Powered Credibility Analysis
+            AI-POWERED SINCERITY ANALYSIS
           </motion.span>
           <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
             {words.map((word, i) => (
