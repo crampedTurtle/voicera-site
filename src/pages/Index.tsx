@@ -10,7 +10,7 @@ const SolutionsSection = lazy(() => import("@/components/SolutionsSection"));
 const FeatureTabs = lazy(() => import("@/components/FeatureTabs"));
 const DarkSection = lazy(() => import("@/components/DarkSection"));
 const ApiStreamBar = lazy(() => import("@/components/ApiStreamBar"));
-const Testimonial = lazy(() => import("@/components/Testimonial"));
+const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const InvestorsSection = lazy(() => import("@/components/InvestorsSection"));
 const TeamSection = lazy(() => import("@/components/TeamSection"));
 const CTABanner = lazy(() => import("@/components/CTABanner"));
