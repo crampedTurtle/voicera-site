@@ -54,7 +54,7 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="type-body max-w-md mb-10 text-left"
           >
-            Quantify sincerity, uncover hidden behavioral trends, and enable high-trust sales workflows with proprietary Multimodal AI that can see micro-expressions, hear tonal shifts, and reason across paralinguistic cues.
+            Quantify sincerity, unlock behavioral intelligence, and integrate high-trust workflows with proprietary Multimodal AI that sees micro-expressions, hears tonal shifts, and reasons across paralinguistic cues.
           </motion.p>
 
           <motion.div
