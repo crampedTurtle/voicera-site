@@ -7,7 +7,7 @@ const DarkSection = () => (
     <div
       className="absolute w-[600px] h-[600px] rounded-full animate-float-orb pointer-events-none"
       style={{
-        background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
+        background: "linear-gradient(135deg, #4B6EF5 0%, #6366F1 30%, #818CF8 65%, #60A5FA 100%)",
         filter: "blur(100px)",
         opacity: 0.08,
         top: "50%",

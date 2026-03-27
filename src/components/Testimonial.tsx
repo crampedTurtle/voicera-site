@@ -30,7 +30,7 @@ const Testimonial = () => {
               className="absolute rounded-[1.75rem] md:rounded-[2.5rem]"
               style={{
                 inset: "-12px",
-                background: "linear-gradient(135deg, rgba(168, 85, 247, 0.5) 0%, rgba(130, 60, 220, 0.3) 30%, rgba(168, 85, 247, 0.15) 60%, transparent 100%)",
+                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.5) 0%, rgba(79, 92, 220, 0.3) 30%, rgba(99, 102, 241, 0.15) 60%, transparent 100%)",
                 filter: "blur(16px)",
                 zIndex: 0,
               }}
