@@ -13,7 +13,7 @@ const teamMembers = [
   { name: "Brett Wilson", title: "CTO, ex-VMware", image: brettImg },
   { name: "Jasleen Deol", title: "Head of Product, ex-AMD & L3Harris", image: jasleenImg },
   { name: "Ryan Park", title: "Head of Marketing & Executive Comms", image: ryanImg },
-  { name: "Britt Alexander", title: "Advisor", image: brittImg },
+  { name: "Britt Alexander", title: "Product Lead, Columbia University", image: brittImg },
   { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: danImg },
   { name: "Raghavan Rajagopalan", title: "Advisor, 20yrs Pearson", image: raghavanImg },
 ];
