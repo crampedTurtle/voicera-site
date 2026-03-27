@@ -12,6 +12,8 @@ const teamMembers = [
   { name: "Jasleen Deol", title: "CTO, ex-VMware", image: jasleenImg },
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
   { name: "Britt Alexander", title: "Advisor", image: brittImg },
+  { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: "" },
+  { name: "Raghavan Rajagopalan", title: "Advisor, 20yrs Pearson", image: "" },
 ];
 
 const TeamSection = () => {
