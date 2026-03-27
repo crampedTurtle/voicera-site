@@ -45,16 +45,27 @@ const SolutionsSection = () => {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, var(--bg-alt) 0%, hsl(0 0% 100%) 15%)" }}
     >
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 0 }}
+        src="/videos/pricing-bg.mp4"
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/50" style={{ zIndex: 1 }} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28">
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
           <span className="gradient-pill">PRICING</span>
-          <h2 className="type-display text-body mt-6">
+          <h2 className="type-display text-white mt-6">
             Simple, usage-based pricing
           </h2>
-          <p className="type-body mt-4">
+          <p className="type-body mt-4 text-white/80">
             Pay only for what you analyze. No seat fees, no minimums.
           </p>
         </div>
