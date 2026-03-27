@@ -7,7 +7,7 @@ import ryanImg from "@/assets/team/ryan-park.png";
 
 const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
-  { name: "Kevin Wright", title: "Advisor", image: kevinImg },
+  { name: "Kevin Wright", title: "Head of Marketing", image: kevinImg },
   { name: "Brett Wilson", title: "Advisor", image: brettImg },
   { name: "Jasleen Deol", title: "Advisor", image: jasleenImg },
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
