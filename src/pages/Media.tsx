@@ -137,7 +137,7 @@ const Media = () => {
       <main className="pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Page header */}
-          <header className="mb-10">
+          <header className="mb-14 mt-4 border-l-2 border-border pl-6">
             <h1 className="type-display mb-4">
               Media & <span className="gradient-text">Press</span>
             </h1>
