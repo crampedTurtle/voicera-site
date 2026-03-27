@@ -92,8 +92,13 @@ const SolutionsSection = () => {
             }}
           >
             {/* Card Header */}
-            <div className="text-center py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.1)" }}>
-              <h3 className="text-lg font-medium text-black">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
+            <div className="py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.1)" }}>
+              <h3 className="text-[28px] font-medium text-black mb-1">Pro</h3>
+            </div>
+
+            {/* Sincerity Model Header */}
+            <div className="text-center py-5 px-7">
+              <h3 className="text-lg font-normal text-black">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
             </div>
 
             {/* Toggle */}
