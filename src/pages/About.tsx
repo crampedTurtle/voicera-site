@@ -16,7 +16,7 @@ const About = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-6">
-        <div className="max-w-[750px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <h1 className="type-display text-foreground leading-[1.1]">
             Words are only half the story.
           </h1>
