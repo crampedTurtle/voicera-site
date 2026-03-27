@@ -58,7 +58,7 @@ const PricingSection = () => (
             {tier.highlight && (
               <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
                 padding: "1.5px",
-                background: "linear-gradient(135deg, #4B6EF5 0%, #6366F1 30%, #818CF8 65%, #60A5FA 100%)",
+                background: "linear-gradient(135deg, #3B6FF5 0%, #4E7CF8 30%, #6B9BFA 65%, #52A0FC 100%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",

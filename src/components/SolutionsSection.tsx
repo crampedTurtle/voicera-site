@@ -338,7 +338,7 @@ const MobileCarousel = () => {
             onClick={() => setActive(i)}
             className="w-2.5 h-2.5 rounded-full transition-all duration-300"
             style={{
-              background: active === i ? "var(--color-primary, #4B6EF5)" : "rgba(0,0,0,0.12)",
+              background: active === i ? "var(--color-primary, #3B6FF5)" : "rgba(0,0,0,0.12)",
               transform: active === i ? "scale(1.2)" : "scale(1)",
             }}
           />

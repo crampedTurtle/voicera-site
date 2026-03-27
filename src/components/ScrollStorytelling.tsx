@@ -71,10 +71,10 @@ const ScrollStorytelling = () => {
                   <svg width="0" height="0">
                     <defs>
                       <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#4B6EF5" />
-                        <stop offset="30%" stopColor="#6366F1" />
-                        <stop offset="65%" stopColor="#818CF8" />
-                        <stop offset="100%" stopColor="#60A5FA" />
+                        <stop offset="0%" stopColor="#3B6FF5" />
+                        <stop offset="30%" stopColor="#4E7CF8" />
+                        <stop offset="65%" stopColor="#6B9BFA" />
+                        <stop offset="100%" stopColor="#52A0FC" />
                       </linearGradient>
                     </defs>
                   </svg>

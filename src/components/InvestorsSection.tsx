@@ -267,9 +267,9 @@ const InvestorsSection = () => {
                           }}
                         >
                           {submitted ? (
-                            <Unlock className="w-7 h-7" style={{ color: "#6366F1" }} />
+                             <Unlock className="w-7 h-7" style={{ color: "#4E7CF8" }} />
                           ) : (
-                            <Lock className="w-7 h-7" style={{ color: "#6366F1" }} />
+                            <Lock className="w-7 h-7" style={{ color: "#4E7CF8" }} />
                           )}
                         </div>
                         <motion.div
@@ -326,7 +326,7 @@ const InvestorsSection = () => {
                             background: "linear-gradient(135deg, rgba(75,110,245,0.1), rgba(99,102,241,0.1))",
                           }}
                         >
-                          <Unlock className="w-7 h-7" style={{ color: "#6366F1" }} />
+                          <Unlock className="w-7 h-7" style={{ color: "#4E7CF8" }} />
                         </div>
                         <p className="text-sm font-medium text-body-muted">
                           Video unlocked — coming soon
