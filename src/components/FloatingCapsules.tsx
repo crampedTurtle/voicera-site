@@ -30,10 +30,10 @@ const layerProps: Record<DepthLayer, { opacity: number; blur: number; parallaxRa
 };
 
 const GRADIENTS = [
-  "linear-gradient(135deg, rgba(75,110,245,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(155,77,235,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(240,24,122,0.35) 88%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(240,24,122,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(244,98,26,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(75,110,245,0.4) 100%)",
-  "linear-gradient(135deg, rgba(155,77,235,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(244,98,26,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(75,110,245,0.4) 80%, rgba(255,255,255,0.6) 100%)",
-  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(75,110,245,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(155,77,235,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(240,24,122,0.4) 100%)",
+  "linear-gradient(135deg, rgba(66,133,244,0.45) 0%, rgba(255,255,255,0.7) 22%, rgba(234,67,53,0.4) 44%, rgba(255,255,255,0.65) 66%, rgba(52,168,83,0.35) 88%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(251,188,4,0.4) 25%, rgba(255,255,255,0.65) 45%, rgba(66,133,244,0.35) 65%, rgba(255,255,255,0.6) 85%, rgba(234,67,53,0.4) 100%)",
+  "linear-gradient(135deg, rgba(52,168,83,0.4) 0%, rgba(255,255,255,0.7) 20%, rgba(251,188,4,0.35) 40%, rgba(255,255,255,0.65) 60%, rgba(66,133,244,0.4) 80%, rgba(255,255,255,0.6) 100%)",
+  "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(234,67,53,0.4) 22%, rgba(255,255,255,0.7) 44%, rgba(52,168,83,0.35) 66%, rgba(255,255,255,0.6) 82%, rgba(251,188,4,0.4) 100%)",
 ];
 
 function prand(seed: number): number {
@@ -140,15 +140,15 @@ interface CrystalProps {
 }
 
 const glowFilter = (gs: number) =>
-  `drop-shadow(0 0 ${6 * gs}px rgba(168,85,247,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(236,72,153,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(168,85,247,${0.3 * gs}))`;
+  `drop-shadow(0 0 ${6 * gs}px rgba(66,133,244,${0.9 * gs})) drop-shadow(0 0 ${16 * gs}px rgba(234,67,53,${0.6 * gs})) drop-shadow(0 0 ${32 * gs}px rgba(52,168,83,${0.3 * gs}))`;
 
 const GRAD_STOPS: [string, string, string][] = [
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(236,72,153,0.12)"],   // white-white-hint pink
-  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(200,160,255,0.1)"],     // white-white-hint lavender
-  ["rgba(255,255,255,0.85)", "rgba(255,245,250,0.7)", "rgba(155,77,235,0.1)"],     // white-frost-hint purple
-  ["rgba(255,250,253,0.8)", "rgba(255,255,255,0.8)", "rgba(236,72,153,0.08)"],     // frost-white-whisper pink
-  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(200,170,255,0.1)"],   // white-white-hint violet
-  ["rgba(255,255,255,0.9)", "rgba(255,248,252,0.75)", "rgba(255,180,220,0.1)"],    // white-frost-hint rose
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(66,133,244,0.12)"],   // white-white-hint blue
+  ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.7)", "rgba(234,67,53,0.1)"],       // white-white-hint red
+  ["rgba(255,255,255,0.85)", "rgba(255,245,250,0.7)", "rgba(52,168,83,0.1)"],      // white-frost-hint green
+  ["rgba(255,250,253,0.8)", "rgba(255,255,255,0.8)", "rgba(251,188,4,0.1)"],       // frost-white-hint gold
+  ["rgba(255,255,255,0.85)", "rgba(255,255,255,0.75)", "rgba(66,133,244,0.1)"],    // white-white-hint blue
+  ["rgba(255,255,255,0.9)", "rgba(255,248,252,0.75)", "rgba(234,67,53,0.1)"],      // white-frost-hint red
 ];
 
 const useUniqueId = () => useId();
@@ -174,10 +174,10 @@ const CrystalSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVariant 
   return (
     <svg width={w} height={h} viewBox="0 0 40 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
-      <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="1" strokeLinejoin="round" />
       <line x1="20" y1="2" x2="20" y2="98" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-      <line x1="20" y1="2" x2="8" y2="22" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-      <line x1="20" y1="2" x2="32" y2="22" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="20" y1="2" x2="8" y2="22" stroke="rgba(66,133,244,0.4)" strokeWidth="0.7" />
+      <line x1="20" y1="2" x2="32" y2="22" stroke="rgba(66,133,244,0.4)" strokeWidth="0.7" />
       <line x1="12" y1="14" x2="28" y2="24" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
       <polygon points="20,2 32,22 30,82 20,98 10,82 8,22" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
     </svg>
@@ -191,10 +191,10 @@ const CrystalShardSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVar
   return (
     <svg width={w} height={h} viewBox="0 0 24 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
-      <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="0.8" strokeLinejoin="round" />
+      <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="0.8" strokeLinejoin="round" />
       <line x1="12" y1="2" x2="12" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-      <line x1="12" y1="2" x2="4" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-      <line x1="12" y1="2" x2="20" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="12" y1="2" x2="4" y2="18" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
+      <line x1="12" y1="2" x2="20" y2="18" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
       <polygon points="12,2 20,18 19,65 12,78 5,65 4,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
     </svg>
   );
@@ -207,12 +207,12 @@ const CrystalWideSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVari
   return (
     <svg width={w} height={h} viewBox="0 0 50 80" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
-      <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="1" strokeLinejoin="round" />
       <line x1="25" y1="2" x2="25" y2="78" stroke="rgba(255,255,255,0.3)" strokeWidth="0.6" />
-      <line x1="25" y1="2" x2="8" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
-      <line x1="25" y1="2" x2="42" y2="16" stroke="rgba(168,85,247,0.4)" strokeWidth="0.7" />
+      <line x1="25" y1="2" x2="8" y2="16" stroke="rgba(66,133,244,0.4)" strokeWidth="0.7" />
+      <line x1="25" y1="2" x2="42" y2="16" stroke="rgba(66,133,244,0.4)" strokeWidth="0.7" />
       <line x1="14" y1="10" x2="36" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
-      <line x1="25" y1="78" x2="10" y2="62" stroke="rgba(168,85,247,0.3)" strokeWidth="0.4" />
+      <line x1="25" y1="78" x2="10" y2="62" stroke="rgba(66,133,244,0.3)" strokeWidth="0.4" />
       <polygon points="25,2 42,16 40,62 32,78 18,78 10,62 8,16" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.8 : 0.6} strokeLinejoin="round" />
     </svg>
   );
@@ -226,18 +226,18 @@ const CrystalClusterSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientV
     <svg width={w} height={h} viewBox="0 0 70 100" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       {/* Main tall crystal */}
-      <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="1" strokeLinejoin="round" />
       <line x1="28" y1="2" x2="28" y2="92" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-      <line x1="28" y1="2" x2="18" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-      <line x1="28" y1="2" x2="38" y2="18" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="28" y1="2" x2="18" y2="18" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
+      <line x1="28" y1="2" x2="38" y2="18" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
       <line x1="22" y1="11" x2="35" y2="20" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
       {/* Medium right crystal, angled */}
-      <polygon points="52,18 60,30 59,72 52,84 45,72 44,30" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.5)" strokeWidth="0.8" strokeLinejoin="round" />
+      <polygon points="52,18 60,30 59,72 52,84 45,72 44,30" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.5)" strokeWidth="0.8" strokeLinejoin="round" />
       <line x1="52" y1="18" x2="52" y2="84" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
-      <line x1="52" y1="18" x2="44" y2="30" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
-      <line x1="52" y1="18" x2="60" y2="30" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+      <line x1="52" y1="18" x2="44" y2="30" stroke="rgba(66,133,244,0.35)" strokeWidth="0.5" />
+      <line x1="52" y1="18" x2="60" y2="30" stroke="rgba(66,133,244,0.35)" strokeWidth="0.5" />
       {/* Tiny base shard left */}
-      <polygon points="10,52 15,60 14,82 10,90 6,82 5,60" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" strokeLinejoin="round" />
+      <polygon points="10,52 15,60 14,82 10,90 6,82 5,60" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" strokeLinejoin="round" />
       <line x1="10" y1="52" x2="10" y2="90" stroke="rgba(255,255,255,0.2)" strokeWidth="0.3" />
       {/* Outer highlights on main */}
       <polygon points="28,2 38,18 37,75 28,92 19,75 18,18" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
@@ -254,23 +254,23 @@ const CrystalTripleSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVa
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
       {/* Left crystal, tilted left */}
       <g transform="rotate(-12, 22, 55)">
-        <polygon points="22,12 30,26 29,72 22,86 15,72 14,26" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.55)" strokeWidth="0.8" strokeLinejoin="round" />
+        <polygon points="22,12 30,26 29,72 22,86 15,72 14,26" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.55)" strokeWidth="0.8" strokeLinejoin="round" />
         <line x1="22" y1="12" x2="22" y2="86" stroke="rgba(255,255,255,0.25)" strokeWidth="0.4" />
-        <line x1="22" y1="12" x2="14" y2="26" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
-        <line x1="22" y1="12" x2="30" y2="26" stroke="rgba(168,85,247,0.35)" strokeWidth="0.5" />
+        <line x1="22" y1="12" x2="14" y2="26" stroke="rgba(66,133,244,0.35)" strokeWidth="0.5" />
+        <line x1="22" y1="12" x2="30" y2="26" stroke="rgba(66,133,244,0.35)" strokeWidth="0.5" />
       </g>
       {/* Center crystal, tallest */}
-      <polygon points="42,2 52,20 51,78 42,96 33,78 32,20" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="1" strokeLinejoin="round" />
+      <polygon points="42,2 52,20 51,78 42,96 33,78 32,20" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="1" strokeLinejoin="round" />
       <line x1="42" y1="2" x2="42" y2="96" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-      <line x1="42" y1="2" x2="32" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-      <line x1="42" y1="2" x2="52" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="42" y1="2" x2="32" y2="20" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
+      <line x1="42" y1="2" x2="52" y2="20" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
       <line x1="36" y1="12" x2="49" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
       {/* Right crystal, tilted right */}
       <g transform="rotate(10, 62, 60)">
-        <polygon points="62,25 68,35 67,72 62,82 57,72 56,35" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.45)" strokeWidth="0.7" strokeLinejoin="round" />
+        <polygon points="62,25 68,35 67,72 62,82 57,72 56,35" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.45)" strokeWidth="0.7" strokeLinejoin="round" />
         <line x1="62" y1="25" x2="62" y2="82" stroke="rgba(255,255,255,0.2)" strokeWidth="0.35" />
-        <line x1="62" y1="25" x2="56" y2="35" stroke="rgba(168,85,247,0.3)" strokeWidth="0.45" />
-        <line x1="62" y1="25" x2="68" y2="35" stroke="rgba(168,85,247,0.3)" strokeWidth="0.45" />
+        <line x1="62" y1="25" x2="56" y2="35" stroke="rgba(66,133,244,0.3)" strokeWidth="0.45" />
+        <line x1="62" y1="25" x2="68" y2="35" stroke="rgba(66,133,244,0.3)" strokeWidth="0.45" />
       </g>
     </svg>
   );
@@ -283,10 +283,10 @@ const CrystalAsymSVG = ({ w, h, filled, glowScale, shimmerDuration, gradientVari
   return (
     <svg width={w} height={h} viewBox="0 0 36 90" fill="none" style={{ filter: glowFilter(glowScale), overflow: "visible" }}>
       {filled && <defs><AnimatedGradient id={uid} stops={stops} dur={shimmerDuration} /></defs>}
-      <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(168,85,247,0.6)" strokeWidth="0.9" strokeLinejoin="round" />
+      <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill={filled ? `url(#${uid})` : "none"} stroke="rgba(66,133,244,0.6)" strokeWidth="0.9" strokeLinejoin="round" />
       <line x1="16" y1="2" x2="14" y2="85" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-      <line x1="16" y1="2" x2="4" y2="24" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
-      <line x1="16" y1="2" x2="28" y2="20" stroke="rgba(168,85,247,0.4)" strokeWidth="0.6" />
+      <line x1="16" y1="2" x2="4" y2="24" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
+      <line x1="16" y1="2" x2="28" y2="20" stroke="rgba(66,133,244,0.4)" strokeWidth="0.6" />
       <line x1="10" y1="14" x2="24" y2="22" stroke="rgba(255,255,255,0.3)" strokeWidth="0.35" />
       <polygon points="16,2 28,20 30,68 22,88 8,82 4,24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={filled ? 0.7 : 0.5} strokeLinejoin="round" />
     </svg>
@@ -330,7 +330,7 @@ const FloatingCapsules = ({ variant, count, className = "" }: FloatingCapsulesPr
           <path
             key={i}
             d={path}
-            stroke={strand === 0 ? "rgba(155, 77, 235, 0.12)" : "rgba(75, 110, 245, 0.12)"}
+            stroke={strand === 0 ? "rgba(52, 168, 83, 0.12)" : "rgba(66, 133, 244, 0.12)"}
             strokeWidth="0.15"
             fill="none"
             strokeLinecap="round"

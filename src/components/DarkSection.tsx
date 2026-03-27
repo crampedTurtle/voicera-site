@@ -7,7 +7,7 @@ const DarkSection = () => (
     <div
       className="absolute w-[600px] h-[600px] rounded-full animate-float-orb pointer-events-none"
       style={{
-        background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
+        background: "linear-gradient(135deg, #4285F4 0%, #EA4335 30%, #EA4335 65%, #FBBC04 100%)",
         filter: "blur(100px)",
         opacity: 0.08,
         top: "50%",
@@ -51,7 +51,7 @@ const DarkSection = () => (
           </div>
         </div>
 
-        <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2">
+        <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(234,67,53,0.35)] inline-flex items-center gap-2">
           Become a Partner <ArrowUpRight className="w-4 h-4" />
         </button>
       </motion.div>

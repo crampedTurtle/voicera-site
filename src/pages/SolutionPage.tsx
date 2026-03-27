@@ -113,7 +113,7 @@ const SolutionPage = ({ solution }: { solution: SolutionPageData }) => (
         </div>
 
         <div className="mt-16 flex flex-wrap gap-4">
-          <button className="gradient-bg px-6 py-3 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5">
+          <button className="gradient-bg px-6 py-3 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(234,67,53,0.3)] inline-flex items-center gap-1.5">
             Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
           <a

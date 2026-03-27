@@ -18,7 +18,7 @@ const HeroSection = () => {
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden pt-16"
       style={{
-        background: "linear-gradient(to right, hsl(270 40% 96%) 0%, hsl(330 30% 96%) 40%, hsl(0 0% 100%) 75%, hsl(0 0% 100%) 100%)",
+        background: "linear-gradient(to right, hsl(217 40% 96%) 0%, hsl(45 60% 96%) 40%, hsl(0 0% 100%) 75%, hsl(0 0% 100%) 100%)",
       }}
     >
 
@@ -65,7 +65,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
-            <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2">
+            <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(66,133,244,0.35)] inline-flex items-center gap-2">
               Start Free Trial <ArrowUpRight className="w-4 h-4" />
             </button>
           </motion.div>
