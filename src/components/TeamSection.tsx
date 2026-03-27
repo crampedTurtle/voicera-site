@@ -5,6 +5,7 @@ import brittImg from "@/assets/team/britt-alexander.png";
 import jasleenImg from "@/assets/team/jasleen-deol.png";
 import kevinImg from "@/assets/headshot-kevin.png";
 import ryanImg from "@/assets/team/ryan-park.png";
+import raghavanImg from "@/assets/team/raghavan-rajagopalan.png";
 
 const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
@@ -14,7 +15,7 @@ const teamMembers = [
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
   { name: "Britt Alexander", title: "Advisor", image: brittImg },
   { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: danImg },
-  { name: "Raghavan Rajagopalan", title: "Advisor, 20yrs Pearson", image: "" },
+  { name: "Raghavan Rajagopalan", title: "Advisor, 20yrs Pearson", image: raghavanImg },
 ];
 
 const TeamSection = () => {
