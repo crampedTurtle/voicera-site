@@ -87,12 +87,12 @@ const ScrollStorytelling = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="absolute -top-[56px] -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
+                  className="absolute -top-[56px] -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg flex flex-col items-center"
                   style={{ transform: "rotate(3deg)" }}
                 >
                   <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">Join</span>
-                  <span className="text-2xl font-bold text-foreground">850+</span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mt-1">
+                  <CountUp target={850} className="text-2xl font-bold text-foreground my-1" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
                     Active Users
                   </span>
                 </motion.div>
