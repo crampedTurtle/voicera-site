@@ -31,6 +31,11 @@ const About = () => {
         </div>
       </section>
 
+      {/* Sphere graphic */}
+      <section className="py-16 px-6 flex justify-center">
+        <HeroSphere />
+      </section>
+
       <TeamSection />
       <Footer />
     </div>
