@@ -14,19 +14,16 @@ const About = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="type-tag border border-border rounded-full px-4 py-1.5 text-foreground inline-block mb-6">
-            ABOUT VOICERA
-          </span>
-          <h1 className="type-display mb-6">
-            The Intelligence Layer for Human Credibility
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto bg-muted rounded-2xl px-8 sm:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <h1 className="type-display text-foreground leading-[1.1]">
+            Words are only half the story.
           </h1>
-          <p className="type-body text-muted-foreground max-w-2xl mx-auto">
-            Voicera uses multimodal AI to analyze verbal and non-verbal cues in
-            real time — helping organizations across sales, hiring, legal, and
-            law enforcement make decisions grounded in the science of sincerity.
-            We believe trust should be measurable, not assumed.
+          <p className="type-body text-muted-foreground text-base sm:text-lg leading-relaxed">
+            We're pioneering the first multimodal credibility intelligence
+            platform that measures what humans actually mean — not just what
+            they say — setting a new standard for trust in every high-stakes
+            interaction.
           </p>
         </div>
       </section>
