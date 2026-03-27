@@ -93,11 +93,11 @@ const CaseStudies = () => {
           {CASE_STUDIES.map((cs) => (
             <motion.div
               key={cs.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: Number(cs.number) * 0.1 }}
-              className="group cursor-pointer"
+              initial={{ opacity: 0, scale: 0.92, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: Number(cs.number) * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="cursor-pointer"
             >
               {/* Image card */}
               <div
@@ -106,7 +106,7 @@ const CaseStudies = () => {
                 <img
                   src={cs.image}
                   alt={cs.title}
-                  className={`absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105 ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
+                  className={`absolute inset-0 w-full h-full ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
                 />
 
                 {/* Dark gradient overlay */}
