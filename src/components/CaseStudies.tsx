@@ -67,7 +67,7 @@ const CaseStudies = () => {
         >
           The platforms that run on trust, in
           <br />
-          <span className="relative inline-block text-left" style={{ minWidth: "8em" }}>
+          <span className="relative inline-block text-left">
             <AnimatePresence mode="wait">
               <motion.span
                 key={wordIndex}
@@ -77,10 +77,14 @@ const CaseStudies = () => {
                 transition={{ duration: 0.35, ease: "easeInOut" }}
                 className="text-accent inline-block"
               >
-                {ROTATING_WORDS[wordIndex]}
+                {ROTATING_WORDS[wordIndex]}<span className="text-foreground">,</span>
               </motion.span>
             </AnimatePresence>
-          </span><span className="text-foreground">,</span>{" "}
+            {/* Invisible sizer to reserve width of longest word */}
+            <span className="invisible block h-0 overflow-hidden" aria-hidden="true">
+              {ROTATING_WORDS.reduce((a, b) => a.length > b.length ? a : b)},
+            </span>
+          </span>{" "}
           choose Voicera where deep human understanding meets the science of
           credibility.
         </h2>
