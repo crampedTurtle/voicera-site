@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
+import HeroSphere from "@/components/HeroSphere";
 import JsonLd from "@/components/JsonLd";
 
 const About = () => {
@@ -28,6 +29,11 @@ const About = () => {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Sphere graphic */}
+      <section className="py-16 px-6 flex justify-center">
+        <HeroSphere />
       </section>
 
       <TeamSection />
