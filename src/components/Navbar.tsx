@@ -124,7 +124,7 @@ const Navbar = () => {
           <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
             <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" style={{ color: '#3B6FF5', WebkitTextFillColor: 'unset' }} /></span>
           </a>
-          <button className="gradient-bg px-5 py-2 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5">
+          <button onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })} className="gradient-bg px-5 py-2 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5">
             Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -180,7 +180,7 @@ const Navbar = () => {
             <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
               <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
             </a>
-            <button className="gradient-bg px-5 py-2 type-button text-white rounded-xl inline-flex items-center gap-1.5">
+            <button onClick={() => { setMobileOpen(false); (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }} className="gradient-bg px-5 py-2 type-button text-white rounded-xl inline-flex items-center gap-1.5">
               Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
