@@ -47,7 +47,7 @@ const InvestorsSection = () => {
       ref={sectionRef}
       className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, hsl(0 0% 100%) 0%, var(--bg-alt) 30%, var(--bg-alt) 70%, hsl(0 0% 100%) 100%)",
+        background: "hsl(225 80% 52%)",
       }}
     >
       {/* Timeline line – left side framing */}
@@ -55,12 +55,12 @@ const InvestorsSection = () => {
         className="absolute top-0 bottom-0 w-px pointer-events-none hidden md:block"
         style={{
           left: "calc(50% - 560px)",
-          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.05) 75%, transparent 100%)",
+          background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 75%, transparent 100%)",
         }}
       />
 
       {/* Floating capsules in background */}
-      <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.35 }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.2 }}>
         <FloatingCapsules variant="cta" count={10} />
       </div>
 
@@ -68,7 +68,7 @@ const InvestorsSection = () => {
       <motion.div
         className="absolute w-[450px] h-[450px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(75,110,245,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)",
           top: "5%",
           left: "-8%",
           y: orbY1,
@@ -77,7 +77,7 @@ const InvestorsSection = () => {
       <motion.div
         className="absolute w-[350px] h-[350px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)",
           bottom: "5%",
           right: "-3%",
           y: orbY2,
@@ -93,11 +93,11 @@ const InvestorsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="gradient-pill">THE THESIS</span>
-            <h2 className="type-display text-body mt-6 mb-6">
+            <span className="type-tag px-3.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.9)", letterSpacing: "0.14em" }}>THE THESIS</span>
+            <h2 className="type-display mt-6 mb-6" style={{ color: "white" }}>
               The Trust Economy is the next Trillion-dollar market.
             </h2>
-            <p className="type-body mb-10 max-w-lg">
+            <p className="type-body mb-10 max-w-lg" style={{ color: "rgba(255,255,255,0.75)" }}>
               Deepfakes are skyrocketing. The demand for verification is
               outpacing supply.
             </p>
@@ -112,26 +112,26 @@ const InvestorsSection = () => {
                   className="space-y-5 max-w-md"
                 >
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-body">
-                      Email<span style={{ color: "#4B6EF5" }}>*</span>
+                    <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.9)" }}>
+                      Email<span style={{ color: "rgba(255,255,255,0.5)" }}>*</span>
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-body-muted" />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "rgba(0,0,0,0.4)" }} />
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="johnsmith@company.com"
-                        className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/30"
                         style={{
-                          background: "rgba(255,255,255,0.8)",
-                          borderColor: errors.email ? "#EF4444" : "rgba(0,0,0,0.1)",
+                          background: "white",
+                          borderColor: errors.email ? "#EF4444" : "rgba(255,255,255,0.3)",
                           color: "var(--color-body)",
                         }}
                       />
                     </div>
                     {errors.email && (
-                      <p className="text-xs mt-1.5" style={{ color: "#EF4444" }}>{errors.email}</p>
+                      <p className="text-xs mt-1.5" style={{ color: "#FCA5A5" }}>{errors.email}</p>
                     )}
                   </div>
 
@@ -146,24 +146,25 @@ const InvestorsSection = () => {
                       <div
                         className="w-[18px] h-[18px] rounded border flex items-center justify-center transition-all duration-200"
                         style={{
-                          borderColor: errors.consent ? "#EF4444" : consent ? "#4B6EF5" : "rgba(0,0,0,0.15)",
-                          background: consent ? "#4B6EF5" : "transparent",
+                          borderColor: errors.consent ? "#FCA5A5" : consent ? "white" : "rgba(255,255,255,0.4)",
+                          background: consent ? "white" : "transparent",
                         }}
                       >
-                        {consent && <CheckCircle2 className="w-3 h-3 text-white" />}
+                        {consent && <CheckCircle2 className="w-3 h-3" style={{ color: "hsl(225 80% 52%)" }} />}
                       </div>
                     </div>
-                    <span className="text-xs leading-relaxed text-body-muted">
-                      Consent to be added to our mailing list for any future updates<span style={{ color: "#4B6EF5" }}>*</span>
+                    <span className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+                      Consent to be added to our mailing list for any future updates<span style={{ color: "rgba(255,255,255,0.4)" }}>*</span>
                     </span>
                   </label>
                   {errors.consent && (
-                    <p className="text-xs" style={{ color: "#EF4444" }}>{errors.consent}</p>
+                    <p className="text-xs" style={{ color: "#FCA5A5" }}>{errors.consent}</p>
                   )}
 
                   <button
                     type="submit"
-                    className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(99,102,241,0.25)] inline-flex items-center gap-2"
+                    className="px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(255,255,255,0.2)] inline-flex items-center gap-2"
+                    style={{ background: "white", color: "hsl(225 80% 52%)" }}
                   >
                     Submit <ArrowRight className="w-4 h-4" />
                   </button>
@@ -175,10 +176,10 @@ const InvestorsSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-3 max-w-md"
                 >
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(75,110,245,0.1)" }}>
-                    <CheckCircle2 className="w-5 h-5" style={{ color: "#4B6EF5" }} />
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.15)" }}>
+                    <CheckCircle2 className="w-5 h-5 text-white" />
                   </div>
-                  <p className="text-sm text-body-muted">
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
                     Access granted — enjoy the pitch.
                   </p>
                 </motion.div>
