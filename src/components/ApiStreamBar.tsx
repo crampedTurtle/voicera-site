@@ -12,9 +12,9 @@ const ApiStreamBar = () => (
             return (
               <span key={j}>
                 {isResult ? (
-                  <span className="text-[hsl(145,60%,45%)]">{trimmed}</span>
+                  <span className="text-[hsl(270,68%,70%)]">{trimmed}</span>
                 ) : isStatus ? (
-                  <span className="text-[hsl(217,89%,61%)]">{trimmed}</span>
+                  <span className="text-[hsl(228,89%,73%)]">{trimmed}</span>
                 ) : (
                   <span className="text-[hsl(var(--muted-foreground))/0.5]" style={{ color: "hsla(240,5%,46%,0.5)" }}>{trimmed}</span>
                 )}

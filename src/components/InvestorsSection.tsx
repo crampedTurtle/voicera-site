@@ -68,7 +68,7 @@ const InvestorsSection = () => {
       <motion.div
         className="absolute w-[450px] h-[450px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(66,133,244,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(75,110,245,0.08) 0%, transparent 70%)",
           top: "5%",
           left: "-8%",
           y: orbY1,
@@ -77,7 +77,7 @@ const InvestorsSection = () => {
       <motion.div
         className="absolute w-[350px] h-[350px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(52,168,83,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(155,77,235,0.06) 0%, transparent 70%)",
           bottom: "5%",
           right: "-3%",
           y: orbY2,
@@ -113,7 +113,7 @@ const InvestorsSection = () => {
                 >
                   <div>
                     <label className="block text-sm font-medium mb-2 text-body">
-                      Email<span style={{ color: "#EA4335" }}>*</span>
+                      Email<span style={{ color: "#F0187A" }}>*</span>
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-body-muted" />
@@ -125,13 +125,13 @@ const InvestorsSection = () => {
                         className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
                         style={{
                           background: "rgba(255,255,255,0.8)",
-                          borderColor: errors.email ? "#EA4335" : "rgba(0,0,0,0.1)",
+                          borderColor: errors.email ? "#F0187A" : "rgba(0,0,0,0.1)",
                           color: "var(--color-body)",
                         }}
                       />
                     </div>
                     {errors.email && (
-                      <p className="text-xs mt-1.5" style={{ color: "#EA4335" }}>{errors.email}</p>
+                      <p className="text-xs mt-1.5" style={{ color: "#F0187A" }}>{errors.email}</p>
                     )}
                   </div>
 
@@ -146,24 +146,24 @@ const InvestorsSection = () => {
                       <div
                         className="w-[18px] h-[18px] rounded border flex items-center justify-center transition-all duration-200"
                         style={{
-                          borderColor: errors.consent ? "#EA4335" : consent ? "#4285F4" : "rgba(0,0,0,0.15)",
-                          background: consent ? "#4285F4" : "transparent",
+                          borderColor: errors.consent ? "#F0187A" : consent ? "#4B6EF5" : "rgba(0,0,0,0.15)",
+                          background: consent ? "#4B6EF5" : "transparent",
                         }}
                       >
                         {consent && <CheckCircle2 className="w-3 h-3 text-white" />}
                       </div>
                     </div>
                     <span className="text-xs leading-relaxed text-body-muted">
-                      Consent to be added to our mailing list for any future updates<span style={{ color: "#EA4335" }}>*</span>
+                      Consent to be added to our mailing list for any future updates<span style={{ color: "#F0187A" }}>*</span>
                     </span>
                   </label>
                   {errors.consent && (
-                    <p className="text-xs" style={{ color: "#EA4335" }}>{errors.consent}</p>
+                    <p className="text-xs" style={{ color: "#F0187A" }}>{errors.consent}</p>
                   )}
 
                   <button
                     type="submit"
-                    className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(234,67,53,0.25)] inline-flex items-center gap-2"
+                    className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.25)] inline-flex items-center gap-2"
                   >
                     Submit <ArrowRight className="w-4 h-4" />
                   </button>
@@ -175,8 +175,8 @@ const InvestorsSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-3 max-w-md"
                 >
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(66,133,244,0.1)" }}>
-                    <CheckCircle2 className="w-5 h-5" style={{ color: "#4285F4" }} />
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(75,110,245,0.1)" }}>
+                    <CheckCircle2 className="w-5 h-5" style={{ color: "#4B6EF5" }} />
                   </div>
                   <p className="text-sm text-body-muted">
                     Access granted — enjoy the pitch.
@@ -210,8 +210,8 @@ const InvestorsSection = () => {
                     <motion.div
                       className="absolute left-0 right-0 h-px"
                       style={{
-                        background: "linear-gradient(90deg, transparent, rgba(52,168,83,0.4), transparent)",
-                        boxShadow: "0 0 20px rgba(52,168,83,0.15)",
+                        background: "linear-gradient(90deg, transparent, rgba(155,77,235,0.4), transparent)",
+                        boxShadow: "0 0 20px rgba(155,77,235,0.15)",
                       }}
                       animate={{ top: ["0%", "100%", "0%"] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -235,10 +235,10 @@ const InvestorsSection = () => {
                     ...corner.bottom !== undefined && { bottom: corner.bottom },
                     ...corner.left !== undefined && { left: corner.left },
                     ...corner.right !== undefined && { right: corner.right },
-                    ...(corner.borderTop && { borderTop: "1px solid rgba(52,168,83,0.3)" }),
-                    ...(corner.borderBottom && { borderBottom: "1px solid rgba(52,168,83,0.3)" }),
-                    ...(corner.borderLeft && { borderLeft: "1px solid rgba(52,168,83,0.3)" }),
-                    ...(corner.borderRight && { borderRight: "1px solid rgba(52,168,83,0.3)" }),
+                    ...(corner.borderTop && { borderTop: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderBottom && { borderBottom: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderLeft && { borderLeft: "1px solid rgba(155,77,235,0.3)" }),
+                    ...(corner.borderRight && { borderRight: "1px solid rgba(155,77,235,0.3)" }),
                   }}
                 />
               ))}
@@ -261,19 +261,19 @@ const InvestorsSection = () => {
                         <div
                           className="w-16 h-16 rounded-2xl flex items-center justify-center"
                           style={{
-                            background: "linear-gradient(135deg, rgba(66,133,244,0.1), rgba(52,168,83,0.1))",
-                            border: "1px solid rgba(52,168,83,0.15)",
+                            background: "linear-gradient(135deg, rgba(75,110,245,0.1), rgba(155,77,235,0.1))",
+                            border: "1px solid rgba(155,77,235,0.15)",
                           }}
                         >
                           {submitted ? (
-                            <Unlock className="w-7 h-7" style={{ color: "#EA4335" }} />
+                            <Unlock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                           ) : (
-                            <Lock className="w-7 h-7" style={{ color: "#EA4335" }} />
+                            <Lock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                           )}
                         </div>
                         <motion.div
                           className="absolute inset-0 rounded-2xl"
-                          style={{ border: "1px solid rgba(52,168,83,0.2)" }}
+                          style={{ border: "1px solid rgba(155,77,235,0.2)" }}
                           animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
                           transition={{ duration: 2, repeat: Infinity }}
                         />
@@ -292,13 +292,13 @@ const InvestorsSection = () => {
                           <motion.div
                             key={i}
                             className="w-1 rounded-full"
-                            style={{ background: "rgba(52,168,83,0.2)" }}
+                            style={{ background: "rgba(155,77,235,0.2)" }}
                             animate={{
                               height: [8, Math.random() * 24 + 8, 8],
                               background: [
-                                "rgba(52,168,83,0.15)",
+                                "rgba(155,77,235,0.15)",
                                 `rgba(${75 + i * 10},${110 - i * 3},245,0.35)`,
-                                "rgba(52,168,83,0.15)",
+                                "rgba(155,77,235,0.15)",
                               ],
                             }}
                             transition={{
@@ -322,10 +322,10 @@ const InvestorsSection = () => {
                         <div
                           className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
                           style={{
-                            background: "linear-gradient(135deg, rgba(66,133,244,0.1), rgba(52,168,83,0.1))",
+                            background: "linear-gradient(135deg, rgba(75,110,245,0.1), rgba(155,77,235,0.1))",
                           }}
                         >
-                          <Unlock className="w-7 h-7" style={{ color: "#EA4335" }} />
+                          <Unlock className="w-7 h-7" style={{ color: "#9B4DEB" }} />
                         </div>
                         <p className="text-sm font-medium text-body-muted">
                           Video unlocked — coming soon

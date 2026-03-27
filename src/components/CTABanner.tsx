@@ -11,7 +11,7 @@ const CTABanner = () => (
     <div
       className="absolute w-[500px] h-[500px] rounded-full animate-float-orb pointer-events-none"
       style={{
-        background: "linear-gradient(135deg, #4285F4 0%, #EA4335 30%, #34A853 65%, #FBBC04 100%)",
+        background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
         filter: "blur(80px)",
         opacity: 0.12,
         top: "50%",
@@ -34,7 +34,7 @@ const CTABanner = () => (
           Join hundreds of sales teams using Voicera to coach smarter, close faster, and build credibility at scale.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(66,133,244,0.35)] inline-flex items-center gap-2">
+          <button className="gradient-bg px-8 py-3.5 type-button text-white rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(240,24,122,0.35)] inline-flex items-center gap-2">
             Start Free Trial <ArrowUpRight className="w-4 h-4" />
           </button>
           <button className="gradient-border-rect px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-transform duration-200 inline-flex items-center gap-2">

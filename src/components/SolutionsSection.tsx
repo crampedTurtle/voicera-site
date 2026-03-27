@@ -44,10 +44,10 @@ const TimelineGraphic = () => (
   >
     {/* Stacked capsule bars – like search timeline */}
     {[
-      { x: 20, y: 20, w: 90, color: "rgba(52,168,83,0.2)" },
-      { x: 50, y: 50, w: 120, color: "rgba(234,67,53,0.18)" },
-      { x: 10, y: 80, w: 80, color: "rgba(66,133,244,0.22)" },
-      { x: 60, y: 110, w: 100, color: "rgba(251,188,4,0.18)" },
+      { x: 20, y: 20, w: 90, color: "rgba(155,77,235,0.2)" },
+      { x: 50, y: 50, w: 120, color: "rgba(240,24,122,0.18)" },
+      { x: 10, y: 80, w: 80, color: "rgba(75,110,245,0.22)" },
+      { x: 60, y: 110, w: 100, color: "rgba(244,98,26,0.18)" },
     ].map((bar, i) => (
       <g key={i}>
         <rect x={bar.x} y={bar.y} width={bar.w} height={22} rx={11} fill={bar.color} stroke="rgba(0,0,0,0.08)" strokeWidth={0.8} />
@@ -77,9 +77,9 @@ const AnalyzeGraphic = () => (
     {/* Central rounded rectangle – like a video frame */}
     <defs>
       <linearGradient id="analyzeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="rgba(234,67,53,0.25)" />
-        <stop offset="50%" stopColor="rgba(251,188,4,0.2)" />
-        <stop offset="100%" stopColor="rgba(52,168,83,0.15)" />
+        <stop offset="0%" stopColor="rgba(240,24,122,0.25)" />
+        <stop offset="50%" stopColor="rgba(244,98,26,0.2)" />
+        <stop offset="100%" stopColor="rgba(155,77,235,0.15)" />
       </linearGradient>
     </defs>
     <rect x="55" y="15" width="90" height="65" rx="14" fill="url(#analyzeGrad)" stroke="rgba(0,0,0,0.1)" strokeWidth={0.8} />
@@ -115,11 +115,11 @@ const NetworkGraphic = () => (
     {/* Multimodal embedding network */}
     {/* Center cluster of colored spheres */}
     {[
-      { cx: 90, cy: 70, r: 18, color: "rgba(52,168,83,0.25)" },
-      { cx: 115, cy: 55, r: 14, color: "rgba(66,133,244,0.22)" },
-      { cx: 105, cy: 95, r: 16, color: "rgba(234,67,53,0.2)" },
-      { cx: 130, cy: 80, r: 12, color: "rgba(251,188,4,0.2)" },
-      { cx: 78, cy: 50, r: 10, color: "rgba(66,133,244,0.18)" },
+      { cx: 90, cy: 70, r: 18, color: "rgba(155,77,235,0.25)" },
+      { cx: 115, cy: 55, r: 14, color: "rgba(75,110,245,0.22)" },
+      { cx: 105, cy: 95, r: 16, color: "rgba(240,24,122,0.2)" },
+      { cx: 130, cy: 80, r: 12, color: "rgba(244,98,26,0.2)" },
+      { cx: 78, cy: 50, r: 10, color: "rgba(75,110,245,0.18)" },
     ].map((s, i) => (
       <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill={s.color} stroke="rgba(0,0,0,0.06)" strokeWidth={0.5} />
     ))}
@@ -338,7 +338,7 @@ const MobileCarousel = () => {
             onClick={() => setActive(i)}
             className="w-2.5 h-2.5 rounded-full transition-all duration-300"
             style={{
-              background: active === i ? "var(--color-primary, #4285F4)" : "rgba(0,0,0,0.12)",
+              background: active === i ? "var(--color-primary, #4B6EF5)" : "rgba(0,0,0,0.12)",
               transform: active === i ? "scale(1.2)" : "scale(1)",
             }}
           />

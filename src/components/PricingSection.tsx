@@ -47,7 +47,7 @@ const PricingSection = () => (
             transition={{ delay: i * 0.15, duration: 0.5 }}
             className={`card-surface p-8 flex flex-col relative ${tier.highlight ? "gradient-card-border" : ""}`}
             style={tier.highlight ? {
-              boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 12px 40px rgba(66, 133, 244, 0.12)",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 12px 40px rgba(75, 110, 245, 0.12)",
             } : undefined}
           >
             {tier.highlight && (
@@ -58,7 +58,7 @@ const PricingSection = () => (
             {tier.highlight && (
               <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
                 padding: "1.5px",
-                background: "linear-gradient(135deg, #EA4335 0%, #FBBC04 30%, #34A853 60%, #4285F4 100%)",
+                background: "linear-gradient(135deg, #4B6EF5 0%, #9B4DEB 30%, #F0187A 65%, #F4621A 100%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
@@ -83,7 +83,7 @@ const PricingSection = () => (
             <button
               className={`w-full py-3 rounded-xl type-button transition-all duration-200 hover:scale-[1.02] ${
                 tier.highlight
-                  ? "gradient-bg text-white hover:shadow-[0_4px_20px_rgba(66,133,244,0.3)]"
+                  ? "gradient-bg text-white hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)]"
                   : "gradient-border-rect"
               }`}
             >
