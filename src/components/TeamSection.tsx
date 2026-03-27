@@ -1,4 +1,5 @@
 import chandraImg from "@/assets/team/chandra.png";
+import danImg from "@/assets/team/dan-stoks.png";
 import brettImg from "@/assets/team/brett-wilson.png";
 import brittImg from "@/assets/team/britt-alexander.png";
 import jasleenImg from "@/assets/team/jasleen-deol.png";
