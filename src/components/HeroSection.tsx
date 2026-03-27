@@ -70,46 +70,14 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Right: Video */}
+        {/* Right: 3D Sphere */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
           className="flex items-center justify-center mt-8 lg:mt-0"
         >
-          <div
-            className="relative w-full aspect-video rounded-2xl overflow-hidden cursor-pointer"
-            style={{
-              boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
-            }}
-            onClick={() => setPlaying(true)}
-          >
-            {playing ? (
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/BSTZmbYonpI?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=0&iv_load_policy=3"
-                title="Voicera Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <>
-                <img
-                  src={heroThumb}
-                  alt="Voicera Demo"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                />
-                <div className="absolute inset-0 flex items-center justify-center transition-opacity">
-                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
-                    <Play className="w-7 h-7 text-foreground ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+          <HeroSphere />
         </motion.div>
       </div>
     </section>
