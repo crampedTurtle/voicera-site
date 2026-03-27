@@ -78,7 +78,7 @@ const Navbar = () => {
               <div
                 key={link.label}
                 className="relative"
-                onMouseEnter={handleDropdownEnter}
+                onMouseEnter={() => handleDropdownEnter(link.dropdownType)}
                 onMouseLeave={handleDropdownLeave}
               >
                 <a
@@ -87,11 +87,11 @@ const Navbar = () => {
                   className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
                 >
                   {link.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
                 </a>
 
                 <AnimatePresence>
-                  {solutionsOpen && (
+                  {dropdownOpen === link.dropdownType && (
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -99,20 +99,35 @@ const Navbar = () => {
                       transition={{ duration: 0.18 }}
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-xl border border-border bg-card shadow-lg overflow-hidden"
                     >
-                      {solutions.map((s) => (
-                        <a
-                          key={s.slug}
-                          href={`/solutions/${s.slug}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setSolutionsOpen(false);
-                            navigate(`/solutions/${s.slug}`);
-                          }}
-                          className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
-                        >
-                          {s.name}
-                        </a>
-                      ))}
+                      {link.dropdownType === "solutions"
+                        ? solutions.map((s) => (
+                            <a
+                              key={s.slug}
+                              href={`/solutions/${s.slug}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setDropdownOpen(null);
+                                navigate(`/solutions/${s.slug}`);
+                              }}
+                              className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                            >
+                              {s.name}
+                            </a>
+                          ))
+                        : companyLinks.map((cl) => (
+                            <a
+                              key={cl.label}
+                              href={cl.href}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setDropdownOpen(null);
+                                navigate(cl.href);
+                              }}
+                              className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                            >
+                              {cl.label}
+                            </a>
+                          ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -154,29 +169,45 @@ const Navbar = () => {
             link.hasDropdown ? (
               <div key={link.label}>
                 <button
-                  onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                  onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.dropdownType ? null : link.dropdownType)}
                   className="flex items-center gap-1 type-nav text-body-muted cursor-pointer w-full"
                 >
                   {link.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${mobileDropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
                 </button>
-                {mobileSolutionsOpen && (
+                {mobileDropdownOpen === link.dropdownType && (
                   <div className="pl-4 mt-2 space-y-2 border-l-2 border-border">
-                    {solutions.map((s) => (
-                      <a
-                        key={s.slug}
-                        href={`/solutions/${s.slug}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMobileOpen(false);
-                          setMobileSolutionsOpen(false);
-                          navigate(`/solutions/${s.slug}`);
-                        }}
-                        className="block type-nav text-body-muted hover:text-body text-sm"
-                      >
-                        {s.name}
-                      </a>
-                    ))}
+                    {link.dropdownType === "solutions"
+                      ? solutions.map((s) => (
+                          <a
+                            key={s.slug}
+                            href={`/solutions/${s.slug}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setMobileOpen(false);
+                              setMobileDropdownOpen(null);
+                              navigate(`/solutions/${s.slug}`);
+                            }}
+                            className="block type-nav text-body-muted hover:text-body text-sm"
+                          >
+                            {s.name}
+                          </a>
+                        ))
+                      : companyLinks.map((cl) => (
+                          <a
+                            key={cl.label}
+                            href={cl.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setMobileOpen(false);
+                              setMobileDropdownOpen(null);
+                              navigate(cl.href);
+                            }}
+                            className="block type-nav text-body-muted hover:text-body text-sm"
+                          >
+                            {cl.label}
+                          </a>
+                        ))}
                   </div>
                 )}
               </div>
