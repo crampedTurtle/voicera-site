@@ -80,8 +80,8 @@ const CaseStudies = () => {
                 {ROTATING_WORDS[wordIndex]}
               </motion.span>
             </AnimatePresence>
-          </span>
-          , choose Voicera where deep human understanding meets the science of
+          </span><span className="text-foreground">,</span>{" "}
+          choose Voicera where deep human understanding meets the science of
           credibility.
         </h2>
 
