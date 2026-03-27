@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
+import HeroSphere from "@/components/HeroSphere";
 import JsonLd from "@/components/JsonLd";
 
 const About = () => {
