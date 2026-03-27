@@ -106,7 +106,7 @@ const CaseStudies = () => {
                 <img
                   src={cs.image}
                   alt={cs.title}
-                  className={`absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105 ${cs.bgClass ? "object-contain object-bottom" : "object-cover"}`}
+                  className={`absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105 ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
                 />
 
                 {/* Dark gradient overlay */}
