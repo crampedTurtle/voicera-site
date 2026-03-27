@@ -37,7 +37,7 @@ const Index = () => {
         <FeatureTabs />
         <DarkSection />
         <ApiStreamBar />
-        <Testimonial />
+        <CaseStudies />
         <InvestorsSection />
         <TeamSection />
         <CTABanner />
