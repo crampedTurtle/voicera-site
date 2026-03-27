@@ -90,13 +90,10 @@ const ScrollStorytelling = () => {
                   className="absolute -top-[56px] -right-8 z-20 rounded-xl border border-border bg-background px-7 py-5 text-center shadow-lg"
                   style={{ transform: "rotate(3deg)" }}
                 >
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-                    Integrates Seamlessly with:
+                  <span className="text-2xl font-bold text-foreground">850+</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mt-1">
+                    Active Users
                   </span>
-                  <div className="mt-3 flex items-center justify-center gap-7">
-                    <img src={logoGong} alt="Gong" className="h-[30px] object-contain grayscale brightness-0 opacity-60" />
-                    <img src={logoSalesforce} alt="Salesforce" className="h-[43px] object-contain grayscale brightness-0 opacity-60" />
-                  </div>
                 </motion.div>
               </div>
             )}
