@@ -184,19 +184,24 @@ const HeroSphere = () => {
         return (
           <AnimatePresence key={level.label} mode="wait">
             <motion.div
-              className="absolute flex items-center gap-2 rounded-full px-4 py-2 shadow-md"
+              className="absolute flex items-center gap-2 rounded-full px-4 py-2"
               style={{
                 left: pos.x,
                 top: pos.y,
                 background: isActive ? "white" : "hsl(222 30% 97%)",
                 border: `1.5px solid ${isActive ? level.color : "hsl(222 30% 90%)"}`,
                 zIndex: isActive ? 10 : 1,
+                boxShadow: isActive
+                  ? `0 4px 20px ${level.color}40, 0 0 0 3px ${level.color}20`
+                  : "0 2px 8px rgba(0,0,0,0.06)",
               }}
+              initial={false}
               animate={{
-                scale: isActive ? 1.08 : 0.95,
-                opacity: isActive ? 1 : 0.6,
+                scale: isActive ? 1.15 : 0.85,
+                opacity: isActive ? 1 : 0.45,
+                y: isActive ? -6 : 0,
               }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div
                 className="w-3 h-3 rounded-full flex-shrink-0"
