@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Headphones, Video, Layers, Server } from "lucide-react";
+import PricingCapsules from "./PricingCapsules";
 
 type Unit = "minute" | "hour";
 
