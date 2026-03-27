@@ -228,27 +228,20 @@ const AdminEditor = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="image">Image URL</Label>
-            <Input
-              id="image"
-              value={form.image}
-              onChange={(e) => setForm((p) => ({ ...p, image: e.target.value }))}
-              placeholder="https://..."
-            />
-          </div>
+        <ImageUpload
+          value={form.image}
+          onChange={(url) => setForm((p) => ({ ...p, image: url }))}
+        />
 
-          <div>
-            <Label htmlFor="read_time">Read Time (min)</Label>
-            <Input
-              id="read_time"
-              type="number"
-              min={1}
-              value={form.read_time}
-              onChange={(e) => setForm((p) => ({ ...p, read_time: parseInt(e.target.value) || 1 }))}
-            />
-          </div>
+        <div>
+          <Label htmlFor="read_time">Read Time (min)</Label>
+          <Input
+            id="read_time"
+            type="number"
+            min={1}
+            value={form.read_time}
+            onChange={(e) => setForm((p) => ({ ...p, read_time: parseInt(e.target.value) || 1 }))}
+          />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
