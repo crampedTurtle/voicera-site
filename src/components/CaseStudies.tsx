@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import scottRameyImg from "@/assets/case-study-scott-ramey.png";
+import srLogo from "@/assets/case-study-sr-logo.png";
 
 const ROTATING_WORDS = [
   "sales",
@@ -29,12 +31,13 @@ const CASE_STUDIES = [
     tags: ["HEALTHCARE", "PATIENT INTAKE"],
   },
   {
-    title: "Vanguard Legal",
+    title: "Scott Ramey",
     number: "03",
-    subtitle: "Vanguard Legal Deposition Intelligence",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
-    tags: ["LEGAL", "DEPOSITION ANALYSIS"],
+    subtitle: "Executive Coaching & Leadership Platform",
+    image: scottRameyImg,
+    logo: srLogo,
+    bgClass: "bg-black",
+    tags: ["COACHING", "LEADERSHIP"],
   },
 ];
 
@@ -98,12 +101,12 @@ const CaseStudies = () => {
             >
               {/* Image card */}
               <div
-                className="relative rounded-2xl overflow-hidden aspect-square md:aspect-[3/4]"
+                className={`relative rounded-2xl overflow-hidden aspect-square md:aspect-[3/4] ${cs.bgClass || ""}`}
               >
                 <img
                   src={cs.image}
                   alt={cs.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className={`absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105 ${cs.bgClass ? "object-contain object-bottom" : "object-cover"}`}
                 />
 
                 {/* Dark gradient overlay */}
@@ -111,16 +114,20 @@ const CaseStudies = () => {
 
                 {/* Logo top-left (desktop) */}
                 <div className="absolute top-5 left-5 z-10 hidden md:flex items-center gap-2">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                    className="opacity-90"
-                  >
-                    <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
-                    <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
-                  </svg>
+                  {cs.logo ? (
+                    <img src={cs.logo} alt={`${cs.title} logo`} className="h-8 opacity-90" />
+                  ) : (
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      className="opacity-90"
+                    >
+                      <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
+                      <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
+                    </svg>
+                  )}
                 </div>
 
                 {/* Desktop-only bottom text */}
