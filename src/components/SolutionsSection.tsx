@@ -80,29 +80,29 @@ const SolutionsSection = () => {
             transition={{ duration: 0.5 }}
             className="rounded-2xl overflow-hidden max-w-[420px]"
             style={{
-              background: "rgba(255,255,255,0.7)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(0,0,0,0.08)",
+              background: "rgba(0,0,0,0.55)",
+              backdropFilter: "blur(16px)",
+              border: "1px solid rgba(255,255,255,0.15)",
               fontSize: "0.9em",
             }}
           >
             {/* Card Header */}
-            <div className="text-center py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
-              <h3 className="text-lg font-medium text-foreground">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
+            <div className="text-center py-5 px-7 border-b" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+              <h3 className="text-lg font-medium text-white">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
             </div>
 
             {/* Toggle */}
             <div className="flex justify-center py-4">
               <div
                 className="inline-flex rounded-full p-0.5"
-                style={{ background: "rgba(0,0,0,0.05)" }}
+                style={{ background: "rgba(255,255,255,0.1)" }}
               >
                 <button
                   onClick={() => setUnit("minute")}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                     unit === "minute"
-                      ? "bg-white text-foreground shadow-sm"
-                      : "text-muted-foreground"
+                      ? "bg-white/20 text-white shadow-sm"
+                      : "text-white/50"
                   }`}
                 >
                   Per Minute
@@ -111,8 +111,8 @@ const SolutionsSection = () => {
                   onClick={() => setUnit("hour")}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                     unit === "hour"
-                      ? "bg-white text-foreground shadow-sm"
-                      : "text-muted-foreground"
+                      ? "bg-white/20 text-white shadow-sm"
+                      : "text-white/50"
                   }`}
                 >
                   Per Hour
@@ -123,8 +123,8 @@ const SolutionsSection = () => {
             {/* Analysis Section */}
             <div className="px-7 pt-3">
               <div
-                className="text-sm font-medium text-foreground pb-2.5 mb-0"
-                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+                className="text-sm font-medium text-white pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(255,255,255,0.12)" }}
               >
                 Analysis (per job)
               </div>
@@ -132,13 +132,13 @@ const SolutionsSection = () => {
                 <div
                   key={item.label}
                   className="flex justify-between items-center py-3"
-                  style={{ borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}
+                  style={{ borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}
                 >
-                  <span className="flex items-center gap-2 text-sm text-foreground">
-                    <item.icon size={16} className="opacity-40" />
+                  <span className="flex items-center gap-2 text-sm text-white">
+                    <item.icon size={16} className="text-white/40" />
                     {item.label}
                   </span>
-                  <span className="text-sm text-muted-foreground tabular-nums">
+                  <span className="text-sm text-white/70 tabular-nums">
                     {formatPrice(unit === "minute" ? item.per5Min / 5 : item.per5Min / 5, unit)}
                   </span>
                 </div>
@@ -148,30 +148,30 @@ const SolutionsSection = () => {
             {/* Infrastructure */}
             <div className="px-7 pt-4">
               <div
-                className="text-sm font-medium text-foreground pb-2.5 mb-0"
-                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+                className="text-sm font-medium text-white pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(255,255,255,0.12)" }}
               >
                 Infrastructure (Monthly)
               </div>
               <div
                 className="flex justify-between items-center py-3"
               >
-                <span className="flex items-center gap-2 text-sm text-foreground">
-                  <Server size={16} className="opacity-40" />
+                <span className="flex items-center gap-2 text-sm text-white">
+                  <Server size={16} className="text-white/40" />
                   Platform hosting
                 </span>
-                <span className="text-sm text-muted-foreground">$1,089 / month</span>
+                <span className="text-sm text-white/70">$1,089 / month</span>
               </div>
             </div>
 
             {/* Platform Section */}
             <div className="px-7 pt-2 pb-2">
               <div className="text-center py-4">
-                <span className="text-base font-normal text-foreground">Platform</span>
+                <span className="text-base font-normal text-white">Platform</span>
               </div>
               <div
-                className="text-sm font-medium text-foreground pb-2.5 mb-0"
-                style={{ borderBottom: "0.5px solid rgba(0,0,0,0.08)" }}
+                className="text-sm font-medium text-white pb-2.5 mb-0"
+                style={{ borderBottom: "0.5px solid rgba(255,255,255,0.12)" }}
               >
                 Per-{unit} rate by input type
               </div>
@@ -179,13 +179,13 @@ const SolutionsSection = () => {
                 <div
                   key={item.label}
                   className="flex justify-between items-center py-3"
-                  style={i < platformItems.length - 1 ? { borderBottom: "0.5px solid rgba(0,0,0,0.06)" } : undefined}
+                  style={i < platformItems.length - 1 ? { borderBottom: "0.5px solid rgba(255,255,255,0.08)" } : undefined}
                 >
-                  <span className="flex items-center gap-2 text-sm text-foreground">
-                    <item.icon size={16} className="opacity-40" />
+                  <span className="flex items-center gap-2 text-sm text-white">
+                    <item.icon size={16} className="text-white/40" />
                     {item.label}
                   </span>
-                  <span className="text-sm text-muted-foreground tabular-nums">
+                  <span className="text-sm text-white/70 tabular-nums">
                     {formatPrice(item.perMinute, unit)}
                   </span>
                 </div>
@@ -194,18 +194,18 @@ const SolutionsSection = () => {
               {/* Hourly cap */}
               <div
                 className="flex justify-between items-center py-3 mt-1"
-                style={{ borderTop: "0.5px solid rgba(0,0,0,0.06)" }}
+                style={{ borderTop: "0.5px solid rgba(255,255,255,0.08)" }}
               >
-                <span className="flex items-center gap-2 text-sm text-foreground">
-                  <Layers size={16} className="opacity-40" />
+                <span className="flex items-center gap-2 text-sm text-white">
+                  <Layers size={16} className="text-white/40" />
                   Hourly cap (composite)
                 </span>
-                <span className="text-sm text-muted-foreground">$0.37 / hour</span>
+                <span className="text-sm text-white/70">$0.37 / hour</span>
               </div>
             </div>
 
             {/* Note */}
-            <p className="text-[10px] text-muted-foreground text-center px-7 py-3">
+            <p className="text-[10px] text-white/50 text-center px-7 py-3">
               Composite = audio + video (parallel) + fusion Lambda.
               <br />
               Worker cost: (processing min × $0.0039) + $0.001 overhead.
