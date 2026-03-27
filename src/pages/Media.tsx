@@ -2,20 +2,40 @@ import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Clock } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/routes";
-import { blogPosts, type BlogPost } from "@/lib/blog-data";
+import { supabase } from "@/integrations/supabase/client";
+import { type BlogPost, getCategoryLabel } from "@/lib/blog-data";
 
-const CATEGORIES = ["All posts", "Press", "Product", "Engineering", "Company"] as const;
+const CATEGORIES = [
+  "All posts",
+  "Sales Intelligence",
+  "Sales Enablement",
+  "Platform",
+  "Trust & Credibility",
+  "HR & Hiring",
+  "Press",
+] as const;
 type FilterCategory = (typeof CATEGORIES)[number];
+
+const CATEGORY_SLUG_MAP: Record<string, string> = {
+  "Sales Intelligence": "sales-intelligence",
+  "Sales Enablement": "sales-enablement",
+  "Platform": "platform",
+  "Trust & Credibility": "trust-credibility",
+  "HR & Hiring": "hr-hiring",
+  "Press": "press",
+};
 
 /* ── Grid tile ── */
 const GridTile = ({ post }: { post: BlogPost }) => {
   const isPress = post.category === "press";
-  const Wrapper = isPress ? "a" : Link;
-  const wrapperProps = isPress
+  const hasExternal = !!post.externalUrl;
+  const Wrapper = hasExternal ? "a" : Link;
+  const wrapperProps = hasExternal
     ? { href: post.externalUrl || "#", target: "_blank" as const, rel: "noopener noreferrer" }
     : { to: `/media/${post.slug}` };
 
@@ -34,7 +54,7 @@ const GridTile = ({ post }: { post: BlogPost }) => {
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-          <span className="absolute top-3 left-3 gradient-pill capitalize">{post.category}</span>
+          <span className="absolute top-3 left-3 gradient-pill capitalize">{getCategoryLabel(post.category)}</span>
           {isPress && post.source && (
             <span className="absolute top-3 right-3 text-xs font-medium text-primary-foreground/80 bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full">
               {post.source}
@@ -54,7 +74,7 @@ const GridTile = ({ post }: { post: BlogPost }) => {
                 <Clock className="w-3 h-3" />
                 {post.readTime} min
               </span>
-              {isPress && <ArrowUpRight className="w-3.5 h-3.5 ml-auto" />}
+              {hasExternal && <ArrowUpRight className="w-3.5 h-3.5 ml-auto" />}
             </div>
           </div>
         </div>
@@ -107,12 +127,37 @@ function buildBlogSchemas(posts: BlogPost[]) {
 const Media = () => {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("All posts");
 
-  const filteredPosts = useMemo(() => {
-    if (activeFilter === "All posts") return blogPosts;
-    return blogPosts.filter((p) => p.category === activeFilter.toLowerCase());
-  }, [activeFilter]);
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("published", true)
+        .order("date", { ascending: false });
+      if (error) throw error;
+      return (data || []).map((row) => ({
+        slug: row.slug,
+        title: row.title,
+        excerpt: row.excerpt,
+        date: row.date,
+        author: row.author,
+        category: row.category,
+        image: row.image,
+        readTime: row.read_time,
+        externalUrl: row.external_url ?? undefined,
+        source: row.source ?? undefined,
+      })) as BlogPost[];
+    },
+  });
 
-  const { collectionPage, blogPostingSchemas } = useMemo(() => buildBlogSchemas(blogPosts), []);
+  const filteredPosts = useMemo(() => {
+    if (activeFilter === "All posts") return posts;
+    const slug = CATEGORY_SLUG_MAP[activeFilter];
+    return posts.filter((p) => p.category === slug);
+  }, [activeFilter, posts]);
+
+  const { collectionPage, blogPostingSchemas } = useMemo(() => buildBlogSchemas(posts), [posts]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -129,7 +174,7 @@ const Media = () => {
         ))}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta property="og:type" content="blog" />
-        <meta property="og:image" content={blogPosts[0]?.image} />
+        <meta property="og:image" content={posts[0]?.image} />
       </Helmet>
 
       <Navbar />
@@ -164,13 +209,21 @@ const Media = () => {
           </div>
 
           {/* Post grid */}
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredPosts.map((post) => (
-              <GridTile key={post.slug} post={post} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="rounded-2xl aspect-[3/4] bg-muted animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredPosts.map((post) => (
+                <GridTile key={post.slug} post={post} />
+              ))}
+            </div>
+          )}
 
-          {filteredPosts.length === 0 && (
+          {!isLoading && filteredPosts.length === 0 && (
             <p className="text-center text-muted-foreground py-20">No posts in this category yet.</p>
           )}
         </div>
