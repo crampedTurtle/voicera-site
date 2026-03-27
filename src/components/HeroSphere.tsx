@@ -46,13 +46,6 @@ const HeroSphere = () => {
 
   return (
     <div className="relative w-full max-w-[520px] mx-auto" style={{ aspectRatio: "5/6" }}>
-      {/* Outer ring */}
-      <div
-        className="absolute inset-[-8%] rounded-full"
-        style={{
-          border: "1px solid hsl(222 40% 88%)",
-        }}
-      />
 
       {/* Glow backdrop */}
       <div
