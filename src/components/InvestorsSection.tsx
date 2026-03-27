@@ -93,7 +93,7 @@ const InvestorsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="type-tag px-3.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.9)", letterSpacing: "0.14em" }}>THE THESIS</span>
+            <span className="type-tag px-3.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.9)", letterSpacing: "0.14em" }}>PROSPECTIVE INVESTORS</span>
             <h2 className="type-display mt-6 mb-6" style={{ color: "white" }}>
               The Trust Economy is the next Trillion-dollar market.
             </h2>
