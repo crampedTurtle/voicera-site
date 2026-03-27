@@ -42,10 +42,10 @@ const HeroSphere = () => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
-  const cx = 250, cy = 250, r = 200;
+  const cx = 250, cy = 300, rx = 160, ry = 240;
 
   return (
-    <div className="relative w-full aspect-square max-w-[520px] mx-auto">
+    <div className="relative w-full max-w-[520px] mx-auto" style={{ aspectRatio: "5/6" }}>
       {/* Outer ring */}
       <div
         className="absolute inset-[-8%] rounded-full"
@@ -65,7 +65,7 @@ const HeroSphere = () => {
       {/* Rotating wireframe sphere SVG */}
       <div className="absolute inset-0">
         <svg
-          viewBox="0 0 500 500"
+          viewBox="0 0 500 600"
           className="w-full h-full"
           style={{ animation: "sphere-rotate 25s linear infinite" }}
         >
@@ -77,21 +77,21 @@ const HeroSphere = () => {
             </linearGradient>
           </defs>
 
-          {/* Outer circle */}
-          <circle cx={cx} cy={cy} r={r} fill="none" stroke="hsl(222 40% 88%)" strokeWidth="1" opacity="0.5" />
+          {/* Outer ellipse */}
+          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="none" stroke="hsl(222 40% 88%)" strokeWidth="1" opacity="0.5" />
 
           {/* Longitude lines (vertical great circles) */}
           {Array.from({ length: 14 }).map((_, i) => {
             const angle = (i / 14) * 180;
-            const ry = r * Math.abs(Math.cos((angle * Math.PI) / 180));
+            const lrx = rx * Math.abs(Math.cos((angle * Math.PI) / 180));
             const opacity = 0.2 + 0.6 * Math.abs(Math.sin((angle * Math.PI) / 180));
             return (
               <ellipse
                 key={`lon-${i}`}
                 cx={cx}
                 cy={cy}
-                rx={ry}
-                ry={r}
+                rx={lrx}
+                ry={ry}
                 fill="none"
                 stroke="url(#sphere-grad)"
                 strokeWidth={1 + 0.8 * Math.abs(Math.sin((angle * Math.PI) / 180))}
@@ -101,19 +101,20 @@ const HeroSphere = () => {
             );
           })}
 
-          {/* Latitude lines (horizontal circles) */}
-          {Array.from({ length: 9 }).map((_, i) => {
-            const y = cy - r + ((i + 1) / 10) * 2 * r;
-            const latR = Math.sqrt(r * r - (y - cy) * (y - cy));
-            const dist = Math.abs(y - cy) / r;
+          {/* Latitude lines (horizontal ellipses) */}
+          {Array.from({ length: 11 }).map((_, i) => {
+            const t = ((i + 1) / 12) * 2 - 1;
+            const y = cy + t * ry;
+            const latRx = rx * Math.sqrt(1 - t * t);
+            const dist = Math.abs(t);
             const opacity = 0.15 + 0.4 * (1 - dist);
             return (
               <ellipse
                 key={`lat-${i}`}
                 cx={cx}
                 cy={y}
-                rx={latR}
-                ry={latR * 0.25}
+                rx={latRx}
+                ry={latRx * 0.25}
                 fill="none"
                 stroke="url(#sphere-grad)"
                 strokeWidth={0.8}
@@ -125,14 +126,14 @@ const HeroSphere = () => {
           {/* Diagonal great circles for extra depth */}
           {Array.from({ length: 6 }).map((_, i) => {
             const angle = 30 + (i / 6) * 150;
-            const ry = r * 0.85;
+            const dry = ry * 0.85;
             return (
               <ellipse
                 key={`diag-${i}`}
                 cx={cx}
                 cy={cy}
-                rx={r}
-                ry={ry * Math.abs(Math.sin(((angle + 45) * Math.PI) / 180))}
+                rx={rx}
+                ry={dry * Math.abs(Math.sin(((angle + 45) * Math.PI) / 180))}
                 fill="none"
                 stroke="hsl(222 80% 60%)"
                 strokeWidth={0.7}
