@@ -35,11 +35,11 @@ const TeamSection = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                width={64}
-                height={64}
+                width={80}
+                height={80}
                 loading="lazy"
                 decoding="async"
-                className="w-16 h-16 rounded-full object-cover flex-shrink-0 bg-secondary"
+                className="w-20 h-20 rounded-full object-cover flex-shrink-0 bg-secondary"
               />
               <div className="min-w-0">
                 <p className="type-card-title text-foreground text-sm font-semibold leading-tight">
