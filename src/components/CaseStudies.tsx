@@ -18,6 +18,7 @@ const CASE_STUDIES = [
     subtitle: "Apex Financial Trust Verification Platform",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    tags: ["FINANCE", "TRUST VERIFICATION"],
   },
   {
     title: "Meridian Health",
@@ -25,6 +26,7 @@ const CASE_STUDIES = [
     subtitle: "Meridian Health Patient Intake Analysis",
     image:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    tags: ["HEALTHCARE", "PATIENT INTAKE"],
   },
   {
     title: "Vanguard Legal",
@@ -32,6 +34,7 @@ const CASE_STUDIES = [
     subtitle: "Vanguard Legal Deposition Intelligence",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+    tags: ["LEGAL", "DEPOSITION ANALYSIS"],
   },
 ];
 
