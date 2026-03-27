@@ -3,12 +3,14 @@ import logoPoliceReports from "@/assets/logo-policereports.png";
 import logoErie from "@/assets/logo-erie.png";
 import logoScottRamey from "@/assets/logo-scottramey.png";
 import logoMoodMe from "@/assets/logo-moodme.png";
+import logoSite from "@/assets/logo-sitelogo.svg";
 
 const logos = [
   { src: logoPoliceReports, alt: "Policereports.ai" },
   { src: logoErie, alt: "City of Erie" },
   { src: logoScottRamey, alt: "Scott Ramey" },
   { src: logoMoodMe, alt: "MoodMe" },
+  { src: logoSite, alt: "Partner" },
 ];
 
 const SocialProof = () => (
