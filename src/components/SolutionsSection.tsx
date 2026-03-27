@@ -59,6 +59,7 @@ const SolutionsSection = () => {
       />
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/[0.12]" style={{ zIndex: 1 }} />
+      <PricingCapsules />
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-11 pb-20">
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
