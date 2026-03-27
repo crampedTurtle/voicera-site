@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import { AlertTriangle, BrainCircuit, TrendingUp } from "lucide-react";
 import FloatingCapsules from "./FloatingCapsules";
 import voiceraDemoGif from "@/assets/voicera-demo.gif";
