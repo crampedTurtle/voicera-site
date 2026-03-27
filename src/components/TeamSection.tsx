@@ -11,7 +11,7 @@ const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
   { name: "Kevin Wright", title: "CTO, ex-VMware", image: kevinImg },
   { name: "Brett Wilson", title: "CRO, ex-ContentSquare", image: brettImg },
-  { name: "Jasleen Deol", title: "CTO, ex-VMware", image: jasleenImg },
+  { name: "Jasleen Deol", title: "Head of Product, ex-AMD & L3Harris", image: jasleenImg },
   { name: "Ryan Park", title: "Advisor", image: ryanImg },
   { name: "Britt Alexander", title: "Advisor", image: brittImg },
   { name: "Dan Stoks", title: "Advisor, 26yrs Oracle", image: danImg },
