@@ -2,7 +2,7 @@ import chandraImg from "@/assets/team/chandra.png";
 import brettImg from "@/assets/team/brett-wilson.png";
 import brittImg from "@/assets/team/britt-alexander.png";
 import jasleenImg from "@/assets/team/jasleen-deol.png";
-import kevinImg from "@/assets/team/kevin-wright.png";
+import kevinImg from "@/assets/headshot-kevin.png";
 import ryanImg from "@/assets/team/ryan-park.png";
 
 const teamMembers = [
