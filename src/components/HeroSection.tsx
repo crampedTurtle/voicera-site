@@ -7,7 +7,6 @@ import HeroSphere from "./HeroSphere";
 const words = ["The", "Intelligence", "Layer", "for", "Human", "Credibility"];
 
 const HeroSection = () => {
-  const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const orbY = useTransform(scrollYProgress, [0, 1], [0, 200]);
