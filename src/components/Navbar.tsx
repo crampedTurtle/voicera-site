@@ -7,17 +7,27 @@ import { solutions } from "@/pages/SolutionPage";
 
 const navLinks = [
   { label: "Product", href: "#product" },
-  { label: "Solutions", href: "#solutions", hasDropdown: true },
+  { label: "Solutions", href: "#solutions", hasDropdown: true, dropdownType: "solutions" as const },
   { label: "Partners", href: "#developers" },
-  { label: "Investors", href: "#investors" },
+  {
+    label: "Company",
+    href: "#company",
+    hasDropdown: true,
+    dropdownType: "company" as const,
+  },
+];
+
+const companyLinks = [
+  { label: "About", href: "/about" },
   { label: "Media", href: "/media" },
+  { label: "Investors", href: "/investors" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -38,13 +48,13 @@ const Navbar = () => {
     setMobileOpen(false);
   };
 
-  const handleDropdownEnter = () => {
+  const handleDropdownEnter = (type: string) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
-    setSolutionsOpen(true);
+    setDropdownOpen(type);
   };
 
   const handleDropdownLeave = () => {
-    dropdownTimeout.current = setTimeout(() => setSolutionsOpen(false), 150);
+    dropdownTimeout.current = setTimeout(() => setDropdownOpen(null), 150);
   };
 
   useEffect(() => {
