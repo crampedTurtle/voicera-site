@@ -8,49 +8,50 @@ const SINCERITY_LEVELS = [
   { label: "Insincere", color: "hsl(0 72% 51%)" },
 ];
 
+/* positions around the sphere (angle in degrees from top) */
 const CAPSULE_POSITIONS = [
-  { x: "2%", y: "10%", align: "left" as const },
-  { x: "78%", y: "18%", align: "right" as const },
-  { x: "0%", y: "78%", align: "left" as const },
-  { x: "75%", y: "85%", align: "right" as const },
+  { x: "8%", y: "12%", align: "left" as const },
+  { x: "82%", y: "22%", align: "right" as const },
+  { x: "6%", y: "78%", align: "left" as const },
+  { x: "78%", y: "85%", align: "right" as const },
 ];
+
+/* generate great-circle arc paths for a wireframe sphere look */
+function generateArcs(cx: number, cy: number, r: number, count: number) {
+  const arcs: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * Math.PI;
+    const rx = r;
+    const ry = r * Math.abs(Math.cos(angle));
+    const rot = (i / count) * 180;
+    arcs.push(
+      `M ${cx - rx * Math.cos((rot * Math.PI) / 180) + ry * Math.sin((rot * Math.PI) / 180)},${cy - rx * Math.sin((rot * Math.PI) / 180) - ry * Math.cos((rot * Math.PI) / 180)} A ${rx},${ry} ${rot} 1,1 ${cx + rx * Math.cos((rot * Math.PI) / 180) - ry * Math.sin((rot * Math.PI) / 180)},${cy + rx * Math.sin((rot * Math.PI) / 180) + ry * Math.cos((rot * Math.PI) / 180)}`
+    );
+  }
+  return arcs;
+}
 
 const HeroSphere = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
   useEffect(() => {
-    const id = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % SINCERITY_LEVELS.length);
     }, 2800);
-    return () => clearInterval(id);
+    return () => clearInterval(intervalRef.current);
   }, []);
 
-  const cx = 250, cy = 250;
-
-  // Hexagonal prism vertices (top & bottom hexagons, wider horizontally)
-  const sides = 6;
-  const rx = 170; // horizontal radius (25% wider)
-  const ry = 136; // standard radius
-  const topY = 80;
-  const botY = 420;
-  const topVerts: [number, number][] = [];
-  const botVerts: [number, number][] = [];
-
-  for (let i = 0; i < sides; i++) {
-    const angle = (i / sides) * Math.PI * 2 - Math.PI / 2;
-    topVerts.push([cx + rx * Math.cos(angle), topY + ry * 0.35 * Math.sin(angle)]);
-    botVerts.push([cx + rx * Math.cos(angle), botY + ry * 0.35 * Math.sin(angle)]);
-  }
-
-  const topPath = topVerts.map((v, i) => `${i === 0 ? "M" : "L"} ${v[0]},${v[1]}`).join(" ") + " Z";
-  const botPath = botVerts.map((v, i) => `${i === 0 ? "M" : "L"} ${v[0]},${v[1]}`).join(" ") + " Z";
+  const cx = 250, cy = 250, r = 200;
 
   return (
     <div className="relative w-full aspect-square max-w-[520px] mx-auto">
-      {/* Outer orbit ring */}
+      {/* Outer ring */}
       <div
-        className="absolute inset-[-6%] rounded-full"
-        style={{ border: "1px solid hsl(222 40% 88%)" }}
+        className="absolute inset-[-8%] rounded-full"
+        style={{
+          border: "1px solid hsl(222 40% 88%)",
+        }}
       />
 
       {/* Glow backdrop */}
@@ -61,109 +62,89 @@ const HeroSphere = () => {
         }}
       />
 
-      {/* Rotating prism SVG */}
+      {/* Rotating wireframe sphere SVG */}
       <div className="absolute inset-0">
         <svg
           viewBox="0 0 500 500"
           className="w-full h-full"
-          style={{ animation: "prism-rotate 20s linear infinite" }}
+          style={{ animation: "sphere-rotate 25s linear infinite" }}
         >
           <defs>
-            <linearGradient id="prism-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(222 85% 55%)" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="hsl(222 60% 78%)" stopOpacity="0.3" />
-            </linearGradient>
-            <linearGradient id="prism-face" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="hsl(222 80% 65%)" stopOpacity="0.06" />
-              <stop offset="100%" stopColor="hsl(222 80% 65%)" stopOpacity="0.02" />
-            </linearGradient>
-            <linearGradient id="prism-face-accent" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="hsl(222 85% 60%)" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="hsl(222 70% 75%)" stopOpacity="0.03" />
+            <linearGradient id="sphere-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(222 85% 55%)" stopOpacity="0.9" />
+              <stop offset="50%" stopColor="hsl(222 75% 65%)" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="hsl(222 60% 80%)" stopOpacity="0.2" />
             </linearGradient>
           </defs>
 
-          {/* Top hexagon face */}
-          <path d={topPath} fill="url(#prism-face-accent)" stroke="url(#prism-edge)" strokeWidth="1.2" />
+          {/* Outer circle */}
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke="hsl(222 40% 88%)" strokeWidth="1" opacity="0.5" />
 
-          {/* Bottom hexagon face */}
-          <path d={botPath} fill="url(#prism-face)" stroke="url(#prism-edge)" strokeWidth="0.8" opacity="0.5" />
-
-          {/* Vertical edges connecting top to bottom */}
-          {topVerts.map((tv, i) => {
-            const bv = botVerts[i];
-            const opacity = 0.25 + 0.55 * Math.abs(Math.sin(((i / sides) * Math.PI * 2)));
+          {/* Longitude lines (vertical great circles) */}
+          {Array.from({ length: 14 }).map((_, i) => {
+            const angle = (i / 14) * 180;
+            const ry = r * Math.abs(Math.cos((angle * Math.PI) / 180));
+            const opacity = 0.2 + 0.6 * Math.abs(Math.sin((angle * Math.PI) / 180));
             return (
-              <line
-                key={`edge-${i}`}
-                x1={tv[0]} y1={tv[1]}
-                x2={bv[0]} y2={bv[1]}
-                stroke="url(#prism-edge)"
-                strokeWidth={1 + 0.5 * opacity}
+              <ellipse
+                key={`lon-${i}`}
+                cx={cx}
+                cy={cy}
+                rx={ry}
+                ry={r}
+                fill="none"
+                stroke="url(#sphere-grad)"
+                strokeWidth={1 + 0.8 * Math.abs(Math.sin((angle * Math.PI) / 180))}
+                opacity={opacity}
+                transform={`rotate(${angle} ${cx} ${cy})`}
+              />
+            );
+          })}
+
+          {/* Latitude lines (horizontal circles) */}
+          {Array.from({ length: 9 }).map((_, i) => {
+            const y = cy - r + ((i + 1) / 10) * 2 * r;
+            const latR = Math.sqrt(r * r - (y - cy) * (y - cy));
+            const dist = Math.abs(y - cy) / r;
+            const opacity = 0.15 + 0.4 * (1 - dist);
+            return (
+              <ellipse
+                key={`lat-${i}`}
+                cx={cx}
+                cy={y}
+                rx={latR}
+                ry={latR * 0.25}
+                fill="none"
+                stroke="url(#sphere-grad)"
+                strokeWidth={0.8}
                 opacity={opacity}
               />
             );
           })}
 
-          {/* Side faces (filled subtly) */}
-          {topVerts.map((tv, i) => {
-            const next = (i + 1) % sides;
-            const tvn = topVerts[next];
-            const bv = botVerts[i];
-            const bvn = botVerts[next];
-            const facePath = `M ${tv[0]},${tv[1]} L ${tvn[0]},${tvn[1]} L ${bvn[0]},${bvn[1]} L ${bv[0]},${bv[1]} Z`;
+          {/* Diagonal great circles for extra depth */}
+          {Array.from({ length: 6 }).map((_, i) => {
+            const angle = 30 + (i / 6) * 150;
+            const ry = r * 0.85;
             return (
-              <path
-                key={`face-${i}`}
-                d={facePath}
-                fill="url(#prism-face)"
-                stroke="url(#prism-edge)"
-                strokeWidth="0.5"
-                opacity={0.15 + 0.15 * Math.sin((i / sides) * Math.PI * 2)}
-              />
-            );
-          })}
-
-          {/* Internal wireframe lines for depth */}
-          {Array.from({ length: 5 }).map((_, i) => {
-            const t = (i + 1) / 6;
-            const midY = topY + t * (botY - topY);
-            const scale = 1 - t * 0.05;
-            const points = Array.from({ length: sides }).map((_, j) => {
-              const angle = (j / sides) * Math.PI * 2 - Math.PI / 2;
-              return `${cx + rx * scale * Math.cos(angle)},${midY + ry * 0.35 * scale * Math.sin(angle)}`;
-            });
-            return (
-              <polygon
-                key={`ring-${i}`}
-                points={points.join(" ")}
+              <ellipse
+                key={`diag-${i}`}
+                cx={cx}
+                cy={cy}
+                rx={r}
+                ry={ry * Math.abs(Math.sin(((angle + 45) * Math.PI) / 180))}
                 fill="none"
-                stroke="hsl(222 75% 65%)"
-                strokeWidth="0.6"
-                opacity={0.12 + 0.08 * Math.sin(t * Math.PI)}
-              />
-            );
-          })}
-
-          {/* Diagonal internal struts for crystalline depth */}
-          {topVerts.map((tv, i) => {
-            const opposite = (i + 3) % sides;
-            const bv = botVerts[opposite];
-            return (
-              <line
-                key={`strut-${i}`}
-                x1={tv[0]} y1={tv[1]}
-                x2={bv[0]} y2={bv[1]}
-                stroke="hsl(222 70% 70%)"
-                strokeWidth="0.4"
-                opacity="0.12"
+                stroke="hsl(222 80% 60%)"
+                strokeWidth={0.7}
+                opacity={0.15 + 0.2 * Math.sin((i / 6) * Math.PI)}
+                transform={`rotate(${angle} ${cx} ${cy})`}
               />
             );
           })}
         </svg>
       </div>
 
-      {/* Orbiting glow dot */}
+      {/* Glowing dot on the ring */}
       <motion.div
         className="absolute w-4 h-4 rounded-full"
         style={{
@@ -174,7 +155,11 @@ const HeroSphere = () => {
           top: ["10%", "50%", "88%", "50%", "10%"],
           left: ["50%", "95%", "50%", "3%", "50%"],
         }}
-        transition={{ duration: 11.2, repeat: Infinity, ease: "linear" }}
+        transition={{
+          duration: 11.2,
+          repeat: Infinity,
+          ease: "linear",
+        }}
       />
 
       {/* Sincerity level capsules */}
@@ -182,40 +167,42 @@ const HeroSphere = () => {
         const pos = CAPSULE_POSITIONS[i];
         const isActive = activeIndex === i;
         return (
-          <motion.div
-            key={level.label}
-            className="absolute flex items-center gap-2 rounded-full px-4 py-2 shadow-md"
-            style={{
-              left: pos.x,
-              top: pos.y,
-              background: isActive ? "white" : "hsl(222 30% 97%)",
-              border: `1.5px solid ${isActive ? level.color : "hsl(222 30% 90%)"}`,
-              zIndex: isActive ? 10 : 1,
-            }}
-            animate={{
-              scale: isActive ? 1.08 : 0.95,
-              opacity: isActive ? 1 : 0.6,
-            }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <div
-              className="w-3 h-3 rounded-full flex-shrink-0"
-              style={{ background: level.color }}
-            />
-            <span
-              className="text-sm font-medium whitespace-nowrap"
-              style={{ color: isActive ? level.color : "hsl(222 20% 50%)" }}
+          <AnimatePresence key={level.label} mode="wait">
+            <motion.div
+              className="absolute flex items-center gap-2 rounded-full px-4 py-2 shadow-md"
+              style={{
+                left: pos.x,
+                top: pos.y,
+                background: isActive ? "white" : "hsl(222 30% 97%)",
+                border: `1.5px solid ${isActive ? level.color : "hsl(222 30% 90%)"}`,
+                zIndex: isActive ? 10 : 1,
+              }}
+              animate={{
+                scale: isActive ? 1.08 : 0.95,
+                opacity: isActive ? 1 : 0.6,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              {level.label}
-            </span>
-          </motion.div>
+              <div
+                className="w-3 h-3 rounded-full flex-shrink-0"
+                style={{ background: level.color }}
+              />
+              <span
+                className="text-sm font-medium whitespace-nowrap"
+                style={{ color: isActive ? level.color : "hsl(222 20% 50%)" }}
+              >
+                {level.label}
+              </span>
+            </motion.div>
+          </AnimatePresence>
         );
       })}
 
+      {/* CSS animation */}
       <style>{`
-        @keyframes prism-rotate {
-          from { transform: rotateY(0deg); }
-          to { transform: rotateY(360deg); }
+        @keyframes sphere-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
