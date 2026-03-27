@@ -49,11 +49,11 @@ const CaseStudies = () => {
             lineHeight: 1.25,
           }}
         >
-          The platforms that run on trust, in{" "}
-          <span className="text-accent">sales, hiring, legal, law enforcement, coaching, insurance,</span> and{" "}
-          <span className="text-accent">behavioral science</span>,{" "}
+          Platforms that run on trust in{" "}
+          <span className="text-accent">sales, hiring, legal, law enforcement, coaching</span> and{" "}
+          <span className="text-accent">behavioral science</span>{" "}
           choose Voicera where deep human understanding meets the science of
-          credibility.
+          sincerity.
         </h2>
 
         {/* Case study cards – 3-col overlay on desktop, stacked image+info on mobile */}
