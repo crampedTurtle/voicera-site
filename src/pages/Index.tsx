@@ -32,35 +32,15 @@ const Index = () => {
       <HeroSection />
       <Suspense fallback={<SectionFallback />}>
         <SocialProof />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <ScrollStorytelling />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <SolutionsSection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <FeatureTabs />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <DarkSection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <ApiStreamBar />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <Testimonial />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <InvestorsSection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <TeamSection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <CTABanner />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
         <Footer />
       </Suspense>
     </div>
