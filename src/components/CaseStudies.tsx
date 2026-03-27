@@ -97,8 +97,7 @@ const CaseStudies = () => {
             >
               {/* Image card */}
               <div
-                className="relative rounded-2xl overflow-hidden"
-                style={{ aspectRatio: "4/3" }}
+                className="relative rounded-2xl overflow-hidden aspect-square md:aspect-[4/3]"
               >
                 <img
                   src={cs.image}
