@@ -93,7 +93,7 @@ const SolutionsSection = () => {
           >
             {/* Card Header */}
             <div className="text-center py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.1)" }}>
-              <h3 className="text-lg font-medium text-black">Developer</h3>
+              <h3 className="text-lg font-medium text-black">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
             </div>
 
             {/* Toggle */}
