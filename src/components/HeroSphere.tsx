@@ -66,7 +66,7 @@ const HeroSphere = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[520px] mx-auto" style={{ aspectRatio: "5/6" }}>
+    <div className="relative w-full max-w-[440px] mx-auto" style={{ aspectRatio: "5/5.1" }}>
 
       {/* Glow backdrop */}
       <div
