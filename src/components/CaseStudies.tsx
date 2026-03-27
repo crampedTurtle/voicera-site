@@ -65,8 +65,9 @@ const CaseStudies = () => {
             lineHeight: 1.25,
           }}
         >
-          The platforms that run on trust, in{" "}
-          <span className="relative inline-block" style={{ minWidth: "5.5em" }}>
+          The platforms that run on trust, in
+          <br />
+          <span className="relative inline-block text-left" style={{ minWidth: "8em" }}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={wordIndex}
