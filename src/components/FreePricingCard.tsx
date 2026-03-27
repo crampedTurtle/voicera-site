@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Headphones, Video, Layers, Server } from "lucide-react";
 
 const FreePricingCard = () => {
@@ -23,9 +24,10 @@ const FreePricingCard = () => {
           href="https://sincerity.voicera.io/auth/signup"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
+          className="inline-flex items-center gap-2 bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
         >
           Get Started
+          <ArrowUpRight size={16} />
         </a>
       </div>
 
