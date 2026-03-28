@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Sitemap from "./pages/Sitemap.tsx";
 import Media from "./pages/Media.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
 import SolutionPageComponent, { getSolutionBySlug, solutions } from "./pages/SolutionPage.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
@@ -27,6 +28,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
+            <Route path="/media/:slug" element={<BlogPost />} />
             {solutions.map((s) => (
               <Route
                 key={s.slug}
