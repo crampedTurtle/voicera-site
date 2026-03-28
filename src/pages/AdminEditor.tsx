@@ -10,6 +10,23 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Save } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { z } from "zod";
+
+const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
+
+const postSchema = z.object({
+  title: z.string().trim().min(1, "Title is required").max(300, "Title too long"),
+  slug: z.string().trim().min(1, "Slug is required").max(300, "Slug too long").regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Invalid slug format"),
+  excerpt: z.string().max(1000, "Excerpt too long").default(""),
+  content: z.string().max(200000, "Content too long").default(""),
+  author: z.string().trim().min(1).max(200, "Author too long").default("Voicera Team"),
+  category: z.string().min(1).max(100),
+  image: z.string().max(2000).default(""),
+  read_time: z.number().int().min(1).max(999),
+  external_url: z.string().url("Invalid URL").max(2000).or(z.literal("")).nullable().transform(v => v || null),
+  source: z.string().max(200).nullable().transform(v => v || null),
+  published: z.boolean(),
+});
 
 const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
 
@@ -95,27 +112,24 @@ const AdminEditor = () => {
   };
 
   const handleSave = async () => {
-    if (!form.title || !form.slug) {
-      toast({ title: "Title and slug are required", variant: "destructive" });
+    const parsed = postSchema.safeParse(form);
+    if (!parsed.success) {
+      const firstError = parsed.error.errors[0];
+      toast({ title: "Validation error", description: firstError.message, variant: "destructive" });
       return;
     }
 
     setSaving(true);
     const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      toast({ title: "Session expired", description: "Please log in again.", variant: "destructive" });
+      navigate("/voicera-admin");
+      return;
+    }
 
     const payload = {
-      title: form.title,
-      slug: form.slug,
-      excerpt: form.excerpt,
-      content: form.content,
-      author: form.author,
-      category: form.category,
-      image: form.image,
-      read_time: form.read_time,
-      external_url: form.external_url || null,
-      source: form.source || null,
-      published: form.published,
-      created_by: session?.user.id,
+      ...parsed.data,
+      created_by: session.user.id,
     };
 
     let error;
