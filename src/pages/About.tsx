@@ -44,7 +44,7 @@ const About = () => {
               WHAT WE BELIEVE
             </span>
           </div>
-          <p className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground leading-snug">
+          <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-foreground leading-relaxed">
             AI should make humans more accurate, not more passive. Trust should be measurable, not assumed. And in a world where the most important conversations happen on screen, the organizations that can read people clearly will always make better decisions than those who can't. That's why we built Voicera.
           </p>
         </div>
