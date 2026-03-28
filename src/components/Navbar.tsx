@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import { solutions } from "@/pages/SolutionPage";
-import ThemeToggle from "@/components/ThemeToggle";
+
 
 const navLinks = [
   { label: "Product", href: "#product" },
