@@ -208,7 +208,7 @@
 
   .gradient-border {
     position: relative;
-    background: white;
+    background: hsl(var(--background));
     border-radius: 9999px;
   }
   .gradient-border::before {
@@ -226,7 +226,7 @@
 
   .gradient-border-rect {
     position: relative;
-    background: white;
+    background: hsl(var(--background));
     border-radius: 0.75rem;
   }
   .gradient-border-rect::before {
@@ -302,7 +302,7 @@
   }
 
   .card-surface {
-    background: white;
+    background: var(--card-surface-bg);
     box-shadow: var(--card-shadow);
     border-radius: 1rem;
   }
