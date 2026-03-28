@@ -551,7 +551,6 @@ const FeatureTabs = () => {
       id="product"
       className="relative overflow-hidden"
       style={{
-        minHeight: "100vh",
         background: `radial-gradient(ellipse at 60% 0%, #DDE0F8 0%, #ECEEF8 40%, #F4F5FA 100%)`,
         fontFamily: "system-ui,-apple-system,sans-serif",
       }}
