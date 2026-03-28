@@ -165,7 +165,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white border-t border-border px-6 py-6 space-y-4"
+          className="md:hidden bg-background border-t border-border px-6 py-6 space-y-4"
         >
           {navLinks.map((link) =>
             link.hasDropdown ? (
@@ -220,6 +220,10 @@ const Navbar = () => {
             )
           )}
           <div className="flex flex-col gap-3 pt-4">
+            <div className="flex items-center justify-between">
+              <span className="type-nav text-body-muted text-sm">Theme</span>
+              <ThemeToggle />
+            </div>
             <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
               <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
             </a>
