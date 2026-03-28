@@ -69,7 +69,7 @@ const Navbar = () => {
     <motion.nav
       className="absolute top-0 left-0 right-0 z-50"
     >
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-8">
         <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center">
           <img src={voiceraLogo} alt="Voicera" className="h-[90px] w-auto" />
         </a>
