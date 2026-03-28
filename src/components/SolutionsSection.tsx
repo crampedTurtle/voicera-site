@@ -54,10 +54,12 @@ const SolutionsSection = () => {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{ zIndex: 0 }}
-        src="/videos/pricing-bg.mp4"
-      />
+      >
+        <source src="/videos/pricing-bg.mp4" type="video/mp4" />
+      </video>
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/[0.09]" style={{ zIndex: 1 }} />
       <PricingCapsules />
