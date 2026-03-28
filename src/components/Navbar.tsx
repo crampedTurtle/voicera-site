@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import { solutions } from "@/pages/SolutionPage";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Product", href: "#product" },
@@ -146,6 +147,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
             <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" style={{ color: '#3B6FF5', WebkitTextFillColor: 'unset' }} /></span>
           </a>
