@@ -36,6 +36,20 @@ const About = () => {
         <HeroSphere />
       </section>
 
+      {/* What We Believe */}
+      <section className="py-20 px-6 bg-muted">
+        <div className="max-w-[950px] mx-auto text-center">
+          <div className="flex justify-center mb-8">
+            <span className="type-tag border border-border rounded-full px-4 py-1.5 text-foreground">
+              WHAT WE BELIEVE
+            </span>
+          </div>
+          <p className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground leading-snug">
+            AI should make humans more accurate, not more passive. Trust should be measurable, not assumed. And in a world where the most important conversations happen on screen, the organizations that can read people clearly will always make better decisions than those who can't. That's why we built Voicera.
+          </p>
+        </div>
+      </section>
+
       <TeamSection />
 
       {/* Careers CTA — investor-style blue band */}
