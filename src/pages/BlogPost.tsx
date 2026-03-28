@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import DOMPurify from "dompurify";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -151,7 +152,14 @@ const BlogPost = () => {
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
               prose-strong:text-foreground
               prose-img:rounded-xl prose-img:my-8"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content, {
+              ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','a','ul','ol','li','strong','em','br','img','blockquote','pre','code','span','div','figure','figcaption','table','thead','tbody','tr','th','td','hr','sub','sup'],
+              ALLOWED_ATTR: ['href','src','alt','title','class','id','target','rel','width','height','loading','decoding'],
+              ALLOW_DATA_ATTR: false,
+              ADD_ATTR: ['rel'],
+              FORBID_TAGS: ['script','style','iframe','object','embed','form','input','textarea','select','button'],
+              FORBID_ATTR: ['onerror','onload','onclick','onmouseover','onfocus','onblur','style'],
+            }) }}
           />
         </article>
       </main>
