@@ -558,14 +558,14 @@ const FeatureTabs = () => {
       <MeshBG />
       <TickerTape />
 
-      <div className="relative z-10 max-w-[1040px] mx-auto px-6 md:px-8 py-14 md:py-16">
+      <div className="relative z-10 max-w-[1040px] mx-auto px-4 md:px-8 py-10 md:py-16">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-11"
+          className="text-center mb-8 md:mb-11"
         >
           <h2
             style={{
@@ -594,7 +594,7 @@ const FeatureTabs = () => {
         </motion.div>
 
         {/* Pill tab switcher */}
-        <div className="flex justify-center mb-12 md:mb-14">
+        <div className="flex justify-center mb-8 md:mb-14 overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
           <div
             className="inline-flex rounded-full p-[5px] gap-[2px]"
             style={{ background: NEAR_WHITE, border: `1px solid ${BORDER}`, boxShadow: `0 2px 14px ${BLUE}12` }}
@@ -603,19 +603,19 @@ const FeatureTabs = () => {
               <button
                 key={t.id}
                 onClick={() => setActive(i)}
-                className="flex items-center gap-[7px] rounded-full border-none cursor-pointer transition-all duration-200 whitespace-nowrap"
+                className="flex items-center gap-1 md:gap-[7px] rounded-full border-none cursor-pointer transition-all duration-200 whitespace-nowrap"
                 style={{
-                  padding: "10px 20px",
+                  padding: "8px 12px",
                   background: active === i ? `linear-gradient(135deg,${BLUE},${BLUE_DEEP})` : "transparent",
                   color: active === i ? WHITE : LIGHT_TEXT,
                   fontFamily: "'Courier New',monospace",
-                  fontSize: 10.5,
+                  fontSize: 9.5,
                   fontWeight: 600,
-                  letterSpacing: 1.2,
+                  letterSpacing: 0.8,
                   boxShadow: active === i ? `0 4px 16px ${BLUE}44` : "none",
                 }}
               >
-                <span style={{ opacity: active === i ? 1 : 0.6 }}>{t.icon}</span>
+                <span className="hidden md:inline" style={{ opacity: active === i ? 1 : 0.6 }}>{t.icon}</span>
                 {t.label}
               </button>
             ))}
@@ -630,10 +630,10 @@ const FeatureTabs = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35 }}
-            className="flex flex-wrap gap-11 items-start"
+            className="flex flex-col md:flex-row gap-8 md:gap-11 items-start"
           >
             {/* LEFT */}
-            <div className="flex-1 min-w-[260px]" style={{ flexBasis: 320 }}>
+            <div className="w-full md:flex-1 md:min-w-[260px]" style={{ flexBasis: 320 }}>
               <h3
                 style={{
                   fontWeight: 800,
