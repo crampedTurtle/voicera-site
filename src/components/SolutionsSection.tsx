@@ -46,7 +46,7 @@ const SolutionsSection = () => {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden bg-[#0B1120]"
     >
       {/* Background video */}
       <video
