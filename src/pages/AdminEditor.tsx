@@ -28,7 +28,6 @@ const postSchema = z.object({
   published: z.boolean(),
 });
 
-const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
 
 const AdminEditor = () => {
   const { id } = useParams();
