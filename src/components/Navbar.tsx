@@ -9,7 +9,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 const navLinks = [
   { label: "Product", href: "#product" },
   { label: "Solutions", href: "#solutions", hasDropdown: true, dropdownType: "solutions" as const },
-  { label: "Partners", href: "#developers" },
+  
   {
     label: "Company",
     href: "#company",
@@ -22,6 +22,7 @@ const companyLinks = [
   { label: "About Us", href: "/about" },
   { label: "Media", href: "/media" },
   { label: "Investors", href: "/investors" },
+  { label: "Become a Partner", href: "/partners" },
 ];
 
 const Navbar = () => {

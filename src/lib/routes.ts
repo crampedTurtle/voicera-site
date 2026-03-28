@@ -115,6 +115,16 @@ export const siteRoutes: SiteRoute[] = [
     category: "Company",
   },
   {
+    path: "/partners",
+    title: "Become a Partner — Voicera",
+    description: "Join the Voicera Partner Program. Integrate our APIs, access co-marketing resources, and earn recurring revenue.",
+    priority: 0.7,
+    changefreq: "monthly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Company",
+  },
+  {
     path: "/sitemap",
     title: "Sitemap — Voicera",
     description: "Complete sitemap of all pages on the Voicera website.",
