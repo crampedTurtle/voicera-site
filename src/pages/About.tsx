@@ -37,6 +37,24 @@ const About = () => {
       </section>
 
       <TeamSection />
+
+      {/* Careers CTA — investor-style blue band */}
+      <section className="py-16 px-6" style={{ background: "hsl(225 80% 52%)" }}>
+        <div className="max-w-[950px] mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+            Come Build With Us
+          </h2>
+          <a
+            href="https://www.linkedin.com/company/voicera-ai/jobs/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors"
+          >
+            Explore open positions →
+          </a>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
