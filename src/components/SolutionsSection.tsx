@@ -87,7 +87,7 @@ const SolutionsSection = () => {
             transition={{ duration: 0.5 }}
             className="rounded-2xl overflow-hidden max-w-[420px] h-full flex flex-col"
             style={{
-              background: "linear-gradient(to bottom, #ffffff 0%, #e8effe 50%, #6B9BFA 100%)",
+              background: "linear-gradient(to bottom, #ffffff 0%, #f0f4ff 55%, #a8c4fc 100%)",
               border: "1px solid hsl(var(--border))",
               fontSize: "0.9em",
             }}
