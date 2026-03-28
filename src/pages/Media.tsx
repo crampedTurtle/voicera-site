@@ -33,16 +33,10 @@ const CATEGORY_SLUG_MAP: Record<string, string> = {
 /* ── Grid tile ── */
 const GridTile = ({ post }: { post: BlogPost }) => {
   const isPress = post.category === "press";
-  const hasExternal = !!post.externalUrl;
-  const Wrapper = hasExternal ? "a" : Link;
-  const wrapperProps = hasExternal
-    ? { href: post.externalUrl || "#", target: "_blank" as const, rel: "noopener noreferrer" }
-    : { to: `/media/${post.slug}` };
 
   return (
     <article className="group">
-      {/* @ts-ignore */}
-      <Wrapper {...wrapperProps} className="block">
+      <Link to={`/media/${post.slug}`} className="block">
         <div className="relative overflow-hidden rounded-2xl aspect-[3/4] mb-3">
           <img
             src={post.image}
@@ -74,11 +68,11 @@ const GridTile = ({ post }: { post: BlogPost }) => {
                 <Clock className="w-3 h-3" />
                 {post.readTime} min
               </span>
-              {hasExternal && <ArrowUpRight className="w-3.5 h-3.5 ml-auto" />}
+              
             </div>
           </div>
         </div>
-      </Wrapper>
+      </Link>
     </article>
   );
 };
