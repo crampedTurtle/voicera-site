@@ -15,7 +15,7 @@ const About = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-44 pb-20 px-6">
         <div className="max-w-[950px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <h1 className="type-display text-foreground leading-[1.1]">
             Seeing isn't believing.
