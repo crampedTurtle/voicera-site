@@ -18,13 +18,13 @@ const About = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-[950px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <h1 className="type-display text-foreground leading-[1.1]">
-            Words are only half the story.
+            Seeing isn't believing.
           </h1>
           <div className="border-l border-border pl-8">
             <p className="type-body text-muted-foreground text-base sm:text-lg leading-relaxed">
-              We're pioneering the first multimodal credibility intelligence
-              platform that measures what humans actually mean — not just what
-              they say — setting a new standard for trust in every high-stakes
+              We're pioneering the first behavioral-science-native AI that
+              determines whether what you're observing is true (not just what's
+              happening) setting a new standard for trust in every high-stakes
               interaction.
             </p>
           </div>
