@@ -51,7 +51,7 @@ const ScrollStorytelling = () => {
 
   return (
     <section id="product" className="section-padding bg-alt relative overflow-hidden">
-      <FloatingCapsules variant="storytelling" />
+      <FloatingCapsules variant="storytelling" count={9} className="!top-[-100px] !bottom-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
