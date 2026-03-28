@@ -65,7 +65,7 @@ const SolutionsSection = () => {
         {/* Header — left aligned */}
         <div className="mb-10 max-w-xl">
           <span className="gradient-pill">PRICING</span>
-          <h2 className="type-display mt-6" style={{ color: '#ffffff' }}>
+          <h2 className="type-display mt-6 text-white">
             Try it, trust it, scale it.
           </h2>
           <p className="type-body mt-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
