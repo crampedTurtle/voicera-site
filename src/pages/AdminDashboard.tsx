@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Edit, Trash2, LogOut, Eye, EyeOff } from "lucide-react";
+import { useAdminSession } from "@/hooks/use-admin-session";
 import type { Tables } from "@/integrations/supabase/types";
 
 type BlogPost = Tables<"blog_posts">;
@@ -15,26 +16,11 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  useAdminSession();
+
   useEffect(() => {
-    checkAuth();
     fetchPosts();
   }, []);
-
-  const checkAuth = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate("/voicera-admin");
-      return;
-    }
-    const { data: isAdmin } = await supabase.rpc("has_role", {
-      _user_id: session.user.id,
-      _role: "admin",
-    });
-    if (!isAdmin) {
-      await supabase.auth.signOut();
-      navigate("/voicera-admin");
-    }
-  };
 
   const fetchPosts = async () => {
     const { data, error } = await supabase
