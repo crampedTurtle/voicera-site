@@ -10,6 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Save } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 
 const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
@@ -50,26 +51,11 @@ const AdminEditor = () => {
     published: false,
   });
 
+  useAdminSession();
+
   useEffect(() => {
-    checkAuth();
     if (isEdit) loadPost();
   }, [id]);
-
-  const checkAuth = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate("/voicera-admin");
-      return;
-    }
-    const { data: isAdmin } = await supabase.rpc("has_role", {
-      _user_id: session.user.id,
-      _role: "admin",
-    });
-    if (!isAdmin) {
-      await supabase.auth.signOut();
-      navigate("/voicera-admin");
-    }
-  };
 
   const loadPost = async () => {
     const { data, error } = await supabase
