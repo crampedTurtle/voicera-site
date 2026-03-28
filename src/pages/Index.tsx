@@ -8,7 +8,7 @@ const SocialProof = lazy(() => import("@/components/SocialProof"));
 const ScrollStorytelling = lazy(() => import("@/components/ScrollStorytelling"));
 const SolutionsSection = lazy(() => import("@/components/SolutionsSection"));
 const FeatureTabs = lazy(() => import("@/components/FeatureTabs"));
-const DarkSection = lazy(() => import("@/components/DarkSection"));
+
 const ApiStreamBar = lazy(() => import("@/components/ApiStreamBar"));
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const InvestorsSection = lazy(() => import("@/components/InvestorsSection"));
@@ -35,7 +35,7 @@ const Index = () => {
         <ScrollStorytelling />
         <SolutionsSection />
         <FeatureTabs />
-        <DarkSection />
+        
         <ApiStreamBar />
         <CaseStudies />
         <InvestorsSection />

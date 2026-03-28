@@ -15,6 +15,7 @@ import AdminEditor from "./pages/AdminEditor.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
+import Partners from "./pages/Partners.tsx";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             ))}
             <Route path="/about" element={<About />} />
             <Route path="/investors" element={<Investors />} />
+            <Route path="/partners" element={<Partners />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/voicera-admin" element={<AdminLogin />} />
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
