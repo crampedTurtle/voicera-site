@@ -126,8 +126,20 @@ const AdminEditor = () => {
       return;
     }
 
+    const validData = parsed.data;
+    
     const payload = {
-      ...parsed.data,
+      title: validData.title,
+      slug: validData.slug,
+      excerpt: validData.excerpt,
+      content: validData.content,
+      author: validData.author,
+      category: validData.category,
+      image: validData.image,
+      read_time: validData.read_time,
+      external_url: validData.external_url,
+      source: validData.source,
+      published: validData.published,
       created_by: session.user.id,
     };
 
