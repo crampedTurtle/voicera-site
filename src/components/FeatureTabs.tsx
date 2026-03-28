@@ -704,7 +704,7 @@ const FeatureTabs = () => {
             </div>
 
             {/* RIGHT — API card */}
-            <div className="flex-1 min-w-[300px] md:min-w-[320px]" style={{ flexBasis: 400 }}>
+            <div className="w-full md:flex-1 md:min-w-[320px]" style={{ flexBasis: 400 }}>
               <div
                 className="rounded-[20px]"
                 style={{
