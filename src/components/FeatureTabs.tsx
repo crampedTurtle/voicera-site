@@ -450,7 +450,7 @@ function APIFlowDiagram() {
 const TABS = [
   {
     id: "credibility",
-    label: "CREDIBILITY API",
+    label: "SINCERITY™ API",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
         <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" strokeWidth="1.3" />
