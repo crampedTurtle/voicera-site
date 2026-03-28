@@ -55,7 +55,7 @@ const About = () => {
       {/* Careers CTA — investor-style blue band */}
       <section className="py-16 px-6" style={{ background: "hsl(225 80% 52%)" }}>
         <div className="max-w-[950px] mx-auto text-center">
-          <h2 className="type-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-4">
+          <h2 className="type-display text-4xl sm:text-5xl md:text-7xl leading-tight mb-4" style={{ color: '#ffffff' }}>
             Come Build With Us
           </h2>
           <a
