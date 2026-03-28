@@ -1,160 +1,827 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, BarChart3, Search } from "lucide-react";
-import crystalCaveBg from "@/assets/crystal-cave-bg.jpg";
 
+/* ── Brand palette (aligned with design-system tokens) ── */
+const BLUE = "#3D52F4";
+const BLUE_DEEP = "#2B3DE8";
+const BLUE_LIGHT = "#6B7FFF";
+const BLUE_SOFT = "#EEF0FE";
+const INDIGO = "#7C8FF5";
+const WHITE = "#FFFFFF";
+const NEAR_WHITE = "#F4F5FA";
+const CODE_BG = "#F0F1F8";
+const DARK_TEXT = "#0F1235";
+const MID_TEXT = "#4A5080";
+const LIGHT_TEXT = "#8B90B8";
+const BORDER = "#E2E4F0";
+const GREEN = "#4CAF82";
+const AMBER = "#F5A623";
+const RED = "#E05252";
 
-const tabs = [
+/* ══════════════════════════════════════════════
+   Sub-components
+   ══════════════════════════════════════════════ */
+
+function MeshBG() {
+  return (
+    <svg
+      className="absolute bottom-0 left-0 pointer-events-none"
+      style={{ width: "45%", height: "70%", opacity: 0.15 }}
+      viewBox="0 0 400 350"
+      fill="none"
+    >
+      {([
+        [20, 300, 180, 200], [20, 300, 80, 150], [20, 300, 130, 310],
+        [180, 200, 80, 150], [180, 200, 300, 180], [180, 200, 220, 90],
+        [80, 150, 220, 90], [80, 150, 40, 60],
+        [300, 180, 380, 250], [300, 180, 350, 80], [300, 180, 220, 90],
+        [220, 90, 350, 80], [220, 90, 160, 20],
+        [40, 60, 160, 20], [40, 60, 0, 100],
+        [130, 310, 250, 340], [130, 310, 300, 180],
+        [250, 340, 380, 250],
+      ] as number[][]).map(([x1, y1, x2, y2], i) => (
+        <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={BLUE} strokeWidth="0.8" />
+      ))}
+      {([
+        [20, 300], [180, 200], [80, 150], [300, 180], [220, 90],
+        [40, 60], [350, 80], [160, 20], [130, 310], [250, 340], [380, 250],
+      ] as number[][]).map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r="3.5" fill={BLUE} opacity="0.5" />
+      ))}
+    </svg>
+  );
+}
+
+function TickerTape() {
+  const content =
+    '{ "stream_id": "call_8x92" } → Analyzing Audio (400Hz–2kHz) → Analyzing Micro-Expressions (FACS) → Fusion Layer → { "credibility_score": 0.98, "sincerity_flag": true } → { "stream_id": "call_7f14" } → Analyzing Visual Cues → Linguistic Patterns → ';
+  return (
+    <div style={{ background: DARK_TEXT, padding: "8px 0", overflow: "hidden", borderBottom: "1px solid #1A1D45" }}>
+      <div
+        style={{
+          display: "flex",
+          whiteSpace: "nowrap",
+          animation: "ticker 24s linear infinite",
+          fontFamily: "'Courier New',monospace",
+          fontSize: 10,
+          letterSpacing: 0.3,
+        }}
+      >
+        {[...Array(3)].map((_, i) => (
+          <span key={i} style={{ paddingRight: 60 }}>
+            {content.split("→").map((part, j, arr) => (
+              <span key={j}>
+                <span style={{ color: part.includes("{") ? "#A78BFA" : BLUE_LIGHT }}>{part}</span>
+                {j < arr.length - 1 && (
+                  <span style={{ color: INDIGO, margin: "0 6px" }}>→</span>
+                )}
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Waveform({
+  color,
+  amplitude,
+  speed,
+  label,
+  width = 260,
+}: {
+  color: string;
+  amplitude: number;
+  speed: number;
+  label: string;
+  width?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number>(0);
+  const tickRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d")!;
+    const W = canvas.width;
+    const H = canvas.height;
+    const draw = () => {
+      tickRef.current += speed;
+      const t = tickRef.current;
+      ctx.clearRect(0, 0, W, H);
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 4;
+      for (let x = 0; x < W; x++) {
+        const r = x / W;
+        const y =
+          H / 2 + amplitude * Math.sin(r * Math.PI * 4 + t) * (0.5 + 0.5 * Math.sin(r * 9 + t * 0.4));
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      rafRef.current = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [color, amplitude, speed]);
+
+  return (
+    <div>
+      <div style={{ fontFamily: "'Courier New',monospace", fontSize: 8, color: LIGHT_TEXT, letterSpacing: 2, marginBottom: 3 }}>
+        {label}
+      </div>
+      <canvas ref={canvasRef} width={width} height={32} style={{ width: "100%", height: 32, display: "block" }} />
+    </div>
+  );
+}
+
+interface CodeLine {
+  text: string;
+  color: string;
+  indent?: number;
+}
+
+function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean }) {
+  const [visible, setVisible] = useState<number[]>([]);
+
+  useEffect(() => {
+    setVisible([]);
+    if (!active) return;
+    const timers = lines.map((_, i) =>
+      setTimeout(() => setVisible((p) => [...p, i]), 300 + i * 350)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [active, lines]);
+
+  return (
+    <div style={{ background: CODE_BG, borderRadius: 12, padding: "14px 18px", marginTop: 12, minHeight: 72 }}>
+      {lines.map((line, i) => (
+        <div
+          key={i}
+          style={{
+            fontFamily: "'Courier New',monospace",
+            fontSize: 12,
+            lineHeight: 1.85,
+            color: line.color || MID_TEXT,
+            paddingLeft: (line.indent || 0) * 16,
+            opacity: visible.includes(i) ? 1 : 0,
+            transform: visible.includes(i) ? "translateX(0)" : "translateX(-8px)",
+            transition: "opacity 0.3s ease, transform 0.3s ease",
+          }}
+        >
+          {line.text}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ProgressBar({ active }: { active: boolean }) {
+  const [w, setW] = useState(0);
+
+  useEffect(() => {
+    setW(0);
+    if (!active) return;
+    const t = setTimeout(() => setW(80), 200);
+    return () => clearTimeout(t);
+  }, [active]);
+
+  return (
+    <div style={{ height: 6, background: BORDER, borderRadius: 3, overflow: "hidden", marginTop: 16 }}>
+      <div
+        style={{
+          height: "100%",
+          width: `${w}%`,
+          borderRadius: 3,
+          background: `linear-gradient(90deg,${BLUE},${BLUE_LIGHT})`,
+          transition: "width 1.6s cubic-bezier(0.4,0,0.2,1)",
+        }}
+      />
+    </div>
+  );
+}
+
+function CredibilityGauge() {
+  const [score, setScore] = useState(0.91);
+  const rafRef = useRef<number>(0);
+  const fRef = useRef(0);
+
+  useEffect(() => {
+    const animate = () => {
+      fRef.current++;
+      const t = fRef.current / 90;
+      setScore(
+        Math.max(0.5, Math.min(1, 0.87 + 0.08 * Math.sin(t * 1.8) + 0.03 * Math.sin(t * 4.2)))
+      );
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const pct = Math.round(score * 100);
+  const arc = score * Math.PI;
+  const isVerified = score > 0.82;
+
+  return (
+    <div style={{ textAlign: "center" }}>
+      <svg width="180" height="105" viewBox="0 0 180 105" style={{ display: "block", margin: "0 auto" }}>
+        <path d="M 15 90 A 75 75 0 0 1 165 90" fill="none" stroke={BORDER} strokeWidth="9" strokeLinecap="round" />
+        <path
+          d={`M 15 90 A 75 75 0 0 1 ${90 + 75 * Math.cos(Math.PI - arc)} ${90 - 75 * Math.sin(Math.PI - arc)}`}
+          fill="none"
+          stroke={isVerified ? BLUE : AMBER}
+          strokeWidth="9"
+          strokeLinecap="round"
+          style={{ transition: "stroke 0.5s", filter: `drop-shadow(0 0 8px ${BLUE}66)` }}
+        />
+        <text x="90" y="84" textAnchor="middle" fontFamily="system-ui,sans-serif" fontWeight="800" fontSize="32" fill={DARK_TEXT}>
+          {pct}
+        </text>
+        <text x="90" y="100" textAnchor="middle" fontFamily="Courier New,monospace" fontSize="7.5" fill={LIGHT_TEXT} letterSpacing="2">
+          CREDIBILITY SCORE
+        </text>
+      </svg>
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 7,
+          marginTop: 6,
+          background: isVerified ? `${GREEN}18` : `${AMBER}18`,
+          border: `1.5px solid ${isVerified ? GREEN : AMBER}`,
+          borderRadius: 20,
+          padding: "5px 14px",
+          transition: "all 0.5s",
+        }}
+      >
+        <div
+          style={{
+            width: 7,
+            height: 7,
+            borderRadius: "50%",
+            background: isVerified ? GREEN : AMBER,
+            boxShadow: `0 0 6px ${isVerified ? GREEN : AMBER}`,
+            animation: "featurePulse 1.2s infinite",
+          }}
+        />
+        <span style={{ fontFamily: "system-ui,sans-serif", fontWeight: 700, fontSize: 12, color: isVerified ? GREEN : AMBER }}>
+          {isVerified ? "SINCERE" : "UNCERTAIN"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function APIFlowDiagram() {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const cycle = () => {
+      setPhase(0);
+      setTimeout(() => setPhase(1), 400);
+      setTimeout(() => setPhase(2), 1300);
+      setTimeout(() => setPhase(3), 2500);
+    };
+    cycle();
+    const id = setInterval(cycle, 5500);
+    return () => clearInterval(id);
+  }, []);
+
+  const nodes = [
+    {
+      label: "INPUT",
+      sub: "Video or audio\nstream",
+      icon: (a: boolean) => (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="1" y="4" width="15" height="15" rx="2.5" stroke={a ? BLUE : LIGHT_TEXT} strokeWidth="1.4" fill="none" />
+          <path d="M16 9l7-3v12l-7-3V9z" stroke={a ? BLUE : LIGHT_TEXT} strokeWidth="1.4" fill="none" />
+        </svg>
+      ),
+      active: phase >= 1,
+      isCenter: false,
+    },
+    {
+      label: "VOICERA API",
+      sub: "Behavioral fusion\nengine",
+      isCenter: true,
+      icon: (a: boolean) => (
+        <div
+          style={{
+            fontFamily: "'Courier New',monospace",
+            fontSize: 9,
+            color: a ? WHITE : LIGHT_TEXT,
+            textAlign: "center" as const,
+            lineHeight: 1.3,
+            fontWeight: "bold",
+          }}
+        >
+          <div style={{ fontSize: 7, letterSpacing: 1, marginBottom: 1, color: a ? `${WHITE}CC` : LIGHT_TEXT }}>VOICERA</div>
+          <div style={{ fontSize: 18 }}>V</div>
+        </div>
+      ),
+      active: phase >= 2,
+    },
+    {
+      label: "OUTPUT",
+      sub: "Structured JSON\ncredibility score",
+      icon: (a: boolean) => (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="1" y="1" width="22" height="22" rx="3.5" stroke={a ? GREEN : LIGHT_TEXT} strokeWidth="1.4" fill="none" />
+          <path d="M5 7h5M5 12h9M5 17h6" stroke={a ? GREEN : LIGHT_TEXT} strokeWidth="1.4" strokeLinecap="round" />
+          <circle cx="19" cy="17" r="3.5" fill={a ? GREEN : BORDER} style={{ transition: "fill 0.5s" }} />
+        </svg>
+      ),
+      active: phase >= 3,
+      isCenter: false,
+    },
+  ];
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 20 }}>
+      {nodes.map((node, i) => (
+        <div key={i} style={{ display: "contents" }}>
+          <div style={{ flex: node.isCenter ? 1.3 : 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+            <div
+              style={{
+                width: node.isCenter ? 68 : 58,
+                height: node.isCenter ? 68 : 58,
+                borderRadius: node.isCenter ? "50%" : 12,
+                background: node.isCenter
+                  ? node.active
+                    ? `linear-gradient(135deg,${BLUE},${BLUE_DEEP})`
+                    : NEAR_WHITE
+                  : node.active
+                  ? BLUE_SOFT
+                  : NEAR_WHITE,
+                border: `2px solid ${node.active ? (node.isCenter ? BLUE : BLUE_LIGHT) : BORDER}`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.5s",
+                boxShadow: node.active ? `0 4px 18px ${BLUE}33` : "none",
+                animation: node.isCenter && node.active ? "featureSpinSlow 8s linear infinite" : "none",
+                position: "relative" as const,
+              }}
+            >
+              {node.icon(node.active)}
+              {node.isCenter && node.active && (
+                <div
+                  style={{
+                    position: "absolute",
+                    width: 9,
+                    height: 9,
+                    borderRadius: "50%",
+                    background: GREEN,
+                    top: 2,
+                    right: 2,
+                    boxShadow: `0 0 8px ${GREEN}`,
+                    animation: "featurePulse 1.2s infinite",
+                  }}
+                />
+              )}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Courier New',monospace",
+                fontSize: 7.5,
+                color: node.active ? BLUE : LIGHT_TEXT,
+                letterSpacing: 1.5,
+                transition: "color 0.5s",
+                textAlign: "center" as const,
+              }}
+            >
+              {node.label}
+            </div>
+            <div
+              style={{
+                fontFamily: "system-ui,sans-serif",
+                fontSize: 10,
+                color: MID_TEXT,
+                textAlign: "center" as const,
+                lineHeight: 1.5,
+                whiteSpace: "pre-line" as const,
+              }}
+            >
+              {node.sub}
+            </div>
+          </div>
+          {i < nodes.length - 1 && (
+            <div style={{ flex: 0.5, height: 2, position: "relative" as const, margin: "0 2px", marginBottom: 36 }}>
+              <div
+                style={{
+                  height: "100%",
+                  borderRadius: 2,
+                  background: phase >= i + 2 ? `linear-gradient(90deg,${BLUE},${BLUE_LIGHT})` : BORDER,
+                  transition: "background 0.6s",
+                }}
+              />
+              {phase >= i + 2 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    background: BLUE_LIGHT,
+                    animation: "featureSlideRight 1.2s linear infinite",
+                  }}
+                />
+              )}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════
+   Tab definitions
+   ══════════════════════════════════════════════ */
+
+const TABS = [
   {
-    id: "transcribe",
-    label: "TRANSCRIBE API",
-    icon: Mic,
-    title: "Not just speech. The full picture.",
-    desc: "Voicera goes beyond transcription. Our multimodal engine captures tone, pace, micro-expressions, and verbal patterns — giving sales teams the complete context behind every conversation.",
-    features: ["Real-time transcription", "Speaker diarization", "Tone & pace analysis", "Multi-language support"],
+    id: "credibility",
+    label: "CREDIBILITY API",
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" strokeWidth="1.3" />
+        <path d="M4.5 7.5l2 2 4-4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    headline: "One API call. One additional field. Complete credibility intelligence.",
+    body: "Voicera sits inside your existing video pipeline as a structured output layer — no rearchitecting, no separate workflow. Pass the stream, receive the signal.",
+    bullets: ["Real-time credibility scoring", "Multimodal signal fusion", "Dissonance index output", "Millisecond response time"],
+    visual: "flow" as const,
+    code: [
+      { text: "const result = await voicera.analyze({", color: DARK_TEXT },
+      { text: '  stream_url: "https://...",', color: BLUE, indent: 1 },
+      { text: '  modalities: ["audio","video","text"],', color: BLUE, indent: 1 },
+      { text: '  output: "credibility_score",', color: BLUE, indent: 1 },
+      { text: "});", color: DARK_TEXT },
+    ],
+    output: [
+      { text: "// Response", color: LIGHT_TEXT },
+      { text: "{ credibility_score: 0.91,", color: DARK_TEXT },
+      { text: "  sincerity_flag: true,", color: BLUE, indent: 1 },
+      { text: "  dissonance_index: 0.08 }", color: MID_TEXT, indent: 1 },
+    ],
   },
   {
     id: "analyze",
     label: "ANALYZE API",
-    icon: BarChart3,
-    title: "API-first architecture for any workflow",
-    desc: "Integrate credibility scoring, sentiment analysis, and behavioral insights directly into your CRM, coaching platform, or sales enablement stack with our RESTful APIs.",
-    features: ["Credibility scoring", "Sentiment tracking", "Objection detection", "Deal risk signals"],
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M2 11l3.5-3.5 2.5 2.5 5-6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    headline: "The gap between what someone says and what they mean. That's where we live.",
+    body: "Go beyond the score. The Analyze API returns a full breakdown of micro-expression patterns, vocal frequency shifts, and linguistic dissonance — the raw behavioral signal.",
+    bullets: ["Micro-expression detection", "Vocal frequency analysis", "Linguistic pattern scoring", "Per-channel confidence values"],
+    visual: "waveform" as const,
+    code: [
+      { text: "const result = await voicera.deepAnalyze({", color: DARK_TEXT },
+      { text: '  stream_url: "https://...",', color: BLUE, indent: 1 },
+      { text: '  granularity: "full",', color: BLUE, indent: 1 },
+      { text: '  behavioral_model: "v3",', color: BLUE, indent: 1 },
+      { text: "});", color: DARK_TEXT },
+    ],
+    output: [
+      { text: "// Response", color: LIGHT_TEXT },
+      { text: "{ voice_score: 0.88,", color: DARK_TEXT },
+      { text: "  vision_score: 0.93,", color: BLUE, indent: 1 },
+      { text: "  language_score: 0.91 }", color: MID_TEXT, indent: 1 },
+    ],
   },
   {
-    id: "search",
-    label: "VOICE SEARCH API",
-    icon: Search,
-    title: "Search across every sales conversation",
-    desc: "Find the exact moment a prospect raised a concern, showed buying intent, or disengaged. Semantic search across your entire call library using natural language.",
-    features: ["Natural language queries", "Cross-call search", "Moment-level precision", "Behavioral tagging"],
+    id: "stream",
+    label: "STREAM API",
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <circle cx="7.5" cy="7.5" r="2" fill="currentColor" />
+        <path d="M4 4a4.95 4.95 0 0 0 0 7M11 4a4.95 4.95 0 0 1 0 7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      </svg>
+    ),
+    headline: "Live credibility scoring. Frame by frame. Signal by signal.",
+    body: "The Stream API delivers a continuous credibility signal as the conversation unfolds — sub-200ms latency, built for enterprise applications where every second counts.",
+    bullets: ["WebSocket streaming", "Sub-200ms latency", "Continuous score updates", "Anomaly event triggers"],
+    visual: "gauge" as const,
+    code: [
+      { text: "const stream = voicera.stream({", color: DARK_TEXT },
+      { text: '  websocket_url: "wss://...",', color: BLUE, indent: 1 },
+      { text: "  callback: onScoreUpdate,", color: DARK_TEXT, indent: 1 },
+      { text: "  interval_ms: 150,", color: BLUE, indent: 1 },
+      { text: "});", color: DARK_TEXT },
+    ],
+    output: [
+      { text: "// Stream event", color: LIGHT_TEXT },
+      { text: "{ ts: 1042, score: 0.87,", color: DARK_TEXT },
+      { text: "  delta: -0.04,", color: RED, indent: 1 },
+      { text: "  anomaly: false }", color: MID_TEXT, indent: 1 },
+    ],
   },
 ];
 
+/* ══════════════════════════════════════════════
+   Main Section
+   ══════════════════════════════════════════════ */
+
 const FeatureTabs = () => {
-  const [activeTab, setActiveTab] = useState("transcribe");
-  const activeData = tabs.find((t) => t.id === activeTab)!;
+  const [active, setActive] = useState(0);
+  const [outputActive, setOutputActive] = useState(false);
+
+  useEffect(() => {
+    setOutputActive(false);
+    const t = setTimeout(() => setOutputActive(true), 1000);
+    return () => clearTimeout(t);
+  }, [active]);
+
+  const tab = TABS[active];
 
   return (
-    <section id="solutions" className="section-padding relative overflow-hidden">
-      {/* Crystal cave background with subtle motion */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{
-          scale: [1, 1.05, 1],
-          x: [0, -10, 0],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          backgroundImage: `url(${crystalCaveBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          top: "-100px",
-          bottom: "-100px",
-          opacity: 0.3,
-        }}
-      />
-      {/* Purple glow shimmer on edges */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        style={{
-          background: "radial-gradient(ellipse at 0% 30%, hsla(228,70%,60%,0.22) 0%, transparent 50%), radial-gradient(ellipse at 100% 70%, hsla(225,60%,60%,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 0%, hsla(230,65%,65%,0.15) 0%, transparent 40%), radial-gradient(ellipse at 50% 100%, hsla(220,55%,60%,0.15) 0%, transparent 40%)",
-        }}
-      />
-      {/* White fade overlay for text readability */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.6) 70%, rgba(255,255,255,0.25) 100%)",
-        }}
-      />
+    <section
+      id="product"
+      className="relative overflow-hidden"
+      style={{
+        minHeight: "100vh",
+        background: `radial-gradient(ellipse at 60% 0%, #DDE0F8 0%, #ECEEF8 40%, #F4F5FA 100%)`,
+        fontFamily: "system-ui,-apple-system,sans-serif",
+      }}
+    >
+      <MeshBG />
+      <TickerTape />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="gradient-pill">PLATFORM</span>
-          <h2 className="type-display text-body mt-6">
-            Not just speech.{" "}
-            <br className="hidden md:block" />
-            The full picture.
+      <div className="relative z-10 max-w-[1040px] mx-auto px-6 md:px-8 py-14 md:py-16">
+        {/* Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-11"
+        >
+          <h2
+            style={{
+              fontWeight: 900,
+              fontSize: "clamp(30px, 5vw, 56px)",
+              color: DARK_TEXT,
+              margin: 0,
+              lineHeight: 1.1,
+              letterSpacing: "-1.5px",
+            }}
+          >
+            Seeing isn't believing.
           </h2>
-        </div>
+          <h2
+            style={{
+              fontWeight: 900,
+              fontSize: "clamp(30px, 5vw, 56px)",
+              color: DARK_TEXT,
+              margin: 0,
+              lineHeight: 1.1,
+              letterSpacing: "-1.5px",
+            }}
+          >
+            We tell you <span style={{ color: BLUE }}>which is which.</span>
+          </h2>
+        </motion.div>
 
-        {/* Tab switcher */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex bg-secondary rounded-full p-1.5 gap-1">
-            {tabs.map((tab) => (
+        {/* Pill tab switcher */}
+        <div className="flex justify-center mb-12 md:mb-14">
+          <div
+            className="inline-flex rounded-full p-[5px] gap-[2px]"
+            style={{ background: NEAR_WHITE, border: `1px solid ${BORDER}`, boxShadow: `0 2px 14px ${BLUE}12` }}
+          >
+            {TABS.map((t, i) => (
               <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="relative px-6 py-2.5 type-tag rounded-full transition-colors duration-200"
+                key={t.id}
+                onClick={() => setActive(i)}
+                className="flex items-center gap-[7px] rounded-full border-none cursor-pointer transition-all duration-200 whitespace-nowrap"
+                style={{
+                  padding: "10px 20px",
+                  background: active === i ? `linear-gradient(135deg,${BLUE},${BLUE_DEEP})` : "transparent",
+                  color: active === i ? WHITE : LIGHT_TEXT,
+                  fontFamily: "'Courier New',monospace",
+                  fontSize: 10.5,
+                  fontWeight: 600,
+                  letterSpacing: 1.2,
+                  boxShadow: active === i ? `0 4px 16px ${BLUE}44` : "none",
+                }}
               >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 gradient-bg rounded-full"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 ${activeTab === tab.id ? "text-white" : "text-body-muted"}`}>
-                  {tab.label}
-                </span>
+                <span style={{ opacity: active === i ? 1 : 0.6 }}>{t.icon}</span>
+                {t.label}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Tab content */}
+        {/* Two-column content */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3 }}
-            className="grid md:grid-cols-2 gap-16 items-center"
+            key={tab.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.35 }}
+            className="flex flex-wrap gap-11 items-start"
           >
-            <div>
-              <h3 className="type-subheading text-body mb-4">{activeData.title}</h3>
-              <p className="type-body mb-8">{activeData.desc}</p>
-              <div className="grid grid-cols-2 gap-3">
-                {activeData.features.map((f) => (
-                  <div key={f} className="flex items-center gap-2 text-sm text-body-muted">
-                    <div className="w-1.5 h-1.5 rounded-full gradient-bg flex-shrink-0" />
-                    {f}
+            {/* LEFT */}
+            <div className="flex-1 min-w-[260px]" style={{ flexBasis: 320 }}>
+              <h3
+                style={{
+                  fontWeight: 800,
+                  fontSize: 26,
+                  color: DARK_TEXT,
+                  margin: "0 0 12px",
+                  lineHeight: 1.25,
+                  letterSpacing: "-0.5px",
+                }}
+              >
+                {tab.headline}
+              </h3>
+              <p style={{ fontSize: 14, color: MID_TEXT, lineHeight: 1.7, margin: "0 0 26px", maxWidth: 400 }}>
+                {tab.body}
+              </p>
+              <div className="grid grid-cols-2 gap-x-7 gap-y-[10px]">
+                {tab.bullets.map((b, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: BLUE, flexShrink: 0 }} />
+                    <span style={{ fontSize: 13, color: MID_TEXT }}>{b}</span>
                   </div>
                 ))}
               </div>
+
+              {/* Waveform preview */}
+              {tab.visual === "waveform" && (
+                <div
+                  className="mt-7 rounded-[14px] p-4"
+                  style={{ background: WHITE, border: `1px solid ${BORDER}`, boxShadow: `0 2px 12px ${BLUE}0D` }}
+                >
+                  <div style={{ fontFamily: "'Courier New',monospace", fontSize: 8, color: LIGHT_TEXT, letterSpacing: 2, marginBottom: 10 }}>
+                    LIVE SIGNAL FEED
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Waveform color={BLUE} amplitude={11} speed={0.07} label="VOICE — tonal frequency" />
+                    <Waveform color={INDIGO} amplitude={8} speed={0.04} label="VISION — micro-expressions" />
+                    <Waveform color={AMBER} amplitude={6} speed={0.09} label="LANGUAGE — paralinguistic" />
+                  </div>
+                </div>
+              )}
+
+              {/* Gauge preview */}
+              {tab.visual === "gauge" && (
+                <div
+                  className="mt-7 rounded-[14px] p-5"
+                  style={{ background: WHITE, border: `1px solid ${BORDER}`, boxShadow: `0 2px 12px ${BLUE}0D` }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "'Courier New',monospace",
+                      fontSize: 8,
+                      color: LIGHT_TEXT,
+                      letterSpacing: 2,
+                      marginBottom: 12,
+                      textAlign: "center" as const,
+                    }}
+                  >
+                    LIVE STREAM SCORE
+                  </div>
+                  <CredibilityGauge />
+                  <div className="flex justify-center mt-3">
+                    <div style={{ fontFamily: "'Courier New',monospace", fontSize: 9, color: LIGHT_TEXT, letterSpacing: 1.5 }}>
+                      UPDATING EVERY 150ms
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Mock UI card */}
-            <div className="card-surface p-8 gradient-card-border">
-              <div className="bg-alt rounded-lg p-6 space-y-4">
-                <div className="flex items-center gap-3 mb-4">
-                  <activeData.icon size={20} strokeWidth={1.5} className="text-body-muted" />
-                  <span className="type-tag text-body-muted">{activeData.label}</span>
+            {/* RIGHT — API card */}
+            <div className="flex-1 min-w-[300px] md:min-w-[320px]" style={{ flexBasis: 400 }}>
+              <div
+                className="rounded-[20px]"
+                style={{
+                  background: WHITE,
+                  padding: "28px 28px 22px",
+                  boxShadow: `0 8px 48px ${BLUE}18, 0 2px 12px rgba(0,0,0,0.06)`,
+                  border: `1px solid ${BORDER}`,
+                }}
+              >
+                {/* Card header */}
+                <div className="flex items-center gap-[10px] mb-[18px]">
+                  <div
+                    className="flex items-center justify-center"
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 10,
+                      background: BLUE_SOFT,
+                      color: BLUE,
+                    }}
+                  >
+                    {tab.icon}
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: "'Courier New',monospace",
+                      fontSize: 10.5,
+                      color: LIGHT_TEXT,
+                      letterSpacing: 1.5,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {tab.label}
+                  </span>
                 </div>
-                {/* Simulated code block */}
-                <div className="bg-foreground/5 rounded-lg p-4 font-mono text-xs text-body-muted space-y-1">
-                  <div><span className="text-primary">const</span> result = <span className="text-primary">await</span> voicera.{activeData.id}(&#123;</div>
-                  <div className="pl-4">audio_url: <span className="text-accent">"https://..."</span>,</div>
-                  <div className="pl-4">language: <span className="text-accent">"en"</span>,</div>
-                  <div>&#125;);</div>
+
+                {/* Flow diagram */}
+                {tab.visual === "flow" && <APIFlowDiagram />}
+
+                {/* Request code */}
+                <div style={{ background: CODE_BG, borderRadius: 12, padding: "14px 18px" }}>
+                  {tab.code.map((line, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        fontFamily: "'Courier New',monospace",
+                        fontSize: 12,
+                        lineHeight: 1.85,
+                        color: line.color,
+                        paddingLeft: (line.indent || 0) * 14,
+                      }}
+                    >
+                      {line.text}
+                    </div>
+                  ))}
                 </div>
-                <div className="flex gap-2 mt-4">
-                  <div className="h-2 rounded-full gradient-bg w-3/4" />
-                  <div className="h-2 rounded-full bg-foreground/10 w-1/4" />
+
+                {/* Animated output */}
+                <AnimatedJSON lines={tab.output} active={outputActive} />
+
+                {/* Progress */}
+                <ProgressBar active={outputActive} />
+
+                {/* Status */}
+                <div className="flex justify-between items-center mt-3">
+                  <div className="flex items-center gap-[6px]">
+                    <div
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: "50%",
+                        background: outputActive ? GREEN : BLUE_LIGHT,
+                        boxShadow: outputActive ? `0 0 8px ${GREEN}` : "none",
+                        transition: "all 0.5s",
+                        animation: outputActive ? "none" : "featurePulse 1.2s infinite",
+                      }}
+                    />
+                    <span style={{ fontFamily: "'Courier New',monospace", fontSize: 9.5, color: LIGHT_TEXT, letterSpacing: 1 }}>
+                      {outputActive ? "RESPONSE RECEIVED" : "PROCESSING..."}
+                    </span>
+                  </div>
+                  <span style={{ fontFamily: "'Courier New',monospace", fontSize: 9.5, color: BLUE_LIGHT }}>&lt;200ms</span>
                 </div>
+              </div>
+
+              {/* Chips */}
+              <div className="flex gap-[10px] mt-[14px] justify-end flex-wrap">
+                {["3 modalities fused", "JSON / REST / WebSocket"].map((c, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      background: WHITE,
+                      border: `1px solid ${BORDER}`,
+                      borderRadius: 20,
+                      padding: "5px 14px",
+                      fontSize: 11,
+                      color: MID_TEXT,
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    {c}
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Scoped keyframes */}
+      <style>{`
+        @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-33.33%)}}
+        @keyframes featureSpinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes featurePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.5)}}
+        @keyframes featureSlideRight{0%{left:0;opacity:0}20%{opacity:1}80%{opacity:1}100%{left:calc(100% - 8px);opacity:0}}
+      `}</style>
     </section>
   );
 };
