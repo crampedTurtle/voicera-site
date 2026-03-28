@@ -75,86 +75,87 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) =>
-            link.hasDropdown ? (
-              <div
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => handleDropdownEnter(link.dropdownType)}
-                onMouseLeave={handleDropdownLeave}
-              >
+          <div className="flex items-center gap-8">
+            {navLinks.map((link) =>
+              link.hasDropdown ? (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => handleDropdownEnter(link.dropdownType)}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
+                  >
+                    {link.label}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
+                  </a>
+
+                  <AnimatePresence>
+                    {dropdownOpen === link.dropdownType && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-xl border border-border bg-card shadow-lg overflow-hidden"
+                      >
+                        {link.dropdownType === "solutions"
+                          ? solutions.map((s) => (
+                              <a
+                                key={s.slug}
+                                href={`/solutions/${s.slug}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setDropdownOpen(null);
+                                  navigate(`/solutions/${s.slug}`);
+                                }}
+                                className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                              >
+                                {s.name}
+                              </a>
+                            ))
+                          : companyLinks.map((cl) => (
+                              <a
+                                key={cl.label}
+                                href={cl.href}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setDropdownOpen(null);
+                                  navigate(cl.href);
+                                }}
+                                className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                              >
+                                {cl.label}
+                              </a>
+                            ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
                 <a
+                  key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
+                  className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
                 >
                   {link.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
                 </a>
-
-                <AnimatePresence>
-                  {dropdownOpen === link.dropdownType && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.18 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-xl border border-border bg-card shadow-lg overflow-hidden"
-                    >
-                      {link.dropdownType === "solutions"
-                        ? solutions.map((s) => (
-                            <a
-                              key={s.slug}
-                              href={`/solutions/${s.slug}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setDropdownOpen(null);
-                                navigate(`/solutions/${s.slug}`);
-                              }}
-                              className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
-                            >
-                              {s.name}
-                            </a>
-                          ))
-                        : companyLinks.map((cl) => (
-                            <a
-                              key={cl.label}
-                              href={cl.href}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setDropdownOpen(null);
-                                navigate(cl.href);
-                              }}
-                              className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
-                            >
-                              {cl.label}
-                            </a>
-                          ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ) : (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
-              >
-                {link.label}
-              </a>
-            )
-          )}
-        </div>
-
-        <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
-          <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
-            <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" style={{ color: '#3B6FF5', WebkitTextFillColor: 'unset' }} /></span>
-          </a>
-          <button onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })} className="gradient-bg px-5 py-2 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5">
-            Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
+              )
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
+              <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" style={{ color: '#3B6FF5', WebkitTextFillColor: 'unset' }} /></span>
+            </a>
+            <button onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })} className="gradient-bg px-5 py-2 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5">
+              Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
