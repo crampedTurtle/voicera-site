@@ -91,7 +91,7 @@ function generateHelixCapsules(
       width,
       height,
       rotation,
-      x: Math.max(0, Math.min(95, xPos + (p2 - 0.5) * 6 + (hasAnnotation ? 25 : 0))),
+      x: Math.max(0, Math.min(98, xPos + (p2 - 0.5) * 6 + (variant === "storytelling" && i === 7 ? 30 : (hasAnnotation ? 20 : 0)))),
       y: yPos,
       layer,
       strand,
