@@ -18,7 +18,7 @@ const navLinks = [
 ];
 
 const companyLinks = [
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   { label: "Media", href: "/media" },
   { label: "Investors", href: "/investors" },
 ];
