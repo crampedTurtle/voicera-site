@@ -68,7 +68,7 @@ const GridTile = ({ post }: { post: BlogPost }) => {
                 <Clock className="w-3 h-3" />
                 {post.readTime} min
               </span>
-              {hasExternal && <ArrowUpRight className="w-3.5 h-3.5 ml-auto" />}
+              
             </div>
           </div>
         </div>
