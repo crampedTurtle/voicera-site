@@ -9,22 +9,18 @@ const FreePricingCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="rounded-2xl overflow-hidden max-w-[420px] h-full flex flex-col"
-      style={{
-        background: "#f5f5f7",
-        border: "1px solid rgba(0,0,0,0.08)",
-        fontSize: "0.9em",
-      }}
+      className="rounded-2xl overflow-hidden max-w-[420px] h-full flex flex-col bg-secondary border border-border"
+      style={{ fontSize: "0.9em" }}
     >
       {/* Card Header */}
-      <div className="py-5 px-7 border-b" style={{ borderColor: "rgba(0,0,0,0.1)" }}>
-        <h3 className="text-[28px] font-medium text-black mb-1">Free</h3>
-        <p className="text-sm text-black/60 mb-5">Up to 2 hours of Analysis</p>
+      <div className="py-5 px-7 border-b border-border">
+        <h3 className="text-[28px] font-medium text-foreground mb-1">Free</h3>
+        <p className="text-sm text-muted-foreground mb-5">Up to 2 hours of Analysis</p>
         <a
           href="https://sincerity.voicera.io/auth/signup"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
+          className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
         >
           Get Started
           <ArrowUpRight size={16} />
@@ -33,15 +29,12 @@ const FreePricingCard = () => {
 
       {/* Sincerity Model Header */}
       <div className="text-center py-5 px-7">
-        <h3 className="text-lg font-normal text-black">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
+        <h3 className="text-lg font-normal text-foreground">Sincerity<sup className="text-[9px] align-super ml-0.5">™</sup></h3>
       </div>
 
       {/* Analysis Section */}
       <div className="px-7 pt-3">
-        <div
-          className="text-sm font-medium text-black pb-2.5 mb-0"
-          style={{ borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}
-        >
+        <div className="text-sm font-medium text-foreground pb-2.5 mb-0 border-b border-border">
           Analysis (per job)
         </div>
         {[
@@ -51,44 +44,37 @@ const FreePricingCard = () => {
         ].map((item) => (
           <div
             key={item.label}
-            className="flex justify-between items-center py-3"
-            style={{ borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}
+            className="flex justify-between items-center py-3 border-b border-border/50"
           >
-            <span className="flex items-center gap-2 text-sm text-black">
-              <item.icon size={16} className="text-black/40" />
+            <span className="flex items-center gap-2 text-sm text-foreground">
+              <item.icon size={16} className="text-muted-foreground" />
               {item.label}
             </span>
-            <span className="text-sm text-black/60">Free</span>
+            <span className="text-sm text-muted-foreground">Free</span>
           </div>
         ))}
       </div>
 
       {/* Infrastructure */}
       <div className="px-7 pt-4">
-        <div
-          className="text-sm font-medium text-black pb-2.5 mb-0"
-          style={{ borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}
-        >
+        <div className="text-sm font-medium text-foreground pb-2.5 mb-0 border-b border-border">
           Infrastructure (Monthly)
         </div>
         <div className="flex justify-between items-center py-3">
-          <span className="flex items-center gap-2 text-sm text-black">
-            <Server size={16} className="text-black/40" />
+          <span className="flex items-center gap-2 text-sm text-foreground">
+            <Server size={16} className="text-muted-foreground" />
             Platform hosting
           </span>
-          <span className="text-sm text-black/60">Free</span>
+          <span className="text-sm text-muted-foreground">Free</span>
         </div>
       </div>
 
       {/* Platform Section */}
       <div className="px-7 pt-2 pb-2 flex-1">
         <div className="text-center py-4">
-          <span className="text-base font-normal text-black">Platform</span>
+          <span className="text-base font-normal text-foreground">Platform</span>
         </div>
-        <div
-          className="text-sm font-medium text-black pb-2.5 mb-0"
-          style={{ borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}
-        >
+        <div className="text-sm font-medium text-foreground pb-2.5 mb-0 border-b border-border">
           Analysis by input type (One time)
         </div>
         {[
@@ -98,20 +84,19 @@ const FreePricingCard = () => {
         ].map((item, i, arr) => (
           <div
             key={item.label}
-            className="flex justify-between items-center py-3"
-            style={i < arr.length - 1 ? { borderBottom: "0.5px solid rgba(0,0,0,0.06)" } : undefined}
+            className={`flex justify-between items-center py-3 ${i < arr.length - 1 ? "border-b border-border/50" : ""}`}
           >
-            <span className="flex items-center gap-2 text-sm text-black">
-              <item.icon size={16} className="text-black/40" />
+            <span className="flex items-center gap-2 text-sm text-foreground">
+              <item.icon size={16} className="text-muted-foreground" />
               {item.label}
             </span>
-            <span className="text-sm text-black/60">Free</span>
+            <span className="text-sm text-muted-foreground">Free</span>
           </div>
         ))}
       </div>
 
       {/* Note */}
-      <p className="text-[10px] text-black/40 text-center px-7 py-3">
+      <p className="text-[10px] text-muted-foreground text-center px-7 py-3">
         Free tier includes up to 2 hours of total analysis time.
       </p>
     </motion.div>
