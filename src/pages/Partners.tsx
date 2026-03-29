@@ -219,11 +219,6 @@ function HeroSection() {
             </span>
           </div>
 
-                <div className="w-[5px] h-[5px] rounded-full animate-dot-pulse-fast" style={{ background: C.green }} />
-                <span className="font-mono text-[8px]" style={{ color: C.green, letterSpacing: 1 }}>LIVE</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* RIGHT — HubSpot form card */}
