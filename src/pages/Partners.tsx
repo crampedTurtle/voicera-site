@@ -315,9 +315,9 @@ function OpportunitySection() {
   const verticals = [
     { v: "AI & Video Intelligence Platform", s: "Multimodal sincerity analysis", status: "OPEN", c: C.green, label: "OPEN" },
     { v: "Enterprise Sales & CRM", s: "Buyer intent verification", status: "OPEN", c: C.green, label: "OPEN" },
-    { v: "HR/Recruiting", s: "Candidate assessment scoring", status: "WAITLIST", c: C.light, label: "WAITLIST" },
-    { v: "Legal/Insurance", s: "Claimant & witness credibility", status: "OPEN", c: C.green, label: "OPEN" },
-    { v: "Defense or Public Safety", s: "Interview & evidence analysis", status: "LIMITED", c: "#D4A017", label: "2 Spots Left!" },
+    { v: "HR & Recruiting SaaS", s: "Candidate assessment scoring", status: "WAITLIST", c: C.light, label: "WAITLIST" },
+    { v: "Legal & Insurance SaaS", s: "Claimant & witness credibility", status: "OPEN", c: C.green, label: "OPEN" },
+    { v: "Defense & Public Safety", s: "Interview & evidence analysis", status: "LIMITED", c: "#D4A017", label: "2 Spots Left!" },
   ];
 
   return (
