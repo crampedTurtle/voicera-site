@@ -134,18 +134,9 @@ function useFadeIn() {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="inline-flex items-center gap-[7px] rounded-[20px] px-3.5 py-[5px] mb-4"
-      style={{ background: C.blueSoft, border: `1px solid ${C.blue}33` }}
-    >
-      <div className="w-1.5 h-1.5 rounded-full animate-dot-pulse" style={{ background: C.blue }} />
-      <span
-        className="font-mono text-[10px] font-semibold uppercase"
-        style={{ color: C.blue, letterSpacing: "2px" }}
-      >
-        {children}
-      </span>
-    </div>
+    <span className="gradient-pill inline-block mb-4">
+      {children}
+    </span>
   );
 }
 
