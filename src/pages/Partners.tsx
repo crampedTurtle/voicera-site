@@ -193,7 +193,7 @@ function HeroSection() {
               letterSpacing: "-1.5px",
             }}
           >
-            The credibility layer<br />
+            Sincerity™<br />
             is the last signal<br />
             <span style={{ color: C.blue }}>your platform<br />is missing.</span>
           </h1>
