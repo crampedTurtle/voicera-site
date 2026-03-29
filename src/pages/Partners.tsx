@@ -211,7 +211,7 @@ function HeroSection() {
             <span className="text-sm">⚡</span>
             <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#96600A", fontWeight: 600, lineHeight: 1.4 }}>
               Limited slots open per vertical<br />
-              <span style={{ fontWeight: 400, color: "#B87A20" }}>Legal · Insurance · Sales Intelligence · Enterprise HR</span>
+              <span style={{ fontWeight: 400, color: "#B87A20" }}>AI Platforms · Enterprise SaaS · Data Infra</span>
             </span>
           </div>
 
