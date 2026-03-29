@@ -219,30 +219,6 @@ function HeroSection() {
             </span>
           </div>
 
-          {/* Live signal card */}
-          <div
-            className="rounded-[14px] p-4 max-w-[420px]"
-            style={{ background: "#fff", border: `1px solid ${C.border}`, boxShadow: `0 2px 12px ${C.blue}0D` }}
-          >
-            <div className="font-mono text-[8px] mb-2.5" style={{ color: C.light, letterSpacing: 2 }}>LIVE SIGNAL — CREDIBILITY API</div>
-            <div className="flex flex-col gap-[7px]">
-              <Waveform color={C.blue} amplitude={10} speed={0.07} />
-              <Waveform color={C.indigo} amplitude={7} speed={0.04} />
-              <Waveform color={C.amber} amplitude={5} speed={0.09} />
-            </div>
-            <div className="flex justify-between items-center mt-2.5">
-              <div className="flex gap-3">
-                {([["VOICE", C.blue], ["VISION", C.indigo], ["LANGUAGE", C.amber]] as const).map(([l, c]) => (
-                  <div key={l} className="flex items-center gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: c }} />
-                    <span className="font-mono text-[8px]" style={{ color: C.light, letterSpacing: 1 }}>{l}</span>
-                  </div>
-                ))}
-              </div>
-              <div
-                className="flex items-center gap-[5px] rounded-xl px-[9px] py-[3px]"
-                style={{ background: `${C.green}15`, border: `1px solid ${C.green}44` }}
-              >
                 <div className="w-[5px] h-[5px] rounded-full animate-dot-pulse-fast" style={{ background: C.green }} />
                 <span className="font-mono text-[8px]" style={{ color: C.green, letterSpacing: 1 }}>LIVE</span>
               </div>
