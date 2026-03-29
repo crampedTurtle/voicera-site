@@ -530,7 +530,7 @@ const Partners = () => (
       <HeroSection />
       <ProofStrip />
       <OpportunitySection />
-      <WhatPartnersGet />
+      
       <PartnerTiers />
       <NextStepsSection />
     </div>
