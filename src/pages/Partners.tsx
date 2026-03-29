@@ -210,7 +210,7 @@ function HeroSection() {
           {/* Urgency tag */}
           <div
             className="inline-flex items-center gap-2 rounded-[10px] px-3.5 py-2 mb-8"
-            style={{ background: `${C.amber}15`, border: `1px solid ${C.amber}55` }}
+            style={{ background: "#FFFFFF", border: `1px solid ${C.amber}55` }}
           >
             <span className="text-sm">⚡</span>
             <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#96600A", fontWeight: 600, lineHeight: 1.4 }}>
