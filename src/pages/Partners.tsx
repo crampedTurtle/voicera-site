@@ -376,49 +376,6 @@ function OpportunitySection() {
   );
 }
 
-/* ════════════════════════════════════════════ SECTION 4 — WHAT PARTNERS GET */
-function WhatPartnersGet() {
-  const ref = useFadeIn();
-  const items = [
-    { n: "01", title: "A capability your competitors cannot replicate fast enough", body: "Behavioral-science-native sincerity detection built on proprietary labeled data and a fusion architecture that took years to develop. You embed it in a sprint. They cannot build it in 18 months.", hero: true },
-    { n: "02", title: "Enterprise contracts that close faster", body: "The credibility signal moves a $150K contract to $200K and a prospect from 'interesting' to 'we need this.' Partners use Voicera to close deals they couldn't close before." },
-    { n: "03", title: "Wholesale rates that protect your margin", body: "Volume-tiered pricing with committed minimums. Your unit economics improve as you scale. You mark up, we grow together." },
-    { n: "04", title: "A co-sell motion with teeth", body: "Joint technical calls, co-authored case studies, and a partner BD lead dedicated to your pipeline. We show up in the deal." },
-    { n: "05", title: "You shape what we build next", body: "Pre-release model access, direct roadmap input, and first-refusal rights on new behavioral science capabilities before general availability." },
-  ];
-
-  return (
-    <section ref={ref as any} style={{ background: "#fff", padding: "80px clamp(24px, 5vw, 64px)" }}>
-      <div className="max-w-[1100px] mx-auto">
-        <Pill>WHAT PARTNERS GET</Pill>
-        <h2 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 900, fontSize: "clamp(28px, 3.5vw, 38px)", color: C.dark, margin: "0 0 40px", letterSpacing: "-1px", lineHeight: 1.1 }}>
-          What this means<br /><span style={{ color: C.blue }}>in practice.</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className={`rounded-2xl p-7 transition-shadow hover:shadow-lg ${item.hero ? "md:col-span-2" : ""}`}
-              style={{
-                background: item.hero ? `linear-gradient(135deg, ${C.blue}, ${C.blueDeep})` : C.nearWhite,
-                border: `1px solid ${item.hero ? "transparent" : C.border}`,
-                boxShadow: item.hero ? `0 8px 32px ${C.blue}40` : "none",
-              }}
-            >
-              <div className="flex gap-3.5 items-start">
-                <div className="font-mono text-[11px] mt-0.5 min-w-[22px]" style={{ color: item.hero ? "rgba(255,255,255,0.4)" : C.blue, letterSpacing: 1.5 }}>{item.n}</div>
-                <div>
-                  <h3 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 800, fontSize: item.hero ? 20 : 15, color: item.hero ? "#fff" : C.dark, margin: "0 0 8px", lineHeight: 1.3 }}>{item.title}</h3>
-                  <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: item.hero ? "rgba(255,255,255,0.73)" : C.mid, lineHeight: 1.7, margin: 0 }}>{item.body}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ════════════════════════════════════════════ SECTION 5 — PARTNER TIERS */
 function PartnerTiers() {
@@ -573,7 +530,7 @@ const Partners = () => (
       <HeroSection />
       <ProofStrip />
       <OpportunitySection />
-      <WhatPartnersGet />
+      
       <PartnerTiers />
       <NextStepsSection />
     </div>
