@@ -470,7 +470,7 @@ function PartnerTiers() {
 function NextStepsSection() {
   const ref = useFadeIn();
   const steps = [
-    { day: "Day 1–5", n: "1", title: "Application Review", body: "Our partnership team reviews every application personally against vertical fit, volume profile, and integration readiness. Every qualified submission gets a personal response." },
+    { day: "Day 1–2", n: "1", title: "Application Review", body: "Our partnership team reviews every application personally against vertical fit, volume profile, and integration readiness. Every qualified submission gets a personal response." },
     { day: "Day 5–10", n: "2", title: "Intro Call", body: "If there's a fit, you get a 30-minute call with Voicera's BD lead and a technical architect — prepared with a draft integration scope and preliminary commercial structure." },
     { day: "Day 10–30", n: "3", title: "Sandbox Access", body: "Approved partners receive sandbox API credentials, full documentation, a dedicated partner Slack channel, and 90-day integration support — before a single contract is signed." },
   ];
