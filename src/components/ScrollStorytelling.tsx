@@ -72,18 +72,18 @@ const ScrollStorytelling = () => {
           {/* Right: Visual */}
           <div className="hidden md:flex sticky top-32 items-center justify-center min-h-[400px] mt-[25px]">
             {active >= 0 && (
-              <div className="relative w-full max-w-[335px]">
+              <div className="relative w-full max-w-[358px]">
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.4 }}
-                  className="card-surface pt-[57px] p-[29px] w-full flex flex-col items-center text-center"
+                  className="card-surface pt-[61px] p-[31px] w-full flex flex-col items-center text-center"
                 >
                   {(() => {
                     const Icon = steps[active].icon;
-                    return <Icon size={44} strokeWidth={1.5} className="mb-4" style={{ stroke: "url(#iconGradient)" }} />;
+                    return <Icon size={47} strokeWidth={1.5} className="mb-4" style={{ stroke: "url(#iconGradient)" }} />;
                   })()}
                   <svg width="0" height="0">
                     <defs>
@@ -95,8 +95,8 @@ const ScrollStorytelling = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <h3 className="text-[17px] font-semibold text-foreground mb-2">{steps[active].title}</h3>
-                  <p className="text-[15px] text-muted-foreground">{steps[active].desc}</p>
+                  <h3 className="text-[18px] font-semibold text-foreground mb-2">{steps[active].title}</h3>
+                  <p className="text-[16px] text-muted-foreground">{steps[active].desc}</p>
                 </motion.div>
 
                 {/* Integration logos sticker overlay */}
