@@ -70,20 +70,20 @@ const ScrollStorytelling = () => {
           </div>
 
           {/* Right: Visual */}
-          <div className="hidden md:flex sticky top-32 items-center justify-center min-h-[400px]">
+          <div className="hidden md:flex sticky top-32 items-center justify-center min-h-[400px] mt-[25px]">
             {active >= 0 && (
-              <div className="relative w-full max-w-xs">
+              <div className="relative w-full max-w-[335px]">
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.4 }}
-                  className="card-surface pt-[54px] p-7 w-full flex flex-col items-center text-center"
+                  className="card-surface pt-[57px] p-[29px] w-full flex flex-col items-center text-center"
                 >
                   {(() => {
                     const Icon = steps[active].icon;
-                    return <Icon size={42} strokeWidth={1.5} className="mb-4" style={{ stroke: "url(#iconGradient)" }} />;
+                    return <Icon size={44} strokeWidth={1.5} className="mb-4" style={{ stroke: "url(#iconGradient)" }} />;
                   })()}
                   <svg width="0" height="0">
                     <defs>
@@ -95,8 +95,8 @@ const ScrollStorytelling = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <h3 className="text-base font-semibold text-foreground mb-2">{steps[active].title}</h3>
-                  <p className="text-sm text-muted-foreground">{steps[active].desc}</p>
+                  <h3 className="text-[17px] font-semibold text-foreground mb-2">{steps[active].title}</h3>
+                  <p className="text-[15px] text-muted-foreground">{steps[active].desc}</p>
                 </motion.div>
 
                 {/* Integration logos sticker overlay */}
@@ -104,12 +104,12 @@ const ScrollStorytelling = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="absolute -top-[42px] -right-6 z-20 rounded-lg border border-border bg-background px-5 py-3.5 text-center shadow-lg flex flex-col items-center"
+                  className="absolute -top-[44px] -right-7 z-20 rounded-lg border border-border bg-background px-[21px] py-[15px] text-center shadow-lg flex flex-col items-center"
                   style={{ transform: "rotate(3deg)" }}
                 >
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">Join</span>
-                  <CountUp target={850} className="text-lg font-bold text-foreground my-0.5" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">Join</span>
+                  <CountUp target={850} className="text-[19px] font-bold text-foreground my-0.5" />
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
                     Active Users
                   </span>
                 </motion.div>
