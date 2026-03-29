@@ -445,7 +445,7 @@ const CapsuleElement = ({
 
         {hasAnnotation && annotationLabel && (
           <div
-            className="absolute flex flex-col items-center"
+            className="absolute flex flex-col items-center opacity-40"
             style={{
               left: "50%",
               top: "100%",
