@@ -314,7 +314,7 @@ function OpportunitySection() {
   const ref = useFadeIn();
   const verticals = [
     { v: "AI & Video Intelligence Platform", s: "Multimodal sincerity analysis", status: "OPEN", c: C.green, label: "OPEN" },
-    { v: "Enterprise Sales/CRM", s: "Buyer intent verification", status: "OPEN", c: C.green, label: "OPEN" },
+    { v: "Enterprise Sales & CRM", s: "Buyer intent verification", status: "OPEN", c: C.green, label: "OPEN" },
     { v: "HR/Recruiting", s: "Candidate assessment scoring", status: "WAITLIST", c: C.light, label: "WAITLIST" },
     { v: "Legal/Insurance", s: "Claimant & witness credibility", status: "OPEN", c: C.green, label: "OPEN" },
     { v: "Defense or Public Safety", s: "Interview & evidence analysis", status: "LIMITED", c: "#D4A017", label: "2 Spots Left!" },
