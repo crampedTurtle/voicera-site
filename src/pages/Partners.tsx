@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
+import HeroSphere from "@/components/HeroSphere";
 
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -178,8 +179,12 @@ function HeroSection() {
         padding: "64px clamp(24px, 5vw, 64px) 72px",
       }}
     >
-      <MeshBG opacity={0.11} />
-      <MeshBG opacity={0.06} right />
+      {/* HeroSphere as opaque background decoration */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.18]">
+        <div className="w-full max-w-[900px]">
+          <HeroSphere />
+        </div>
+      </div>
 
       <div className="relative z-10 max-w-[1100px] mx-auto flex gap-14 items-start flex-wrap">
         {/* LEFT */}
