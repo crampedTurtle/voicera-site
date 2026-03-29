@@ -313,11 +313,11 @@ function ProofStrip() {
 function OpportunitySection() {
   const ref = useFadeIn();
   const verticals = [
-    { v: "Legal & Compliance", s: "Deposition & witness credibility", status: "OPEN", c: C.green },
-    { v: "Insurance & Claims", s: "Claimant sincerity scoring", status: "OPEN", c: C.green },
-    { v: "Sales Intelligence", s: "Buyer intent verification", status: "OPEN", c: C.green },
-    { v: "Enterprise HR", s: "Executive assessment scoring", status: "OPEN", c: C.green },
-    { v: "Federal & Government", s: "Interview & evidence analysis", status: "WAITLIST", c: C.light },
+    { v: "AI & Video Intelligence Platform", s: "Multimodal sincerity analysis", status: "OPEN", c: C.green, label: "OPEN" },
+    { v: "Enterprise Sales/CRM", s: "Buyer intent verification", status: "OPEN", c: C.green, label: "OPEN" },
+    { v: "HR/Recruiting", s: "Candidate assessment scoring", status: "WAITLIST", c: C.light, label: "WAITLIST" },
+    { v: "Legal/Insurance", s: "Claimant & witness credibility", status: "OPEN", c: C.green, label: "OPEN" },
+    { v: "Defense or Public Safety", s: "Interview & evidence analysis", status: "LIMITED", c: "#D4A017", label: "2 Spots Left!" },
   ];
 
   return (
@@ -361,13 +361,13 @@ function OpportunitySection() {
               </div>
               <div
                 className="inline-flex items-center gap-[5px] rounded-[20px] px-2.5 py-1 shrink-0"
-                style={{ background: item.status === "OPEN" ? `${C.green}12` : `${C.light}14` }}
+                style={{ background: item.status === "OPEN" ? `${C.green}12` : item.status === "LIMITED" ? `#D4A01718` : `${C.light}14` }}
               >
                 <div
-                  className={`w-[5px] h-[5px] rounded-full ${item.status === "OPEN" ? "animate-dot-pulse" : ""}`}
+                  className={`w-[5px] h-[5px] rounded-full ${item.status !== "WAITLIST" ? "animate-dot-pulse" : ""}`}
                   style={{ background: item.c }}
                 />
-                <span className="font-mono text-[8px] font-semibold" style={{ color: item.c, letterSpacing: 1.5 }}>{item.status}</span>
+                <span className="font-mono text-[8px] font-semibold" style={{ color: item.c, letterSpacing: 1.5 }}>{item.label}</span>
               </div>
             </div>
           ))}
