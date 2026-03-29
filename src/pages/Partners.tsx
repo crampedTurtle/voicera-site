@@ -425,11 +425,8 @@ function PartnerTiers() {
               {tier.highlight && (
                 <div className="absolute -top-px left-8 right-8 h-[3px] rounded-b" style={{ background: `linear-gradient(90deg, ${C.blue}, ${C.blueLight})` }} />
               )}
-              <div className="flex justify-between items-start mb-3">
+              <div className="mb-3">
                 <h3 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 800, fontSize: 20, color: C.dark, margin: 0, lineHeight: 1.2 }}>{tier.tier}</h3>
-                <div className="rounded-[20px] px-2.5 py-[3px] shrink-0" style={{ background: tier.highlight ? C.blueSoft : `${C.green}14`, border: `1px solid ${tier.highlight ? C.blue : C.green}44` }}>
-                  <span className="font-mono text-[8px] font-bold" style={{ color: tier.highlight ? C.blue : C.green, letterSpacing: 1.5 }}>{tier.badge}</span>
-                </div>
               </div>
               <p className="mb-[18px]" style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: C.mid, lineHeight: 1.65 }}>{tier.desc}</p>
               <div className="font-mono text-[8.5px] mb-2.5" style={{ color: C.light, letterSpacing: 2 }}>INCLUDES</div>
