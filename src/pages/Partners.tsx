@@ -402,7 +402,7 @@ function PartnerTiers() {
   ];
 
   return (
-    <section ref={ref as any} style={{ background: C.nearWhite, padding: "80px clamp(24px, 5vw, 64px)", borderTop: `1px solid ${C.border}` }}>
+    <section ref={ref as any} style={{ background: "#fff", padding: "80px clamp(24px, 5vw, 64px)", borderTop: `1px solid ${C.border}` }}>
       <div className="max-w-[1100px] mx-auto">
         <div className="text-center mb-12">
           <Pill>TWO WAYS TO PARTNER</Pill>
@@ -417,9 +417,9 @@ function PartnerTiers() {
               key={i}
               className="rounded-[20px] p-8 relative transition-shadow hover:shadow-lg"
               style={{
-                background: "#fff",
+                background: C.nearWhite,
                 border: `${tier.highlight ? 2 : 1}px solid ${tier.highlight ? C.blue : C.border}`,
-                boxShadow: tier.highlight ? `0 8px 40px ${C.blue}22` : "0 2px 12px rgba(0,0,0,0.04)",
+                boxShadow: tier.highlight ? `0 8px 40px ${C.blue}18` : "0 2px 12px rgba(0,0,0,0.03)",
               }}
             >
               {tier.highlight && (
@@ -436,14 +436,14 @@ function PartnerTiers() {
               <div className="flex flex-col gap-[9px] mb-[18px]">
                 {tier.items.map((item, j) => (
                   <div key={j} className="flex items-center gap-2.5">
-                    <div className="w-4 h-4 rounded shrink-0 flex items-center justify-center" style={{ background: C.blueSoft, border: `1px solid ${C.blue}28` }}>
+                    <div className="w-4 h-4 rounded shrink-0 flex items-center justify-center" style={{ background: "#fff", border: `1px solid ${C.blue}28` }}>
                       <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke={C.blue} strokeWidth="1.5" strokeLinecap="round" /></svg>
                     </div>
                     <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: C.mid }}>{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="rounded-lg p-2.5 px-3.5 mb-[22px]" style={{ background: C.nearWhite }}>
+              <div className="rounded-lg p-2.5 px-3.5 mb-[22px]" style={{ background: "#fff", border: `1px solid ${C.border}` }}>
                 <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: C.mid, fontStyle: "italic" }}>{tier.best}</span>
               </div>
               <button
