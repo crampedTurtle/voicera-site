@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
 import JsonLd from "@/components/JsonLd";
+import Navbar from "@/components/Navbar";
+
+const Footer = lazy(() => import("@/components/Footer"));
 
 /* ── Partner-specific palette (inline, not in design tokens, per spec) ── */
 const C = {
@@ -592,18 +595,24 @@ function NextStepsSection() {
 
 /* ════════════════════════════════════════════ PAGE ROOT */
 const Partners = () => (
-  <div style={{ background: C.nearWhite, fontFamily: "system-ui, -apple-system, sans-serif" }}>
+  <div className="min-h-screen" style={{ background: C.nearWhite, fontFamily: "system-ui, -apple-system, sans-serif" }}>
     <JsonLd
       title="Become a Partner — Voicera"
       description="Join the Voicera Partner Program. Integrate our APIs, access co-marketing resources, and earn recurring revenue."
       path="/partners"
     />
-    <HeroSection />
-    <ProofStrip />
-    <OpportunitySection />
-    <WhatPartnersGet />
-    <PartnerTiers />
-    <NextStepsSection />
+    <Navbar />
+    <div className="pt-20">
+      <HeroSection />
+      <ProofStrip />
+      <OpportunitySection />
+      <WhatPartnersGet />
+      <PartnerTiers />
+      <NextStepsSection />
+    </div>
+    <Suspense fallback={<div className="min-h-[200px]" />}>
+      <Footer />
+    </Suspense>
   </div>
 );
 
