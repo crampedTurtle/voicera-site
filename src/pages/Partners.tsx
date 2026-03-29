@@ -361,13 +361,13 @@ function OpportunitySection() {
               </div>
               <div
                 className="inline-flex items-center gap-[5px] rounded-[20px] px-2.5 py-1 shrink-0"
-                style={{ background: item.status === "OPEN" ? `${C.green}12` : `${C.light}14` }}
+                style={{ background: item.status === "OPEN" ? `${C.green}12` : item.status === "LIMITED" ? `#D4A01718` : `${C.light}14` }}
               >
                 <div
-                  className={`w-[5px] h-[5px] rounded-full ${item.status === "OPEN" ? "animate-dot-pulse" : ""}`}
+                  className={`w-[5px] h-[5px] rounded-full ${item.status !== "WAITLIST" ? "animate-dot-pulse" : ""}`}
                   style={{ background: item.c }}
                 />
-                <span className="font-mono text-[8px] font-semibold" style={{ color: item.c, letterSpacing: 1.5 }}>{item.status}</span>
+                <span className="font-mono text-[8px] font-semibold" style={{ color: item.c, letterSpacing: 1.5 }}>{item.label}</span>
               </div>
             </div>
           ))}
