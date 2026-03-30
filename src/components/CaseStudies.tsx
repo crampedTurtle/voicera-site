@@ -85,7 +85,7 @@ const CaseStudies = () => {
                 {/* Logo top-left (desktop) */}
                 <div className="absolute top-5 left-5 z-10 hidden md:flex items-center gap-2">
                   {cs.logo ? (
-                    <img src={cs.logo} alt={`${cs.title} logo`} className="h-8 opacity-90" />
+                    <img src={cs.logo} alt={`${cs.title} logo`} className="h-12 opacity-90" />
                   ) : (
                     <svg
                       width="32"
