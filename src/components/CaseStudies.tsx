@@ -107,9 +107,6 @@ const CaseStudies = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10 hidden md:block">
                   <h3 className="font-display text-white text-2xl lg:text-3xl font-bold leading-tight">
                     {cs.title}
-                    <span className="text-white/50 text-base font-normal ml-1">
-                      _{cs.number}
-                    </span>
                   </h3>
                   <p className="text-white/60 text-sm mt-1">{cs.subtitle}</p>
                 </div>
@@ -119,9 +116,6 @@ const CaseStudies = () => {
               <div className="md:hidden mt-0 rounded-b-2xl bg-muted p-5">
                 <h3 className="font-display text-foreground text-xl font-bold leading-tight">
                   {cs.title}
-                  <span className="text-muted-foreground text-sm font-normal ml-1">
-                    _{cs.number}
-                  </span>
                 </h3>
                 <p className="font-display text-foreground font-semibold text-sm mt-2">
                   {cs.subtitle}
