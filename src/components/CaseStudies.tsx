@@ -29,7 +29,7 @@ const CASE_STUDIES = [
 const CaseStudies = () => {
   // Peek tiles for carousel edges
   const peekLeft = { title: "Coming Soon", number: "", subtitle: "", image: peekLeftImg, logo: undefined as string | undefined, tags: [] as string[] };
-  const peekRight = CASE_STUDIES[0];
+  const peekRight = { title: "Sales CRM", number: "", subtitle: "", image: peekRightImg, logo: undefined as string | undefined, tags: [] as string[] };
 
   return (
     <section className="section-padding relative overflow-hidden bg-secondary">
