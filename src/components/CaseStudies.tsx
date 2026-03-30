@@ -26,8 +26,8 @@ const CASE_STUDIES = [
 ];
 
 const CaseStudies = () => {
-  // Duplicate items to create "peek" tiles on edges for carousel effect
-  const peekLeft = CASE_STUDIES[CASE_STUDIES.length - 1];
+  // Peek tiles for carousel edges
+  const peekLeft = { title: "Coming Soon", number: "", subtitle: "", image: peekLeftImg, logo: undefined as string | undefined, tags: [] as string[] };
   const peekRight = CASE_STUDIES[0];
 
   return (
