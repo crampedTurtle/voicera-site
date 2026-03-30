@@ -81,6 +81,17 @@ const About = () => {
             >
               Download our brand kit (zip) →
             </a>
+            <button
+              type="button"
+              onClick={() => {
+                const u = ['r','y','a','n'].join('') + String.fromCharCode(64) + ['v','o','i','c','e','r','a'].join('') + '.' + ['i','o'].join('');
+                const s = encodeURIComponent('Press Inquiry - Voicera');
+                window.location.href = `mailto:${u}?subject=${s}`;
+              }}
+              className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors mt-3 cursor-pointer bg-transparent border-none"
+            >
+              Press: Inquire Feature Voicera →
+            </button>
           </div>
         </div>
       </section>
