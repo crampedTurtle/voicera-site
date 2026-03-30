@@ -4,19 +4,10 @@ import srLogo from "@/assets/case-study-sr-logo.png";
 import policeImg from "@/assets/case-study-police.jpg";
 import policeLogo from "@/assets/case-study-police-logo.png";
 
-
 const CASE_STUDIES = [
   {
-    title: "Apex Financial",
-    number: "01",
-    subtitle: "Apex Financial Trust Verification Platform",
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
-    tags: ["FINANCE", "TRUST VERIFICATION"],
-  },
-  {
     title: "Policereports.ai",
-    number: "02",
+    number: "01",
     subtitle: "Revolutionizing Law Enforcement",
     image: policeImg,
     logo: policeLogo,
@@ -24,7 +15,7 @@ const CASE_STUDIES = [
   },
   {
     title: "Scott Ramey",
-    number: "03",
+    number: "02",
     subtitle: "Executive Coaching & Leadership Platform",
     image: scottRameyImg,
     logo: srLogo,
@@ -34,6 +25,10 @@ const CASE_STUDIES = [
 ];
 
 const CaseStudies = () => {
+  // Duplicate items to create "peek" tiles on edges for carousel effect
+  const peekLeft = CASE_STUDIES[CASE_STUDIES.length - 1];
+  const peekRight = CASE_STUDIES[0];
+
   return (
     <section className="section-padding relative overflow-hidden bg-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -58,88 +53,115 @@ const CaseStudies = () => {
           sincerity.
         </h2>
 
-        {/* Case study cards – 3-col overlay on desktop, stacked image+info on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-3">
-          {CASE_STUDIES.map((cs) => (
-            <motion.div
-              key={cs.number}
-              initial={{ opacity: 0, scale: 0.92, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: Number(cs.number) * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="cursor-pointer"
-            >
-              {/* Image card */}
-              <div
-                className={`relative rounded-2xl overflow-hidden aspect-square md:aspect-[3/4] ${cs.bgClass || ""}`}
+        {/* Carousel-style layout: peek tiles + centered main tiles */}
+        <div className="relative">
+          {/* Desktop carousel with peek edges */}
+          <div className="hidden md:flex items-stretch justify-center gap-4 -mx-16 lg:-mx-24">
+            {/* Left peek tile – clipped quarter */}
+            <div className="w-[120px] lg:w-[160px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-60">
+              <CaseCard cs={peekLeft} />
+            </div>
+
+            {/* Main tiles */}
+            {CASE_STUDIES.map((cs, i) => (
+              <motion.div
+                key={cs.number}
+                initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="w-[340px] lg:w-[400px] flex-shrink-0 cursor-pointer"
               >
-                <img
-                  src={cs.image}
-                  alt={cs.title}
-                  className={`absolute inset-0 w-full h-full ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
-                />
+                <CaseCard cs={cs} />
+              </motion.div>
+            ))}
 
-                {/* Dark gradient overlay – bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/5 hidden md:block" />
+            {/* Right peek tile – clipped quarter */}
+            <div className="w-[120px] lg:w-[160px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-60">
+              <CaseCard cs={peekRight} />
+            </div>
+          </div>
 
-                {/* Dark gradient overlay – top-left corner for logo readability */}
-                <div className="absolute inset-0 hidden md:block" style={{ background: "radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 25%, transparent 50%)" }} />
-
-                {/* Logo top-left (desktop) */}
-                <div className="absolute top-5 left-5 z-10 hidden md:flex items-center gap-2">
-                  {cs.logo ? (
-                    <img src={cs.logo} alt={`${cs.title} logo`} className="h-12 opacity-90" />
-                  ) : (
-                    <svg
-                      width="32"
-                      height="32"
-                      viewBox="0 0 40 40"
-                      fill="none"
-                      className="opacity-90"
-                    >
-                      <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
-                      <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
-                    </svg>
-                  )}
-                </div>
-
-                {/* Desktop-only bottom text */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 hidden md:block">
-                  <h3 className="font-display text-white text-2xl lg:text-3xl font-bold leading-tight">
+          {/* Mobile stacked */}
+          <div className="md:hidden flex flex-col gap-8">
+            {CASE_STUDIES.map((cs, i) => (
+              <motion.div
+                key={cs.number}
+                initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="cursor-pointer"
+              >
+                <CaseCard cs={cs} />
+                {/* Mobile info block */}
+                <div className="mt-0 rounded-b-2xl bg-muted p-5">
+                  <h3 className="font-display text-foreground text-xl font-bold leading-tight">
                     {cs.title}
                   </h3>
-                  <p className="text-white/60 text-sm mt-1">{cs.subtitle}</p>
+                  <p className="font-display text-foreground font-semibold text-sm mt-2">
+                    {cs.subtitle}
+                  </p>
+                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {cs.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              {/* Mobile-only info block below image */}
-              <div className="md:hidden mt-0 rounded-b-2xl bg-muted p-5">
-                <h3 className="font-display text-foreground text-xl font-bold leading-tight">
-                  {cs.title}
-                </h3>
-                <p className="font-display text-foreground font-semibold text-sm mt-2">
-                  {cs.subtitle}
-                </p>
-                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {cs.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
+
+/* Shared card rendering */
+const CaseCard = ({ cs }: { cs: (typeof CASE_STUDIES)[number] }) => (
+  <div
+    className={`relative rounded-2xl overflow-hidden aspect-[3/4] ${cs.bgClass || ""}`}
+  >
+    <img
+      src={cs.image}
+      alt={cs.title}
+      className={`absolute inset-0 w-full h-full ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
+    />
+
+    {/* Dark gradient overlay – bottom */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/5" />
+
+    {/* Dark gradient overlay – top-left corner for logo readability */}
+    <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 25%, transparent 50%)" }} />
+
+    {/* Logo top-left */}
+    <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
+      {cs.logo ? (
+        <img src={cs.logo} alt={`${cs.title} logo`} className="h-12 opacity-90" />
+      ) : (
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" className="opacity-90">
+          <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
+          <circle cx="20" cy="20" r="8" stroke="white" strokeWidth="2" />
+        </svg>
+      )}
+    </div>
+
+    {/* Bottom text */}
+    <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+      <h3 className="font-display text-white text-2xl lg:text-3xl font-bold leading-tight">
+        {cs.title}
+      </h3>
+      <p className="text-white/60 text-sm mt-1">{cs.subtitle}</p>
+    </div>
+  </div>
+);
 
 export default CaseStudies;
