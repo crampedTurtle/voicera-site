@@ -73,7 +73,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-          className="flex items-center justify-center mt-8 lg:mt-0"
+          className="hidden md:flex items-center justify-center mt-8 lg:mt-0"
         >
           <HeroSphere />
         </motion.div>
