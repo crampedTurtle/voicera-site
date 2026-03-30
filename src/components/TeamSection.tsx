@@ -7,7 +7,6 @@ import kevinImg from "@/assets/headshot-kevin.png";
 import ryanImg from "@/assets/team/ryan-park.png";
 import raghavanImg from "@/assets/team/raghavan-rajagopalan.png";
 import andrewImg from "@/assets/team/andrew-friedman.jpg";
-import raghavanImg from "@/assets/team/raghavan-rajagopalan.png";
 
 const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
