@@ -19,6 +19,7 @@ const CASE_STUDIES = [
     number: "02",
     subtitle: "Revolutionizing Law Enforcement",
     image: policeImg,
+    logo: policeLogo,
     tags: ["LAW ENFORCEMENT", "AI"],
   },
   {
