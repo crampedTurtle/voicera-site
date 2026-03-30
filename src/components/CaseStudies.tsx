@@ -145,7 +145,7 @@ const CaseCard = ({ cs }: { cs: (typeof CASE_STUDIES)[number] }) => (
     {/* Logo top-left */}
     <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
       {cs.logo ? (
-        <img src={cs.logo} alt={`${cs.title} logo`} className="h-12 opacity-90" />
+        <img src={cs.logo} alt={`${cs.title} logo`} className="h-7 opacity-90" style={{ imageRendering: "auto" }} />
       ) : (
         <svg width="32" height="32" viewBox="0 0 40 40" fill="none" className="opacity-90">
           <rect x="4" y="4" width="32" height="32" rx="6" stroke="white" strokeWidth="2" />
