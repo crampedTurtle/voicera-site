@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import chandraImg from "@/assets/team/chandra.png";
 import danImg from "@/assets/team/dan-stoks.png";
 import brettImg from "@/assets/team/brett-wilson.png";
