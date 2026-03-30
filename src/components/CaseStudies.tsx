@@ -80,8 +80,12 @@ const CaseStudies = () => {
               </motion.div>
             ))}
 
-            {/* Right peek tile – clipped quarter */}
-            <div className="w-[120px] lg:w-[160px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-60">
+            {/* Right peek tile */}
+            <div
+              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50 cursor-pointer"
+              title="INQUIRE FOR MORE CASE STUDIES"
+              onClick={() => alert("INQUIRE FOR MORE CASE STUDIES")}
+            >
               <CaseCard cs={peekRight} />
             </div>
           </div>
