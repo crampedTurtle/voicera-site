@@ -22,7 +22,7 @@ const FreePricingCard = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
         >
-          Get Started
+          Start Building
           <ArrowUpRight size={16} />
         </a>
       </div>
