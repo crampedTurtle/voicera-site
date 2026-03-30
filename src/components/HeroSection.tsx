@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 items-center">
         {/* Left: Text content */}
-        <div className="max-lg:text-center max-lg:flex max-lg:flex-col max-lg:items-center">
+        <div className="max-lg:text-center max-lg:flex max-lg:flex-col max-lg:items-center max-lg:mt-[25px]">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
