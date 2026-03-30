@@ -52,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
-            className="type-body max-w-md mb-10 text-left"
+            className="type-body max-w-md mb-10 text-left max-lg:text-center"
           >
             Quantify sincerity, unlock behavioral intelligence, and integrate high-trust workflows with proprietary Multimodal AI that sees micro-expressions, hears tonal shifts, and reasons across paralinguistic cues.
           </motion.p>
