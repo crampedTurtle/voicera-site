@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
 import policeImg from "@/assets/case-study-police.jpg";
+import policeLogo from "@/assets/case-study-police-logo.png";
 
 
 const CASE_STUDIES = [
