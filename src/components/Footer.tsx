@@ -78,13 +78,13 @@ const Footer = () => (
             <li><a href="#" className="type-footer hover:text-body transition-colors">Privacy Policy</a></li>
             <li><a href="#" className="type-footer hover:text-body transition-colors">Terms of Service</a></li>
           </ul>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             {complianceBadges.map((badge) => (
               <img
                 key={badge.alt}
                 src={badge.src}
                 alt={badge.alt}
-                className="h-9 w-auto opacity-50 hover:opacity-70 transition-opacity duration-200"
+                className="h-[108px] w-auto opacity-50 hover:opacity-70 transition-opacity duration-200"
               />
             ))}
           </div>
