@@ -4,6 +4,7 @@ import srLogo from "@/assets/case-study-sr-logo.png";
 import policeImg from "@/assets/case-study-police.jpg";
 import policeLogo from "@/assets/case-study-police-logo.png";
 import peekLeftImg from "@/assets/case-study-peek-left.jpg";
+import peekRightImg from "@/assets/case-study-peek-right.jpg";
 
 const CASE_STUDIES = [
   {
