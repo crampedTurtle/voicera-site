@@ -11,7 +11,13 @@ const footerLinks = [
   },
   {
     title: "Solutions",
-    links: ["Sales Enablement", "Sales Coaching", "Remote Hiring", "Investor Relations", "Compliance"],
+    links: [
+      { label: "Sincerity™ for Sales", href: "/solutions/sales" },
+      { label: "Sincerity™ for HR", href: "/solutions/hr" },
+      { label: "Sincerity™ for Law Enforcement", href: "/solutions/law-enforcement" },
+      { label: "Sincerity™ for Dating", href: "/solutions/dating" },
+      { label: "Sincerity™ for Legal", href: "/solutions/legal" },
+    ],
   },
   {
     title: "Developers",
