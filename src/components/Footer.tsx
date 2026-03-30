@@ -48,19 +48,25 @@ const Footer = () => (
           <div key={col.title}>
             <h4 className="type-button text-body mb-4">{col.title}</h4>
             <ul className="space-y-2.5">
-              {col.links.map((link) => (
-                <li key={link}>
-                  {link === "Sitemap" ? (
-                    <Link to="/sitemap" className="type-footer hover:text-body transition-colors">
-                      {link}
-                    </Link>
-                  ) : (
-                    <a href="#" className="type-footer hover:text-body transition-colors">
-                      {link}
-                    </a>
-                  )}
-                </li>
-              ))}
+              {col.links.map((link) => {
+                const label = typeof link === "string" ? link : link.label;
+                const href = typeof link === "string" ? "#" : link.href;
+                const isInternal = typeof link !== "string" || link === "Sitemap";
+                const to = typeof link === "string" && link === "Sitemap" ? "/sitemap" : href;
+                return (
+                  <li key={label}>
+                    {isInternal ? (
+                      <Link to={to} className="type-footer hover:text-body transition-colors">
+                        {label}
+                      </Link>
+                    ) : (
+                      <a href="#" className="type-footer hover:text-body transition-colors">
+                        {label}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
