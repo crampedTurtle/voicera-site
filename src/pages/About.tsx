@@ -90,7 +90,7 @@ const About = () => {
               }}
               className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors mt-3 cursor-pointer bg-transparent border-none"
             >
-              Press: Inquire Feature Voicera →
+              Press Inquiry →
             </button>
           </div>
         </div>
