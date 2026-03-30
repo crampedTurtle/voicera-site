@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import awsBadge from "@/assets/powered-by-aws.webp";
 
 /* ── Brand palette (aligned with design-system tokens) ── */
 const BLUE = "#3D52F4";
