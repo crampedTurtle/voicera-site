@@ -57,8 +57,12 @@ const CaseStudies = () => {
         <div className="relative">
           {/* Desktop carousel with peek edges */}
           <div className="hidden md:flex items-stretch justify-center gap-4 -mx-16 lg:-mx-24">
-            {/* Left peek tile – clipped quarter */}
-            <div className="w-[120px] lg:w-[160px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-60">
+            {/* Left peek tile */}
+            <div
+              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50 cursor-pointer"
+              title="INQUIRE FOR MORE CASE STUDIES"
+              onClick={() => alert("INQUIRE FOR MORE CASE STUDIES")}
+            >
               <CaseCard cs={peekLeft} />
             </div>
 
