@@ -34,7 +34,7 @@ const HeroSection = () => {
           >
             AI-POWERED SINCERITY ANALYSIS
           </motion.span>
-          <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
+          <h1 className="type-hero mb-6 text-left max-lg:text-center" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
             {words.map((word, i) => (
               <motion.span
                 key={i}
