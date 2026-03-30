@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
+import policeImg from "@/assets/case-study-police.jpg";
 
 
 const CASE_STUDIES = [
@@ -13,12 +14,11 @@ const CASE_STUDIES = [
     tags: ["FINANCE", "TRUST VERIFICATION"],
   },
   {
-    title: "Meridian Health",
+    title: "Policereports.ai",
     number: "02",
-    subtitle: "Meridian Health Patient Intake Analysis",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    tags: ["HEALTHCARE", "PATIENT INTAKE"],
+    subtitle: "Revolutionizing Law Enforcement",
+    image: policeImg,
+    tags: ["LAW ENFORCEMENT", "AI"],
   },
   {
     title: "Scott Ramey",
