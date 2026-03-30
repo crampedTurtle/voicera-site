@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 items-center">
         {/* Left: Text content */}
-        <div>
+        <div className="max-lg:text-center max-lg:flex max-lg:flex-col max-lg:items-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ const HeroSection = () => {
           >
             AI-POWERED SINCERITY ANALYSIS
           </motion.span>
-          <h1 className="type-hero mb-6 text-left" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
+          <h1 className="type-hero mb-6 text-left max-lg:text-center" style={{ fontSize: "clamp(38px, 4.5vw, 62px)", maxWidth: "11em" }}>
             {words.map((word, i) => (
               <motion.span
                 key={i}
@@ -52,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
-            className="type-body max-w-md mb-10 text-left"
+            className="type-body max-w-md mb-10 text-left max-lg:text-center"
           >
             Quantify sincerity, unlock behavioral intelligence, and integrate high-trust workflows with proprietary Multimodal AI that sees micro-expressions, hears tonal shifts, and reasons across paralinguistic cues.
           </motion.p>
