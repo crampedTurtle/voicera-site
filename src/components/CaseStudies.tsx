@@ -79,8 +79,11 @@ const CaseStudies = () => {
                   className={`absolute inset-0 w-full h-full ${cs.bgClass ? "object-contain object-bottom scale-150 origin-bottom" : "object-cover"}`}
                 />
 
-                {/* Dark gradient overlay */}
+                {/* Dark gradient overlay – bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/5 hidden md:block" />
+
+                {/* Dark gradient overlay – top-left corner for logo readability */}
+                <div className="absolute inset-0 hidden md:block" style={{ background: "radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 25%, transparent 50%)" }} />
 
                 {/* Logo top-left (desktop) */}
                 <div className="absolute top-5 left-5 z-10 hidden md:flex items-center gap-2">
