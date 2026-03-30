@@ -717,7 +717,7 @@ const FeatureTabs = () => {
               >
                 {/* Powered by AWS badge */}
                 <div className="absolute top-3 right-3 z-10">
-                  <img src={awsBadge} alt="Powered by AWS" className="h-[28px] w-auto" />
+                  <img src={awsBadge} alt="Powered by AWS" className="h-[56px] w-auto" />
                 </div>
                 {/* Card header */}
                 <div className="flex items-center gap-[10px] mb-[18px]">
