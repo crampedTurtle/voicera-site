@@ -52,20 +52,36 @@ const About = () => {
 
       <TeamSection />
 
-      {/* Careers CTA — investor-style blue band */}
+      {/* Careers + Media — two side-by-side cards */}
       <section className="py-16 px-6" style={{ background: "hsl(225 80% 52%)" }}>
-        <div className="max-w-[950px] mx-auto text-center">
-          <h2 className="type-display text-4xl sm:text-5xl md:text-7xl leading-tight mb-4" style={{ color: '#ffffff' }}>
-            Come Build With Us
-          </h2>
-          <a
-            href="https://www.linkedin.com/company/voicera-ai/jobs/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors"
-          >
-            Explore open positions →
-          </a>
+        <div className="max-w-[950px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Careers */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 text-center flex flex-col items-center justify-center">
+            <h2 className="type-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-4" style={{ color: '#ffffff' }}>
+              Come Build With Us
+            </h2>
+            <a
+              href="https://www.linkedin.com/company/voicera-ai/jobs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors"
+            >
+              Explore open positions →
+            </a>
+          </div>
+          {/* Media */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 text-center flex flex-col items-center justify-center">
+            <h2 className="type-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-4" style={{ color: '#ffffff' }}>
+              Media
+            </h2>
+            <a
+              href="/voicera-brand-kit.zip"
+              download
+              className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors"
+            >
+              Download our brand kit (zip) →
+            </a>
+          </div>
         </div>
       </section>
 
