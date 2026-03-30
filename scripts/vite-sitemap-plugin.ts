@@ -37,7 +37,7 @@ export function sitemapPlugin(): Plugin {
   return {
     name: "vite-plugin-sitemap",
     buildStart() {
-      const outPath = path.resolve(__dirname, "../public/sitemap.xml");
+      const outPath = path.resolve(import.meta.dirname, "../public/sitemap.xml");
       fs.writeFileSync(outPath, buildSitemapXml(), "utf-8");
       console.log(`✅ sitemap.xml auto-generated with ${siteRoutes.length} routes`);
     },

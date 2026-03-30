@@ -34,6 +34,6 @@ ${urls}
 }
 
 // Run standalone
-const outPath = path.resolve(__dirname, "../public/sitemap.xml");
+const outPath = path.resolve(import.meta.dirname, "../public/sitemap.xml");
 fs.writeFileSync(outPath, generateSitemapXml(), "utf-8");
 console.log(`✅ sitemap.xml generated with ${siteRoutes.length} routes`);
