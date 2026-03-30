@@ -61,7 +61,7 @@ const About = () => {
               Come Build With Us
             </h2>
             <a
-              href="https://www.linkedin.com/company/voicera-ai/jobs/"
+              href="https://wellfound.com/recruit/applicants/jobs/3276319"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/80 hover:text-white text-lg sm:text-xl underline underline-offset-4 transition-colors"
