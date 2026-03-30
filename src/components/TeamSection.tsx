@@ -6,6 +6,7 @@ import jasleenImg from "@/assets/team/jasleen-deol.png";
 import kevinImg from "@/assets/headshot-kevin.png";
 import ryanImg from "@/assets/team/ryan-park.png";
 import raghavanImg from "@/assets/team/raghavan-rajagopalan.png";
+import andrewImg from "@/assets/team/andrew-friedman.jpg";
 
 const teamMembers = [
   { name: "Chandra de Keyser", title: "CEO, ex-Northrop w/ 2 exits", image: chandraImg },
@@ -13,6 +14,7 @@ const teamMembers = [
   { name: "Brett Wilson", title: "CTO, ex-VMware", image: brettImg },
   { name: "Jasleen Deol", title: "Head of Product, ex-AMD & L3Harris", image: jasleenImg },
   { name: "Ryan Park", title: "Head of Marketing & Executive Comms", image: ryanImg },
+  { name: "Andrew Friedman", title: "Head of Business Operation & Legal", image: andrewImg },
   { name: "Britt Alexander", title: "Product Lead, Columbia University", image: brittImg },
 ];
 
