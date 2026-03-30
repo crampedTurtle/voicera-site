@@ -706,7 +706,7 @@ const FeatureTabs = () => {
             {/* RIGHT — API card */}
             <div className="w-full md:flex-1 md:min-w-[320px]" style={{ flexBasis: 400 }}>
               <div
-                className="rounded-[20px]"
+                className="rounded-[20px] relative"
                 style={{
                   background: WHITE,
                   padding: "28px 28px 22px",
@@ -714,6 +714,10 @@ const FeatureTabs = () => {
                   border: `1px solid ${BORDER}`,
                 }}
               >
+                {/* Powered by AWS badge */}
+                <div className="absolute top-3 right-3 z-10">
+                  <img src={awsBadge} alt="Powered by AWS" className="h-[28px] w-auto" />
+                </div>
                 {/* Card header */}
                 <div className="flex items-center gap-[10px] mb-[18px]">
                   <div
