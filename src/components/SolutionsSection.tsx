@@ -10,27 +10,27 @@ const analysisItems = [
   {
     icon: Headphones,
     label: "Audio analysis",
-    perMinute: 0.006,
-    per5Min: 0.03,
+    perMinute: 0.06,
+    per5Min: 0.3,
   },
   {
     icon: Video,
     label: "Video analysis",
-    perMinute: 0.0018,
-    per5Min: 0.009,
+    perMinute: 0.018,
+    per5Min: 0.09,
   },
   {
     icon: Layers,
     label: "Composite analysis",
-    perMinute: 0.0076,
-    per5Min: 0.038,
+    perMinute: 0.076,
+    per5Min: 0.38,
   },
 ];
 
 const platformItems = [
-  { icon: Headphones, label: "Audio", perMinute: 0.006 },
-  { icon: Video, label: "Video", perMinute: 0.0018 },
-  { icon: Layers, label: "Composite", perMinute: 0.0076 },
+  { icon: Headphones, label: "Audio", perMinute: 0.06 },
+  { icon: Video, label: "Video", perMinute: 0.018 },
+  { icon: Layers, label: "Composite", perMinute: 0.076 },
 ];
 
 const formatPrice = (value: number, unit: Unit) => {
