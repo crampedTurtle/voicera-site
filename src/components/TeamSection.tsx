@@ -59,6 +59,37 @@ const TeamSection = () => {
             </div>
           ))}
         </div>
+
+        {/* Advisors */}
+        <div className="flex justify-center mt-16 mb-6">
+          <span className="type-tag border border-border rounded-full px-4 py-1.5 text-foreground">
+            ADVISORS
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-10 max-w-2xl mx-auto">
+          {advisors.map((member) => (
+            <div key={member.name} className="flex items-center gap-4 border-l-2 border-border pl-4">
+              <img
+                src={member.image}
+                alt={member.name}
+                width={80}
+                height={80}
+                loading="lazy"
+                decoding="async"
+                className="w-20 h-20 rounded-full object-cover flex-shrink-0 bg-secondary"
+              />
+              <div className="min-w-0">
+                <p className="type-card-title text-foreground text-sm font-semibold leading-tight">
+                  {member.name}
+                </p>
+                <p className="text-muted-foreground text-xs mt-0.5 leading-snug">
+                  {member.title}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
