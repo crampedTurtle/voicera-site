@@ -4,7 +4,9 @@ import badgeSoc from "@/assets/badge-soc.png";
 import badgeGdpr from "@/assets/badge-gdpr.png";
 import badgeTpn from "@/assets/badge-tpn.png";
 
-const footerLinks = [
+type FooterLink = string | { label: string; href: string };
+
+const footerLinks: { title: string; links: FooterLink[] }[] = [
   {
     title: "Product",
     links: ["Transcribe API", "Analyze API", "Voice Search API", "Credibility Score", "Pricing"],
