@@ -79,7 +79,7 @@ const Footer = () => (
           <h4 className="type-button text-body mb-4">Legal</h4>
           <ul className="space-y-2.5 mb-5">
             <li><Link to="/privacy-policy" className="type-footer hover:text-body transition-colors">Privacy Policy</Link></li>
-            <li><a href="#" className="type-footer hover:text-body transition-colors">Terms of Service</a></li>
+            <li><Link to="/terms-of-use" className="type-footer hover:text-body transition-colors">Terms of Service</Link></li>
             <li>
               <button
                 onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}

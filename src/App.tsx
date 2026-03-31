@@ -45,6 +45,7 @@ const App = () => (
             <Route path="/investors" element={<Investors />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/voicera-admin" element={<AdminLogin />} />
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
