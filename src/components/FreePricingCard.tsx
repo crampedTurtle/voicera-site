@@ -101,6 +101,7 @@ const FreePricingCard = () => {
       <p className="text-[10px] text-muted-foreground text-center px-7 py-3">
         Free tier includes up to 2 hours of total analysis time.
       </p>
+      <StartBuildingModal open={modalOpen} onOpenChange={setModalOpen} />
     </motion.div>
   );
 };
