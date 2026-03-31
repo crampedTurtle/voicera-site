@@ -125,6 +125,16 @@ export const siteRoutes: SiteRoute[] = [
     category: "Company",
   },
   {
+    path: "/api-docs",
+    title: "API Documentation — Voicera",
+    description: "Complete API reference for the Voicera Sincerity™ platform — endpoints, authentication, response objects, and integration guides.",
+    priority: 0.8,
+    changefreq: "monthly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Developers",
+  },
+  {
     path: "/sitemap",
     title: "Sitemap — Voicera",
     description: "Complete sitemap of all pages on the Voicera website.",
