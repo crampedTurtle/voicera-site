@@ -646,133 +646,207 @@ export default function VoiceraDocs() {
       {/* Docs header */}
       <header style={{
         position: "sticky", top: 0, zIndex: 100,
-        display: "flex", alignItems: "center", gap: 10,
-        padding: "0 16px", height: 56,
         background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)",
         borderBottom: `1px solid ${C.bd}`,
         boxShadow: "0 1px 3px rgba(15,23,42,0.04)",
       }}>
-        <button onClick={() => setSb(!sb)} style={{
-          background: "none", border: `1px solid ${C.bd}`, color: C.txM,
-          cursor: "pointer", fontSize: 16, padding: "5px 9px", borderRadius: 6,
-          display: "flex", alignItems: "center", flexShrink: 0,
-        }}>
-          ☰
-        </button>
-
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-          <img src={voiceraLogo} alt="Voicera" style={{ height: 50, width: "auto" }} />
-        </a>
-
+        {/* Top row */}
         <div style={{
-          fontSize: 10, fontWeight: 700, fontFamily: F.m,
-          color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
-          padding: "3px 10px", borderRadius: 20, letterSpacing: "0.02em",
-          whiteSpace: "nowrap", flexShrink: 0,
-        }}>Sincerity™ V1.1</div>
-
-        {/* Search bar */}
-        <div ref={searchRef} style={{ position: "relative", flex: isMobile ? 1 : "0 1 280px", minWidth: 0 }}>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 6,
-            padding: "6px 12px", borderRadius: 8,
-            border: `1px solid ${searchFocused ? C.ac : C.bd}`,
-            background: C.bgAlt,
-            transition: "border-color 0.15s",
+          display: "flex", alignItems: "center", gap: 8,
+          padding: "0 12px", height: 56,
+        }}>
+          <button onClick={() => setSb(!sb)} style={{
+            background: "none", border: `1px solid ${C.bd}`, color: C.txM,
+            cursor: "pointer", fontSize: 16, padding: "5px 9px", borderRadius: 6,
+            display: "flex", alignItems: "center", flexShrink: 0,
           }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.txD} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search docs..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setSearchFocused(true)}
-              style={{
-                border: "none", outline: "none", background: "transparent",
-                fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
-              }}
-            />
-            {searchQuery && (
-              <button onClick={() => { setSearchQuery(""); }} style={{
-                background: "none", border: "none", cursor: "pointer", color: C.txD,
-                fontSize: 14, padding: 0, lineHeight: 1, flexShrink: 0,
-              }}>✕</button>
-            )}
-          </div>
+            ☰
+          </button>
 
-          {/* Dropdown results */}
-          {searchFocused && searchQuery.trim().length > 0 && (
-            <div style={{
-              position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
-              background: C.w, border: `1px solid ${C.bd}`, borderRadius: 10,
-              boxShadow: "0 8px 24px rgba(15,23,42,0.12)", maxHeight: 320,
-              overflowY: "auto", zIndex: 200,
-            }}>
-              {searchResults.length === 0 ? (
-                <div style={{ padding: "16px 14px", fontSize: 13, color: C.txD, textAlign: "center" }}>
-                  No results for "{searchQuery}"
+          <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+            <img src={voiceraLogo} alt="Voicera" style={{ height: isMobile ? 40 : 50, width: "auto" }} />
+          </a>
+
+          <div style={{
+            fontSize: 10, fontWeight: 700, fontFamily: F.m,
+            color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
+            padding: "3px 10px", borderRadius: 20, letterSpacing: "0.02em",
+            whiteSpace: "nowrap", flexShrink: 0,
+          }}>Sincerity™ V1.1</div>
+
+          {/* Search bar — desktop only inline */}
+          {!isMobile && (
+            <div ref={searchRef} style={{ position: "relative", flex: "0 1 280px", minWidth: 0 }}>
+              <div style={{
+                display: "flex", alignItems: "center", gap: 6,
+                padding: "6px 12px", borderRadius: 8,
+                border: `1px solid ${searchFocused ? C.ac : C.bd}`,
+                background: C.bgAlt,
+                transition: "border-color 0.15s",
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.txD} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search docs..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setSearchFocused(true)}
+                  style={{
+                    border: "none", outline: "none", background: "transparent",
+                    fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
+                  }}
+                />
+                {searchQuery && (
+                  <button onClick={() => { setSearchQuery(""); }} style={{
+                    background: "none", border: "none", cursor: "pointer", color: C.txD,
+                    fontSize: 14, padding: 0, lineHeight: 1, flexShrink: 0,
+                  }}>✕</button>
+                )}
+              </div>
+
+              {searchFocused && searchQuery.trim().length > 0 && (
+                <div style={{
+                  position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
+                  background: C.w, border: `1px solid ${C.bd}`, borderRadius: 10,
+                  boxShadow: "0 8px 24px rgba(15,23,42,0.12)", maxHeight: 320,
+                  overflowY: "auto", zIndex: 200,
+                }}>
+                  {searchResults.length === 0 ? (
+                    <div style={{ padding: "16px 14px", fontSize: 13, color: C.txD, textAlign: "center" }}>
+                      No results for "{searchQuery}"
+                    </div>
+                  ) : (
+                    searchResults.map((r) => (
+                      <button
+                        key={r.id}
+                        onClick={() => handleSearchSelect(r.id)}
+                        style={{
+                          display: "block", width: "100%", textAlign: "left",
+                          padding: "10px 14px", border: "none", background: "transparent",
+                          cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                          fontSize: 13, fontFamily: F.b, color: C.tx,
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                      >
+                        <div style={{ fontWeight: 600 }}>{r.label}</div>
+                        <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                      </button>
+                    ))
+                  )}
                 </div>
-              ) : (
-                searchResults.map((r) => (
-                  <button
-                    key={r.id}
-                    onClick={() => handleSearchSelect(r.id)}
-                    style={{
-                      display: "block", width: "100%", textAlign: "left",
-                      padding: "10px 14px", border: "none", background: "transparent",
-                      cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
-                      fontSize: 13, fontFamily: F.b, color: C.tx,
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                  >
-                    <div style={{ fontWeight: 600 }}>{r.label}</div>
-                    <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
-                  </button>
-                ))
               )}
             </div>
           )}
+
+          <div style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 8 }}>
+            <a
+              href="https://calendly.com/voicera/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center",
+                padding: isMobile ? "6px 10px" : "7px 14px", borderRadius: 8,
+                background: C.ac, color: "#fff",
+                fontSize: isMobile ? 11.5 : 12.5, fontWeight: 600, fontFamily: F.b,
+                textDecoration: "none", border: "none",
+                boxShadow: "0 1px 3px rgba(37,99,235,0.3)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Book a Demo
+            </a>
+            {!isMobile && (
+              <a
+                href="/#pricing"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  padding: "7px 16px", borderRadius: 8,
+                  background: C.w, color: C.txM,
+                  fontSize: 12.5, fontWeight: 500, fontFamily: F.b,
+                  textDecoration: "none",
+                  border: `1px solid ${C.bd}`,
+                  whiteSpace: "nowrap",
+                  transition: "border-color 0.15s, color 0.15s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.txM; e.currentTarget.style.color = C.tx; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.bd; e.currentTarget.style.color = C.txM; }}
+              >
+                Play in the Sandbox
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            )}
+          </div>
         </div>
 
-        <div style={{ marginLeft: isMobile ? 0 : "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 8 }}>
-          <a
-            href="https://calendly.com/voicera/demo"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex", alignItems: "center",
-              padding: "7px 14px", borderRadius: 8,
-              background: C.ac, color: "#fff",
-              fontSize: 12.5, fontWeight: 600, fontFamily: F.b,
-              textDecoration: "none", border: "none",
-              boxShadow: "0 1px 3px rgba(37,99,235,0.3)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Book a Demo
-          </a>
-          <a
-            href="/#pricing"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              padding: "7px 16px", borderRadius: 8,
-              background: C.w, color: C.txM,
-              fontSize: 12.5, fontWeight: 500, fontFamily: F.b,
-              textDecoration: "none",
-              border: `1px solid ${C.bd}`,
-              whiteSpace: "nowrap",
-              transition: "border-color 0.15s, color 0.15s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.txM; e.currentTarget.style.color = C.tx; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.bd; e.currentTarget.style.color = C.txM; }}
-          >
-            Play in the Sandbox
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
+        {/* Mobile search row */}
+        {isMobile && (
+          <div ref={searchRef} style={{ position: "relative", padding: "0 12px 8px" }}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "7px 12px", borderRadius: 8,
+              border: `1px solid ${searchFocused ? C.ac : C.bd}`,
+              background: C.bgAlt,
+              transition: "border-color 0.15s",
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.txD} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search docs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setSearchFocused(true)}
+                style={{
+                  border: "none", outline: "none", background: "transparent",
+                  fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
+                }}
+              />
+              {searchQuery && (
+                <button onClick={() => { setSearchQuery(""); }} style={{
+                  background: "none", border: "none", cursor: "pointer", color: C.txD,
+                  fontSize: 14, padding: 0, lineHeight: 1, flexShrink: 0,
+                }}>✕</button>
+              )}
+            </div>
+
+            {searchFocused && searchQuery.trim().length > 0 && (
+              <div style={{
+                position: "absolute", top: "calc(100% + 2px)", left: 12, right: 12,
+                background: C.w, border: `1px solid ${C.bd}`, borderRadius: 10,
+                boxShadow: "0 8px 24px rgba(15,23,42,0.12)", maxHeight: 280,
+                overflowY: "auto", zIndex: 200,
+              }}>
+                {searchResults.length === 0 ? (
+                  <div style={{ padding: "16px 14px", fontSize: 13, color: C.txD, textAlign: "center" }}>
+                    No results for "{searchQuery}"
+                  </div>
+                ) : (
+                  searchResults.map((r) => (
+                    <button
+                      key={r.id}
+                      onClick={() => handleSearchSelect(r.id)}
+                      style={{
+                        display: "block", width: "100%", textAlign: "left",
+                        padding: "10px 14px", border: "none", background: "transparent",
+                        cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                        fontSize: 13, fontFamily: F.b, color: C.tx,
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                    >
+                      <div style={{ fontWeight: 600 }}>{r.label}</div>
+                      <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                    </button>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </header>
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden", position: "relative" }}>
@@ -784,7 +858,7 @@ export default function VoiceraDocs() {
               <div
                 onClick={() => setSb(false)}
                 style={{
-                  position: "fixed", inset: 0, top: 56,
+                  position: "fixed", inset: 0, top: 94,
                   background: "rgba(0,0,0,0.3)", zIndex: 49,
                 }}
               />
@@ -794,7 +868,7 @@ export default function VoiceraDocs() {
               borderRight: `1px solid ${C.bd}`,
               background: C.w,
               overflowY: "auto", padding: "20px 0",
-              ...(isMobile ? { position: "fixed", top: 56, left: 0, bottom: 0, zIndex: 50, boxShadow: "4px 0 12px rgba(0,0,0,0.1)" } : {}),
+              ...(isMobile ? { position: "fixed", top: 94, left: 0, bottom: 0, zIndex: 50, boxShadow: "4px 0 12px rgba(0,0,0,0.1)" } : {}),
             }}>
               {groups.map(g => (
                 <div key={g} style={{ marginBottom: 22 }}>
