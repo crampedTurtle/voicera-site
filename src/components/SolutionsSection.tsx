@@ -49,6 +49,7 @@ const SolutionsSection = () => {
 
   return (
     <section
+      id="pricing-sandbox"
       className="relative overflow-hidden bg-[#0B1120]"
     >
       {/* Background video */}
