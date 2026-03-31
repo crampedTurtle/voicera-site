@@ -183,7 +183,7 @@ const Co = ({ type = "info", children }) => {
   );
 };
 
-const H2 = ({ children, sub }) => (
+const H2 = ({ children, sub }: { children: any; sub?: boolean }) => (
   <div style={{ marginBottom: sub ? 16 : 24, marginTop: sub ? 36 : 0 }}>
     <h2 style={{
       fontFamily: F.d, fontSize: sub ? 19 : 28,
