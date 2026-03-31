@@ -105,7 +105,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-between py-3 border-t border-border bg-white">
+      <div className="flex flex-col md:flex-row items-center justify-between py-3 border-t border-border">
         <a href="#" onClick={(e) => e.preventDefault()} className="mb-2 md:mb-0">
           <img src={voiceraLogoBlack} alt="Voicera" className="h-[28px] w-auto" />
         </a>
