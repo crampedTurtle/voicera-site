@@ -89,12 +89,6 @@ const SolutionPage = ({ solution }: { solution: SolutionPageData }) => (
     <Navbar />
     <main className="pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 type-nav text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to Home
-        </Link>
 
         <span className="gradient-pill mb-4 inline-block">{solution.name}</span>
         <h1 className="type-display mb-4">{solution.headline}</h1>
