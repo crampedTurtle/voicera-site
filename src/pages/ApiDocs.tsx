@@ -615,7 +615,26 @@ export default function VoiceraDocs() {
     setPage(id);
     setSearchQuery("");
     setSearchFocused(false);
+    setHighlightIdx(-1);
     if (isMobile) setSb(false);
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (!searchFocused || searchResults.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightIdx(i => (i + 1) % searchResults.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightIdx(i => (i <= 0 ? searchResults.length - 1 : i - 1));
+    } else if (e.key === "Enter" && highlightIdx >= 0 && highlightIdx < searchResults.length) {
+      e.preventDefault();
+      handleSearchSelect(searchResults[highlightIdx].id);
+    } else if (e.key === "Escape") {
+      setSearchFocused(false);
+      setHighlightIdx(-1);
+    }
+  };
   };
 
   // Close search dropdown on outside click
