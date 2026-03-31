@@ -635,7 +635,6 @@ export default function VoiceraDocs() {
       setHighlightIdx(-1);
     }
   };
-  };
 
   // Close search dropdown on outside click
   useEffect(() => {
