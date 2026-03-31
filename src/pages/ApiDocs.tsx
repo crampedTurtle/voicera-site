@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import Footer from "@/components/Footer";
 
