@@ -20,9 +20,8 @@ const FreePricingCard = () => {
         <h3 className="text-[28px] font-medium text-foreground mb-1">Free</h3>
         <p className="text-sm text-muted-foreground mb-5">Up to 2 hours of Analysis</p>
         <a
-          href="https://sincerity.voicera.io/auth/signup"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          onClick={(e) => { e.preventDefault(); setModalOpen(true); }}
           className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-2.5 rounded-lg hover:opacity-85 transition-opacity"
         >
           Start Building
