@@ -27,7 +27,12 @@ const footerLinks: { title: string; links: FooterLink[] }[] = [
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Careers", "Press", "Contact", "Sitemap"],
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Media", href: "/media" },
+      { label: "Investors", href: "/investors" },
+      { label: "Become a Partner", href: "/partners" },
+    ],
   },
 ];
 
