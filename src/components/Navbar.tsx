@@ -18,8 +18,8 @@ const solutionIcons: Record<string, React.ReactNode> = {
 
 const productLinks = [
   { label: "Analyze", href: "#product", icon: iconAnalyze },
-  { label: "API Docs", href: "#product", icon: iconApiDocs },
-  { label: "SDKs", href: "#product", icon: iconSdks },
+  { label: "API Docs", href: "#product" },
+  { label: "SDKs", href: "#product" },
 ];
 
 const navLinks = [
@@ -145,7 +145,7 @@ const Navbar = () => {
                                 }}
                                 className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
                               >
-                                <img src={pl.icon} alt="" className="w-[60px] h-[60px]" />
+                                {pl.icon && <img src={pl.icon} alt="" className="w-[60px] h-[60px]" />}
                                 {pl.label}
                               </a>
                             ))
@@ -242,7 +242,7 @@ const Navbar = () => {
                             }}
                             className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
                           >
-                            <img src={pl.icon} alt="" className="w-12 h-12" />
+                            {pl.icon && <img src={pl.icon} alt="" className="w-12 h-12" />}
                             {pl.label}
                           </a>
                         ))
