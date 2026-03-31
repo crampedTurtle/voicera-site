@@ -229,6 +229,23 @@ const Navbar = () => {
                             {s.name}
                           </a>
                         ))
+                      : link.dropdownType === "product"
+                      ? productLinks.map((pl) => (
+                          <a
+                            key={pl.label}
+                            href={pl.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setMobileOpen(false);
+                              setMobileDropdownOpen(null);
+                              handleNavClick(e, pl.href);
+                            }}
+                            className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
+                          >
+                            <img src={pl.icon} alt="" className="w-4 h-4" />
+                            {pl.label}
+                          </a>
+                        ))
                       : companyLinks.map((cl) => (
                           <a
                             key={cl.label}
