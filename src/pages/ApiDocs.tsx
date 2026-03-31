@@ -868,7 +868,7 @@ export default function VoiceraDocs() {
               borderRight: `1px solid ${C.bd}`,
               background: C.w,
               overflowY: "auto", padding: "20px 0",
-              ...(isMobile ? { position: "fixed", top: 56, left: 0, bottom: 0, zIndex: 50, boxShadow: "4px 0 12px rgba(0,0,0,0.1)" } : {}),
+              ...(isMobile ? { position: "fixed", top: 94, left: 0, bottom: 0, zIndex: 50, boxShadow: "4px 0 12px rgba(0,0,0,0.1)" } : {}),
             }}>
               {groups.map(g => (
                 <div key={g} style={{ marginBottom: 22 }}>
