@@ -847,21 +847,22 @@ export default function VoiceraDocs() {
                     No results for "{searchQuery}"
                   </div>
                 ) : (
-                  searchResults.map((r) => (
-                    <button
-                      key={r.id}
-                      onClick={() => handleSearchSelect(r.id)}
-                      style={{
-                        display: "block", width: "100%", textAlign: "left",
-                        padding: "10px 14px", border: "none", background: "transparent",
-                        cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
-                        fontSize: 13, fontFamily: F.b, color: C.tx,
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
-                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                    >
-                      <div style={{ fontWeight: 600 }}>{r.label}</div>
-                      <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                    searchResults.map((r, idx) => (
+                      <button
+                        key={r.id}
+                        onClick={() => handleSearchSelect(r.id)}
+                        style={{
+                          display: "block", width: "100%", textAlign: "left",
+                          padding: "10px 14px", border: "none",
+                          background: idx === highlightIdx ? C.acBg : "transparent",
+                          cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                          fontSize: 13, fontFamily: F.b, color: C.tx,
+                        }}
+                        onMouseEnter={() => setHighlightIdx(idx)}
+                        onMouseLeave={() => setHighlightIdx(-1)}
+                      >
+                        <div style={{ fontWeight: 600 }}>{r.label}</div>
+                        <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
                     </button>
                   ))
                 )}
