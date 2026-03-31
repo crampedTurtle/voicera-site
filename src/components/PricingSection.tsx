@@ -101,14 +101,14 @@ const PricingSection = () => {
         </div>
 
         {/* Desktop grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {tiers.map((tier, i) => (
             <TierCard key={tier.name} tier={tier} i={i} />
           ))}
         </div>
 
         {/* Mobile/Tablet carousel */}
-        <div className="md:hidden max-w-sm mx-auto">
+        <div className="lg:hidden max-w-sm mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
