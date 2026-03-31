@@ -242,7 +242,7 @@ const Navbar = () => {
                             }}
                             className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
                           >
-                            <img src={pl.icon} alt="" className="w-4 h-4" />
+                            <img src={pl.icon} alt="" className="w-12 h-12" />
                             {pl.label}
                           </a>
                         ))
