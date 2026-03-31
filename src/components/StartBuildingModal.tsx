@@ -87,7 +87,7 @@ const StartBuildingModal = ({ open, onOpenChange }: StartBuildingModalProps) => 
                 lineHeight: 1.5,
               }}
             >
-              Fill in your details and we'll get you set up right away.
+              Provide us some information to receive your free API key with access to 2 hours of Composite Analysis. Limit 1 per customer.
             </DialogDescription>
           </DialogHeader>
 
