@@ -242,7 +242,7 @@ const Navbar = () => {
                             }}
                             className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
                           >
-                            {pl.icon && <img src={pl.icon} alt="" className="w-12 h-12" style={{ filter: 'brightness(0) saturate(100%) invert(38%) sepia(52%) saturate(2057%) hue-rotate(209deg) brightness(101%) contrast(92%)' }} />}
+                            {pl.icon && <img src={pl.icon} alt="" className="w-4 h-4" style={{ filter: 'brightness(0) saturate(100%) invert(38%) sepia(52%) saturate(2057%) hue-rotate(209deg) brightness(101%) contrast(92%)' }} />}
                             {pl.label}
                           </a>
                         ))
