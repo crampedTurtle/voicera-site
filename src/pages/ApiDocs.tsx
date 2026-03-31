@@ -672,7 +672,7 @@ export default function VoiceraDocs() {
             color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
             padding: "3px 10px", borderRadius: 20, letterSpacing: "0.02em",
             whiteSpace: "nowrap", flexShrink: 0,
-          }}>Sincerity™ V1.1</div>
+          }}>Sincerity™ v2.1.0</div>
 
           {/* Search bar — desktop only inline */}
           {!isMobile && (
