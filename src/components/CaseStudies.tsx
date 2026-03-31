@@ -101,7 +101,9 @@ const CaseStudies = () => {
           </div>
 
           {/* Mobile/Tablet carousel */}
-          <MobileCarousel studies={CASE_STUDIES} onTileClick={handleTileClick} />
+          <div className="md:hidden">
+            <MobileCarousel studies={CASE_STUDIES} onTileClick={handleTileClick} />
+          </div>
         </div>
       </div>
 
