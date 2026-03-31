@@ -80,6 +80,14 @@ const Footer = () => (
           <ul className="space-y-2.5 mb-5">
             <li><a href="#" className="type-footer hover:text-body transition-colors">Privacy Policy</a></li>
             <li><a href="#" className="type-footer hover:text-body transition-colors">Terms of Service</a></li>
+            <li>
+              <button
+                onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
+                className="type-footer hover:text-body transition-colors"
+              >
+                Cookie Settings
+              </button>
+            </li>
           </ul>
           <div className="flex flex-wrap items-center gap-4">
             {complianceBadges.map((badge) => (
