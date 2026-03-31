@@ -16,14 +16,14 @@ const analysisItems = [
   {
     icon: Video,
     label: "Video analysis",
-    perMinute: 0.018,
-    per5Min: 0.09,
+    perMinute: 0.06,
+    per5Min: 0.3,
   },
   {
     icon: Layers,
     label: "Composite analysis",
-    perMinute: 0.076,
-    per5Min: 0.38,
+    perMinute: 0.06,
+    per5Min: 0.3,
   },
 ];
 
