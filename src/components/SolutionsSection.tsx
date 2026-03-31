@@ -29,8 +29,8 @@ const analysisItems = [
 
 const platformItems = [
   { icon: Headphones, label: "Audio", perMinute: 0.06 },
-  { icon: Video, label: "Video", perMinute: 0.018 },
-  { icon: Layers, label: "Composite", perMinute: 0.076 },
+  { icon: Video, label: "Video", perMinute: 0.06 },
+  { icon: Layers, label: "Composite", perMinute: 0.06 },
 ];
 
 const formatPrice = (value: number, unit: Unit) => {
