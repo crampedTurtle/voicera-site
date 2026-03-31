@@ -17,7 +17,7 @@ const solutionIcons: Record<string, React.ReactNode> = {
 };
 
 const productLinks = [
-  { label: "Analyze", href: "#product", icon: iconAnalyze },
+  { label: "Sincerity™ v2", href: "#product", icon: iconAnalyze },
   { label: "API Docs", href: "/api-docs" },
 ];
 
