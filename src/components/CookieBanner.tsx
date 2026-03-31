@@ -10,7 +10,7 @@ type ConsentState = {
   marketing: boolean;
 };
 
-const CookieBanner = () => {
+const CookieBanner = forwardRef<HTMLDivElement>((_, ref) => {
   const [visible, setVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
   const [consent, setConsent] = useState<ConsentState>({
