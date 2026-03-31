@@ -36,6 +36,14 @@ const companyLinks = [
   { label: "About Us", href: "/about" },
   { label: "Media", href: "/media" },
   { label: "Investors", href: "/investors" },
+];
+
+const platformColLinks = [
+  { label: "Platform", href: "#" },
+  { label: "Case Studies", href: "#case-studies" },
+];
+
+const partnersColLinks = [
   { label: "Become a Partner", href: "/partners" },
 ];
 
@@ -114,25 +122,75 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-xl border border-border bg-card shadow-lg overflow-hidden"
+                        className={`absolute top-full mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden ${
+                          link.dropdownType === "solutions"
+                            ? "left-1/2 -translate-x-1/2 w-[580px]"
+                            : "left-1/2 -translate-x-1/2 w-64"
+                        }`}
                       >
-                        {link.dropdownType === "solutions"
-                          ? solutions.map((s) => (
-                              <a
-                                key={s.slug}
-                                href={`/solutions/${s.slug}`}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setDropdownOpen(null);
-                                  navigate(`/solutions/${s.slug}`);
-                                }}
-                                className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
-                              >
-                                {solutionIcons[s.slug]}
-                                {s.name}
-                              </a>
-                            ))
-                          : link.dropdownType === "product"
+                        {link.dropdownType === "solutions" ? (
+                          <div className="grid grid-cols-3 divide-x divide-border">
+                            {/* Column 1: Platform */}
+                            <div className="py-3">
+                              <div className="px-5 pb-2 text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">Platform</div>
+                              {platformColLinks.map((pl) => (
+                                <a
+                                  key={pl.label}
+                                  href={pl.href}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setDropdownOpen(null);
+                                    if (pl.href.startsWith("#")) {
+                                      handleNavClick(e, pl.href);
+                                    } else {
+                                      navigate(pl.href);
+                                    }
+                                  }}
+                                  className="flex items-center gap-2.5 px-5 py-2.5 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors"
+                                >
+                                  {pl.label}
+                                </a>
+                              ))}
+                            </div>
+                            {/* Column 2: Solutions */}
+                            <div className="py-3">
+                              <div className="px-5 pb-2 text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">Solutions</div>
+                              {solutions.map((s) => (
+                                <a
+                                  key={s.slug}
+                                  href={`/solutions/${s.slug}`}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setDropdownOpen(null);
+                                    navigate(`/solutions/${s.slug}`);
+                                  }}
+                                  className="flex items-center gap-2.5 px-5 py-2.5 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors"
+                                >
+                                  {solutionIcons[s.slug]}
+                                  {s.name}
+                                </a>
+                              ))}
+                            </div>
+                            {/* Column 3: Partners */}
+                            <div className="py-3">
+                              <div className="px-5 pb-2 text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">Partners</div>
+                              {partnersColLinks.map((pl) => (
+                                <a
+                                  key={pl.label}
+                                  href={pl.href}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setDropdownOpen(null);
+                                    navigate(pl.href);
+                                  }}
+                                  className="flex items-center gap-2.5 px-5 py-2.5 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors"
+                                >
+                                  {pl.label}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        ) : link.dropdownType === "product"
                           ? productLinks.map((pl) => (
                               <a
                                 key={pl.label}
@@ -161,7 +219,7 @@ const Navbar = () => {
                               >
                                 {cl.label}
                               </a>
-                             ))}
+                            ))}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -212,22 +270,25 @@ const Navbar = () => {
                 {mobileDropdownOpen === link.dropdownType && (
                   <div className="pl-4 mt-2 space-y-2 border-l-2 border-border">
                     {link.dropdownType === "solutions"
-                      ? solutions.map((s) => (
-                          <a
-                            key={s.slug}
-                            href={`/solutions/${s.slug}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setMobileOpen(false);
-                              setMobileDropdownOpen(null);
-                              navigate(`/solutions/${s.slug}`);
-                            }}
-                            className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
-                          >
-                            {solutionIcons[s.slug]}
-                            {s.name}
-                          </a>
-                        ))
+                      ? (
+                        <>
+                          <div className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase pt-1">Platform</div>
+                          {platformColLinks.map((pl) => (
+                            <a key={pl.label} href={pl.href} onClick={(e) => { e.preventDefault(); setMobileOpen(false); setMobileDropdownOpen(null); if (pl.href.startsWith("#")) handleNavClick(e, pl.href); else navigate(pl.href); }} className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm">{pl.label}</a>
+                          ))}
+                          <div className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase pt-3">Solutions</div>
+                          {solutions.map((s) => (
+                            <a key={s.slug} href={`/solutions/${s.slug}`} onClick={(e) => { e.preventDefault(); setMobileOpen(false); setMobileDropdownOpen(null); navigate(`/solutions/${s.slug}`); }} className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm">
+                              {solutionIcons[s.slug]}
+                              {s.name}
+                            </a>
+                          ))}
+                          <div className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase pt-3">Partners</div>
+                          {partnersColLinks.map((pl) => (
+                            <a key={pl.label} href={pl.href} onClick={(e) => { e.preventDefault(); setMobileOpen(false); setMobileDropdownOpen(null); navigate(pl.href); }} className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm">{pl.label}</a>
+                          ))}
+                        </>
+                      )
                       : link.dropdownType === "product"
                       ? productLinks.map((pl) => (
                           <a
