@@ -199,8 +199,9 @@ const Navbar = () => {
                               setMobileDropdownOpen(null);
                               navigate(`/solutions/${s.slug}`);
                             }}
-                            className="block type-nav text-body-muted hover:text-body text-sm"
+                            className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
                           >
+                            {solutionIcons[s.slug]}
                             {s.name}
                           </a>
                         ))
