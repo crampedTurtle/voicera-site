@@ -596,6 +596,7 @@ export default function VoiceraDocs() {
   const [sb, setSb] = useState(typeof window !== "undefined" && window.innerWidth > 768);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [highlightIdx, setHighlightIdx] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
   const Pg = PAGES[page] || Intro;
   const groups = [...new Set(NAV.map(n => n.g))];
