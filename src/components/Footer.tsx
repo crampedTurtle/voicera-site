@@ -9,7 +9,9 @@ type FooterLink = string | { label: string; href: string };
 const footerLinks: { title: string; links: FooterLink[] }[] = [
   {
     title: "Product",
-    links: ["Transcribe API", "Analyze API", "Voice Search API", "Credibility Score", "Pricing"],
+    links: [
+      { label: "Product Overview", href: "#product" },
+    ],
   },
   {
     title: "Solutions",
