@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import HeroSection from "@/components/HeroSection";
 import JsonLd from "@/components/JsonLd";
 
@@ -28,6 +29,7 @@ const Index = () => {
         description="Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams coach reps, qualify prospects faster, and close deals with data-backed confidence."
         path="/"
       />
+      <StickyNavbar />
       <Navbar />
       <HeroSection />
       <Suspense fallback={<SectionFallback />}>
