@@ -29,9 +29,17 @@ const CASE_STUDIES = [
 ];
 
 const CaseStudies = () => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   // Peek tiles for carousel edges
   const peekLeft = { title: "Coming Soon", number: "", subtitle: "", image: peekLeftImg, logo: undefined as string | undefined, tags: [] as string[] };
   const peekRight = { title: "Sales CRM", number: "", subtitle: "", image: peekRightImg, logo: undefined as string | undefined, tags: [] as string[] };
+
+  const handleTileClick = (cs: (typeof CASE_STUDIES)[number]) => {
+    if (cs.title === "Scott Ramey") {
+      setVideoOpen(true);
+    }
+  };
 
   return (
     <section className="section-padding relative overflow-hidden bg-secondary">
@@ -77,6 +85,7 @@ const CaseStudies = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="w-[340px] lg:w-[400px] flex-shrink-0 cursor-pointer"
+                onClick={() => handleTileClick(cs)}
               >
                 <CaseCard cs={cs} />
               </motion.div>
@@ -100,6 +109,7 @@ const CaseStudies = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="cursor-pointer"
+                onClick={() => handleTileClick(cs)}
               >
                 <CaseCard cs={cs} />
                 {/* Mobile info block */}
@@ -129,6 +139,42 @@ const CaseStudies = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {videoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={() => setVideoOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setVideoOpen(false)}
+                className="absolute -top-10 right-0 z-10 text-white/80 hover:text-white transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+              <iframe
+                src="https://www.youtube.com/embed/GhrtJO3R-80?autoplay=1&start=3&rel=0"
+                title="Scott Ramey Case Study"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
