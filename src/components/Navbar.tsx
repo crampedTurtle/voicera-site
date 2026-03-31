@@ -162,7 +162,8 @@ const Navbar = () => {
                               >
                                 {cl.label}
                               </a>
-                            ))}
+                             ))}
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
