@@ -151,9 +151,7 @@ const CookieBanner = () => {
       )}
     </AnimatePresence>
   );
-});
-
-CookieBanner.displayName = "CookieBanner";
+};
 
 const CookieToggle = ({
   label,
