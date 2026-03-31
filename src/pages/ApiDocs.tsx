@@ -737,7 +737,7 @@ export default function VoiceraDocs() {
           )}
         </div>
 
-        <div style={{ marginLeft: isMobile ? 0 : "auto", flexShrink: 0 }}>
+        <div style={{ marginLeft: isMobile ? 0 : "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 8 }}>
           <a
             href="https://calendly.com/voicera/demo"
             target="_blank"
@@ -753,6 +753,24 @@ export default function VoiceraDocs() {
             }}
           >
             Book a Demo
+          </a>
+          <a
+            href="/#pricing"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              padding: "7px 16px", borderRadius: 8,
+              background: C.w, color: C.txM,
+              fontSize: 12.5, fontWeight: 500, fontFamily: F.b,
+              textDecoration: "none",
+              border: `1px solid ${C.bd}`,
+              whiteSpace: "nowrap",
+              transition: "border-color 0.15s, color 0.15s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.txM; e.currentTarget.style.color = C.tx; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.bd; e.currentTarget.style.color = C.txM; }}
+          >
+            Play in the Sandbox
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </header>
