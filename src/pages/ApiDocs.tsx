@@ -580,23 +580,22 @@ export default function VoiceraDocs() {
   const groups = [...new Set(NAV.map(n => n.g))];
 
   return (
-    <div style={{ fontFamily: F.b, background: C.bgAlt, color: C.tx, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ fontFamily: F.b, color: C.tx, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         *::-webkit-scrollbar { width: 6px; height: 6px; }
         *::-webkit-scrollbar-track { background: transparent; }
         *::-webkit-scrollbar-thumb { background: ${C.bd}; border-radius: 3px; }
         *::-webkit-scrollbar-thumb:hover { background: ${C.bdL}; }
-        button { transition: all 0.15s ease; }
-        button:hover { opacity: 0.85; }
       `}</style>
 
-      {/* ── HEADER ── */}
-      <header style={{
-        position: "sticky", top: 0, zIndex: 100,
+      {/* Site Navbar */}
+      <Navbar />
+
+      {/* Docs sub-header */}
+      <div style={{
         display: "flex", alignItems: "center", gap: 16,
-        padding: "0 24px", height: 58,
+        padding: "0 24px", height: 48,
         background: "rgba(255,255,255,0.92)", backdropFilter: "blur(12px)",
         borderBottom: `1px solid ${C.bd}`,
         boxShadow: "0 1px 3px rgba(15,23,42,0.04)",
@@ -606,20 +605,14 @@ export default function VoiceraDocs() {
           cursor: "pointer", fontSize: 14, padding: "4px 8px", borderRadius: 6,
           display: "flex", alignItems: "center",
         }}>
-          {sb ? "\u2630" : "\u2630"}
+          ☰
         </button>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <span style={{ fontFamily: F.b, fontWeight: 800, fontSize: 19, color: C.tx, letterSpacing: "-0.03em" }}>
-            v<span style={{ color: C.ac }}>o</span>icera
-          </span>
-        </div>
 
         <div style={{
           fontSize: 11, fontWeight: 700, fontFamily: F.m,
           color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
           padding: "3px 10px", borderRadius: 5, letterSpacing: "0.02em",
-        }}>Sincerity&#8482; Docs</div>
+        }}>Sincerity™ Docs</div>
 
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{
@@ -627,7 +620,7 @@ export default function VoiceraDocs() {
             background: C.sfAlt, padding: "4px 10px", borderRadius: 6, border: `1px solid ${C.bd}`,
           }}>v{B.ver}</span>
         </div>
-      </header>
+      </div>
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* ── SIDEBAR ── */}
