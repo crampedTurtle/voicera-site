@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Headphones, Video, Layers, Server, ArrowUpRight } from "lucide-react";
 import PricingCapsules from "./PricingCapsules";
 import FreePricingCard from "./FreePricingCard";
+import { useLocation } from "react-router-dom";
 
 type Unit = "minute" | "hour";
 
@@ -43,9 +44,12 @@ const formatPrice = (value: number, unit: Unit) => {
 
 const SolutionsSection = () => {
   const [unit, setUnit] = useState<Unit>("minute");
+  const location = useLocation();
+  const autoOpenFree = location.hash === "#pricing-sandbox";
 
   return (
     <section
+      id="pricing-sandbox"
       className="relative overflow-hidden bg-[#0B1120]"
     >
       {/* Background video */}
@@ -78,7 +82,7 @@ const SolutionsSection = () => {
         {/* Layout: card left, empty right for future image */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Free Tier Card */}
-          <FreePricingCard />
+          <FreePricingCard autoOpen={autoOpenFree} />
           {/* Paid Pricing Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
