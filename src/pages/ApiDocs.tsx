@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
+import voiceraLogo from "@/assets/voicera-logo-new.png";
 import Footer from "@/components/Footer";
 
 /* ═══════════════════════════════════════════════════════════════════════
