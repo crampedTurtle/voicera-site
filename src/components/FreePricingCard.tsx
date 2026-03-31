@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Headphones, Video, Layers, Server } from "lucide-react";
+import StartBuildingModal from "./StartBuildingModal";
 
 const FreePricingCard = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
