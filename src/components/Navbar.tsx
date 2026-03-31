@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import { solutions } from "@/pages/SolutionPage";
 
