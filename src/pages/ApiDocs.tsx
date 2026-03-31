@@ -575,9 +575,15 @@ const PAGES = { intro: Intro, quickstart: Quickstart, auth: Auth, concepts: Conc
    ═══════════════════════════════════════════════════════════════════════ */
 export default function VoiceraDocs() {
   const [page, setPage] = useState("intro");
-  const [sb, setSb] = useState(true);
+  const [sb, setSb] = useState(typeof window !== "undefined" && window.innerWidth > 768);
   const Pg = PAGES[page] || Intro;
   const groups = [...new Set(NAV.map(n => n.g))];
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  const handleNavSelect = (id: string) => {
+    setPage(id);
+    if (isMobile) setSb(false);
+  };
 
   return (
     <div style={{ fontFamily: F.b, color: C.tx, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -592,8 +598,8 @@ export default function VoiceraDocs() {
       {/* Docs header */}
       <header style={{
         position: "sticky", top: 0, zIndex: 100,
-        display: "flex", alignItems: "center", gap: 14,
-        padding: "0 24px", height: 58,
+        display: "flex", alignItems: "center", gap: 10,
+        padding: "0 16px", height: 56,
         background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)",
         borderBottom: `1px solid ${C.bd}`,
         boxShadow: "0 1px 3px rgba(15,23,42,0.04)",
@@ -601,33 +607,35 @@ export default function VoiceraDocs() {
         <button onClick={() => setSb(!sb)} style={{
           background: "none", border: `1px solid ${C.bd}`, color: C.txM,
           cursor: "pointer", fontSize: 16, padding: "5px 9px", borderRadius: 6,
-          display: "flex", alignItems: "center",
+          display: "flex", alignItems: "center", flexShrink: 0,
         }}>
           ☰
         </button>
 
-        <a href="/" style={{ display: "flex", alignItems: "center" }}>
-          <img src={voiceraLogo} alt="Voicera" style={{ height: 60, width: "auto" }} />
+        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+          <img src={voiceraLogo} alt="Voicera" style={{ height: 50, width: "auto" }} />
         </a>
 
         <div style={{
-          fontSize: 11, fontWeight: 700, fontFamily: F.m,
+          fontSize: 10, fontWeight: 700, fontFamily: F.m,
           color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
-          padding: "4px 12px", borderRadius: 20, letterSpacing: "0.02em",
+          padding: "3px 10px", borderRadius: 20, letterSpacing: "0.02em",
+          whiteSpace: "nowrap", flexShrink: 0,
         }}>Sincerity™ V1.1</div>
 
-        <div style={{ marginLeft: "auto" }}>
+        <div style={{ marginLeft: "auto", flexShrink: 0 }}>
           <a
             href="https://calendly.com/voicera/demo"
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              padding: "8px 20px", borderRadius: 8,
+              display: "inline-flex", alignItems: "center",
+              padding: "7px 14px", borderRadius: 8,
               background: C.ac, color: "#fff",
-              fontSize: 13.5, fontWeight: 600, fontFamily: F.b,
+              fontSize: 12.5, fontWeight: 600, fontFamily: F.b,
               textDecoration: "none", border: "none",
               boxShadow: "0 1px 3px rgba(37,99,235,0.3)",
+              whiteSpace: "nowrap",
             }}
           >
             Book a Demo
@@ -635,51 +643,64 @@ export default function VoiceraDocs() {
         </div>
       </header>
 
-      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+      <div style={{ display: "flex", flex: 1, overflow: "hidden", position: "relative" }}>
         {/* ── SIDEBAR ── */}
         {sb && (
-          <nav style={{
-            width: 250, minWidth: 250, flexShrink: 0,
-            borderRight: `1px solid ${C.bd}`,
-            background: C.w,
-            overflowY: "auto", padding: "20px 0",
-          }}>
-            {groups.map(g => (
-              <div key={g} style={{ marginBottom: 22 }}>
-                <div style={{
-                  padding: "0 20px", marginBottom: 8,
-                  fontSize: 16, fontWeight: 800, fontFamily: F.b,
-                  color: "#000000", textTransform: "uppercase", letterSpacing: "0.04em",
-                }}>{g}</div>
-                {NAV.filter(n => n.g === g).map(n => (
-                  <button
-                    key={n.id}
-                    onClick={() => setPage(n.id)}
-                    style={{
-                      display: "block", width: "100%", textAlign: "left",
-                      padding: "8px 20px",
-                      background: page === n.id ? C.acBg : "transparent",
-                      border: "none",
-                      borderLeft: page === n.id ? `3px solid ${C.ac}` : "3px solid transparent",
-                      color: page === n.id ? C.ac : C.txM,
-                      fontSize: 13.5, fontFamily: F.b,
-                      fontWeight: page === n.id ? 600 : 400,
-                      cursor: "pointer",
-                      borderRadius: 0,
-                    }}
-                  >
-                    {n.label}
-                  </button>
-                ))}
-              </div>
-            ))}
-          </nav>
+          <>
+            {/* Mobile overlay backdrop */}
+            {isMobile && (
+              <div
+                onClick={() => setSb(false)}
+                style={{
+                  position: "fixed", inset: 0, top: 56,
+                  background: "rgba(0,0,0,0.3)", zIndex: 49,
+                }}
+              />
+            )}
+            <nav style={{
+              width: 250, minWidth: 250, flexShrink: 0,
+              borderRight: `1px solid ${C.bd}`,
+              background: C.w,
+              overflowY: "auto", padding: "20px 0",
+              ...(isMobile ? { position: "fixed", top: 56, left: 0, bottom: 0, zIndex: 50, boxShadow: "4px 0 12px rgba(0,0,0,0.1)" } : {}),
+            }}>
+              {groups.map(g => (
+                <div key={g} style={{ marginBottom: 22 }}>
+                  <div style={{
+                    padding: "0 20px", marginBottom: 8,
+                    fontSize: 16, fontWeight: 800, fontFamily: F.b,
+                    color: "#000000", textTransform: "uppercase", letterSpacing: "0.04em",
+                  }}>{g}</div>
+                  {NAV.filter(n => n.g === g).map(n => (
+                    <button
+                      key={n.id}
+                      onClick={() => handleNavSelect(n.id)}
+                      style={{
+                        display: "block", width: "100%", textAlign: "left",
+                        padding: "8px 20px",
+                        background: page === n.id ? C.acBg : "transparent",
+                        border: "none",
+                        borderLeft: page === n.id ? `3px solid ${C.ac}` : "3px solid transparent",
+                        color: page === n.id ? C.ac : C.txM,
+                        fontSize: 13.5, fontFamily: F.b,
+                        fontWeight: page === n.id ? 600 : 400,
+                        cursor: "pointer",
+                        borderRadius: 0,
+                      }}
+                    >
+                      {n.label}
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </nav>
+          </>
         )}
 
         {/* ── CONTENT ── */}
         <main style={{
           flex: 1, overflowY: "auto",
-          padding: "40px 52px 80px",
+          padding: isMobile ? "20px 12px 60px" : "40px 52px 80px",
           maxWidth: 880,
           background: C.bgAlt,
         }}>
@@ -687,7 +708,7 @@ export default function VoiceraDocs() {
             background: C.w,
             borderRadius: 14,
             border: `1px solid ${C.bd}`,
-            padding: "40px 44px",
+            padding: isMobile ? "20px 16px" : "40px 44px",
             boxShadow: "0 1px 4px rgba(15,23,42,0.04)",
           }}>
             <Pg />
