@@ -36,6 +36,14 @@ const companyLinks = [
   { label: "About Us", href: "/about" },
   { label: "Media", href: "/media" },
   { label: "Investors", href: "/investors" },
+];
+
+const platformColLinks = [
+  { label: "Platform", href: "#" },
+  { label: "Case Studies", href: "#case-studies" },
+];
+
+const partnersColLinks = [
   { label: "Become a Partner", href: "/partners" },
 ];
 
