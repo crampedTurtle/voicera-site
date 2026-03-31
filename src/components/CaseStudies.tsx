@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
 import policeImg from "@/assets/case-study-police.jpg";
