@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
+import iconAnalyze from "@/assets/icon-analyze.png";
+import iconApiDocs from "@/assets/icon-api-docs.png";
+import iconSdks from "@/assets/icon-sdks.png";
 import { solutions } from "@/pages/SolutionPage";
 
 const solutionIcons: Record<string, React.ReactNode> = {
@@ -13,10 +16,15 @@ const solutionIcons: Record<string, React.ReactNode> = {
   legal: <Scale className="w-4 h-4 text-primary" />,
 };
 
+const productLinks = [
+  { label: "Analyze", href: "#product", icon: iconAnalyze },
+  { label: "API Docs", href: "#product", icon: iconApiDocs },
+  { label: "SDKs", href: "#product", icon: iconSdks },
+];
+
 const navLinks = [
-  { label: "Product", href: "#product" },
+  { label: "Product", href: "#product", hasDropdown: true, dropdownType: "product" as const },
   { label: "Solutions", href: "#solutions", hasDropdown: true, dropdownType: "solutions" as const },
-  
   {
     label: "Company",
     href: "#company",
@@ -125,6 +133,22 @@ const Navbar = () => {
                                 {s.name}
                               </a>
                             ))
+                          : link.dropdownType === "product"
+                          ? productLinks.map((pl) => (
+                              <a
+                                key={pl.label}
+                                href={pl.href}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setDropdownOpen(null);
+                                  handleNavClick(e, pl.href);
+                                }}
+                                className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                              >
+                                <img src={pl.icon} alt="" className="w-5 h-5" />
+                                {pl.label}
+                              </a>
+                            ))
                           : companyLinks.map((cl) => (
                               <a
                                 key={cl.label}
@@ -138,7 +162,7 @@ const Navbar = () => {
                               >
                                 {cl.label}
                               </a>
-                            ))}
+                             ))}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -203,6 +227,23 @@ const Navbar = () => {
                           >
                             {solutionIcons[s.slug]}
                             {s.name}
+                          </a>
+                        ))
+                      : link.dropdownType === "product"
+                      ? productLinks.map((pl) => (
+                          <a
+                            key={pl.label}
+                            href={pl.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setMobileOpen(false);
+                              setMobileDropdownOpen(null);
+                              handleNavClick(e, pl.href);
+                            }}
+                            className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
+                          >
+                            <img src={pl.icon} alt="" className="w-4 h-4" />
+                            {pl.label}
                           </a>
                         ))
                       : companyLinks.map((cl) => (
