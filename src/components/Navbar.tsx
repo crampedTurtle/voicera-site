@@ -145,7 +145,7 @@ const Navbar = () => {
                                 }}
                                 className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
                               >
-                                {pl.icon && <img src={pl.icon} alt="" className="w-[60px] h-[60px]" />}
+                                {pl.icon && <img src={pl.icon} alt="" className="w-[60px] h-[60px]" style={{ filter: 'brightness(0) saturate(100%) invert(38%) sepia(52%) saturate(2057%) hue-rotate(209deg) brightness(101%) contrast(92%)' }} />}
                                 {pl.label}
                               </a>
                             ))
