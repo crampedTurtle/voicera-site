@@ -17,6 +17,7 @@ import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
 import Partners from "./pages/Partners.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import TermsOfUse from "./pages/TermsOfUse.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 
 const queryClient = new QueryClient();
