@@ -100,44 +100,8 @@ const CaseStudies = () => {
             </div>
           </div>
 
-          {/* Mobile stacked */}
-          <div className="md:hidden flex flex-col gap-8">
-            {CASE_STUDIES.map((cs, i) => (
-              <motion.div
-                key={cs.number}
-                initial={{ opacity: 0, scale: 0.92, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="cursor-pointer"
-                onClick={() => handleTileClick(cs)}
-              >
-                <CaseCard cs={cs} />
-                {/* Mobile info block */}
-                <div className="mt-0 rounded-b-2xl bg-muted p-5">
-                  <h3 className="font-display text-foreground text-xl font-bold leading-tight">
-                    {cs.title}
-                  </h3>
-                  <p className="font-display text-foreground font-semibold text-sm mt-2">
-                    {cs.subtitle}
-                  </p>
-                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {cs.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* Mobile/Tablet carousel */}
+          <MobileCarousel studies={CASE_STUDIES} onTileClick={handleTileClick} />
         </div>
       </div>
 
