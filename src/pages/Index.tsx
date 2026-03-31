@@ -29,6 +29,7 @@ const Index = () => {
         description="Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams coach reps, qualify prospects faster, and close deals with data-backed confidence."
         path="/"
       />
+      <StickyNavbar />
       <Navbar />
       <HeroSection />
       <Suspense fallback={<SectionFallback />}>
