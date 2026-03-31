@@ -22,7 +22,7 @@ const StickyNavbar = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border hidden md:block"
+          className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-[0_2px_16px_rgba(0,0,0,0.06)] hidden md:block"
         >
           <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center">
