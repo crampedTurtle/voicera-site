@@ -478,7 +478,7 @@ const TABS = [
   },
   {
     id: "analyze",
-    label: "ANALYZE API",
+    label: "AUDIO ANALYSIS",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
         <path d="M2 11l3.5-3.5 2.5 2.5 5-6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
