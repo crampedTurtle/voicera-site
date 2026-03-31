@@ -710,8 +710,9 @@ export default function VoiceraDocs() {
                   type="text"
                   placeholder="Search docs..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => { setSearchQuery(e.target.value); setHighlightIdx(-1); }}
                   onFocus={() => setSearchFocused(true)}
+                  onKeyDown={handleSearchKeyDown}
                   style={{
                     border: "none", outline: "none", background: "transparent",
                     fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
