@@ -122,9 +122,9 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.18 }}
-                        className={`absolute top-full mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden ${
+                        className={`absolute top-full mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden z-50 ${
                           link.dropdownType === "solutions"
-                            ? "left-1/2 -translate-x-1/2 w-[580px]"
+                            ? "right-0 w-[580px] max-w-[calc(100vw-2rem)]"
                             : "left-1/2 -translate-x-1/2 w-64"
                         }`}
                       >
