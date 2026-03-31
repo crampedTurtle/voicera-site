@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 /* ═══════════════════════════════════════════════════════════════════════
    VOICERA SINCERITY™ — API DOCUMENTATION LIBRARY v2.1.0
