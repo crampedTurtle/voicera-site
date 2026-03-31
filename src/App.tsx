@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
 import Partners from "./pages/Partners.tsx";
+import CookieBanner from "./components/CookieBanner.tsx";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <CookieBanner />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
