@@ -651,7 +651,6 @@ export default function VoiceraDocs() {
                       display: "block", width: "100%", textAlign: "left",
                       padding: "8px 20px",
                       background: page === n.id ? C.acBg : "transparent",
-                      borderLeft: page === n.id ? `3px solid ${C.ac}` : "3px solid transparent",
                       border: "none",
                       borderLeft: page === n.id ? `3px solid ${C.ac}` : "3px solid transparent",
                       color: page === n.id ? C.ac : C.txM,
