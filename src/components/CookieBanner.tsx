@@ -142,7 +142,9 @@ const CookieBanner = forwardRef<HTMLDivElement>((_, ref) => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+CookieBanner.displayName = "CookieBanner";
 
 const CookieToggle = ({
   label,
