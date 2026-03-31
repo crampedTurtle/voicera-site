@@ -12,7 +12,7 @@ const footerLinks: { title: string; links: FooterLink[] }[] = [
     ],
   },
   {
-    title: "Solutions",
+    title: "Platform",
     links: [
       { label: "Sincerity™ for Sales", href: "/solutions/sales" },
       { label: "Sincerity™ for HR", href: "/solutions/hr" },
