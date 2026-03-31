@@ -363,3 +363,15 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Calendly popup — make it full-height so the form is visible without scrolling */
+.calendly-overlay .calendly-popup {
+  max-height: 95vh !important;
+  height: 95vh !important;
+}
+.calendly-overlay .calendly-popup .calendly-popup-content {
+  height: 100% !important;
+}
+.calendly-overlay .calendly-popup .calendly-popup-content iframe {
+  height: 100% !important;
+}
