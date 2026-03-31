@@ -16,21 +16,21 @@ const analysisItems = [
   {
     icon: Video,
     label: "Video analysis",
-    perMinute: 0.018,
-    per5Min: 0.09,
+    perMinute: 0.06,
+    per5Min: 0.3,
   },
   {
     icon: Layers,
     label: "Composite analysis",
-    perMinute: 0.076,
-    per5Min: 0.38,
+    perMinute: 0.06,
+    per5Min: 0.3,
   },
 ];
 
 const platformItems = [
   { icon: Headphones, label: "Audio", perMinute: 0.06 },
-  { icon: Video, label: "Video", perMinute: 0.018 },
-  { icon: Layers, label: "Composite", perMinute: 0.076 },
+  { icon: Video, label: "Video", perMinute: 0.06 },
+  { icon: Layers, label: "Composite", perMinute: 0.06 },
 ];
 
 const formatPrice = (value: number, unit: Unit) => {
@@ -213,7 +213,7 @@ const SolutionsSection = () => {
                   <Layers size={16} className="text-muted-foreground" />
                   Hourly cap (composite)
                 </span>
-                <span className="text-sm text-muted-foreground">$0.37 / hour</span>
+                <span className="text-sm text-muted-foreground">$3.60 / hour</span>
               </div>
             </div>
 
