@@ -145,7 +145,7 @@ const Navbar = () => {
                                 }}
                                 className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
                               >
-                                <img src={pl.icon} alt="" className="w-[60px] h-[60px]" />
+                                {pl.icon && <img src={pl.icon} alt="" className="w-[60px] h-[60px]" />}
                                 {pl.label}
                               </a>
                             ))
