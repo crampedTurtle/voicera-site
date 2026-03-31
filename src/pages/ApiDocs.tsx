@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import Footer from "@/components/Footer";
 
@@ -75,6 +75,24 @@ const NAV = [
   { id:"ep-upload",  label:"Pre-signed Upload",   g:"API Reference" },
   { id:"objects",    label:"Response Objects",     g:"Reference" },
   { id:"errors",     label:"Error Handling",       g:"Reference" },
+];
+
+/* ═══════ SEARCH INDEX ═══════ */
+const SEARCH_ENTRIES: { id: string; label: string; group: string; keywords: string[] }[] = [
+  { id: "intro", label: "Introduction", group: "Get Started", keywords: ["welcome", "overview", "base url", "capabilities", "audio analysis", "video analysis", "composite fusion", "request structure", "rest", "json"] },
+  { id: "quickstart", label: "Quickstart", group: "Get Started", keywords: ["curl", "authenticate", "submit media", "poll", "job_id", "3 steps", "tutorial", "getting started"] },
+  { id: "auth", label: "Authentication", group: "Get Started", keywords: ["x-api-key", "cognito", "jwt", "token", "session", "security", "header", "401", "token lifecycle"] },
+  { id: "concepts", label: "Core Concepts", group: "Concepts", keywords: ["sincerity scoring", "truthfulness bands", "sincere", "uncertain", "deceptive", "diarization", "speaker", "prediction", "prosody", "voice quality", "emotional", "linguistic", "asynchronous"] },
+  { id: "modalities", label: "Modalities", group: "Concepts", keywords: ["audio", "video", "composite", "media_type", "pipeline", "fusion", "mp3", "wav", "mp4", "webm", "mkv"] },
+  { id: "arch", label: "Architecture", group: "Concepts", keywords: ["infrastructure", "aws", "gcp", "s3", "dynamodb", "cloud run", "data flow", "upload", "workers", "sqs", "supported formats"] },
+  { id: "ep-health", label: "Health Endpoints", group: "API Reference", keywords: ["/health", "/health/ready", "liveness", "readiness", "GET", "status", "uptime"] },
+  { id: "ep-auth", label: "Auth Token Endpoints", group: "API Reference", keywords: ["/api/v1/auth/token", "POST", "DELETE", "exchange", "revoke", "logout", "jwt_token", "api_key"] },
+  { id: "ep-analyze", label: "Analyze Endpoint", group: "API Reference", keywords: ["/api/v1/analyze", "POST", "submit", "file", "media_type", "webhook_url", "202", "multipart"] },
+  { id: "ep-jobs", label: "Jobs Endpoint", group: "API Reference", keywords: ["/api/v1/jobs", "GET", "job_id", "status", "pending", "processing", "completed", "failed", "result", "download"] },
+  { id: "ep-batch", label: "Batch Endpoints", group: "API Reference", keywords: ["/api/v1/analyze/batch", "/api/v1/batches", "POST", "GET", "batch_id", "50 files", "bulk"] },
+  { id: "ep-upload", label: "Pre-signed Upload", group: "API Reference", keywords: ["/api/v1/upload-urls", "/api/v1/jobs/submit", "pre-signed", "s3", "PUT", "large files", "parallel upload"] },
+  { id: "objects", label: "Response Objects", group: "Reference", keywords: ["AnalysisResult", "SincerityAnalysis", "CompositeResult", "SpeakerSegment", "SincerityTimelineEntry", "Transcription", "schema", "overall_score", "model_scores", "fusion_weights"] },
+  { id: "errors", label: "Error Handling", group: "Reference", keywords: ["error", "detail", "status codes", "400", "401", "403", "404", "413", "422", "429", "503", "validation", "retry", "exponential backoff"] },
 ];
 
 /* ═══════ REUSABLE ATOMS ═══════ */
@@ -576,9 +594,39 @@ const PAGES = { intro: Intro, quickstart: Quickstart, auth: Auth, concepts: Conc
 export default function VoiceraDocs() {
   const [page, setPage] = useState("intro");
   const [sb, setSb] = useState(typeof window !== "undefined" && window.innerWidth > 768);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
   const Pg = PAGES[page] || Intro;
   const groups = [...new Set(NAV.map(n => n.g))];
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  const searchResults = searchQuery.trim().length > 0
+    ? SEARCH_ENTRIES.filter(e => {
+        const q = searchQuery.toLowerCase();
+        return e.label.toLowerCase().includes(q)
+          || e.group.toLowerCase().includes(q)
+          || e.keywords.some(k => k.toLowerCase().includes(q));
+      })
+    : [];
+
+  const handleSearchSelect = (id: string) => {
+    setPage(id);
+    setSearchQuery("");
+    setSearchFocused(false);
+    if (isMobile) setSb(false);
+  };
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const handleNavSelect = (id: string) => {
     setPage(id);
@@ -623,7 +671,73 @@ export default function VoiceraDocs() {
           whiteSpace: "nowrap", flexShrink: 0,
         }}>Sincerity™ V1.1</div>
 
-        <div style={{ marginLeft: "auto", flexShrink: 0 }}>
+        {/* Search bar */}
+        <div ref={searchRef} style={{ position: "relative", flex: isMobile ? 1 : "0 1 280px", minWidth: 0 }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "6px 12px", borderRadius: 8,
+            border: `1px solid ${searchFocused ? C.ac : C.bd}`,
+            background: C.bgAlt,
+            transition: "border-color 0.15s",
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.txD} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search docs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              style={{
+                border: "none", outline: "none", background: "transparent",
+                fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
+              }}
+            />
+            {searchQuery && (
+              <button onClick={() => { setSearchQuery(""); }} style={{
+                background: "none", border: "none", cursor: "pointer", color: C.txD,
+                fontSize: 14, padding: 0, lineHeight: 1, flexShrink: 0,
+              }}>✕</button>
+            )}
+          </div>
+
+          {/* Dropdown results */}
+          {searchFocused && searchQuery.trim().length > 0 && (
+            <div style={{
+              position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
+              background: C.w, border: `1px solid ${C.bd}`, borderRadius: 10,
+              boxShadow: "0 8px 24px rgba(15,23,42,0.12)", maxHeight: 320,
+              overflowY: "auto", zIndex: 200,
+            }}>
+              {searchResults.length === 0 ? (
+                <div style={{ padding: "16px 14px", fontSize: 13, color: C.txD, textAlign: "center" }}>
+                  No results for "{searchQuery}"
+                </div>
+              ) : (
+                searchResults.map((r) => (
+                  <button
+                    key={r.id}
+                    onClick={() => handleSearchSelect(r.id)}
+                    style={{
+                      display: "block", width: "100%", textAlign: "left",
+                      padding: "10px 14px", border: "none", background: "transparent",
+                      cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                      fontSize: 13, fontFamily: F.b, color: C.tx,
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <div style={{ fontWeight: 600 }}>{r.label}</div>
+                    <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                  </button>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        <div style={{ marginLeft: isMobile ? 0 : "auto", flexShrink: 0 }}>
           <a
             href="https://calendly.com/voicera/demo"
             target="_blank"
