@@ -213,7 +213,7 @@ const SolutionsSection = () => {
                   <Layers size={16} className="text-muted-foreground" />
                   Hourly cap (composite)
                 </span>
-                <span className="text-sm text-muted-foreground">$0.37 / hour</span>
+                <span className="text-sm text-muted-foreground">$3.60 / hour</span>
               </div>
             </div>
 
