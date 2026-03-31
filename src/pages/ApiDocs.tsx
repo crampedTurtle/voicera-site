@@ -589,38 +589,51 @@ export default function VoiceraDocs() {
         *::-webkit-scrollbar-thumb:hover { background: ${C.bdL}; }
       `}</style>
 
-      {/* Site Navbar */}
-      <Navbar />
-
-      {/* Docs sub-header */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: 16,
-        padding: "0 24px", height: 48,
-        background: "rgba(255,255,255,0.92)", backdropFilter: "blur(12px)",
+      {/* Docs header */}
+      <header style={{
+        position: "sticky", top: 0, zIndex: 100,
+        display: "flex", alignItems: "center", gap: 14,
+        padding: "0 24px", height: 58,
+        background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)",
         borderBottom: `1px solid ${C.bd}`,
         boxShadow: "0 1px 3px rgba(15,23,42,0.04)",
       }}>
         <button onClick={() => setSb(!sb)} style={{
           background: "none", border: `1px solid ${C.bd}`, color: C.txM,
-          cursor: "pointer", fontSize: 14, padding: "4px 8px", borderRadius: 6,
+          cursor: "pointer", fontSize: 16, padding: "5px 9px", borderRadius: 6,
           display: "flex", alignItems: "center",
         }}>
           ☰
         </button>
 
+        <a href="/" style={{ display: "flex", alignItems: "center" }}>
+          <img src={voiceraLogo} alt="Voicera" style={{ height: 60, width: "auto" }} />
+        </a>
+
         <div style={{
           fontSize: 11, fontWeight: 700, fontFamily: F.m,
           color: C.ac, background: C.acBg, border: `1px solid ${C.acBg2}`,
-          padding: "3px 10px", borderRadius: 5, letterSpacing: "0.02em",
-        }}>Sincerity™ Docs</div>
+          padding: "4px 12px", borderRadius: 20, letterSpacing: "0.02em",
+        }}>Sincerity™ V1.1</div>
 
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{
-            fontFamily: F.m, fontSize: 11, color: C.txD,
-            background: C.sfAlt, padding: "4px 10px", borderRadius: 6, border: `1px solid ${C.bd}`,
-          }}>v{B.ver}</span>
+        <div style={{ marginLeft: "auto" }}>
+          <a
+            href="https://calendly.com/voicera/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              padding: "8px 20px", borderRadius: 8,
+              background: C.ac, color: "#fff",
+              fontSize: 13.5, fontWeight: 600, fontFamily: F.b,
+              textDecoration: "none", border: "none",
+              boxShadow: "0 1px 3px rgba(37,99,235,0.3)",
+            }}
+          >
+            Book a Demo
+          </a>
         </div>
-      </div>
+      </header>
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* ── SIDEBAR ── */}
