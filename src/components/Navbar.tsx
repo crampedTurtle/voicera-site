@@ -330,11 +330,11 @@ const Navbar = () => {
               </a>
             )
           )}
-          <div className="flex flex-col gap-3 pt-4">
-            <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5">
-              <span className="btn-label inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
+          <div className="flex flex-row gap-3 pt-4">
+            <a href="https://sincerity.voicera.io/auth/login" target="_blank" rel="noopener noreferrer" className="flex-1 border-2 border-foreground bg-background px-5 py-3.5 type-button rounded-2xl inline-flex items-center justify-center gap-1.5">
+              <span className="inline-flex items-center gap-1.5">Login <ArrowUpRight className="w-3.5 h-3.5" /></span>
             </a>
-            <button onClick={() => { setMobileOpen(false); (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }} className="gradient-bg px-5 py-2 type-button text-white rounded-xl inline-flex items-center gap-1.5">
+            <button onClick={() => { setMobileOpen(false); (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }} className="flex-1 bg-foreground text-background px-5 py-3.5 type-button rounded-2xl inline-flex items-center justify-center gap-1.5">
               Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
