@@ -133,6 +133,22 @@ const Navbar = () => {
                                 {s.name}
                               </a>
                             ))
+                          : link.dropdownType === "product"
+                          ? productLinks.map((pl) => (
+                              <a
+                                key={pl.label}
+                                href={pl.href}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setDropdownOpen(null);
+                                  handleNavClick(e, pl.href);
+                                }}
+                                className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                              >
+                                <img src={pl.icon} alt="" className="w-5 h-5" />
+                                {pl.label}
+                              </a>
+                            ))
                           : companyLinks.map((cl) => (
                               <a
                                 key={cl.label}
@@ -147,7 +163,6 @@ const Navbar = () => {
                                 {cl.label}
                               </a>
                             ))}
-                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
