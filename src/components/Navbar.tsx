@@ -5,7 +5,7 @@ import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, S
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import iconAnalyze from "@/assets/icon-analyze.png";
 import iconApiDocs from "@/assets/icon-api-docs.png";
-import iconSdks from "@/assets/icon-sdks.png";
+
 import { solutions } from "@/pages/SolutionPage";
 
 const solutionIcons: Record<string, React.ReactNode> = {
@@ -19,7 +19,6 @@ const solutionIcons: Record<string, React.ReactNode> = {
 const productLinks = [
   { label: "Analyze", href: "#product", icon: iconAnalyze },
   { label: "API Docs", href: "#product" },
-  { label: "SDKs", href: "#product" },
 ];
 
 const navLinks = [
