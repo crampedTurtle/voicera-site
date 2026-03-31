@@ -37,9 +37,7 @@ const footerLinks: { title: string; links: FooterLink[] }[] = [
 ];
 
 const complianceBadges = [
-  { src: badgeSoc, alt: "AICPA SOC Certified" },
   { src: badgeGdpr, alt: "GDPR Compliant" },
-  { src: badgeTpn, alt: "TPN Trusted Partner Network" },
 ];
 
 const Footer = () => (
