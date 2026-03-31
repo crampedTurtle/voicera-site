@@ -5,6 +5,13 @@ import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, S
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import { solutions } from "@/pages/SolutionPage";
 
+const solutionIcons: Record<string, React.ReactNode> = {
+  sales: <DollarSign className="w-4 h-4 text-primary" />,
+  hr: <Users className="w-4 h-4 text-primary" />,
+  "law-enforcement": <Shield className="w-4 h-4 text-primary" />,
+  dating: <Heart className="w-4 h-4 text-primary" />,
+  legal: <Scale className="w-4 h-4 text-primary" />,
+};
 
 const navLinks = [
   { label: "Product", href: "#product" },
