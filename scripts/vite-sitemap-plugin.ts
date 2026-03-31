@@ -1,18 +1,18 @@
 /**
- * Generates sitemap.xml from the centralized route registry.
- * Called by the Vite plugin on every build/dev start so it's always up-to-date.
- * Can also be run standalone: npx tsx scripts/generate-sitemap.ts
+ * Vite plugin that regenerates sitemap.xml from the route registry
+ * on every dev server start and production build.
  */
 
+import type { Plugin } from "vite";
 import { siteRoutes, SITE_URL } from "../src/lib/routes";
 import * as fs from "fs";
 import * as path from "path";
 
-export function generateSitemapXml(): string {
+function buildSitemapXml(): string {
   const today = new Date().toISOString().split("T")[0];
 
   const urls = siteRoutes
-    .filter((r) => r.path !== "/sitemap") // sitemap page itself is optional
+    .filter((r) => r.path !== "/sitemap")
     .map(
       (route) => `  <url>
     <loc>${SITE_URL}${route.path === "/" ? "" : route.path}</loc>
@@ -33,7 +33,13 @@ ${urls}
 </urlset>`;
 }
 
-// Run standalone
-const outPath = path.resolve(import.meta.dirname, "../public/sitemap.xml");
-fs.writeFileSync(outPath, generateSitemapXml(), "utf-8");
-console.log(`✅ sitemap.xml generated with ${siteRoutes.length} routes`);
+export function sitemapPlugin(): Plugin {
+  return {
+    name: "vite-plugin-sitemap",
+    buildStart() {
+      const outPath = path.resolve(import.meta.dirname, "../public/sitemap.xml");
+      fs.writeFileSync(outPath, buildSitemapXml(), "utf-8");
+      console.log(`✅ sitemap.xml auto-generated with ${siteRoutes.length} routes`);
+    },
+  };
+}
