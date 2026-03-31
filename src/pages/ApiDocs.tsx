@@ -760,7 +760,7 @@ export default function VoiceraDocs() {
             </a>
             {!isMobile && (
               <a
-                href="/#pricing"
+                href="/#pricing-sandbox"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 6,
                   padding: "7px 16px", borderRadius: 8,
