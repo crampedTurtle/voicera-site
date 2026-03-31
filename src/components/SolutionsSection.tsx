@@ -81,7 +81,7 @@ const SolutionsSection = () => {
         {/* Layout: card left, empty right for future image */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Free Tier Card */}
-          <FreePricingCard />
+          <FreePricingCard autoOpen={autoOpenFree} />
           {/* Paid Pricing Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
