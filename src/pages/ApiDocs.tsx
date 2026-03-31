@@ -77,6 +77,24 @@ const NAV = [
   { id:"errors",     label:"Error Handling",       g:"Reference" },
 ];
 
+/* ═══════ SEARCH INDEX ═══════ */
+const SEARCH_ENTRIES: { id: string; label: string; group: string; keywords: string[] }[] = [
+  { id: "intro", label: "Introduction", group: "Get Started", keywords: ["welcome", "overview", "base url", "capabilities", "audio analysis", "video analysis", "composite fusion", "request structure", "rest", "json"] },
+  { id: "quickstart", label: "Quickstart", group: "Get Started", keywords: ["curl", "authenticate", "submit media", "poll", "job_id", "3 steps", "tutorial", "getting started"] },
+  { id: "auth", label: "Authentication", group: "Get Started", keywords: ["x-api-key", "cognito", "jwt", "token", "session", "security", "header", "401", "token lifecycle"] },
+  { id: "concepts", label: "Core Concepts", group: "Concepts", keywords: ["sincerity scoring", "truthfulness bands", "sincere", "uncertain", "deceptive", "diarization", "speaker", "prediction", "prosody", "voice quality", "emotional", "linguistic", "asynchronous"] },
+  { id: "modalities", label: "Modalities", group: "Concepts", keywords: ["audio", "video", "composite", "media_type", "pipeline", "fusion", "mp3", "wav", "mp4", "webm", "mkv"] },
+  { id: "arch", label: "Architecture", group: "Concepts", keywords: ["infrastructure", "aws", "gcp", "s3", "dynamodb", "cloud run", "data flow", "upload", "workers", "sqs", "supported formats"] },
+  { id: "ep-health", label: "Health Endpoints", group: "API Reference", keywords: ["/health", "/health/ready", "liveness", "readiness", "GET", "status", "uptime"] },
+  { id: "ep-auth", label: "Auth Token Endpoints", group: "API Reference", keywords: ["/api/v1/auth/token", "POST", "DELETE", "exchange", "revoke", "logout", "jwt_token", "api_key"] },
+  { id: "ep-analyze", label: "Analyze Endpoint", group: "API Reference", keywords: ["/api/v1/analyze", "POST", "submit", "file", "media_type", "webhook_url", "202", "multipart"] },
+  { id: "ep-jobs", label: "Jobs Endpoint", group: "API Reference", keywords: ["/api/v1/jobs", "GET", "job_id", "status", "pending", "processing", "completed", "failed", "result", "download"] },
+  { id: "ep-batch", label: "Batch Endpoints", group: "API Reference", keywords: ["/api/v1/analyze/batch", "/api/v1/batches", "POST", "GET", "batch_id", "50 files", "bulk"] },
+  { id: "ep-upload", label: "Pre-signed Upload", group: "API Reference", keywords: ["/api/v1/upload-urls", "/api/v1/jobs/submit", "pre-signed", "s3", "PUT", "large files", "parallel upload"] },
+  { id: "objects", label: "Response Objects", group: "Reference", keywords: ["AnalysisResult", "SincerityAnalysis", "CompositeResult", "SpeakerSegment", "SincerityTimelineEntry", "Transcription", "schema", "overall_score", "model_scores", "fusion_weights"] },
+  { id: "errors", label: "Error Handling", group: "Reference", keywords: ["error", "detail", "status codes", "400", "401", "403", "404", "413", "422", "429", "503", "validation", "retry", "exponential backoff"] },
+];
+
 /* ═══════ REUSABLE ATOMS ═══════ */
 
 const Bdg = ({ m }) => {
