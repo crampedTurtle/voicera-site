@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import HeroSection from "@/components/HeroSection";
 import JsonLd from "@/components/JsonLd";
 
