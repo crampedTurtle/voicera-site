@@ -858,7 +858,7 @@ export default function VoiceraDocs() {
               <div
                 onClick={() => setSb(false)}
                 style={{
-                  position: "fixed", inset: 0, top: 56,
+                  position: "fixed", inset: 0, top: 94,
                   background: "rgba(0,0,0,0.3)", zIndex: 49,
                 }}
               />
