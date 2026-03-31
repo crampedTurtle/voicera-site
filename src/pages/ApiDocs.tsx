@@ -596,6 +596,7 @@ export default function VoiceraDocs() {
   const [sb, setSb] = useState(typeof window !== "undefined" && window.innerWidth > 768);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [highlightIdx, setHighlightIdx] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
   const Pg = PAGES[page] || Intro;
   const groups = [...new Set(NAV.map(n => n.g))];
@@ -614,7 +615,25 @@ export default function VoiceraDocs() {
     setPage(id);
     setSearchQuery("");
     setSearchFocused(false);
+    setHighlightIdx(-1);
     if (isMobile) setSb(false);
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (!searchFocused || searchResults.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightIdx(i => (i + 1) % searchResults.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightIdx(i => (i <= 0 ? searchResults.length - 1 : i - 1));
+    } else if (e.key === "Enter" && highlightIdx >= 0 && highlightIdx < searchResults.length) {
+      e.preventDefault();
+      handleSearchSelect(searchResults[highlightIdx].id);
+    } else if (e.key === "Escape") {
+      setSearchFocused(false);
+      setHighlightIdx(-1);
+    }
   };
 
   // Close search dropdown on outside click
@@ -691,8 +710,9 @@ export default function VoiceraDocs() {
                   type="text"
                   placeholder="Search docs..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => { setSearchQuery(e.target.value); setHighlightIdx(-1); }}
                   onFocus={() => setSearchFocused(true)}
+                  onKeyDown={handleSearchKeyDown}
                   style={{
                     border: "none", outline: "none", background: "transparent",
                     fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
@@ -718,18 +738,19 @@ export default function VoiceraDocs() {
                       No results for "{searchQuery}"
                     </div>
                   ) : (
-                    searchResults.map((r) => (
+                    searchResults.map((r, idx) => (
                       <button
                         key={r.id}
                         onClick={() => handleSearchSelect(r.id)}
                         style={{
                           display: "block", width: "100%", textAlign: "left",
-                          padding: "10px 14px", border: "none", background: "transparent",
+                          padding: "10px 14px", border: "none",
+                          background: idx === highlightIdx ? C.acBg : "transparent",
                           cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
                           fontSize: 13, fontFamily: F.b, color: C.tx,
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
-                        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                        onMouseEnter={() => setHighlightIdx(idx)}
+                        onMouseLeave={() => setHighlightIdx(-1)}
                       >
                         <div style={{ fontWeight: 600 }}>{r.label}</div>
                         <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
@@ -798,8 +819,9 @@ export default function VoiceraDocs() {
                 type="text"
                 placeholder="Search docs..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => { setSearchQuery(e.target.value); setHighlightIdx(-1); }}
                 onFocus={() => setSearchFocused(true)}
+                onKeyDown={handleSearchKeyDown}
                 style={{
                   border: "none", outline: "none", background: "transparent",
                   fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
@@ -825,21 +847,22 @@ export default function VoiceraDocs() {
                     No results for "{searchQuery}"
                   </div>
                 ) : (
-                  searchResults.map((r) => (
-                    <button
-                      key={r.id}
-                      onClick={() => handleSearchSelect(r.id)}
-                      style={{
-                        display: "block", width: "100%", textAlign: "left",
-                        padding: "10px 14px", border: "none", background: "transparent",
-                        cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
-                        fontSize: 13, fontFamily: F.b, color: C.tx,
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
-                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                    >
-                      <div style={{ fontWeight: 600 }}>{r.label}</div>
-                      <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                    searchResults.map((r, idx) => (
+                      <button
+                        key={r.id}
+                        onClick={() => handleSearchSelect(r.id)}
+                        style={{
+                          display: "block", width: "100%", textAlign: "left",
+                          padding: "10px 14px", border: "none",
+                          background: idx === highlightIdx ? C.acBg : "transparent",
+                          cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                          fontSize: 13, fontFamily: F.b, color: C.tx,
+                        }}
+                        onMouseEnter={() => setHighlightIdx(idx)}
+                        onMouseLeave={() => setHighlightIdx(-1)}
+                      >
+                        <div style={{ fontWeight: 600 }}>{r.label}</div>
+                        <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
                     </button>
                   ))
                 )}
