@@ -61,9 +61,7 @@ const CaseStudies = () => {
           <div className="hidden md:flex items-stretch justify-center gap-4 -mx-16 lg:-mx-24">
             {/* Left peek tile */}
             <div
-              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50 cursor-pointer"
-              title="INQUIRE FOR MORE CASE STUDIES"
-              onClick={() => alert("INQUIRE FOR MORE CASE STUDIES")}
+              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50"
             >
               <CaseCard cs={peekLeft} />
             </div>
@@ -84,9 +82,7 @@ const CaseStudies = () => {
 
             {/* Right peek tile */}
             <div
-              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50 cursor-pointer"
-              title="INQUIRE FOR MORE CASE STUDIES"
-              onClick={() => alert("INQUIRE FOR MORE CASE STUDIES")}
+              className="w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-2xl relative blur-[2px] opacity-50"
             >
               <CaseCard cs={peekRight} />
             </div>
