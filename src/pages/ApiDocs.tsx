@@ -594,9 +594,39 @@ const PAGES = { intro: Intro, quickstart: Quickstart, auth: Auth, concepts: Conc
 export default function VoiceraDocs() {
   const [page, setPage] = useState("intro");
   const [sb, setSb] = useState(typeof window !== "undefined" && window.innerWidth > 768);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
   const Pg = PAGES[page] || Intro;
   const groups = [...new Set(NAV.map(n => n.g))];
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  const searchResults = searchQuery.trim().length > 0
+    ? SEARCH_ENTRIES.filter(e => {
+        const q = searchQuery.toLowerCase();
+        return e.label.toLowerCase().includes(q)
+          || e.group.toLowerCase().includes(q)
+          || e.keywords.some(k => k.toLowerCase().includes(q));
+      })
+    : [];
+
+  const handleSearchSelect = (id: string) => {
+    setPage(id);
+    setSearchQuery("");
+    setSearchFocused(false);
+    if (isMobile) setSb(false);
+  };
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const handleNavSelect = (id: string) => {
     setPage(id);
