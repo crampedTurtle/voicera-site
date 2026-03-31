@@ -48,7 +48,7 @@ const Footer = () => (
     {/* Gradient accent at top */}
     <div className="h-px w-full gradient-bg opacity-30" />
 
-    <div className="max-w-7xl mx-auto px-6 py-16">
+    <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
       <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
         {footerLinks.map((col) => (
           <div key={col.title}>
