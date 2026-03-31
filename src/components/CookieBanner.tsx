@@ -21,10 +21,19 @@ const CookieBanner = forwardRef<HTMLDivElement>((_, ref) => {
 
   useEffect(() => {
     const stored = localStorage.getItem(CONSENT_KEY);
-    if (stored) return; // Already consented
+    if (stored) return;
 
     const timer = setTimeout(() => setVisible(true), 15000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handler = () => {
+      setShowPreferences(false);
+      setVisible(true);
+    };
+    window.addEventListener("open-cookie-settings", handler);
+    return () => window.removeEventListener("open-cookie-settings", handler);
   }, []);
 
   const saveConsent = (state: ConsentState) => {
