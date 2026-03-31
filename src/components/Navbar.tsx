@@ -1,10 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import { solutions } from "@/pages/SolutionPage";
 
+const solutionIcons: Record<string, React.ReactNode> = {
+  sales: <DollarSign className="w-4 h-4 text-primary" />,
+  hr: <Users className="w-4 h-4 text-primary" />,
+  "law-enforcement": <Shield className="w-4 h-4 text-primary" />,
+  dating: <Heart className="w-4 h-4 text-primary" />,
+  legal: <Scale className="w-4 h-4 text-primary" />,
+};
 
 const navLinks = [
   { label: "Product", href: "#product" },
@@ -112,8 +119,9 @@ const Navbar = () => {
                                   setDropdownOpen(null);
                                   navigate(`/solutions/${s.slug}`);
                                 }}
-                                className="block px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
+                                className="flex items-center gap-2.5 px-5 py-3 type-nav text-body-muted hover:bg-muted hover:text-body transition-colors border-b border-border last:border-b-0"
                               >
+                                {solutionIcons[s.slug]}
                                 {s.name}
                               </a>
                             ))
@@ -191,8 +199,9 @@ const Navbar = () => {
                               setMobileDropdownOpen(null);
                               navigate(`/solutions/${s.slug}`);
                             }}
-                            className="block type-nav text-body-muted hover:text-body text-sm"
+                            className="flex items-center gap-2 type-nav text-body-muted hover:text-body text-sm"
                           >
+                            {solutionIcons[s.slug]}
                             {s.name}
                           </a>
                         ))
