@@ -671,7 +671,73 @@ export default function VoiceraDocs() {
           whiteSpace: "nowrap", flexShrink: 0,
         }}>Sincerity™ V1.1</div>
 
-        <div style={{ marginLeft: "auto", flexShrink: 0 }}>
+        {/* Search bar */}
+        <div ref={searchRef} style={{ position: "relative", flex: isMobile ? 1 : "0 1 280px", minWidth: 0 }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "6px 12px", borderRadius: 8,
+            border: `1px solid ${searchFocused ? C.ac : C.bd}`,
+            background: C.bgAlt,
+            transition: "border-color 0.15s",
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.txD} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search docs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              style={{
+                border: "none", outline: "none", background: "transparent",
+                fontSize: 13, fontFamily: F.b, color: C.tx, width: "100%",
+              }}
+            />
+            {searchQuery && (
+              <button onClick={() => { setSearchQuery(""); }} style={{
+                background: "none", border: "none", cursor: "pointer", color: C.txD,
+                fontSize: 14, padding: 0, lineHeight: 1, flexShrink: 0,
+              }}>✕</button>
+            )}
+          </div>
+
+          {/* Dropdown results */}
+          {searchFocused && searchQuery.trim().length > 0 && (
+            <div style={{
+              position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
+              background: C.w, border: `1px solid ${C.bd}`, borderRadius: 10,
+              boxShadow: "0 8px 24px rgba(15,23,42,0.12)", maxHeight: 320,
+              overflowY: "auto", zIndex: 200,
+            }}>
+              {searchResults.length === 0 ? (
+                <div style={{ padding: "16px 14px", fontSize: 13, color: C.txD, textAlign: "center" }}>
+                  No results for "{searchQuery}"
+                </div>
+              ) : (
+                searchResults.map((r) => (
+                  <button
+                    key={r.id}
+                    onClick={() => handleSearchSelect(r.id)}
+                    style={{
+                      display: "block", width: "100%", textAlign: "left",
+                      padding: "10px 14px", border: "none", background: "transparent",
+                      cursor: "pointer", borderBottom: `1px solid ${C.bd}`,
+                      fontSize: 13, fontFamily: F.b, color: C.tx,
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = C.acBg)}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <div style={{ fontWeight: 600 }}>{r.label}</div>
+                    <div style={{ fontSize: 11, color: C.txD, marginTop: 2, fontFamily: F.m }}>{r.group}</div>
+                  </button>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        <div style={{ marginLeft: isMobile ? 0 : "auto", flexShrink: 0 }}>
           <a
             href="https://calendly.com/voicera/demo"
             target="_blank"
