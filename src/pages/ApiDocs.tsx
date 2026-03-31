@@ -648,8 +648,8 @@ export default function VoiceraDocs() {
               <div key={g} style={{ marginBottom: 22 }}>
                 <div style={{
                   padding: "0 20px", marginBottom: 8,
-                  fontSize: 10.5, fontWeight: 700, fontFamily: F.m,
-                  color: C.txD, textTransform: "uppercase", letterSpacing: "0.1em",
+                  fontSize: 16, fontWeight: 800, fontFamily: F.b,
+                  color: "#000000", textTransform: "uppercase", letterSpacing: "0.04em",
                 }}>{g}</div>
                 {NAV.filter(n => n.g === g).map(n => (
                   <button
