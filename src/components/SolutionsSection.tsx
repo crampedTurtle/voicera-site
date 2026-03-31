@@ -44,6 +44,8 @@ const formatPrice = (value: number, unit: Unit) => {
 
 const SolutionsSection = () => {
   const [unit, setUnit] = useState<Unit>("minute");
+  const location = useLocation();
+  const autoOpenFree = location.hash === "#pricing-sandbox";
 
   return (
     <section
