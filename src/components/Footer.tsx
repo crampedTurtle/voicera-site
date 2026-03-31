@@ -107,7 +107,7 @@ const Footer = () => (
 
       <div className="flex flex-col md:flex-row items-center justify-between py-3 border-t border-border">
         <a href="#" onClick={(e) => e.preventDefault()} className="mb-2 md:mb-0">
-          <img src={voiceraLogoBlack} alt="Voicera" className="h-[28px] w-auto" />
+          <img src={voiceraLogoBlack} alt="Voicera" className="h-[84px] w-auto" />
         </a>
         <div className="flex items-center gap-4 mb-2 md:mb-0">
           <a href="https://www.youtube.com/@VoiceraAI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="YouTube">
