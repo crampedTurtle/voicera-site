@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 
@@ -10,7 +10,7 @@ type ConsentState = {
   marketing: boolean;
 };
 
-const CookieBanner = () => {
+const CookieBanner = forwardRef<HTMLDivElement>((_, ref) => {
   const [visible, setVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
   const [consent, setConsent] = useState<ConsentState>({
@@ -142,7 +142,9 @@ const CookieBanner = () => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+CookieBanner.displayName = "CookieBanner";
 
 const CookieToggle = ({
   label,
