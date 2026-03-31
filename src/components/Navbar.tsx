@@ -18,7 +18,7 @@ const solutionIcons: Record<string, React.ReactNode> = {
 
 const productLinks = [
   { label: "Analyze", href: "#product", icon: iconAnalyze },
-  { label: "API Docs", href: "#product" },
+  { label: "API Docs", href: "/api-docs" },
 ];
 
 const navLinks = [
