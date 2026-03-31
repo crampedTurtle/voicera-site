@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Headphones, Video, Layers, Server } from "lucide-react";
 import StartBuildingModal from "./StartBuildingModal";
 
-const FreePricingCard = () => {
+interface FreePricingCardProps {
+  autoOpen?: boolean;
+}
+
+const FreePricingCard = ({ autoOpen }: FreePricingCardProps) => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (autoOpen) {
+      const timer = setTimeout(() => setModalOpen(true), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [autoOpen]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}

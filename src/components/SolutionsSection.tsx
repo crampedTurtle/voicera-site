@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Headphones, Video, Layers, Server, ArrowUpRight } from "lucide-react";
 import PricingCapsules from "./PricingCapsules";
 import FreePricingCard from "./FreePricingCard";
+import { useLocation } from "react-router-dom";
 
 type Unit = "minute" | "hour";
 
