@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import scottRameyImg from "@/assets/case-study-scott-ramey.png";
 import srLogo from "@/assets/case-study-sr-logo.png";
 import policeImg from "@/assets/case-study-police.jpg";
@@ -100,43 +100,9 @@ const CaseStudies = () => {
             </div>
           </div>
 
-          {/* Mobile stacked */}
-          <div className="md:hidden flex flex-col gap-8">
-            {CASE_STUDIES.map((cs, i) => (
-              <motion.div
-                key={cs.number}
-                initial={{ opacity: 0, scale: 0.92, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="cursor-pointer"
-                onClick={() => handleTileClick(cs)}
-              >
-                <CaseCard cs={cs} />
-                {/* Mobile info block */}
-                <div className="mt-0 rounded-b-2xl bg-muted p-5">
-                  <h3 className="font-display text-foreground text-xl font-bold leading-tight">
-                    {cs.title}
-                  </h3>
-                  <p className="font-display text-foreground font-semibold text-sm mt-2">
-                    {cs.subtitle}
-                  </p>
-                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {cs.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          {/* Mobile/Tablet carousel */}
+          <div className="md:hidden">
+            <MobileCarousel studies={CASE_STUDIES} onTileClick={handleTileClick} />
           </div>
         </div>
       </div>
@@ -218,5 +184,76 @@ const CaseCard = ({ cs }: { cs: (typeof CASE_STUDIES)[number] }) => (
     </div>
   </div>
 );
+
+/* Mobile/Tablet horizontal carousel */
+const MobileCarousel = ({
+  studies,
+  onTileClick,
+}: {
+  studies: typeof CASE_STUDIES;
+  onTileClick: (cs: (typeof CASE_STUDIES)[number]) => void;
+}) => {
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c <= 0 ? studies.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c >= studies.length - 1 ? 0 : c + 1));
+
+  const cs = studies[current];
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden rounded-2xl cursor-pointer" onClick={() => onTileClick(cs)}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -60 }}
+            transition={{ duration: 0.35 }}
+          >
+            <CaseCard cs={cs} />
+            <div className="rounded-b-2xl bg-muted p-4">
+              <h3 className="font-display text-foreground text-lg font-bold leading-tight">
+                {cs.title}
+              </h3>
+              <p className="font-display text-foreground font-semibold text-sm mt-1">
+                {cs.subtitle}
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {cs.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[11px] tracking-widest uppercase font-mono border border-border text-muted-foreground px-3 py-1 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Nav dots + arrows */}
+      <div className="flex items-center justify-center gap-4 mt-4">
+        <button onClick={prev} className="text-muted-foreground hover:text-foreground transition-colors">
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <div className="flex gap-2">
+          {studies.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-accent" : "bg-border"}`}
+            />
+          ))}
+        </div>
+        <button onClick={next} className="text-muted-foreground hover:text-foreground transition-colors">
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default CaseStudies;
