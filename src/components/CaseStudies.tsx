@@ -82,6 +82,7 @@ const CaseStudies = () => {
                 key={cs.number}
                 initial={{ opacity: 0, scale: 0.92, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                whileHover={{ scale: 1.04 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="w-[340px] lg:w-[400px] flex-shrink-0 cursor-pointer"
