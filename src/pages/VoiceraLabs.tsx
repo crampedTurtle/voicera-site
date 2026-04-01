@@ -321,7 +321,10 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
             <span className="text-[#94a3b8] text-[13px] font-semibold tracking-[0.03em]">{label}</span>
           </>
         )}
-        {type === "image" && (
+        {type === "image" && imageSrc && (
+          <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        {type === "image" && !imageSrc && (
           <>
             <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
               style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
