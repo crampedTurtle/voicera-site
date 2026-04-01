@@ -637,6 +637,7 @@ export default function VoiceraLabs() {
           ctaHref="https://emotioncoach.voicera.io"
           ctaVariant="pink"
           mediaType="image"
+          imageSrc={emotionCoachImg}
           mediaLabel="Emotion Coach Demo"
           mediaBadge="Live Demo"
           reversed={true}
