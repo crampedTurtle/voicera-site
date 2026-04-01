@@ -411,11 +411,12 @@ interface DemoSectionProps {
   mediaType: "video" | "image" | "chat";
   mediaLabel?: string;
   mediaBadge?: string;
+  imageSrc?: string;
   reversed?: boolean;
   bgColor?: string;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, reversed, bgColor = "#fff" }: DemoSectionProps) => (
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, reversed, bgColor = "#fff" }: DemoSectionProps) => (
   <section style={{ background: bgColor, padding: "100px 0", position: "relative" }}>
     <div
       className={`max-w-[1200px] mx-auto px-8 flex ${reversed ? "flex-row-reverse" : "flex-row"} gap-16 items-center flex-wrap`}
