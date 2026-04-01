@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, CSSProperties, ReactNode } from "react";
+import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
