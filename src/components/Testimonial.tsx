@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const YOUTUBE_ID = "GhrtJO3R-80"; // video id
-const THUMB_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
+const VIDEO_SRC = "/videos/sincerity-demo.mp4";
 
 const Testimonial = () => {
   const [playing, setPlaying] = useState(false);
