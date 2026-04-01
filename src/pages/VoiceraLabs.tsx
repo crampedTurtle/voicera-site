@@ -279,7 +279,7 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo" }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <div
