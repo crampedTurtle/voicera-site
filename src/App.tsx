@@ -19,6 +19,7 @@ import Partners from "./pages/Partners.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import TermsOfUse from "./pages/TermsOfUse.tsx";
 import ApiDocs from "./pages/ApiDocs.tsx";
+import VoiceraLabs from "./pages/VoiceraLabs.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
