@@ -237,14 +237,14 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
   const [hovered, setHovered] = useState(false);
   const styles = {
     blue: {
-      background: hovered ? "linear-gradient(135deg,#1d4ed8,#6d28d9)" : "linear-gradient(135deg,#2563EB,#7C3AED)",
+      background: hovered ? "linear-gradient(135deg,#1d4ed8,#2563eb)" : "linear-gradient(135deg,#2563EB,#3b82f6)",
       color: "#fff",
       shadow: hovered ? "0 8px 32px rgba(37,99,235,0.4)" : "0 4px 16px rgba(37,99,235,0.25)",
     },
     pink: {
-      background: hovered ? "linear-gradient(135deg,#c026d3,#7c3aed)" : "linear-gradient(135deg,#D946EF,#9333EA)",
+      background: hovered ? "linear-gradient(135deg,#1e40af,#3b82f6)" : "linear-gradient(135deg,#2563EB,#60a5fa)",
       color: "#fff",
-      shadow: hovered ? "0 8px 32px rgba(217,70,239,0.4)" : "0 4px 16px rgba(217,70,239,0.25)",
+      shadow: hovered ? "0 8px 32px rgba(37,99,235,0.4)" : "0 4px 16px rgba(37,99,235,0.25)",
     },
     white: {
       background: hovered ? "#f1f5f9" : "#ffffff",
