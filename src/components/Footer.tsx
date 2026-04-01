@@ -25,7 +25,7 @@ const footerLinks: { title: string; links: FooterLink[] }[] = [
     title: "Developers",
     links: [
       { label: "API Documents", href: "/api-docs" },
-      "SDKs",
+      { label: "Playground", href: "/#pricing-free" },
     ],
   },
   {
