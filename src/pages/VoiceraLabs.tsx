@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 
 import { Helmet } from "react-helmet-async";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
+import emotionCoachImg from "@/assets/emotion-coach-demo.png";
 
 // ─── ANIMATED WIREFRAME MESH (Canvas-based 3D) ─────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 30 }: { darkMode?: boolean; density?: number }) => {
@@ -279,7 +280,7 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo" }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <div
@@ -321,7 +322,10 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo" }: { 
             <span className="text-[#94a3b8] text-[13px] font-semibold tracking-[0.03em]">{label}</span>
           </>
         )}
-        {type === "image" && (
+        {type === "image" && imageSrc && (
+          <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        {type === "image" && !imageSrc && (
           <>
             <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
               style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
@@ -408,11 +412,12 @@ interface DemoSectionProps {
   mediaType: "video" | "image" | "chat";
   mediaLabel?: string;
   mediaBadge?: string;
+  imageSrc?: string;
   reversed?: boolean;
   bgColor?: string;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, reversed, bgColor = "#fff" }: DemoSectionProps) => (
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, reversed, bgColor = "#fff" }: DemoSectionProps) => (
   <section style={{ background: bgColor, padding: "100px 0", position: "relative" }}>
     <div
       className={`max-w-[1200px] mx-auto px-8 flex ${reversed ? "flex-row-reverse" : "flex-row"} gap-16 items-center flex-wrap`}
@@ -470,7 +475,7 @@ const DemoSection = ({ badge, title, about, bullets, extraContent, instructions,
 
       <div className="flex-[1_1_420px] min-w-[300px]">
         <Reveal delay={0.2} direction={reversed ? "right" : "left"}>
-          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} />
+          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} />
         </Reveal>
       </div>
     </div>
@@ -633,6 +638,7 @@ export default function VoiceraLabs() {
           ctaHref="https://emotioncoach.voicera.io"
           ctaVariant="pink"
           mediaType="image"
+          imageSrc={emotionCoachImg}
           mediaLabel="Emotion Coach Demo"
           mediaBadge="Live Demo"
           reversed={true}
