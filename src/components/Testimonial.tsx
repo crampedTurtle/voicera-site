@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const YOUTUBE_ID = "GhrtJO3R-80"; // video id
-const THUMB_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
+const VIDEO_SRC = "/videos/sincerity-demo.mp4";
 
 const Testimonial = () => {
   const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    if (!playing) {
+      setPlaying(true);
+      setTimeout(() => videoRef.current?.play(), 100);
+    }
+  };
 
   return (
     <section className="section-padding relative overflow-hidden">
@@ -23,9 +30,8 @@ const Testimonial = () => {
           <div
             className="relative mt-8 mx-auto cursor-pointer w-full md:w-[75%]"
             style={{ aspectRatio: "16/9" }}
-            onClick={() => !playing && setPlaying(true)}
+            onClick={handlePlay}
           >
-            {/* Purple glow layer behind the video */}
             <div
               className="absolute rounded-[1.75rem] md:rounded-[2.5rem]"
               style={{
@@ -39,13 +45,15 @@ const Testimonial = () => {
               className="relative w-full h-full overflow-hidden rounded-[1.25rem] md:rounded-[2rem]"
               style={{ zIndex: 1 }}
             >
-            {!playing ? (
-              <>
-                <img
-                  src={THUMB_URL}
-                  alt="Sincerity by Voicera demo"
-                  className="w-full h-full object-cover"
-                />
+              <video
+                ref={videoRef}
+                src={VIDEO_SRC}
+                className="w-full h-full object-cover"
+                controls={playing}
+                playsInline
+                preload="metadata"
+              />
+              {!playing && (
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
                   <h2 className="type-display mb-3" style={{ color: "white" }}>
                     AI Voice &amp; Video Insights
@@ -58,16 +66,7 @@ const Testimonial = () => {
                     <ArrowUpRight className="w-4 h-4" />
                   </button>
                 </div>
-              </>
-            ) : (
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&start=27&modestbranding=1&rel=0&showinfo=0&controls=0&iv_load_policy=3`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Sincerity by Voicera"
-              />
-            )}
+              )}
             </div>
           </div>
         </motion.div>
