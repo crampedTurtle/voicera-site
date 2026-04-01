@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 
 import { Helmet } from "react-helmet-async";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
+import emotionCoachImg from "@/assets/emotion-coach-demo.png";
 
 // ─── ANIMATED WIREFRAME MESH (Canvas-based 3D) ─────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 30 }: { darkMode?: boolean; density?: number }) => {
