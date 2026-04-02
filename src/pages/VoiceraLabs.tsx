@@ -350,48 +350,50 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
                 <span className="text-white text-[13px] font-semibold tracking-[0.03em]" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{label}</span>
               </>
             )}
-        {type === "image" && imageSrc && (
-          <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
-        )}
-        {type === "image" && !imageSrc && (
-          <>
-            <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
-              style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-              </svg>
-            </div>
-            <span className="text-[#94a3b8] text-[13px] font-semibold">{label}</span>
-          </>
-        )}
-        {type === "chat" && (
-          <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            <div className="flex flex-col gap-3">
-              {[
-                { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
-                { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
-                { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
-              ].map((msg, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
-                  <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
-                    style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                    {msg.text}
+            {type === "image" && imageSrc && (
+              <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+            )}
+            {type === "image" && !imageSrc && (
+              <>
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
+                  style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                  </svg>
+                </div>
+                <span className="text-[#94a3b8] text-[13px] font-semibold">{label}</span>
+              </>
+            )}
+            {type === "chat" && (
+              <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
+                    { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
+                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
+                  ].map((msg, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
+                      <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
+                        style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-1.5 pl-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
+                    <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
                   </div>
                 </div>
-              ))}
-              <div className="flex items-center gap-1.5 pl-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
-                <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
               </div>
-            </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <svg className="absolute top-0 left-0 w-[60px] h-[60px] opacity-15 z-[1]" viewBox="0 0 60 60">
-        <path d="M0 0 L60 0 L0 60 Z" fill={type === "chat" ? "#2563EB" : "#3b82f6"} />
-      </svg>
+          <svg className="absolute top-0 left-0 w-[60px] h-[60px] opacity-15 z-[1]" viewBox="0 0 60 60">
+            <path d="M0 0 L60 0 L0 60 Z" fill={type === "chat" ? "#2563EB" : "#3b82f6"} />
+          </svg>
+        </>
+      )}
     </div>
   );
 };
