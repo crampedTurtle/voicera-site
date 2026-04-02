@@ -220,7 +220,7 @@ export default function SincerityForLegal() {
               <Reveal><Badge>AI-Powered Trial Prep</Badge></Reveal>
               <Reveal delay={0.1}>
                 <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                  Sincerity™ Optimizes Litigation Training & Deposition Prep
+                  Sincerity™ Optimizes Litigation Training & Deposition Prep 📜
                 </h2>
                 <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#1e40af", margin: "0 0 24px" }}>
                   Sincerity™: AI-Powered Trial Prep
