@@ -413,7 +413,7 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
       ) : (
         <>
           <div className="absolute top-4 right-4 py-[5px] px-[14px] rounded-full text-[10px] font-bold tracking-[0.08em] uppercase z-[2]"
-            style={{ background: "rgba(37,99,235,0.9)", color: "#fff" }}>
+            style={{ background: "rgba(255,255,255,0.95)", color: "#0f172a" }}>
             {badgeText}
           </div>
 
