@@ -48,8 +48,9 @@ const partnersColLinks = [
   { label: "Become a Partner", href: "/partners" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
+  const topLinkClass = lightText ? "text-white/90 hover:text-white" : "text-body-muted hover:text-body";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
@@ -110,7 +111,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
+                    className={`type-nav ${topLinkClass} transition-colors cursor-pointer inline-flex items-center gap-1`}
                   >
                     {link.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
@@ -230,7 +231,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
+                  className={`type-nav ${topLinkClass} transition-colors cursor-pointer`}
                 >
                   {link.label}
                 </a>
