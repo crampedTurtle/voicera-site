@@ -443,6 +443,7 @@ export default function SincerityForHR() {
       <section style={{ position: "relative", padding: "110px 32px", background: "#070b14", overflow: "hidden", textAlign: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}><WireframeMesh darkMode density={22} /></div>
         <Particles count={30} color="rgba(147,197,253,0.2)" />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", opacity: 0.02, fontSize: 180, pointerEvents: "none", lineHeight: 1 }}>📋</div>
         <div style={{ position: "absolute", width: "50vw", height: "50vw", maxWidth: 600, maxHeight: 600, borderRadius: "50%", background: "radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 60%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 10, maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
