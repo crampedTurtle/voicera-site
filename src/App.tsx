@@ -24,6 +24,7 @@ import SincerityForSales from "./pages/SincerityForSales.tsx";
 import SincerityForHR from "./pages/SincerityForHR.tsx";
 import SincerityForLawEnforcement from "./pages/SincerityForLawEnforcement.tsx";
 import SincerityForDating from "./pages/SincerityForDating.tsx";
+import SincerityForLegal from "./pages/SincerityForLegal.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
@@ -46,7 +47,8 @@ const App = () => (
             <Route path="/solutions/hr" element={<SincerityForHR />} />
             <Route path="/solutions/law-enforcement" element={<SincerityForLawEnforcement />} />
             <Route path="/solutions/dating" element={<SincerityForDating />} />
-            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr" && s.slug !== "law-enforcement" && s.slug !== "dating").map((s) => (
+            <Route path="/solutions/legal" element={<SincerityForLegal />} />
+            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr" && s.slug !== "law-enforcement" && s.slug !== "dating" && s.slug !== "legal").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
