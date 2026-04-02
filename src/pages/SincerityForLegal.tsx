@@ -183,6 +183,12 @@ export default function SincerityForLegal() {
           <Particles count={40} color="rgba(148,163,184,0.22)" />
           <div style={{ position: "absolute", width: "65vw", height: "65vw", maxWidth: 750, maxHeight: 750, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,175,0.1) 0%,rgba(15,23,42,0.05) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 7s ease-in-out infinite", pointerEvents: "none" }} />
           <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 220, pointerEvents: "none", lineHeight: 1 }}>⚖️</div>
+          {/* Floating emojis */}
+          <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+            {["⚖️", "📜", "🏛️", "📝", "⚖️", "📜", "🏛️", "📝"].map((e, i) => (
+              <div key={i} style={{ position: "absolute", left: `${10 + i * 11}%`, top: `${15 + (i % 3) * 25}%`, fontSize: 12 + (i % 3) * 4, opacity: 0.04 + (i % 3) * 0.015, animation: `legalFloat ${22 + i * 4}s ease-in-out ${-i * 3}s infinite` }}>{e}</div>
+            ))}
+          </div>
 
           <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
             <Reveal delay={0.1}><Badge dark>Litigation & Deposition Prep</Badge></Reveal>
