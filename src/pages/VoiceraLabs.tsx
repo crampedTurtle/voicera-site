@@ -692,6 +692,7 @@ export default function VoiceraLabs() {
           reversed={true}
           bgColor="#f8fafc"
           showGrid
+          linkHref="https://voicera.io/emotion-coachme/"
         />
 
         {/* ══════ INSIGHTS ══════ */}
