@@ -20,6 +20,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import TermsOfUse from "./pages/TermsOfUse.tsx";
 import ApiDocs from "./pages/ApiDocs.tsx";
 import VoiceraLabs from "./pages/VoiceraLabs.tsx";
+import SincerityForSales from "./pages/SincerityForSales.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
@@ -38,7 +39,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
             <Route path="/media/:slug" element={<BlogPost />} />
-            {solutions.map((s) => (
+            <Route path="/solutions/sales" element={<SincerityForSales />} />
+            {solutions.filter((s) => s.slug !== "sales").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
