@@ -22,6 +22,7 @@ import ApiDocs from "./pages/ApiDocs.tsx";
 import VoiceraLabs from "./pages/VoiceraLabs.tsx";
 import SincerityForSales from "./pages/SincerityForSales.tsx";
 import SincerityForHR from "./pages/SincerityForHR.tsx";
+import SincerityForLawEnforcement from "./pages/SincerityForLawEnforcement.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
@@ -42,7 +43,8 @@ const App = () => (
             <Route path="/media/:slug" element={<BlogPost />} />
             <Route path="/solutions/sales" element={<SincerityForSales />} />
             <Route path="/solutions/hr" element={<SincerityForHR />} />
-            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr").map((s) => (
+            <Route path="/solutions/law-enforcement" element={<SincerityForLawEnforcement />} />
+            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr" && s.slug !== "law-enforcement").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
