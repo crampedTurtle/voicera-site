@@ -398,6 +398,7 @@ export default function SincerityForLawEnforcement() {
       <section style={{ position: "relative", padding: "110px 32px", background: "#050a18", overflow: "hidden", textAlign: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}><WireframeMesh density={22} /></div>
         <Particles count={30} color="rgba(147,197,253,0.18)" />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", opacity: 0.02, fontSize: 180, pointerEvents: "none", lineHeight: 1 }}>🔍</div>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", opacity: 0.025 }}>
           <div style={{ position: "absolute", left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", animation: "scanline 10s linear infinite" }} />
         </div>
