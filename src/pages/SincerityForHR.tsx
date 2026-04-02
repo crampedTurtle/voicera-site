@@ -219,6 +219,7 @@ export default function SincerityForHR() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#070b14", overflow: "hidden", padding: "120px 32px 100px" }}>

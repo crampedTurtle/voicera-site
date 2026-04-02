@@ -368,6 +368,7 @@ export default function SincerityForSales() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══ */}
       <section style={{

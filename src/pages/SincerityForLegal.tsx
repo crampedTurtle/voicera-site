@@ -177,6 +177,7 @@ export default function SincerityForLegal() {
 
       <div style={{ fontFamily: "'Plus Jakarta Sans','Poppins',sans-serif", color: "#0f172a", overflowX: "hidden" }}>
         <Navbar />
+        <StickyNavbar />
 
         {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
         <section style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#060c1a", overflow: "hidden", padding: "120px 32px 100px" }}>

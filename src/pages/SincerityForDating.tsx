@@ -232,6 +232,7 @@ export default function SincerityForDating() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "82vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0a0520", overflow: "hidden", padding: "120px 32px 100px" }}>
