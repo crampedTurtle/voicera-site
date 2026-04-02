@@ -244,7 +244,7 @@ export default function SincerityForHR() {
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 16px" }}>
               <strong style={{ color: "#e0f2fe" }}>80%</strong> of candidates admit to misrepresenting their qualifications during interviews, costing companies <strong style={{ color: "#e0f2fe" }}>$15K/year</strong> per bad hire.
             </p>
-            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Voicera AI can help HR teams avoid this.</p>
+            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Voicera AI can help HR teams avoid this. 👥</p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
