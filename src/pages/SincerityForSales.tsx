@@ -155,7 +155,7 @@ const Badge = ({ children, dark }: { children: ReactNode; dark?: boolean }) => (
   <span style={{
     display: "inline-block", padding: "6px 18px", borderRadius: 100,
     fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" as const,
-    fontFamily: "'Plus Jakarta Sans',sans-serif",
+    fontFamily: "Poppins,sans-serif",
     background: dark ? "rgba(255,255,255,0.08)" : "rgba(37,99,235,0.08)",
     color: dark ? "rgba(255,255,255,0.9)" : "#2563EB",
     border: dark ? "1px solid rgba(255,255,255,0.18)" : "1px solid rgba(37,99,235,0.12)",
@@ -184,7 +184,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
       style={{
         display: "inline-flex", alignItems: "center", gap: 8,
         padding: pad, borderRadius: 12, fontSize: size === "lg" ? 16 : 14, fontWeight: 700,
-        fontFamily: "'Plus Jakarta Sans',sans-serif", textDecoration: "none",
+        fontFamily: "Poppins,sans-serif", textDecoration: "none",
         background: bg[variant], color: clr[variant], boxShadow: sh[variant],
         border: variant === "outline" ? "2px solid #2563EB" : "none",
         transform: h ? "translateY(-2px)" : "none",
@@ -238,14 +238,14 @@ const StepCard = ({ num, title, desc }: { num: string; title: string; desc: stri
     >
       <div style={{
         position: "absolute", top: -20, right: -10, fontSize: 100, fontWeight: 900,
-        color: "rgba(37,99,235,0.04)", lineHeight: 1, fontFamily: "'Plus Jakarta Sans',sans-serif",
+        color: "rgba(37,99,235,0.04)", lineHeight: 1, fontFamily: "Poppins,sans-serif",
       }}>{num}</div>
       <div style={{
         width: 40, height: 40, borderRadius: 12,
         background: "linear-gradient(135deg,rgba(37,99,235,0.1),rgba(37,99,235,0.05))",
         display: "flex", alignItems: "center", justifyContent: "center",
         fontSize: 16, fontWeight: 800, color: "#2563EB",
-        fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16,
+        fontFamily: "Poppins,sans-serif", marginBottom: 16,
       }}>{num}</div>
       <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10, lineHeight: 1.3 }}>{title}</h3>
       <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65, margin: 0 }}>{desc}</p>
@@ -353,7 +353,7 @@ export default function SincerityForSales() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", color: "#0f172a", overflowX: "hidden" }}>
+    <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <JsonLd
         title="Sincerity™ for Sales — Voicera"
         description="Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence."
