@@ -39,7 +39,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
             <Route path="/media/:slug" element={<BlogPost />} />
-            {solutions.map((s) => (
+            <Route path="/solutions/sales" element={<SincerityForSales />} />
+            {solutions.filter((s) => s.slug !== "sales").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
