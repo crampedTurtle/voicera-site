@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
@@ -231,6 +232,7 @@ export default function SincerityForDating() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "82vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0a0520", overflow: "hidden", padding: "120px 32px 100px" }}>

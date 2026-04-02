@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
 import HeroSphere from "@/components/HeroSphere";
@@ -13,6 +14,7 @@ const About = () => {
         path="/about"
       />
       <Navbar />
+      <StickyNavbar />
 
       {/* Hero */}
       <section className="pt-44 pb-20 px-6">

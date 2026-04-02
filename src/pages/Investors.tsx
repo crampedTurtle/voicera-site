@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import InvestorsSection from "@/components/InvestorsSection";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -12,6 +13,7 @@ const Investors = () => {
         path="/investors"
       />
       <Navbar />
+      <StickyNavbar />
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">

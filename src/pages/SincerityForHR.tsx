@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
@@ -218,6 +219,7 @@ export default function SincerityForHR() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#070b14", overflow: "hidden", padding: "120px 32px 100px" }}>

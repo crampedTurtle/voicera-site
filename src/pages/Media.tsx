@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Clock } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/routes";
@@ -172,6 +173,7 @@ const Media = () => {
       </Helmet>
 
       <Navbar />
+      <StickyNavbar />
 
       <main className="pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

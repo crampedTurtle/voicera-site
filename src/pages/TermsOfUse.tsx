@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 
@@ -16,6 +17,7 @@ const TermsOfUse = () => {
         path="/terms-of-use"
       />
       <Navbar />
+      <StickyNavbar />
 
       <section className="pt-44 pb-20 px-6">
         <div className="max-w-3xl mx-auto">

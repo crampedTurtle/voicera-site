@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 
@@ -367,6 +368,7 @@ export default function SincerityForSales() {
       `}</style>
 
       <Navbar />
+      <StickyNavbar />
 
       {/* ═══ HERO ═══ */}
       <section style={{
