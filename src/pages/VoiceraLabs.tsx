@@ -433,16 +433,16 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
           )}
 
           <div className="absolute inset-0 flex flex-col items-center justify-center z-[2]"
-            style={type === "video" && youtubeId ? { background: "rgba(0,0,0,0.35)" } : {}}>
+            style={type === "video" && youtubeId ? { background: "rgba(0,0,0,0.45)" } : {}}>
             {type === "video" && (
               <>
                 <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-4"
-                  style={{ background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)", backdropFilter: "blur(8px)" }}>
+                  style={{ background: "rgba(255,255,255,0.95)", border: "2px solid rgba(255,255,255,1)", boxShadow: "0 4px 20px rgba(0,0,0,0.3)" }}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
+                    <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#0f172a" />
                   </svg>
                 </div>
-                <span className="text-white text-[13px] font-semibold tracking-[0.03em]" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{label}</span>
+                <span className="text-[14px] font-bold tracking-[0.03em]" style={{ color: "#ffffff", textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}>{label}</span>
               </>
             )}
             {type === "image" && imageSrc && (
