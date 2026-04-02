@@ -111,7 +111,7 @@ const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer inline-flex items-center gap-1"
+                    className={`type-nav ${topLinkClass} transition-colors cursor-pointer inline-flex items-center gap-1`}
                   >
                     {link.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen === link.dropdownType ? "rotate-180" : ""}`} />
