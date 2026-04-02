@@ -379,7 +379,7 @@ export default function SincerityForLegal() {
                 background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                 marginBottom: 24,
               }}>
-                Start Preparing for Litigations & Depositions Better Today
+                Start Preparing for Litigations & Depositions Better Today ⚖️
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
