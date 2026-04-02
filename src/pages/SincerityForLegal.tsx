@@ -397,7 +397,7 @@ export default function SincerityForLegal() {
           <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
             <Reveal>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-                Interested in learning more about how Voicera AI can help legal professionals better prepare for litigations and depositions?
+                Interested in learning more about how Voicera AI can help legal professionals better prepare for litigations and depositions? 📜
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
