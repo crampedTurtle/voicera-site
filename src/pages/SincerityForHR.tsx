@@ -321,13 +321,13 @@ export default function SincerityForHR() {
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" title="Candidates Submit a Video Response" desc="Ask candidates to upload videos answering pre-set interview questions for (optional) AI analysis during initial screening or 2nd round." />
+              <StepCard num="1" emoji="🎥" title="Candidates Submit a Video Response" desc="Ask candidates to upload videos answering pre-set interview questions for (optional) AI analysis during initial screening or 2nd round." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each candidate's voice tone, facial expressions, & body language to determine sincerity levels when responding to different prompts." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each candidate's voice tone, facial expressions, & body language to determine sincerity levels when responding to different prompts." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" title="Make Confident Hiring Decisions" desc="Leverage insights from AI analysis results to better detect inconsistencies for further inquiry, or to mitigate bias against candidates who may score low in other criteria, but high in sincerity." />
+              <StepCard num="3" emoji="✅" title="Make Confident Hiring Decisions" desc="Leverage insights from AI analysis results to better detect inconsistencies for further inquiry, or to mitigate bias against candidates who may score low in other criteria, but high in sincerity." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
