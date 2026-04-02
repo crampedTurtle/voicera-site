@@ -280,8 +280,14 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string }) => {
   const [hovered, setHovered] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (youtubeId && !playing) setPlaying(true);
+  };
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -298,30 +304,52 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
         transform: hovered ? "scale(1.015)" : "scale(1)",
         transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)",
       }}
+      onClick={handlePlay}
     >
-      <div className="absolute top-4 right-4 py-[5px] px-[14px] rounded-full text-[10px] font-bold tracking-[0.08em] uppercase z-[2]"
-        style={{ background: "rgba(37,99,235,0.9)", color: "#fff" }}>
-        {badgeText}
-      </div>
+      {/* YouTube playing state */}
+      {playing && youtubeId ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3`}
+          className="absolute inset-0 w-full h-full z-[3]"
+          style={{ border: 0 }}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      ) : (
+        <>
+          <div className="absolute top-4 right-4 py-[5px] px-[14px] rounded-full text-[10px] font-bold tracking-[0.08em] uppercase z-[2]"
+            style={{ background: "rgba(37,99,235,0.9)", color: "#fff" }}>
+            {badgeText}
+          </div>
 
-      <div className="absolute inset-0 z-[1]"
-        style={{
-          background: type === "chat" ? "none" : "radial-gradient(ellipse at 30% 40%, rgba(37,99,235,0.08) 0%, transparent 60%)",
-        }}
-      />
+          <div className="absolute inset-0 z-[1]"
+            style={{
+              background: type === "chat" ? "none" : "radial-gradient(ellipse at 30% 40%, rgba(37,99,235,0.08) 0%, transparent 60%)",
+            }}
+          />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-[2]">
-        {type === "video" && (
-          <>
-            <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-4"
-              style={{ background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)" }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
-              </svg>
-            </div>
-            <span className="text-[#94a3b8] text-[13px] font-semibold tracking-[0.03em]">{label}</span>
-          </>
-        )}
+          {/* YouTube thumbnail background */}
+          {type === "video" && youtubeId && (
+            <img
+              src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+              alt={label || "Video thumbnail"}
+              className="absolute inset-0 w-full h-full object-cover z-[0]"
+            />
+          )}
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-[2]"
+            style={type === "video" && youtubeId ? { background: "rgba(0,0,0,0.35)" } : {}}>
+            {type === "video" && (
+              <>
+                <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-4"
+                  style={{ background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)", backdropFilter: "blur(8px)" }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
+                  </svg>
+                </div>
+                <span className="text-white text-[13px] font-semibold tracking-[0.03em]" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{label}</span>
+              </>
+            )}
         {type === "image" && imageSrc && (
           <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
         )}
