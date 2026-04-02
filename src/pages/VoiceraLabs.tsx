@@ -375,26 +375,7 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
               </>
             )}
             {type === "chat" && (
-              <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <div className="flex flex-col gap-3">
-                  {[
-                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
-                    { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
-                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
-                  ].map((msg, i) => (
-                    <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
-                      <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
-                        style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                        {msg.text}
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex items-center gap-1.5 pl-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
-                    <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
-                  </div>
-                </div>
-              </div>
+              <ChatAnimation />
             )}
           </div>
 
