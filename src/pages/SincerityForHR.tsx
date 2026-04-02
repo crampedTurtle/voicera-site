@@ -224,6 +224,14 @@ export default function SincerityForHR() {
         <div style={{ position: "absolute", inset: 0, transform: `translateY(${scrollY * 0.2}px)` }}><WireframeMesh darkMode density={30} /></div>
         <Particles count={50} />
         <div style={{ position: "absolute", width: "70vw", height: "70vw", maxWidth: 800, maxHeight: 800, borderRadius: "50%", background: "radial-gradient(circle,rgba(37,99,235,0.12) 0%,rgba(124,58,237,0.06) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 6s ease-in-out infinite", pointerEvents: "none" }} />
+        {/* Floating emojis */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+          {["👥", "📋", "✅", "🏢", "👤", "📋", "✅", "👥"].map((e, i) => (
+            <div key={i} style={{ position: "absolute", left: `${10 + i * 11}%`, top: `${15 + (i % 3) * 25}%`, fontSize: 12 + (i % 3) * 4, opacity: 0.04 + (i % 3) * 0.015, animation: `hrFloat ${22 + i * 4}s ease-in-out ${-i * 3}s infinite` }}>{e}</div>
+          ))}
+        </div>
+        {/* Watermark */}
+        <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>👥</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
           <Reveal delay={0.1}><Badge dark>Sincerity™ for HR</Badge></Reveal>
           <Reveal delay={0.2}>
