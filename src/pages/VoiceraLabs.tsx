@@ -633,6 +633,7 @@ export default function VoiceraLabs() {
           mediaType="video"
           mediaLabel="Sincerity AI Demo Video"
           mediaBadge="Live Demo"
+          youtubeId="1J---fL-q2g"
           reversed={false}
           bgColor="#ffffff"
         />
