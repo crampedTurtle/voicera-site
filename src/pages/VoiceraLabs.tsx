@@ -222,11 +222,17 @@ const LabsBadge = ({ children, dark }: { children: ReactNode; dark?: boolean }) 
   <span
     className="inline-block rounded-full text-[11px] font-bold tracking-[0.1em] uppercase"
     style={{
-      padding: "5px 16px",
+      padding: "6px 18px",
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      background: dark ? "rgba(37,99,235,0.15)" : "rgba(37,99,235,0.08)",
-      color: "#2563EB",
-      border: dark ? "1px solid rgba(37,99,235,0.25)" : "1px solid rgba(37,99,235,0.12)",
+      background: dark
+        ? "rgba(255,255,255,0.08)"
+        : "rgba(37,99,235,0.08)",
+      color: dark ? "rgba(255,255,255,0.9)" : "#2563EB",
+      border: dark
+        ? "1px solid rgba(255,255,255,0.18)"
+        : "1px solid rgba(37,99,235,0.12)",
+      backdropFilter: dark ? "blur(12px)" : "none",
+      letterSpacing: "0.14em",
     }}
   >
     {children}
