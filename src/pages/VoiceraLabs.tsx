@@ -681,6 +681,7 @@ export default function VoiceraLabs() {
           mediaBadge="Live Demo"
           reversed={true}
           bgColor="#f8fafc"
+          showGrid
         />
 
         {/* ══════ INSIGHTS ══════ */}
