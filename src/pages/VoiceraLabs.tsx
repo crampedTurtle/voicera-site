@@ -280,8 +280,14 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string }) => {
   const [hovered, setHovered] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (youtubeId && !playing) setPlaying(true);
+  };
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -298,72 +304,96 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
         transform: hovered ? "scale(1.015)" : "scale(1)",
         transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)",
       }}
+      onClick={handlePlay}
     >
-      <div className="absolute top-4 right-4 py-[5px] px-[14px] rounded-full text-[10px] font-bold tracking-[0.08em] uppercase z-[2]"
-        style={{ background: "rgba(37,99,235,0.9)", color: "#fff" }}>
-        {badgeText}
-      </div>
+      {/* YouTube playing state */}
+      {playing && youtubeId ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3`}
+          className="absolute inset-0 w-full h-full z-[3]"
+          style={{ border: 0 }}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      ) : (
+        <>
+          <div className="absolute top-4 right-4 py-[5px] px-[14px] rounded-full text-[10px] font-bold tracking-[0.08em] uppercase z-[2]"
+            style={{ background: "rgba(37,99,235,0.9)", color: "#fff" }}>
+            {badgeText}
+          </div>
 
-      <div className="absolute inset-0 z-[1]"
-        style={{
-          background: type === "chat" ? "none" : "radial-gradient(ellipse at 30% 40%, rgba(37,99,235,0.08) 0%, transparent 60%)",
-        }}
-      />
+          <div className="absolute inset-0 z-[1]"
+            style={{
+              background: type === "chat" ? "none" : "radial-gradient(ellipse at 30% 40%, rgba(37,99,235,0.08) 0%, transparent 60%)",
+            }}
+          />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-[2]">
-        {type === "video" && (
-          <>
-            <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-4"
-              style={{ background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)" }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
-              </svg>
-            </div>
-            <span className="text-[#94a3b8] text-[13px] font-semibold tracking-[0.03em]">{label}</span>
-          </>
-        )}
-        {type === "image" && imageSrc && (
-          <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
-        )}
-        {type === "image" && !imageSrc && (
-          <>
-            <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
-              style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-              </svg>
-            </div>
-            <span className="text-[#94a3b8] text-[13px] font-semibold">{label}</span>
-          </>
-        )}
-        {type === "chat" && (
-          <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            <div className="flex flex-col gap-3">
-              {[
-                { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
-                { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
-                { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
-              ].map((msg, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
-                  <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
-                    style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                    {msg.text}
+          {/* YouTube thumbnail background */}
+          {type === "video" && youtubeId && (
+            <img
+              src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+              alt={label || "Video thumbnail"}
+              className="absolute inset-0 w-full h-full object-cover z-[0]"
+            />
+          )}
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-[2]"
+            style={type === "video" && youtubeId ? { background: "rgba(0,0,0,0.35)" } : {}}>
+            {type === "video" && (
+              <>
+                <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-4"
+                  style={{ background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)", backdropFilter: "blur(8px)" }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
+                  </svg>
+                </div>
+                <span className="text-white text-[13px] font-semibold tracking-[0.03em]" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{label}</span>
+              </>
+            )}
+            {type === "image" && imageSrc && (
+              <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+            )}
+            {type === "image" && !imageSrc && (
+              <>
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
+                  style={{ background: "linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))", border: "2px solid rgba(37,99,235,0.2)" }}>
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                  </svg>
+                </div>
+                <span className="text-[#94a3b8] text-[13px] font-semibold">{label}</span>
+              </>
+            )}
+            {type === "chat" && (
+              <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
+                    { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
+                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
+                  ].map((msg, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
+                      <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
+                        style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-1.5 pl-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
+                    <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
                   </div>
                 </div>
-              ))}
-              <div className="flex items-center gap-1.5 pl-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
-                <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
               </div>
-            </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <svg className="absolute top-0 left-0 w-[60px] h-[60px] opacity-15 z-[1]" viewBox="0 0 60 60">
-        <path d="M0 0 L60 0 L0 60 Z" fill={type === "chat" ? "#2563EB" : "#3b82f6"} />
-      </svg>
+          <svg className="absolute top-0 left-0 w-[60px] h-[60px] opacity-15 z-[1]" viewBox="0 0 60 60">
+            <path d="M0 0 L60 0 L0 60 Z" fill={type === "chat" ? "#2563EB" : "#3b82f6"} />
+          </svg>
+        </>
+      )}
     </div>
   );
 };
@@ -413,11 +443,12 @@ interface DemoSectionProps {
   mediaLabel?: string;
   mediaBadge?: string;
   imageSrc?: string;
+  youtubeId?: string;
   reversed?: boolean;
   bgColor?: string;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, reversed, bgColor = "#fff" }: DemoSectionProps) => (
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, reversed, bgColor = "#fff" }: DemoSectionProps) => (
   <section style={{ background: bgColor, padding: "100px 0", position: "relative" }}>
     <div
       className={`max-w-[1200px] mx-auto px-8 flex ${reversed ? "flex-row-reverse" : "flex-row"} gap-16 items-center flex-wrap`}
@@ -475,7 +506,7 @@ const DemoSection = ({ badge, title, about, bullets, extraContent, instructions,
 
       <div className="flex-[1_1_420px] min-w-[300px]">
         <Reveal delay={0.2} direction={reversed ? "right" : "left"}>
-          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} />
+          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} youtubeId={youtubeId} />
         </Reveal>
       </div>
     </div>
@@ -602,6 +633,7 @@ export default function VoiceraLabs() {
           mediaType="video"
           mediaLabel="Sincerity AI Demo Video"
           mediaBadge="Live Demo"
+          youtubeId="1J---fL-q2g"
           reversed={false}
           bgColor="#ffffff"
         />
