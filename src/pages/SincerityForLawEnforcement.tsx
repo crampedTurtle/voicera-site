@@ -239,7 +239,7 @@ export default function SincerityForLawEnforcement() {
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
             <Reveal><Badge>Behavioral Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis 🔍</h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
