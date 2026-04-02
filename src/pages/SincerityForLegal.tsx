@@ -200,7 +200,7 @@ export default function SincerityForLegal() {
             </Reveal>
             <Reveal delay={0.35}>
               <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 650, margin: "0 auto 36px" }}>
-                AI-powered behavioral analysis to help legal teams prepare witnesses, train lawyers, and improve litigation outcomes with data-driven credibility intelligence.
+                AI-powered behavioral analysis to help legal teams prepare witnesses, train lawyers, and improve litigation outcomes with data-driven credibility intelligence. ⚖️
               </p>
             </Reveal>
             <Reveal delay={0.45}>
