@@ -367,7 +367,7 @@ export default function SincerityForSales() {
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
 
-      <Navbar />
+      <Navbar lightText />
       <StickyNavbar />
 
       {/* ═══ HERO ═══ */}
