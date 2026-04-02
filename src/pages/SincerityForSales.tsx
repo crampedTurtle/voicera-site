@@ -362,6 +362,7 @@ export default function SincerityForSales() {
       <style>{`
         @keyframes sfsFp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes sfsGlow{0%,100%{opacity:0.3}50%{opacity:0.5}}
+        @keyframes sfsFloat{0%,100%{transform:translate(0) rotate(0deg)}25%{transform:translate(8px,-14px) rotate(5deg)}50%{transform:translate(-4px,-24px) rotate(-3deg)}75%{transform:translate(12px,-10px) rotate(4deg)}}
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
 
