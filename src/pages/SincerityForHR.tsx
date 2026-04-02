@@ -208,7 +208,6 @@ export default function SincerityForHR() {
       <JsonLd
         title="Sincerity™ for HR — Voicera"
         description="AI-powered candidate authenticity analysis for HR teams."
-        url="https://voicera.io/solutions/hr"
       />
       <style>{`
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
