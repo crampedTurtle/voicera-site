@@ -623,7 +623,7 @@ export default function SincerityForSales() {
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               marginBottom: 24,
             }}>
-              Start Closing Sales & Understanding Your Customers Better Today
+              Start Closing Sales & Understanding Your Customers Better Today 💼
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
