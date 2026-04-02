@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
+import voiceraLogoWhite from "@/assets/voicera-logo-white.png";
 import iconAnalyze from "@/assets/icon-analyze.png";
 import iconApiDocs from "@/assets/icon-api-docs.png";
 
