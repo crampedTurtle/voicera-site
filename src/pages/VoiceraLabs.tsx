@@ -453,12 +453,13 @@ interface DemoSectionProps {
   mediaBadge?: string;
   imageSrc?: string;
   youtubeId?: string;
+  linkHref?: string;
   reversed?: boolean;
   bgColor?: string;
   showGrid?: boolean;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, reversed, bgColor = "#fff", showGrid }: DemoSectionProps) => (
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, linkHref, reversed, bgColor = "#fff", showGrid }: DemoSectionProps) => (
   <section style={{ background: bgColor, padding: "100px 0", position: "relative", overflow: "hidden" }}>
     {showGrid && (
       <div className="absolute inset-0" style={{ opacity: 0.45 }}>
