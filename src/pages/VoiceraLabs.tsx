@@ -279,6 +279,101 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
   );
 };
 
+// ─── ANIMATED CHAT ──────────────────────────────────────────────────────────
+const CHAT_MESSAGES = [
+  { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
+  { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
+  { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
+];
+
+const ChatAnimation = () => {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [showTyping, setShowTyping] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const delays = [800, 2200, 1500]; // delay before each message appears
+    let timeout: ReturnType<typeof setTimeout>;
+    let typingTimeout: ReturnType<typeof setTimeout>;
+    let step = 0;
+
+    const showNext = () => {
+      if (step >= CHAT_MESSAGES.length) {
+        // Show typing indicator after last message
+        typingTimeout = setTimeout(() => setShowTyping(true), 600);
+        return;
+      }
+      // Show typing dots before response messages (align flex-start = AI response)
+      if (step > 0 && CHAT_MESSAGES[step].align === "flex-start") {
+        setShowTyping(true);
+        timeout = setTimeout(() => {
+          setShowTyping(false);
+          setVisibleCount(step + 1);
+          step++;
+          timeout = setTimeout(showNext, delays[step] || 1200);
+        }, 1400);
+      } else {
+        setVisibleCount(step + 1);
+        step++;
+        timeout = setTimeout(showNext, delays[step] || 1200);
+      }
+    };
+
+    timeout = setTimeout(showNext, delays[0]);
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(typingTimeout);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <div className="flex flex-col gap-3">
+        {CHAT_MESSAGES.slice(0, visibleCount).map((msg, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              justifyContent: msg.align,
+              animation: "chatBubbleIn 0.4s cubic-bezier(0.16,1,0.3,1) both",
+            }}
+          >
+            <div
+              className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
+              style={{
+                padding: "12px 16px",
+                background: msg.bg,
+                color: msg.color,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+              }}
+            >
+              {msg.text}
+            </div>
+          </div>
+        ))}
+        {showTyping && (
+          <div
+            className="flex items-center gap-1.5 pl-1"
+            style={{ animation: "chatBubbleIn 0.3s cubic-bezier(0.16,1,0.3,1) both" }}
+          >
+            <div className="flex items-center gap-[3px]">
+              {[0, 1, 2].map((d) => (
+                <div
+                  key={d}
+                  className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"
+                  style={{ animation: `labsPulse 1.2s ease-in-out ${d * 0.2}s infinite` }}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
 const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId, linkHref }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string; linkHref?: string }) => {
   const [hovered, setHovered] = useState(false);
@@ -375,26 +470,7 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
               </>
             )}
             {type === "chat" && (
-              <div className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <div className="flex flex-col gap-3">
-                  {[
-                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "What are our top customer issues this week?" },
-                    { align: "flex-start" as const, bg: "#fff", color: "#0f172a", text: "Based on 847 support tickets, the top 3 issues are: integration sync failures (23%), billing discrepancies (18%), and onboarding friction (14%)." },
-                    { align: "flex-end" as const, bg: "#2563EB", color: "#fff", text: "Which integrations are failing most?" },
-                  ].map((msg, i) => (
-                    <div key={i} style={{ display: "flex", justifyContent: msg.align }}>
-                      <div className="max-w-[80%] rounded-[14px] text-[13px] leading-[1.55]"
-                        style={{ padding: "12px 16px", background: msg.bg, color: msg.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                        {msg.text}
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex items-center gap-1.5 pl-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" style={{ animation: "labsPulse 1.5s ease-in-out infinite" }} />
-                    <span className="text-xs text-[#94a3b8]">Voicera is analyzing...</span>
-                  </div>
-                </div>
-              </div>
+              <ChatAnimation />
             )}
           </div>
 
@@ -556,6 +632,10 @@ export default function VoiceraLabs() {
         @keyframes labsPulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.4; transform: scale(0.7); }
+        }
+        @keyframes chatBubbleIn {
+          0% { opacity: 0; transform: translateY(12px) scale(0.95); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
         }
         @keyframes labsHeroGlow {
           0%, 100% { opacity: 0.35; }
