@@ -2,16 +2,15 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const VIDEO_SRC = "/videos/sincerity-demo.mp4";
+const YOUTUBE_ID = "1J---fL-q2g";
 
 const Testimonial = () => {
   const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handlePlay = () => {
     if (!playing) {
       setPlaying(true);
-      setTimeout(() => videoRef.current?.play(), 100);
     }
   };
 
@@ -45,28 +44,35 @@ const Testimonial = () => {
               className="relative w-full h-full overflow-hidden rounded-[1.25rem] md:rounded-[2rem]"
               style={{ zIndex: 1 }}
             >
-              <video
-                ref={videoRef}
-                src={VIDEO_SRC}
-                className="w-full h-full object-cover"
-                controls={playing}
-                playsInline
-                preload="auto"
-                poster=""
-              />
-              {!playing && (
-                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
-                  <h2 className="type-display mb-3" style={{ color: "white" }}>
-                    AI Voice &amp; Video Insights
-                  </h2>
-                  <p className="text-white/80 font-normal mb-6" style={{ fontSize: "clamp(18px, 2vw, 24px)" }}>
-                    For Enhancing Confidence in the Truth
-                  </p>
-                  <button className="inline-flex items-center gap-2 bg-black/80 text-white type-button px-6 py-3 rounded-xl hover:bg-black/90 transition-colors backdrop-blur-sm">
-                    Watch
-                    <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                </div>
+              {playing ? (
+                <iframe
+                  ref={iframeRef}
+                  src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3`}
+                  className="w-full h-full"
+                  style={{ border: 0 }}
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <img
+                    src={`https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`}
+                    alt="Sincerity AI Demo"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
+                    <h2 className="type-display mb-3" style={{ color: "white" }}>
+                      AI Voice &amp; Video Insights
+                    </h2>
+                    <p className="text-white/80 font-normal mb-6" style={{ fontSize: "clamp(18px, 2vw, 24px)" }}>
+                      For Enhancing Confidence in the Truth
+                    </p>
+                    <button className="inline-flex items-center gap-2 bg-black/80 text-white type-button px-6 py-3 rounded-xl hover:bg-black/90 transition-colors backdrop-blur-sm">
+                      Watch
+                      <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </div>
