@@ -295,21 +295,34 @@ const CHAT_MESSAGES = [
 const ChatAnimation = () => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [showTyping, setShowTyping] = useState(false);
+  const [cycle, setCycle] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const delays = [800, 2200, 1500]; // delay before each message appears
+    const delays = [800, 2200, 1500];
     let timeout: ReturnType<typeof setTimeout>;
     let typingTimeout: ReturnType<typeof setTimeout>;
     let step = 0;
 
+    const reset = () => {
+      setVisibleCount(0);
+      setShowTyping(false);
+      step = 0;
+      timeout = setTimeout(showNext, delays[0]);
+    };
+
     const showNext = () => {
       if (step >= CHAT_MESSAGES.length) {
-        // Show typing indicator after last message
-        typingTimeout = setTimeout(() => setShowTyping(true), 600);
+        typingTimeout = setTimeout(() => {
+          setShowTyping(true);
+          // Hold the final state for 3s, then restart
+          timeout = setTimeout(() => {
+            setCycle((c) => c + 1);
+            reset();
+          }, 3000);
+        }, 600);
         return;
       }
-      // Show typing dots before response messages (align flex-start = AI response)
       if (step > 0 && CHAT_MESSAGES[step].align === "flex-start") {
         setShowTyping(true);
         timeout = setTimeout(() => {
@@ -331,7 +344,7 @@ const ChatAnimation = () => {
       clearTimeout(timeout);
       clearTimeout(typingTimeout);
     };
-  }, []);
+  }, [cycle]);
 
   return (
     <div ref={containerRef} className="p-6 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
