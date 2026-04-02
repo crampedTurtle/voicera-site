@@ -500,7 +500,7 @@ export default function SincerityForSales() {
           <Reveal>
             <Badge>Interactive Demo</Badge>
             <h2 style={{ fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-              See It in Action — Live Sales Call Intelligence
+               See It in Action — Live Sales Call Intelligence 🎯
             </h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 700, margin: "0 auto 40px" }}>
               Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns to surface trust signals your team would otherwise miss.
