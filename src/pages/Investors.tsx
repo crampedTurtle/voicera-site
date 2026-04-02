@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import InvestorsSection from "@/components/InvestorsSection";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
