@@ -45,7 +45,8 @@ const App = () => (
             <Route path="/solutions/sales" element={<SincerityForSales />} />
             <Route path="/solutions/hr" element={<SincerityForHR />} />
             <Route path="/solutions/law-enforcement" element={<SincerityForLawEnforcement />} />
-            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr" && s.slug !== "law-enforcement").map((s) => (
+            <Route path="/solutions/dating" element={<SincerityForDating />} />
+            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr" && s.slug !== "law-enforcement" && s.slug !== "dating").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
