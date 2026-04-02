@@ -450,7 +450,7 @@ export default function SincerityForSales() {
             <Reveal><Badge>AI-Powered Training</Badge></Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                Close Bigger Sales, Faster
+                 Close Bigger Sales, Faster 📈
               </h2>
               <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>
                 Sincerity™: AI-Powered Sales Pitch Training
