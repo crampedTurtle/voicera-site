@@ -220,7 +220,7 @@ export default function SincerityForLawEnforcement() {
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 36px" }}>
-              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making.
+              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making. 🛡️
             </p>
           </Reveal>
           <Reveal delay={0.45}>
