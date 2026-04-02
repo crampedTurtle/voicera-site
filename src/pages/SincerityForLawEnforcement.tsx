@@ -318,7 +318,7 @@ export default function SincerityForLawEnforcement() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotion Intelligence</Badge>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
               <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Vetting & Interrogations</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
