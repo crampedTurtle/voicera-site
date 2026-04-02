@@ -351,7 +351,16 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
               </>
             )}
             {type === "image" && imageSrc && (
-              <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+              <a href={linkHref || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 w-full h-full">
+                <img src={imageSrc} alt={label || "Demo"} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.25)" }}>
+                  <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[14px] font-bold tracking-wide"
+                    style={{ background: "linear-gradient(135deg,#2563EB,#3b82f6)", boxShadow: "0 4px 16px rgba(37,99,235,0.35)" }}>
+                    Try Our Live Demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                  </span>
+                </div>
+              </a>
             )}
             {type === "image" && !imageSrc && (
               <>
