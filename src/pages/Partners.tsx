@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
+import StickyNavbar from "@/components/StickyNavbar";
 import HeroSphere from "@/components/HeroSphere";
 
 const Footer = lazy(() => import("@/components/Footer"));
