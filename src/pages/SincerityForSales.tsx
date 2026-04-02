@@ -650,6 +650,7 @@ export default function SincerityForSales() {
           <WireframeMesh darkMode density={22} />
         </div>
         <Particles count={30} color="rgba(147,197,253,0.2)" />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", opacity: 0.02, fontSize: 180, pointerEvents: "none", lineHeight: 1 }}>📊</div>
         <div style={{
           position: "absolute", width: "50vw", height: "50vw", maxWidth: 600, maxHeight: 600,
           borderRadius: "50%",
