@@ -50,7 +50,7 @@ const partnersColLinks = [
 
 const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
-  const topLinkClass = lightText ? "text-white/90 hover:text-white" : "text-body-muted hover:text-body";
+  const topLinkClass = lightText ? "text-white hover:text-white" : "text-body-muted hover:text-body";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
