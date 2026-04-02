@@ -21,6 +21,7 @@ import TermsOfUse from "./pages/TermsOfUse.tsx";
 import ApiDocs from "./pages/ApiDocs.tsx";
 import VoiceraLabs from "./pages/VoiceraLabs.tsx";
 import SincerityForSales from "./pages/SincerityForSales.tsx";
+import SincerityForHR from "./pages/SincerityForHR.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
@@ -40,7 +41,8 @@ const App = () => (
             <Route path="/media" element={<Media />} />
             <Route path="/media/:slug" element={<BlogPost />} />
             <Route path="/solutions/sales" element={<SincerityForSales />} />
-            {solutions.filter((s) => s.slug !== "sales").map((s) => (
+            <Route path="/solutions/hr" element={<SincerityForHR />} />
+            {solutions.filter((s) => s.slug !== "sales" && s.slug !== "hr").map((s) => (
               <Route
                 key={s.slug}
                 path={`/solutions/${s.slug}`}
