@@ -264,15 +264,15 @@ export default function SincerityForLegal() {
             </Reveal>
             <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
               <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-                <StepCard num="1" title="Upload Videos to Sincerity™"
+                <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
                   desc="Lawyers, law students, and witnesses guided by their legal team can upload their videos or audio files to the Sincerity™ platform." />
               </Reveal>
               <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-                <StepCard num="2" title="Analyze with Sincerity™"
+                <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
                   desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
               </Reveal>
               <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-                <StepCard num="3" title="Enjoy More Confidence in Trial Outcomes"
+                <StepCard num="3" emoji="⚖️" title="Enjoy More Confidence in Trial Outcomes"
                   desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve trial outcomes, or to mitigate bias against neurodivergent-identifying lawyers or witnesses who may need more support in their trial preparations." />
               </Reveal>
             </div>
