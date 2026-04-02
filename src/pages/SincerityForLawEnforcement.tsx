@@ -406,7 +406,7 @@ export default function SincerityForLawEnforcement() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Want to learn more about how Voicera AI can help intelligence and law enforcement agents better prepare for and conduct interrogations?
+              Want to learn more about how Voicera AI can help intelligence and law enforcement agents better prepare for and conduct interrogations? 🛡️
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
