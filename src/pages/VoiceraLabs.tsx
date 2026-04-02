@@ -522,7 +522,7 @@ const DemoSection = ({ badge, title, about, bullets, extraContent, instructions,
 
       <div className="flex-[1_1_420px] min-w-[300px]">
         <Reveal delay={0.2} direction={reversed ? "right" : "left"}>
-          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} youtubeId={youtubeId} />
+          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} youtubeId={youtubeId} linkHref={linkHref} />
         </Reveal>
       </div>
     </div>
