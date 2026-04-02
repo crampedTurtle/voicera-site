@@ -650,7 +650,7 @@ export default function SincerityForSales() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 30, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.25, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning more about how Voicera AI can help sales and customer service professionals better prepare for pitches and customer interactions?
+              Interested in learning more about how Voicera AI can help sales and customer service professionals better prepare for pitches and customer interactions? 📊
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
