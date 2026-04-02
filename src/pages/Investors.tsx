@@ -13,6 +13,7 @@ const Investors = () => {
         path="/investors"
       />
       <Navbar />
+      <StickyNavbar />
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">

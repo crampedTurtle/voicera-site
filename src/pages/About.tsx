@@ -14,6 +14,7 @@ const About = () => {
         path="/about"
       />
       <Navbar />
+      <StickyNavbar />
 
       {/* Hero */}
       <section className="pt-44 pb-20 px-6">

@@ -525,6 +525,7 @@ const Partners = () => (
       path="/partners"
     />
     <Navbar />
+    <StickyNavbar />
     <div className="pt-20">
       <HeroSection />
       <ProofStrip />
