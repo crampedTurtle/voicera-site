@@ -446,10 +446,16 @@ interface DemoSectionProps {
   youtubeId?: string;
   reversed?: boolean;
   bgColor?: string;
+  showGrid?: boolean;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, reversed, bgColor = "#fff" }: DemoSectionProps) => (
-  <section style={{ background: bgColor, padding: "100px 0", position: "relative" }}>
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, reversed, bgColor = "#fff", showGrid }: DemoSectionProps) => (
+  <section style={{ background: bgColor, padding: "100px 0", position: "relative", overflow: "hidden" }}>
+    {showGrid && (
+      <div className="absolute inset-0" style={{ opacity: 0.45 }}>
+        <WireframeMesh darkMode={false} density={22} />
+      </div>
+    )}
     <div
       className={`max-w-[1200px] mx-auto px-8 flex ${reversed ? "flex-row-reverse" : "flex-row"} gap-16 items-center flex-wrap`}
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
