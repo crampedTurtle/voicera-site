@@ -89,7 +89,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
 };
 
 // ─── STEP CARD ──────────────────────────────────────────────────────────────
-const StepCard = ({ num, title, desc }: { num: string; title: string; desc: string }) => {
+const StepCard = ({ num, title, desc, emoji }: { num: string; title: string; desc: string; emoji: string }) => {
   const [h, setH] = useState(false);
   return (
     <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{
@@ -99,7 +99,7 @@ const StepCard = ({ num, title, desc }: { num: string; title: string; desc: stri
       transform: h ? "translateY(-4px)" : "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
     }}>
       <div style={{ position: "absolute", top: -20, right: -10, fontSize: 100, fontWeight: 900, color: "rgba(30,64,175,0.04)", lineHeight: 1, fontFamily: "Poppins,sans-serif" }}>{num}</div>
-      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.08))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "Poppins,sans-serif", marginBottom: 16 }}>{num}</div>
+      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.08))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "Poppins,sans-serif", marginBottom: 16 }}><span style={{ fontSize: 18 }}>{emoji}</span></div>
       <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10, lineHeight: 1.3, fontFamily: "Poppins,sans-serif" }}>{title}</h3>
       <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65, margin: 0 }}>{desc}</p>
     </div>
