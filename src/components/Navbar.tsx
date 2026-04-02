@@ -98,7 +98,7 @@ const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-8">
         <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center">
-          <img src={voiceraLogo} alt="Voicera" className="h-[90px] w-auto" />
+          <img src={lightText ? voiceraLogoWhite : voiceraLogo} alt="Voicera" className="h-[90px] w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
