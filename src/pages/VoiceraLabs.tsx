@@ -280,7 +280,7 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId, linkHref }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string; linkHref?: string }) => {
   const [hovered, setHovered] = useState(false);
   const [playing, setPlaying] = useState(false);
 
