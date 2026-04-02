@@ -430,7 +430,7 @@ export default function SincerityForHR() {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#2563EB,#7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Hiring Smarter Today
+              Start Hiring Smarter Today 👥
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
