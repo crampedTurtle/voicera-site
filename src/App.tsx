@@ -23,6 +23,7 @@ import VoiceraLabs from "./pages/VoiceraLabs.tsx";
 import SincerityForSales from "./pages/SincerityForSales.tsx";
 import SincerityForHR from "./pages/SincerityForHR.tsx";
 import SincerityForLawEnforcement from "./pages/SincerityForLawEnforcement.tsx";
+import SincerityForDating from "./pages/SincerityForDating.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
