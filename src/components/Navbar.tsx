@@ -231,7 +231,7 @@ const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="type-nav text-body-muted hover:text-body transition-colors cursor-pointer"
+                  className={`type-nav ${topLinkClass} transition-colors cursor-pointer`}
                 >
                   {link.label}
                 </a>
