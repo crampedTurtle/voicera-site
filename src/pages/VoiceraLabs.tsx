@@ -280,7 +280,7 @@ const CTAButton = ({ children, href = "#", variant = "blue" }: { children: React
 };
 
 // ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string }) => {
+const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imageSrc, youtubeId, linkHref }: { type?: "video" | "image" | "chat"; label?: string; badgeText?: string; imageSrc?: string; youtubeId?: string; linkHref?: string }) => {
   const [hovered, setHovered] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -351,7 +351,16 @@ const MediaPlaceholder = ({ type = "video", label, badgeText = "Live Demo", imag
               </>
             )}
             {type === "image" && imageSrc && (
-              <img src={imageSrc} alt={label || "Demo"} className="absolute inset-0 w-full h-full object-cover" />
+              <a href={linkHref || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 w-full h-full">
+                <img src={imageSrc} alt={label || "Demo"} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.25)" }}>
+                  <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[14px] font-bold tracking-wide"
+                    style={{ background: "linear-gradient(135deg,#2563EB,#3b82f6)", boxShadow: "0 4px 16px rgba(37,99,235,0.35)" }}>
+                    Try Our Live Demo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                  </span>
+                </div>
+              </a>
             )}
             {type === "image" && !imageSrc && (
               <>
@@ -444,12 +453,13 @@ interface DemoSectionProps {
   mediaBadge?: string;
   imageSrc?: string;
   youtubeId?: string;
+  linkHref?: string;
   reversed?: boolean;
   bgColor?: string;
   showGrid?: boolean;
 }
 
-const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, reversed, bgColor = "#fff", showGrid }: DemoSectionProps) => (
+const DemoSection = ({ badge, title, about, bullets, extraContent, instructions, ctaLabel, ctaHref, ctaVariant = "blue", mediaType, mediaLabel, mediaBadge, imageSrc, youtubeId, linkHref, reversed, bgColor = "#fff", showGrid }: DemoSectionProps) => (
   <section style={{ background: bgColor, padding: "100px 0", position: "relative", overflow: "hidden" }}>
     {showGrid && (
       <div className="absolute inset-0" style={{ opacity: 0.45 }}>
@@ -512,7 +522,7 @@ const DemoSection = ({ badge, title, about, bullets, extraContent, instructions,
 
       <div className="flex-[1_1_420px] min-w-[300px]">
         <Reveal delay={0.2} direction={reversed ? "right" : "left"}>
-          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} youtubeId={youtubeId} />
+          <MediaPlaceholder type={mediaType} label={mediaLabel} badgeText={mediaBadge} imageSrc={imageSrc} youtubeId={youtubeId} linkHref={linkHref} />
         </Reveal>
       </div>
     </div>
@@ -682,6 +692,7 @@ export default function VoiceraLabs() {
           reversed={true}
           bgColor="#f8fafc"
           showGrid
+          linkHref="https://voicera.io/emotion-coachme/"
         />
 
         {/* ══════ INSIGHTS ══════ */}
