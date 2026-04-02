@@ -399,7 +399,7 @@ export default function SincerityForSales() {
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 36px" }}>
-              Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence.
+               Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence. 💼
             </p>
           </Reveal>
           <Reveal delay={0.45}>
