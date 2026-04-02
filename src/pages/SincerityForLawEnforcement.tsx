@@ -89,7 +89,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
 };
 
 // ─── STEP CARD ──────────────────────────────────────────────────────────────
-const StepCard = ({ num, title, desc }: { num: string; title: string; desc: string }) => {
+const StepCard = ({ num, title, desc, emoji }: { num: string; title: string; desc: string; emoji: string }) => {
   const [h, setH] = useState(false);
   return (
     <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{
@@ -99,7 +99,7 @@ const StepCard = ({ num, title, desc }: { num: string; title: string; desc: stri
       transform: h ? "translateY(-4px)" : "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
     }}>
       <div style={{ position: "absolute", top: -20, right: -10, fontSize: 100, fontWeight: 900, color: "rgba(30,64,175,0.04)", lineHeight: 1, fontFamily: "Poppins,sans-serif" }}>{num}</div>
-      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.08))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "Poppins,sans-serif", marginBottom: 16 }}>{num}</div>
+      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.08))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "Poppins,sans-serif", marginBottom: 16 }}><span style={{ fontSize: 18 }}>{emoji}</span></div>
       <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10, lineHeight: 1.3, fontFamily: "Poppins,sans-serif" }}>{title}</h3>
       <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65, margin: 0 }}>{desc}</p>
     </div>
@@ -187,6 +187,7 @@ export default function SincerityForLawEnforcement() {
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes glow{0%,100%{opacity:0.3}50%{opacity:0.5}}
         @keyframes scanline{0%{top:-4px}100%{top:calc(100% + 4px)}}
+        @keyframes leFloat{0%,100%{transform:translate(0) rotate(0deg)}25%{transform:translate(8px,-14px) rotate(5deg)}50%{transform:translate(-4px,-24px) rotate(-3deg)}75%{transform:translate(12px,-10px) rotate(4deg)}}
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
 
@@ -197,6 +198,14 @@ export default function SincerityForLawEnforcement() {
         <div style={{ position: "absolute", inset: 0, transform: `translateY(${scrollY * 0.2}px)` }}><WireframeMesh density={30} /></div>
         <Particles count={45} />
         <div style={{ position: "absolute", width: "70vw", height: "70vw", maxWidth: 800, maxHeight: 800, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,175,0.12) 0%,rgba(15,23,42,0.06) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 6s ease-in-out infinite", pointerEvents: "none" }} />
+        {/* Floating emojis */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+          {["🛡️", "🔍", "🏢", "🎖️", "🛡️", "🔍", "🏢", "🎖️"].map((e, i) => (
+            <div key={i} style={{ position: "absolute", left: `${10 + i * 11}%`, top: `${15 + (i % 3) * 25}%`, fontSize: 12 + (i % 3) * 4, opacity: 0.04 + (i % 3) * 0.015, animation: `leFloat ${22 + i * 4}s ease-in-out ${-i * 3}s infinite` }}>{e}</div>
+          ))}
+        </div>
+        {/* Watermark */}
+        <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>🛡️</div>
         {/* Scanline */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", opacity: 0.03 }}>
           <div style={{ position: "absolute", left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", animation: "scanline 8s linear infinite" }} />
@@ -211,7 +220,7 @@ export default function SincerityForLawEnforcement() {
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 36px" }}>
-              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making.
+              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making. 🛡️
             </p>
           </Reveal>
           <Reveal delay={0.45}>
@@ -230,7 +239,7 @@ export default function SincerityForLawEnforcement() {
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
             <Reveal><Badge>Behavioral Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis 🔍</h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
@@ -268,13 +277,13 @@ export default function SincerityForLawEnforcement() {
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" title="Upload Videos to Sincerity™" desc="Officers and agents can upload pre-recorded videos or audio files to the Sincerity™ platform." />
+              <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™" desc="Officers and agents can upload pre-recorded videos or audio files to the Sincerity™ platform." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" title="More Confidence in Interrogations & Hiring" desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve interrogation processes, or to vet better candidates." />
+              <StepCard num="3" emoji="🛡️" title="More Confidence in Interrogations & Hiring" desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve interrogation processes, or to vet better candidates." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
@@ -309,7 +318,7 @@ export default function SincerityForLawEnforcement() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotion Intelligence</Badge>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
               <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Vetting & Interrogations</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
@@ -376,7 +385,7 @@ export default function SincerityForLawEnforcement() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Preparing for Interrogations & Vetting Better Today
+              Start Preparing for Interrogations & Vetting Better Today 🛡️
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -389,6 +398,7 @@ export default function SincerityForLawEnforcement() {
       <section style={{ position: "relative", padding: "110px 32px", background: "#050a18", overflow: "hidden", textAlign: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}><WireframeMesh density={22} /></div>
         <Particles count={30} color="rgba(147,197,253,0.18)" />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", opacity: 0.02, fontSize: 180, pointerEvents: "none", lineHeight: 1 }}>🔍</div>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", opacity: 0.025 }}>
           <div style={{ position: "absolute", left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", animation: "scanline 10s linear infinite" }} />
         </div>
@@ -396,7 +406,7 @@ export default function SincerityForLawEnforcement() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Want to learn more about how Voicera AI can help intelligence and law enforcement agents better prepare for and conduct interrogations?
+              Want to learn more about how Voicera AI can help intelligence and law enforcement agents better prepare for and conduct interrogations? 🛡️
             </h2>
           </Reveal>
           <Reveal delay={0.12}>

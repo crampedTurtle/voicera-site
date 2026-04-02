@@ -224,7 +224,7 @@ const StatCard = ({ value, suffix = "%", label, icon }: { value: string; suffix?
 };
 
 // ─── STEP CARD ──────────────────────────────────────────────────────────────
-const StepCard = ({ num, title, desc }: { num: string; title: string; desc: string }) => {
+const StepCard = ({ num, title, desc, emoji }: { num: string; title: string; desc: string; emoji: string }) => {
   const [h, setH] = useState(false);
   return (
     <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
@@ -246,7 +246,7 @@ const StepCard = ({ num, title, desc }: { num: string; title: string; desc: stri
         display: "flex", alignItems: "center", justifyContent: "center",
         fontSize: 16, fontWeight: 800, color: "#2563EB",
         fontFamily: "Poppins,sans-serif", marginBottom: 16,
-      }}>{num}</div>
+      }}><span style={{ fontSize: 18 }}>{emoji}</span></div>
       <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10, lineHeight: 1.3 }}>{title}</h3>
       <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65, margin: 0 }}>{desc}</p>
     </div>
@@ -362,6 +362,7 @@ export default function SincerityForSales() {
       <style>{`
         @keyframes sfsFp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes sfsGlow{0%,100%{opacity:0.3}50%{opacity:0.5}}
+        @keyframes sfsFloat{0%,100%{transform:translate(0) rotate(0deg)}25%{transform:translate(8px,-14px) rotate(5deg)}50%{transform:translate(-4px,-24px) rotate(-3deg)}75%{transform:translate(12px,-10px) rotate(4deg)}}
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
 
@@ -383,6 +384,14 @@ export default function SincerityForSales() {
           top: "50%", left: "50%", transform: "translate(-50%,-50%)",
           animation: "sfsGlow 6s ease-in-out infinite", pointerEvents: "none",
         }} />
+        {/* Decorative floating emojis */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+          {["💼", "📊", "🎯", "📈", "🤝", "💼", "📊", "🎯"].map((e, i) => (
+            <div key={i} style={{ position: "absolute", left: `${12 + i * 11}%`, top: `${15 + (i % 3) * 25}%`, fontSize: 12 + (i % 3) * 4, opacity: 0.04 + (i % 3) * 0.015, animation: `sfsFloat ${22 + i * 4}s ease-in-out ${-i * 3}s infinite` }}>{e}</div>
+          ))}
+        </div>
+        {/* Watermark */}
+        <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>💼</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
           <Reveal delay={0.1}><Badge dark>Sales & Customer Service Training</Badge></Reveal>
           <Reveal delay={0.2}>
@@ -399,7 +408,7 @@ export default function SincerityForSales() {
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 36px" }}>
-              Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence.
+               Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence. 💼
             </p>
           </Reveal>
           <Reveal delay={0.45}>
@@ -450,7 +459,7 @@ export default function SincerityForSales() {
             <Reveal><Badge>AI-Powered Training</Badge></Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                Close Bigger Sales, Faster
+                 Close Bigger Sales, Faster 📈
               </h2>
               <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>
                 Sincerity™: AI-Powered Sales Pitch Training
@@ -500,7 +509,7 @@ export default function SincerityForSales() {
           <Reveal>
             <Badge>Interactive Demo</Badge>
             <h2 style={{ fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-              See It in Action — Live Sales Call Intelligence
+               See It in Action — Live Sales Call Intelligence 🎯
             </h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 700, margin: "0 auto 40px" }}>
               Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns to surface trust signals your team would otherwise miss.
@@ -546,16 +555,16 @@ export default function SincerityForSales() {
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" title="Upload Videos to Sincerity™"
-                desc="Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform." />
-            </Reveal>
-            <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" title="Analyze with Sincerity™"
-                desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
-            </Reveal>
-            <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" title="Enjoy More Confidence in Pitch Outcomes"
-                desc="Leverage insights from AI analysis results to better detect verbal and non-verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust." />
+              <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
+                 desc="Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform." />
+             </Reveal>
+             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
+               <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
+                 desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+             </Reveal>
+             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
+               <StepCard num="3" emoji="💼" title="Enjoy More Confidence in Pitch Outcomes"
+                 desc="Leverage insights from AI analysis results to better detect verbal and non-verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
@@ -623,7 +632,7 @@ export default function SincerityForSales() {
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               marginBottom: 24,
             }}>
-              Start Closing Sales & Understanding Your Customers Better Today
+              Start Closing Sales & Understanding Your Customers Better Today 💼
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -641,6 +650,7 @@ export default function SincerityForSales() {
           <WireframeMesh darkMode density={22} />
         </div>
         <Particles count={30} color="rgba(147,197,253,0.2)" />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", opacity: 0.02, fontSize: 180, pointerEvents: "none", lineHeight: 1 }}>📊</div>
         <div style={{
           position: "absolute", width: "50vw", height: "50vw", maxWidth: 600, maxHeight: 600,
           borderRadius: "50%",
@@ -650,7 +660,7 @@ export default function SincerityForSales() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 30, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.25, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning more about how Voicera AI can help sales and customer service professionals better prepare for pitches and customer interactions?
+              Interested in learning more about how Voicera AI can help sales and customer service professionals better prepare for pitches and customer interactions? 📊
             </h2>
           </Reveal>
           <Reveal delay={0.12}>

@@ -85,7 +85,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
 };
 
 // ─── STEP CARD ──────────────────────────────────────────────────────────────
-const StepCard = ({ num, title, desc }: { num: string; title: string; desc: string }) => {
+const StepCard = ({ num, title, desc, emoji }: { num: string; title: string; desc: string; emoji: string }) => {
   const [h, setH] = useState(false);
   return (
     <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{
@@ -95,7 +95,7 @@ const StepCard = ({ num, title, desc }: { num: string; title: string; desc: stri
       transform: h ? "translateY(-4px)" : "none", transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
     }}>
       <div style={{ position: "absolute", top: -20, right: -10, fontSize: 100, fontWeight: 900, color: "rgba(30,64,175,0.04)", lineHeight: 1, fontFamily: "'Poppins',sans-serif" }}>{num}</div>
-      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.06))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "'Poppins',sans-serif", marginBottom: 16 }}>{num}</div>
+      <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,rgba(30,64,175,0.1),rgba(37,99,235,0.06))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#1e40af", fontFamily: "'Poppins',sans-serif", marginBottom: 16 }}><span style={{ fontSize: 18 }}>{emoji}</span></div>
       <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10, lineHeight: 1.3, fontFamily: "'Poppins',sans-serif" }}>{title}</h3>
       <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.65, margin: 0 }}>{desc}</p>
     </div>
@@ -170,6 +170,7 @@ export default function SincerityForLegal() {
       <style>{`
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes glow{0%,100%{opacity:0.25}50%{opacity:0.4}}
+        @keyframes legalFloat{0%,100%{transform:translate(0) rotate(0deg)}25%{transform:translate(8px,-14px) rotate(5deg)}50%{transform:translate(-4px,-24px) rotate(-3deg)}75%{transform:translate(12px,-10px) rotate(4deg)}}
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
 
@@ -182,6 +183,12 @@ export default function SincerityForLegal() {
           <Particles count={40} color="rgba(148,163,184,0.22)" />
           <div style={{ position: "absolute", width: "65vw", height: "65vw", maxWidth: 750, maxHeight: 750, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,175,0.1) 0%,rgba(15,23,42,0.05) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 7s ease-in-out infinite", pointerEvents: "none" }} />
           <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 220, pointerEvents: "none", lineHeight: 1 }}>⚖️</div>
+          {/* Floating emojis */}
+          <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+            {["⚖️", "📜", "🏛️", "📝", "⚖️", "📜", "🏛️", "📝"].map((e, i) => (
+              <div key={i} style={{ position: "absolute", left: `${10 + i * 11}%`, top: `${15 + (i % 3) * 25}%`, fontSize: 12 + (i % 3) * 4, opacity: 0.04 + (i % 3) * 0.015, animation: `legalFloat ${22 + i * 4}s ease-in-out ${-i * 3}s infinite` }}>{e}</div>
+            ))}
+          </div>
 
           <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
             <Reveal delay={0.1}><Badge dark>Litigation & Deposition Prep</Badge></Reveal>
@@ -193,7 +200,7 @@ export default function SincerityForLegal() {
             </Reveal>
             <Reveal delay={0.35}>
               <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 650, margin: "0 auto 36px" }}>
-                AI-powered behavioral analysis to help legal teams prepare witnesses, train lawyers, and improve litigation outcomes with data-driven credibility intelligence.
+                AI-powered behavioral analysis to help legal teams prepare witnesses, train lawyers, and improve litigation outcomes with data-driven credibility intelligence. ⚖️
               </p>
             </Reveal>
             <Reveal delay={0.45}>
@@ -213,7 +220,7 @@ export default function SincerityForLegal() {
               <Reveal><Badge>AI-Powered Trial Prep</Badge></Reveal>
               <Reveal delay={0.1}>
                 <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                  Sincerity™ Optimizes Litigation Training & Deposition Prep
+                  Sincerity™ Optimizes Litigation Training & Deposition Prep 📜
                 </h2>
                 <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#1e40af", margin: "0 0 24px" }}>
                   Sincerity™: AI-Powered Trial Prep
@@ -257,15 +264,15 @@ export default function SincerityForLegal() {
             </Reveal>
             <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
               <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-                <StepCard num="1" title="Upload Videos to Sincerity™"
+                <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
                   desc="Lawyers, law students, and witnesses guided by their legal team can upload their videos or audio files to the Sincerity™ platform." />
               </Reveal>
               <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-                <StepCard num="2" title="Analyze with Sincerity™"
+                <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
                   desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
               </Reveal>
               <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-                <StepCard num="3" title="Enjoy More Confidence in Trial Outcomes"
+                <StepCard num="3" emoji="⚖️" title="Enjoy More Confidence in Trial Outcomes"
                   desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve trial outcomes, or to mitigate bias against neurodivergent-identifying lawyers or witnesses who may need more support in their trial preparations." />
               </Reveal>
             </div>
@@ -301,7 +308,7 @@ export default function SincerityForLegal() {
             <Reveal>
               <div style={{ textAlign: "center", marginBottom: 56 }}>
                 <Badge>Emotion Intelligence</Badge>
-                <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach</h2>
+                <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
                 <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Trial Preparation</h3>
                 <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                   <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
@@ -372,7 +379,7 @@ export default function SincerityForLegal() {
                 background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                 marginBottom: 24,
               }}>
-                Start Preparing for Litigations & Depositions Better Today
+                Start Preparing for Litigations & Depositions Better Today ⚖️
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -390,7 +397,7 @@ export default function SincerityForLegal() {
           <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
             <Reveal>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-                Interested in learning more about how Voicera AI can help legal professionals better prepare for litigations and depositions?
+                Interested in learning more about how Voicera AI can help legal professionals better prepare for litigations and depositions? 📜
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
