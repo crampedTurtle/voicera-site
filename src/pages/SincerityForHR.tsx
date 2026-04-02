@@ -282,7 +282,7 @@ export default function SincerityForHR() {
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
             <Reveal><Badge>AI-Powered Recruiting</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Optimizes Recruiting</h2>
+              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Optimizes Recruiting 📋</h2>
               <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>Sincerity™: AI-Powered Candidate Authenticity Analysis</h3>
             </Reveal>
             <Reveal delay={0.15}>
