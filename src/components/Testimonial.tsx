@@ -51,7 +51,8 @@ const Testimonial = () => {
                 className="w-full h-full object-cover"
                 controls={playing}
                 playsInline
-                preload="metadata"
+                preload="auto"
+                poster=""
               />
               {!playing && (
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
