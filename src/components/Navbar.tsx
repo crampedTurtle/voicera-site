@@ -24,7 +24,7 @@ const productLinks = [
 
 const navLinks = [
   { label: "Product", href: "#product", hasDropdown: true, dropdownType: "product" as const },
-  { label: "Platform", href: "#solutions", hasDropdown: true, dropdownType: "solutions" as const },
+  { label: "Solutions", href: "#solutions", hasDropdown: true, dropdownType: "solutions" as const },
   {
     label: "Company",
     href: "#company",
