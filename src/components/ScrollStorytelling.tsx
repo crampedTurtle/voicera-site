@@ -29,19 +29,19 @@ const steps = [
   {
     num: "01",
     title: "The Problem",
-    desc: "Sales leaders rely on subjective gut feelings to evaluate rep performance, qualify deals, and forecast pipeline — leading to inconsistent coaching, missed signals, and lost revenue.",
+    desc: "Digital interactions are losing trust. Today's platforms can transcribe and summarize, but they're blind to the signals that reveal true intent — tone, micro-expressions, hesitation, conviction. Without a credibility layer, your platform is guessing.",
     icon: AlertTriangle,
   },
   {
     num: "02",
     title: "The Solution",
-    desc: "Voicera's multimodal AI analyzes every sales conversation in real time — detecting credibility signals, buyer sentiment, objection patterns, and engagement levels that humans miss.",
+    desc: "Voicera's multimodal AI fuses auditory and visual intelligence to produce a queryable Sincerity™ Score — aligned to specific conversation topics and moments. Validate buyer intent for sharper forecasting. Detect churn risk in client calls. Score authenticity in hiring, compliance, or legal interactions. One API, any use case your platform needs.",
     icon: BrainCircuit,
   },
   {
     num: "03",
     title: "The Delivery",
-    desc: "Get actionable scorecards after every call. Identify top-performer patterns, replicate winning behaviors across your team, and build a data-driven coaching culture that scales.",
+    desc: "Delivered via API. We stay in the background; you take the credit. Built for developers, designed for scale — integrate actionable credibility intelligence into your product without building the models yourself.",
     icon: TrendingUp,
   },
 ];
