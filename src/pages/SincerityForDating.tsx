@@ -241,24 +241,24 @@ export default function SincerityForDating() {
         <FloatingHearts count={10} />
         <div style={{ position: "absolute", width: "70vw", height: "70vw", maxWidth: 800, maxHeight: 800, borderRadius: "50%", background: "radial-gradient(circle,rgba(139,92,246,0.1) 0%,rgba(219,39,119,0.05) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 6s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
-          <Reveal delay={0.1}><Badge dark>Sincerity™ for Dating</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Authentic Connection</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontFamily: hf, fontSize: "clamp(32px,5.2vw,56px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "28px 0 24px" }}>
-              Catfishing & Misrepresentation Are Rampant in{" "}
-              <span style={{ background: "linear-gradient(135deg,#a78bfa,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Online Dating</span>
+              Catfishing & Misrepresentation Are Costing{" "}
+              <span style={{ background: "linear-gradient(135deg,#a78bfa,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Your Users</span>
               {" "}<span style={{ fontSize: "0.6em", verticalAlign: "middle" }}>💔</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#a5b4fc", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 12px" }}>
-              <strong style={{ color: "#e0e7ff" }}>53%</strong> of people admit to misrepresenting themselves on dating profiles, leading to wasted time, emotional distress, and safety concerns.
+              <strong style={{ color: "#e0e7ff" }}>53%</strong> of people admit to misrepresenting themselves on dating profiles, leading to wasted time, churn, and trust & safety incidents on your platform.
             </p>
-            <p style={{ fontSize: 17, color: "#c4b5fd", fontWeight: 600 }}>Voicera AI can help dating platforms and users spot authenticity. 💙</p>
+            <p style={{ fontSize: 17, color: "#c4b5fd", fontWeight: 600 }}>Embed the credibility layer that protects your users and powers authenticity. 💙</p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="rose" size="lg">Try Sincerity™ for Dating</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Us</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="rose" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
