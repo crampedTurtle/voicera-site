@@ -366,7 +366,7 @@ export default function SincerityForLegal() {
               <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
                 <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Images are never stored or transmitted to the cloud." />
                 <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets to ensure accuracy across demographics, ethnicities, and cultural expression patterns." />
-                <FeatureCard icon="⚡" title="User-Friendly" desc="Requires only an internet connection and camera access. No installations, no downloads, no additional hardware." />
+                <FeatureCard icon="⚡" title="Developer-Friendly" desc="Requires only an internet connection and camera access. No SDK, downloads, or installations needed." />
               </div>
             </Reveal>
           </div>
