@@ -176,12 +176,12 @@ export default function SincerityForLawEnforcement() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <Helmet>
-        <title>Sincerity™ for Law Enforcement — Voicera</title>
-        <meta name="description" content="AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve decision-making." />
+        <title>Sincerity™ for Investigative Tech Platforms — Voicera</title>
+        <meta name="description" content="Embed AI-powered behavioral analysis into your interview recording, case management, or digital evidence platform. Help your users enhance interrogations and accelerate vetting." />
       </Helmet>
       <JsonLd
-        title="Sincerity™ for Law Enforcement — Voicera"
-        description="AI-powered behavioral analysis for law enforcement."
+        title="Sincerity™ for Investigative Tech Platforms — Voicera"
+        description="Embed AI-powered behavioral analysis into investigative tech platforms."
         path="/solutions/law-enforcement"
       />
       <style>{`
@@ -213,22 +213,22 @@ export default function SincerityForLawEnforcement() {
           <div style={{ position: "absolute", left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", animation: "scanline 8s linear infinite" }} />
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
-          <Reveal delay={0.1}><Badge dark>Vetting & Interrogations</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Investigative Intelligence</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontFamily: headingFont, fontSize: "clamp(34px,5.5vw,60px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "28px 0 24px" }}>
-              Improve Security with{" "}
-              <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Sincerity™</span>
+              Embed Behavioral Analysis{" "}
+              <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>into Your Platform</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 36px" }}>
-              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making. 🛡️
+              A data layer for interview recording systems, case management software, and digital evidence platforms. Power your product with AI-driven behavioral intelligence that enhances interrogations and accelerates vetting — natively. 🛡️
             </p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Try Sincerity™ for Law Enforcement</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Us</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
@@ -239,30 +239,30 @@ export default function SincerityForLawEnforcement() {
       <section style={{ background: "#fff", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>Behavioral Intelligence</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis 🔍</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Smarter Investigations 🔍</h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                Preparing for and conducting interrogations is time consuming & costly. Vetting the right candidates is risky. Sincerity™ AI can help law enforcement, government agencies, and defense contractors:
+                Preparing for and conducting interrogations is time consuming & costly. Vetting the right candidates is risky. Integrate Sincerity™ into your platform to help your users in law enforcement, government agencies, and defense:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet>Enhance decision making accuracy for time-sensitive missions by flagging inconsistent or suspicious responses.</Bullet>
-              <Bullet>Minimize risk of acting on false intelligence, faster, with data-driven behavioral insights.</Bullet>
-              <Bullet>Reduce human error and reliance on polygraphs with AI-augmented vetting that analyzes verbal & non verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
-              <Bullet>More reliably train agents on their ability to read and interpret deceptive and emotional cues, especially via video and audio analysis.</Bullet>
+              <Bullet>Enhance decision-making accuracy for time-sensitive missions by flagging inconsistent or suspicious responses within your product.</Bullet>
+              <Bullet>Minimize the risk of acting on false intelligence, faster, with data-driven behavioral insights delivered natively.</Bullet>
+              <Bullet>Reduce human error and reliance on polygraphs with AI-augmented vetting that analyzes verbal & non-verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
+              <Bullet>Equip your users to more reliably train agents on reading and interpreting deceptive and emotional cues via embedded video and audio analysis.</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 28 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for Law Enforcement</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="Law Enforcement Behavioral Analysis" badge="Sincerity™" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
@@ -273,24 +273,24 @@ export default function SincerityForLawEnforcement() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
-              <h2 style={{ fontFamily: headingFont, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Smarter Interrogations & Vetting in 3 Steps</h2>
+              <Badge>Native Integration</Badge>
+              <h2 style={{ fontFamily: headingFont, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Embed Behavioral Intelligence in 3 Steps</h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™" desc="Officers and agents can upload pre-recorded videos or audio files to the Sincerity™ platform." />
+              <StepCard num="1" emoji="🔗" title="Connect via API" desc="Integrate the Sincerity™ API into your platform's existing interview recording or evidence pipeline. Your users upload media as usual — our data layer processes it in the background." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI" desc="Voicera's AI evaluates each subject's voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" emoji="🛡️" title="More Confidence in Interrogations & Hiring" desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve interrogation processes, or to vet better candidates." />
+              <StepCard num="3" emoji="📊" title="Surface Insights to Your Users" desc="Deliver behavioral flags, credibility scores, and inconsistency alerts natively within your product. Equip investigators to act faster — and make your platform indispensable." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
@@ -300,10 +300,10 @@ export default function SincerityForLawEnforcement() {
       <section style={{ background: "#fff", padding: "80px 32px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <Reveal>
-            <Badge>Case Study</Badge>
+            <Badge>Proof of Capability</Badge>
             <h2 style={{ fontFamily: headingFont, fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.02em" }}>See Sincerity™ in Action</h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 32px" }}>
-              See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+              Watch our analysis of the Elizabeth Holmes case — the same behavioral intelligence your platform can surface natively to investigators.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -321,7 +321,7 @@ export default function SincerityForLawEnforcement() {
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotion Intelligence</Badge>
               <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
-              <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Vetting & Interrogations</h3>
+              <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Embed Emotion Analysis Into Investigative Platforms</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
               </p>
@@ -334,9 +334,9 @@ export default function SincerityForLawEnforcement() {
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                   Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                 </p>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Law Enforcement teams can use Voicera's Emotion Coach to:</p>
-                <Bullet>Train police officers and intelligence agents on how to better read and interpret emotional cues, especially for those who struggle with deciphering emotions correctly.</Bullet>
-                <Bullet>Analyze candidates emotions live to augment the vetting process with more accurate results.</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Enhance your platform with Emotion Coach to power:</p>
+                <Bullet>Agent training modules that help your users better read and interpret emotional cues, especially for those who struggle with deciphering emotions correctly.</Bullet>
+                <Bullet>Real-time emotion analysis during vetting workflows, delivered natively within your product for more accurate results.</Bullet>
               </Reveal>
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -349,19 +349,19 @@ export default function SincerityForLawEnforcement() {
           <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", flexDirection: "row-reverse" }}>
             <div style={{ flex: "1 1 480px", minWidth: 320 }}>
               <Reveal delay={0.1}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: headingFont }}>HOW TO USE VOICERA'S EMOTION COACH AI</p>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: headingFont }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
                 <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                 <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                 <Bullet>Review the results of your video analysis</Bullet>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach AI is privacy-friendly, accurate, and easy to use:</p>
-                <Bullet>Data privacy: Facial expressions are analyzed locally, within your browser. Your face and image are not stored or sent to the cloud</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach is privacy-friendly, accurate, and built for native integration:</p>
+                <Bullet>Data privacy: Facial expressions are analyzed locally, within the browser. No face or image data is stored or sent to the cloud</Bullet>
                 <Bullet>Demographic diversity: The Emotion Coach AI model is trained on diverse datasets, ensuring accuracy across various demographics</Bullet>
-                <Bullet>User-friendly: Requires only an internet connection and camera access to function</Bullet>
+                <Bullet>Developer-friendly: Requires only an internet connection and camera access — no SDK or downloads needed</Bullet>
               </Reveal>
               <Reveal delay={0.25}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach for Free</CTA>
+                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach Demo</CTA>
                 </div>
               </Reveal>
             </div>
@@ -374,9 +374,9 @@ export default function SincerityForLawEnforcement() {
 
           <Reveal delay={0.2}>
             <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
-              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Images are never stored or transmitted to the cloud." />
+              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within the browser. Images are never stored or transmitted to the cloud." />
               <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets to ensure accuracy across demographics, ethnicities, and cultural expression patterns." />
-              <FeatureCard icon="⚡" title="Deployment-Ready" desc="Requires only an internet connection and camera access. No installations, no downloads, no additional hardware." />
+              <FeatureCard icon="⚡" title="Developer-Ready" desc="Requires only an internet connection and camera access. No SDK, installations, or additional hardware needed." />
             </div>
           </Reveal>
         </div>
@@ -387,11 +387,11 @@ export default function SincerityForLawEnforcement() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Preparing for Interrogations & Vetting Better Today 🛡️
+              Enhance Your Investigative Platform with Behavioral Intelligence 🛡️
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for Law Enforcement</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
@@ -408,11 +408,11 @@ export default function SincerityForLawEnforcement() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Want to learn more about how Voicera AI can help intelligence and law enforcement agents better prepare for and conduct interrogations? 🛡️
+              Ready to embed behavioral intelligence into your investigative platform? Let's talk integration. 🛡️
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
           </Reveal>
         </div>
       </section>
