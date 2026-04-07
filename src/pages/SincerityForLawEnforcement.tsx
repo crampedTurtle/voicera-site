@@ -239,30 +239,30 @@ export default function SincerityForLawEnforcement() {
       <section style={{ background: "#fff", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>Behavioral Intelligence</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>AI-Powered Behavioral Analysis 🔍</h2>
+              <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Smarter Investigations 🔍</h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                Preparing for and conducting interrogations is time consuming & costly. Vetting the right candidates is risky. Sincerity™ AI can help law enforcement, government agencies, and defense contractors:
+                Preparing for and conducting interrogations is time consuming & costly. Vetting the right candidates is risky. Integrate Sincerity™ into your platform to help your users in law enforcement, government agencies, and defense:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet>Enhance decision making accuracy for time-sensitive missions by flagging inconsistent or suspicious responses.</Bullet>
-              <Bullet>Minimize risk of acting on false intelligence, faster, with data-driven behavioral insights.</Bullet>
-              <Bullet>Reduce human error and reliance on polygraphs with AI-augmented vetting that analyzes verbal & non verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
-              <Bullet>More reliably train agents on their ability to read and interpret deceptive and emotional cues, especially via video and audio analysis.</Bullet>
+              <Bullet>Enhance decision-making accuracy for time-sensitive missions by flagging inconsistent or suspicious responses within your product.</Bullet>
+              <Bullet>Minimize the risk of acting on false intelligence, faster, with data-driven behavioral insights delivered natively.</Bullet>
+              <Bullet>Reduce human error and reliance on polygraphs with AI-augmented vetting that analyzes verbal & non-verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
+              <Bullet>Equip your users to more reliably train agents on reading and interpreting deceptive and emotional cues via embedded video and audio analysis.</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 28 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for Law Enforcement</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="Law Enforcement Behavioral Analysis" badge="Sincerity™" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
