@@ -235,23 +235,23 @@ export default function SincerityForHR() {
         {/* Watermark */}
         <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>👥</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
-          <Reveal delay={0.1}><Badge dark>Sincerity™ for HR</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering People Intelligence</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontSize: "clamp(36px,5.5vw,62px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.035em", lineHeight: 1.08, margin: "28px 0 20px", fontFamily: "Poppins,sans-serif" }}>
-              Bad Hires Cost{" "}
-              <span style={{ background: "linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Time & Money</span>
+              Bad Hires Cost Your{" "}
+              <span style={{ background: "linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Customers Time & Money</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 16px" }}>
-              <strong style={{ color: "#e0f2fe" }}>80%</strong> of candidates admit to misrepresenting their qualifications during interviews, costing companies <strong style={{ color: "#e0f2fe" }}>$15K/year</strong> per bad hire.
+              <strong style={{ color: "#e0f2fe" }}>80%</strong> of candidates admit to misrepresenting qualifications during interviews, costing companies <strong style={{ color: "#e0f2fe" }}>$15K/year</strong> per bad hire.
             </p>
-            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Voicera AI can help HR teams avoid this. 👥</p>
+            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Embed the credibility layer that helps your users avoid this. 👥</p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Try Sincerity™ for HR</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Sales</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
