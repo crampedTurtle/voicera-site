@@ -549,29 +549,29 @@ export default function SincerityForSales() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
+              <Badge>Native Integration</Badge>
               <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>
-                Smarter Pitches and Customer Service in 3 Steps
+                Embed Credibility Intelligence in 3 Steps
               </h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
-                 desc="Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform." />
+              <StepCard num="1" emoji="🔗" title="Connect via API"
+                 desc="Integrate the Sincerity™ API into your platform's existing call recording or video pipeline. Your users upload media as usual — our data layer processes it in the background." />
              </Reveal>
              <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-               <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
-                 desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+               <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI"
+                 desc="Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
              </Reveal>
              <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-               <StepCard num="3" emoji="💼" title="Enjoy More Confidence in Pitch Outcomes"
-                 desc="Leverage insights from AI analysis results to better detect verbal and non-verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust." />
+               <StepCard num="3" emoji="📊" title="Surface Insights to Your Users"
+                 desc="Deliver credibility scores, trust signals, and coaching prompts natively within your product. Your users get smarter — and your platform gets stickier." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
