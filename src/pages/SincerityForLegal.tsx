@@ -381,11 +381,11 @@ export default function SincerityForLegal() {
                 background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                 marginBottom: 24,
               }}>
-                Start Preparing for Litigations & Depositions Better Today ⚖️
+                Enhance Your Legal Tech Platform with Credibility Intelligence ⚖️
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for Legal</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
             </Reveal>
           </div>
         </section>
