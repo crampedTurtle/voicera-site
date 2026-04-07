@@ -289,25 +289,25 @@ export default function SincerityForDating() {
       <section style={{ background: "#faf5ff", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>Authentic Connections</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Powers Real Relationships 💙</h2>
-              <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#7c3aed", margin: "0 0 24px" }}>Sincerity™: AI-Powered Emotion and Sincerity Analysis for Smarter Matching</h3>
+              <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Authentic Connections 💙</h2>
+              <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#7c3aed", margin: "0 0 24px" }}>Sincerity™: A Data Layer for Dating & Matchmaking Platforms</h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet><strong>1 in 3</strong> online daters have experienced being misled by profile photos or descriptions.</Bullet>
-              <Bullet>The average user spends <strong>6+ hours/week</strong> chatting before meeting in person—often with mismatched expectations.</Bullet>
-              <Bullet>Over <strong>40%</strong> of users say they wish there was a better way to verify sincerity and emotional compatibility before meeting.</Bullet>
+              <Bullet><strong>1 in 3</strong> online daters have experienced being misled by profile photos or descriptions — protect your users from this natively.</Bullet>
+              <Bullet>The average user spends <strong>6+ hours/week</strong> chatting before meeting in person — help your platform surface genuine matches faster.</Bullet>
+              <Bullet>Over <strong>40%</strong> of users wish there was a better way to verify sincerity and emotional compatibility — embed that capability directly into your product.</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 28 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="rose">Try Sincerity™ for Dating</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="rose">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="Dating Profile Verification" badge="Sincerity™" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your App" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
