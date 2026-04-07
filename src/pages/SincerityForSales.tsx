@@ -634,11 +634,11 @@ export default function SincerityForSales() {
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               marginBottom: 24,
             }}>
-              Start Closing Sales & Understanding Your Customers Better Today 
+              Enhance Your Sales Platform with Credibility Intelligence
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for Sales</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
