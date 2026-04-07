@@ -451,11 +451,11 @@ export default function SincerityForDating() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning how Voicera AI can help dating platforms ensure authentic connections? 💜
+              Ready to embed authenticity intelligence into your dating platform? Let's talk integration. 💜
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
           </Reveal>
         </div>
       </section>
