@@ -270,16 +270,16 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Problem</Badge>
-              <h2 style={{ fontFamily: hf, fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why Online Dating Needs Sincerity™ 💔</h2>
+              <Badge>The Trust Gap</Badge>
+              <h2 style={{ fontFamily: hf, fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why Dating Platforms Need a Credibility Layer 💔</h2>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="53" suffix="%" label="of people misrepresent themselves on dating profiles" emoji="💔" />
-              <StatCard value="33" suffix="%" label="of online daters have been misled by profile photos or descriptions" emoji="😔" />
-              <StatCard value="6" suffix="+" label="hours per week chatting before meeting — often with mismatched expectations" emoji="⏰" />
-              <StatCard value="40" suffix="%" label="of users wish they could verify sincerity before meeting" emoji="💙" />
+              <StatCard value="53" suffix="%" label="of people misrepresent themselves — your users need tools to spot it" emoji="💔" />
+              <StatCard value="33" suffix="%" label="of online daters have been misled — protect your users from this" emoji="😔" />
+              <StatCard value="6" suffix="+" label="hours per week chatting before meeting — help your users invest wisely" emoji="⏰" />
+              <StatCard value="40" suffix="%" label="of users wish they could verify sincerity — deliver that within your app" emoji="💙" />
             </div>
           </Reveal>
         </div>
