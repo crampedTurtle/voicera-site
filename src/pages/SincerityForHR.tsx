@@ -282,31 +282,31 @@ export default function SincerityForHR() {
       <section style={{ background: "#f8fafc", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>AI-Powered Recruiting</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Optimizes Recruiting 📋</h2>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>Sincerity™: AI-Powered Candidate Authenticity Analysis</h3>
+              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Smarter Recruiting 📋</h2>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>Sincerity™: A Data Layer for HR Tech Platforms</h3>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                HR spends an average of <strong>40+ days</strong> and <strong>$5K–$25K</strong> trying to fill a position. Sincerity™ can help your team save time, money, & labor inefficiencies by:
+                HR teams spend an average of <strong>40+ days</strong> and <strong>$5K–$25K</strong> to fill a position. Integrate Sincerity™ into your platform to help your customers save time, money, and labor inefficiencies by:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet>Analyzing verbal and non-verbal inconsistencies that HR might miss</Bullet>
-              <Bullet>Providing an alternative to lengthy skills validation assessments</Bullet>
-              <Bullet>Accelerating candidate screening by reducing time spent on live interview analysis</Bullet>
-              <Bullet>Avoiding costly hiring mistakes by identifying unfit candidates quicker, with 30% greater accuracy than human capability</Bullet>
+              <Bullet>Surfacing verbal and non-verbal inconsistencies that recruiters might miss</Bullet>
+              <Bullet>Offering an embedded alternative to lengthy skills validation assessments</Bullet>
+              <Bullet>Accelerating candidate screening by reducing time your users spend on live interview analysis</Bullet>
+              <Bullet>Helping your customers avoid costly hiring mistakes by identifying unfit candidates quicker, with 30% greater accuracy than human capability</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 24 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for HR</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="HR Team Using Sincerity™" badge="Sincerity™ for HR" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
