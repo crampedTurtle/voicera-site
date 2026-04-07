@@ -433,11 +433,11 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#2563EB,#8b5cf6,#db2777)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Making Safer, More Genuine Connections Today 💙
+              Enhance Your Dating Platform with Authenticity Intelligence 💙
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="rose" size="lg">Try Sincerity™ for Dating</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="rose" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
