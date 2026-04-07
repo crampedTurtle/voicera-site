@@ -216,12 +216,12 @@ export default function SincerityForDating() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <Helmet>
-        <title>Sincerity™ for Dating — Voicera</title>
-        <meta name="description" content="AI-powered sincerity and emotion analysis for dating platforms. Help users make safer, more genuine connections with Sincerity™ by Voicera." />
+        <title>Sincerity™ for Dating Platforms — Voicera</title>
+        <meta name="description" content="Embed AI-powered sincerity and emotion analysis into your dating app, matchmaking service, or relationship platform. Protect your users from catfishing and power authentic connections." />
       </Helmet>
       <JsonLd
-        title="Sincerity™ for Dating — Voicera"
-        description="AI-powered sincerity analysis for dating platforms."
+        title="Sincerity™ for Dating Platforms — Voicera"
+        description="Embed AI-powered sincerity analysis into dating platforms."
         path="/solutions/dating"
       />
       <style>{`
@@ -241,24 +241,24 @@ export default function SincerityForDating() {
         <FloatingHearts count={10} />
         <div style={{ position: "absolute", width: "70vw", height: "70vw", maxWidth: 800, maxHeight: 800, borderRadius: "50%", background: "radial-gradient(circle,rgba(139,92,246,0.1) 0%,rgba(219,39,119,0.05) 40%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "glow 6s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
-          <Reveal delay={0.1}><Badge dark>Sincerity™ for Dating</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Authentic Connection</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontFamily: hf, fontSize: "clamp(32px,5.2vw,56px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "28px 0 24px" }}>
-              Catfishing & Misrepresentation Are Rampant in{" "}
-              <span style={{ background: "linear-gradient(135deg,#a78bfa,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Online Dating</span>
+              Catfishing & Misrepresentation Are Costing{" "}
+              <span style={{ background: "linear-gradient(135deg,#a78bfa,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Your Users</span>
               {" "}<span style={{ fontSize: "0.6em", verticalAlign: "middle" }}>💔</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#a5b4fc", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 12px" }}>
-              <strong style={{ color: "#e0e7ff" }}>53%</strong> of people admit to misrepresenting themselves on dating profiles, leading to wasted time, emotional distress, and safety concerns.
+              <strong style={{ color: "#e0e7ff" }}>53%</strong> of people admit to misrepresenting themselves on dating profiles, leading to wasted time, churn, and trust & safety incidents on your platform.
             </p>
-            <p style={{ fontSize: 17, color: "#c4b5fd", fontWeight: 600 }}>Voicera AI can help dating platforms and users spot authenticity. 💙</p>
+            <p style={{ fontSize: 17, color: "#c4b5fd", fontWeight: 600 }}>Embed the credibility layer that protects your users and powers authenticity. 💙</p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="rose" size="lg">Try Sincerity™ for Dating</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Us</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="rose" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
@@ -270,16 +270,16 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Problem</Badge>
-              <h2 style={{ fontFamily: hf, fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why Online Dating Needs Sincerity™ 💔</h2>
+              <Badge>The Trust Gap</Badge>
+              <h2 style={{ fontFamily: hf, fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why Dating Platforms Need a Credibility Layer 💔</h2>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="53" suffix="%" label="of people misrepresent themselves on dating profiles" emoji="💔" />
-              <StatCard value="33" suffix="%" label="of online daters have been misled by profile photos or descriptions" emoji="😔" />
-              <StatCard value="6" suffix="+" label="hours per week chatting before meeting — often with mismatched expectations" emoji="⏰" />
-              <StatCard value="40" suffix="%" label="of users wish they could verify sincerity before meeting" emoji="💙" />
+              <StatCard value="53" suffix="%" label="of people misrepresent themselves — your users need tools to spot it" emoji="💔" />
+              <StatCard value="33" suffix="%" label="of online daters have been misled — protect your users from this" emoji="😔" />
+              <StatCard value="6" suffix="+" label="hours per week chatting before meeting — help your users invest wisely" emoji="⏰" />
+              <StatCard value="40" suffix="%" label="of users wish they could verify sincerity — deliver that within your app" emoji="💙" />
             </div>
           </Reveal>
         </div>
@@ -289,25 +289,25 @@ export default function SincerityForDating() {
       <section style={{ background: "#faf5ff", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>Authentic Connections</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Powers Real Relationships 💙</h2>
-              <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#7c3aed", margin: "0 0 24px" }}>Sincerity™: AI-Powered Emotion and Sincerity Analysis for Smarter Matching</h3>
+              <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Authentic Connections 💙</h2>
+              <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#7c3aed", margin: "0 0 24px" }}>Sincerity™: A Data Layer for Dating & Matchmaking Platforms</h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet><strong>1 in 3</strong> online daters have experienced being misled by profile photos or descriptions.</Bullet>
-              <Bullet>The average user spends <strong>6+ hours/week</strong> chatting before meeting in person—often with mismatched expectations.</Bullet>
-              <Bullet>Over <strong>40%</strong> of users say they wish there was a better way to verify sincerity and emotional compatibility before meeting.</Bullet>
+              <Bullet><strong>1 in 3</strong> online daters have experienced being misled by profile photos or descriptions — protect your users from this natively.</Bullet>
+              <Bullet>The average user spends <strong>6+ hours/week</strong> chatting before meeting in person — help your platform surface genuine matches faster.</Bullet>
+              <Bullet>Over <strong>40%</strong> of users wish there was a better way to verify sincerity and emotional compatibility — embed that capability directly into your product.</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 28 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="rose">Try Sincerity™ for Dating</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="rose">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="Dating Profile Verification" badge="Sincerity™" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your App" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
@@ -318,24 +318,24 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
-              <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Smarter Matching in 3 Steps</h2>
+              <Badge>Native Integration</Badge>
+              <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Embed Authenticity in 3 Steps</h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Users Submit a Video Introduction" desc="Encourage users to upload a short video answering fun or meaningful prompts—optionally analyzed by AI for sincerity and emotional cues." />
+              <StepCard num="1" emoji="🔗" title="Connect via API" desc="Integrate the Sincerity™ API into your platform's existing video or profile pipeline. Your users submit video introductions as usual — our data layer processes them in the background." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates voice tone, facial expressions, and body language to help determine sincerity and authentic emotional reactions." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI" desc="Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" emoji="💙" title="Make Confident Connections" desc="Leverage AI insights to highlight genuine profiles, flag inconsistencies, and help users connect with people who are truly interested and emotionally compatible." />
+              <StepCard num="3" emoji="📊" title="Surface Insights to Your Users" desc="Deliver authenticity scores, trust badges, and compatibility signals natively within your app. Help your users connect with genuine people — and make your platform stickier." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
@@ -345,10 +345,10 @@ export default function SincerityForDating() {
       <section style={{ background: "#faf5ff", padding: "80px 32px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <Reveal>
-            <Badge>Case Study</Badge>
+            <Badge>Proof of Capability</Badge>
             <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.02em" }}>See Sincerity™ in Action</h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 32px" }}>
-              See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+              Watch our analysis of the Elizabeth Holmes case — the same credibility intelligence your platform can surface natively to its users.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -366,7 +366,7 @@ export default function SincerityForDating() {
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotional Intelligence</Badge>
               <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 💜</h2>
-              <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#7c3aed", margin: "0 0 16px" }}>Integrating Emotion Analysis to Foster Better Connection</h3>
+              <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#7c3aed", margin: "0 0 16px" }}>Embed Emotion Analysis to Power Better Matching</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
               </p>
@@ -379,9 +379,9 @@ export default function SincerityForDating() {
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                   Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                 </p>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Emotional Intelligence is Crucial: 💙</p>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Emotional Intelligence Drives Retention: 💙</p>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 20 }}>
-                  Studies show that couples with high emotional understanding are <strong>2x more likely</strong> to form lasting relationships. Emotionally intelligent interactions can increase user satisfaction and the likelihood of forming genuine connections.
+                  Studies show that couples with high emotional understanding are <strong>2x more likely</strong> to form lasting relationships. Embed emotionally intelligent interactions into your platform to increase user satisfaction and deliver genuine connections your competitors can't.
                 </p>
               </Reveal>
             </div>
@@ -395,19 +395,19 @@ export default function SincerityForDating() {
           <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", flexDirection: "row-reverse" }}>
             <div style={{ flex: "1 1 480px", minWidth: 320 }}>
               <Reveal delay={0.1}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: hf }}>HOW TO USE VOICERA'S EMOTION ANALYSIS AI</p>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: hf }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
                 <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                 <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                 <Bullet>Review the results of your video analysis</Bullet>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach AI is privacy-friendly, accurate, and easy to use:</p>
-                <Bullet>Data privacy: Facial expressions are analyzed locally, within your browser. Your face and image are not stored or sent to the cloud</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach is privacy-friendly, accurate, and built for native integration:</p>
+                <Bullet>Data privacy: Facial expressions are analyzed locally, within the browser. No face or image data is stored or sent to the cloud</Bullet>
                 <Bullet>Demographic diversity: The Emotion Coach AI model is trained on diverse datasets, ensuring accuracy across various demographics</Bullet>
-                <Bullet>User-friendly: Requires only an internet connection and camera access to function</Bullet>
+                <Bullet>Developer-friendly: Requires only an internet connection and camera access — no SDK or downloads needed</Bullet>
               </Reveal>
               <Reveal delay={0.25}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach for Free</CTA>
+                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach Demo</CTA>
                 </div>
               </Reveal>
             </div>
@@ -420,9 +420,9 @@ export default function SincerityForDating() {
 
           <Reveal delay={0.2}>
             <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
-              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Images are never stored or transmitted to the cloud." />
+              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within the browser. Images are never stored or transmitted to the cloud." />
               <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets to ensure accuracy across demographics and cultural expression patterns." />
-              <FeatureCard icon="⚡" title="User-Friendly" desc="Requires only an internet connection and camera access. No downloads or installations needed." />
+              <FeatureCard icon="⚡" title="Developer-Friendly" desc="Requires only an internet connection and camera access. No SDK, downloads, or installations needed." />
             </div>
           </Reveal>
         </div>
@@ -433,11 +433,11 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#2563EB,#8b5cf6,#db2777)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Making Safer, More Genuine Connections Today 💙
+              Enhance Your Dating Platform with Authenticity Intelligence 💙
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="rose" size="lg">Try Sincerity™ for Dating</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="rose" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
@@ -451,11 +451,11 @@ export default function SincerityForDating() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning how Voicera AI can help dating platforms ensure authentic connections? 💜
+              Ready to embed authenticity intelligence into your dating platform? Let's talk integration. 💜
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
           </Reveal>
         </div>
       </section>
