@@ -219,35 +219,35 @@ export default function SincerityForLegal() {
         <section style={{ background: "#fff", padding: "100px 32px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
             <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-              <Reveal><Badge>AI-Powered Trial Prep</Badge></Reveal>
+              <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
               <Reveal delay={0.1}>
                 <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                  Sincerity™ Optimizes Litigation Training & Deposition Prep 📜
+                  Power Trial Prep & Deposition Analysis Natively 📜
                 </h2>
                 <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#1e40af", margin: "0 0 24px" }}>
-                  Sincerity™: AI-Powered Trial Prep
+                  Sincerity™: A Data Layer for Legal Tech Platforms
                 </h3>
               </Reveal>
               <Reveal delay={0.15}>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                  Preparing for litigations and depositions is time consuming & costly. Training lawyers, witnesses, or law students to speak clearly and with sincerity takes time and isn't always accurate. Sincerity™ AI can help legal teams:
+                  Litigation and deposition prep is time-consuming and costly for your customers. Embed Sincerity™ into your platform to equip legal teams with AI-powered credibility analysis — without building the models yourself:
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
-                <Bullet>Analyze witnesses' or lawyers' verbal & non-verbal inconsistencies when delivering a story, with 30% greater accuracy than human capability.</Bullet>
-                <Bullet>Accelerate lengthy witness or litigation preparation before a trial, with AI-powered feedback on which areas to improve.</Bullet>
-                <Bullet>Avoid costly mistakes with AI-supported storytelling training. Use Voicera's platform to test multiple videos and increase your sincerity scores.</Bullet>
-                <Bullet>More reliably train law students on their verbal and non-verbal communication style before a mock trial.</Bullet>
+                <Bullet>Surface verbal & non-verbal inconsistencies for your users, with 30% greater accuracy than human capability.</Bullet>
+                <Bullet>Help your customers accelerate witness and litigation preparation with AI-powered feedback delivered natively in your product.</Bullet>
+                <Bullet>Reduce costly mistakes by embedding AI-supported storytelling training — your users test videos and improve their sincerity scores within your platform.</Bullet>
+                <Bullet>Equip law schools and training platforms to more reliably coach students on verbal and non-verbal communication before mock trials.</Bullet>
               </Reveal>
               <Reveal delay={0.3}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for Legal</CTA>
+                  <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
                 </div>
               </Reveal>
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <Reveal delay={0.2} dir="left">
-                <MediaPlaceholder type="image" label="Legal Team Preparation" badge="Sincerity™" aspect="3/2" />
+                <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
               </Reveal>
             </div>
           </div>
