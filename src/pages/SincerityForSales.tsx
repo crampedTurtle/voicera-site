@@ -431,21 +431,21 @@ export default function SincerityForSales() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Problem</Badge>
+              <Badge>The Gap in Sales Tech</Badge>
               <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>
-                Why Sales Teams Need Sincerity™
+                Why Sales Platforms Need a Credibility Layer
               </h2>
               <p style={{ fontSize: 16, color: "#64748b", maxWidth: 560, margin: "0 auto", lineHeight: 1.65 }}>
-                Trust is the currency of modern sales. Most teams are flying blind.
+                Your users' buyers demand trust. Without credibility intelligence, your platform is leaving revenue on the table.
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="73" label="of buyers say sales interactions feel transactional vs authentic" icon="🤝" />
-              <StatCard value="57" label="of sales calls contain negative emotions and uncertainty" icon="📉" />
-              <StatCard value="59" label="say sales reps fail at taking the time to understand them" icon="🎯" />
-              <StatCard value="89" label="of consumers switch to competitors after poor experiences" icon="🚪" />
+              <StatCard value="73" label="of buyers say sales interactions feel transactional — your users need tools to fix that" icon="🤝" />
+              <StatCard value="57" label="of sales calls contain negative emotions — invisible to platforms without sincerity data" icon="📉" />
+              <StatCard value="59" label="say reps fail to understand them — equip your users to close that gap" icon="🎯" />
+              <StatCard value="89" label="of consumers switch after poor experiences — help your users retain more customers" icon="🚪" />
             </div>
           </Reveal>
         </div>
