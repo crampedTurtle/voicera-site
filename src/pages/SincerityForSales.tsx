@@ -356,8 +356,8 @@ export default function SincerityForSales() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <JsonLd
-        title="Sincerity™ for Sales — Voicera"
-        description="Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence."
+        title="Sincerity™ for Sales Tech Platforms — Voicera"
+        description="Embed AI-powered credibility intelligence into your sales enablement platform. Help your users close bigger deals, faster — with trust signals built in."
         path="/solutions/sales"
       />
       <style>{`
