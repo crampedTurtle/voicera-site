@@ -458,48 +458,48 @@ export default function SincerityForSales() {
           alignItems: "center", flexWrap: "wrap",
         }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>AI-Powered Training</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                 Close Bigger Sales, Faster 📈
+                 Power Smarter Sales Workflows 📈
               </h2>
               <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>
-                Sincerity™: AI-Powered Sales Pitch Training
+                Sincerity™: A Data Layer for Sales Enablement
               </h3>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24, fontWeight: 600 }}>
-                Land your pitch, close deals faster, and understand customer intentions more accurately with Sincerity™ by:
+                Integrate Sincerity™ into your host platform to deliver credibility intelligence that equips your users to sell with confidence:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
               <Bullet sub={[]}>
-                Analyzing your verbal & non-verbal inconsistencies when delivering a pitch or customer inquiry, with <strong>30%</strong> greater accuracy than human capability
+                Surface verbal & non-verbal inconsistencies for your users during pitch delivery or customer inquiries, with <strong>30%</strong> greater accuracy than human capability
               </Bullet>
               <Bullet sub={[
-                'Only 32% describe the sales interactions as "trustworthy"',
+                'Only 32% of buyers describe sales interactions as "trustworthy"',
                 "73% of buyers say sales interactions feel transactional vs authentic",
               ]}>
-                Building trust with buyers and clients during virtual calls— the preferred method of communication for over <strong>70%</strong> of buyers because:
+                Help your users build trust with buyers during virtual calls — the preferred channel for over <strong>70%</strong> of buyers — by exposing signals they'd otherwise miss:
               </Bullet>
               <Bullet sub={[
                 "57% of sales calls contain negative emotions and uncertainty",
                 "59% say sales reps fail at taking the time to understand them",
               ]}>
-                Avoiding costly miscommunication and boosting empathetic communication. Test multiple pitches or customer interactions to improve your <strong>sincerity score</strong> and avoid negative consequences:
+                Embed empathetic communication coaching natively. Let your users test pitches and interactions to improve their <strong>sincerity score</strong> and avoid negative consequences:
               </Bullet>
               <Bullet sub={[
                 "Improving customer experiences boosts revenue by 15%",
                 "89% of consumers switch to competitors after poor customer experiences",
                 "42% of customers are willing to pay more for a friendly customer experience",
               ]}>
-                Increasing revenue by reliably training sales reps and customer service agents because:
+                Drive measurable revenue lift for your customers by enhancing your product with reliable rep coaching and credibility insights:
               </Bullet>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <SalesMediaPlaceholder type="image" label="Sales Team Using Sincerity™" aspect="4/3" />
+              <SalesMediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" aspect="4/3" />
             </Reveal>
           </div>
         </div>
