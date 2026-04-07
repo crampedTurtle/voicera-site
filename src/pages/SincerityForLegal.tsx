@@ -193,22 +193,22 @@ export default function SincerityForLegal() {
           </div>
 
           <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
-            <Reveal delay={0.1}><Badge dark>Litigation & Deposition Prep</Badge></Reveal>
+            <Reveal delay={0.1}><Badge dark>Powering Litigation Intelligence</Badge></Reveal>
             <Reveal delay={0.2}>
               <h1 style={{ fontFamily: hf, fontSize: "clamp(34px,5.5vw,60px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "28px 0 24px" }}>
-                Improve Trial Outcomes{" "}
-                <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>with Sincerity™</span>
+                Embed Credibility Analysis{" "}
+                <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>into Your Platform</span>
               </h1>
             </Reveal>
             <Reveal delay={0.35}>
               <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 650, margin: "0 auto 36px" }}>
-                AI-powered behavioral analysis to help legal teams prepare witnesses, train lawyers, and improve litigation outcomes with data-driven credibility intelligence. ⚖️
+                Power your legal tech product with AI-driven behavioral analysis — helping your users prepare witnesses, coach attorneys, and improve litigation outcomes with data-backed credibility intelligence. ⚖️
               </p>
             </Reveal>
             <Reveal delay={0.45}>
               <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-                <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Try Sincerity™ for Legal</CTA>
-                <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Us</CTA>
+                <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+                <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
               </div>
             </Reveal>
           </div>
@@ -219,35 +219,35 @@ export default function SincerityForLegal() {
         <section style={{ background: "#fff", padding: "100px 32px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
             <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-              <Reveal><Badge>AI-Powered Trial Prep</Badge></Reveal>
+              <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
               <Reveal delay={0.1}>
                 <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                  Sincerity™ Optimizes Litigation Training & Deposition Prep 📜
+                  Power Trial Prep & Deposition Analysis Natively 📜
                 </h2>
                 <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#1e40af", margin: "0 0 24px" }}>
-                  Sincerity™: AI-Powered Trial Prep
+                  Sincerity™: A Data Layer for Legal Tech Platforms
                 </h3>
               </Reveal>
               <Reveal delay={0.15}>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                  Preparing for litigations and depositions is time consuming & costly. Training lawyers, witnesses, or law students to speak clearly and with sincerity takes time and isn't always accurate. Sincerity™ AI can help legal teams:
+                  Litigation and deposition prep is time-consuming and costly for your customers. Embed Sincerity™ into your platform to equip legal teams with AI-powered credibility analysis — without building the models yourself:
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
-                <Bullet>Analyze witnesses' or lawyers' verbal & non-verbal inconsistencies when delivering a story, with 30% greater accuracy than human capability.</Bullet>
-                <Bullet>Accelerate lengthy witness or litigation preparation before a trial, with AI-powered feedback on which areas to improve.</Bullet>
-                <Bullet>Avoid costly mistakes with AI-supported storytelling training. Use Voicera's platform to test multiple videos and increase your sincerity scores.</Bullet>
-                <Bullet>More reliably train law students on their verbal and non-verbal communication style before a mock trial.</Bullet>
+                <Bullet>Surface verbal & non-verbal inconsistencies for your users, with 30% greater accuracy than human capability.</Bullet>
+                <Bullet>Help your customers accelerate witness and litigation preparation with AI-powered feedback delivered natively in your product.</Bullet>
+                <Bullet>Reduce costly mistakes by embedding AI-supported storytelling training — your users test videos and improve their sincerity scores within your platform.</Bullet>
+                <Bullet>Equip law schools and training platforms to more reliably coach students on verbal and non-verbal communication before mock trials.</Bullet>
               </Reveal>
               <Reveal delay={0.3}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for Legal</CTA>
+                  <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
                 </div>
               </Reveal>
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <Reveal delay={0.2} dir="left">
-                <MediaPlaceholder type="image" label="Legal Team Preparation" badge="Sincerity™" aspect="3/2" />
+                <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
               </Reveal>
             </div>
           </div>
@@ -258,29 +258,29 @@ export default function SincerityForLegal() {
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <Reveal>
               <div style={{ textAlign: "center", marginBottom: 48 }}>
-                <Badge>How It Works</Badge>
+                <Badge>Native Integration</Badge>
                 <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>
-                  Smarter Trial Prep in 3 Steps
+                  Embed Credibility Analysis in 3 Steps
                 </h2>
               </div>
             </Reveal>
             <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
               <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-                <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
-                  desc="Lawyers, law students, and witnesses guided by their legal team can upload their videos or audio files to the Sincerity™ platform." />
+                <StepCard num="1" emoji="🔗" title="Connect via API"
+                  desc="Integrate the Sincerity™ API into your platform's existing upload or recording pipeline. Your users submit video or audio as usual — our data layer processes it in the background." />
               </Reveal>
               <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-                <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
-                  desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+                <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI"
+                  desc="Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
               </Reveal>
               <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-                <StepCard num="3" emoji="⚖️" title="Enjoy More Confidence in Trial Outcomes"
-                  desc="Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve trial outcomes, or to mitigate bias against neurodivergent-identifying lawyers or witnesses who may need more support in their trial preparations." />
+                <StepCard num="3" emoji="⚖️" title="Surface Insights to Your Users"
+                  desc="Deliver credibility scores, inconsistency flags, and coaching feedback natively within your product. Help your users improve trial outcomes and support neurodivergent attorneys or witnesses who may need additional preparation guidance." />
               </Reveal>
             </div>
             <Reveal delay={0.35}>
               <div style={{ textAlign: "center", marginTop: 40 }}>
-                <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+                <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
@@ -290,10 +290,10 @@ export default function SincerityForLegal() {
         <section style={{ background: "#fff", padding: "80px 32px" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
             <Reveal>
-              <Badge>Case Study</Badge>
+              <Badge>Proof of Capability</Badge>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.02em" }}>See Sincerity™ in Action</h2>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 32px" }}>
-                See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+                Watch our analysis of the Elizabeth Holmes case — the same credibility intelligence your platform can surface natively to its users.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -309,9 +309,9 @@ export default function SincerityForLegal() {
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <Reveal>
               <div style={{ textAlign: "center", marginBottom: 56 }}>
-                <Badge>Emotion Intelligence</Badge>
+                <Badge>Emotional Intelligence</Badge>
                 <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
-                <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Trial Preparation</h3>
+                <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Embed Emotion Analysis to Power Litigation Prep</h3>
                 <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                   <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
                 </p>
@@ -324,9 +324,9 @@ export default function SincerityForLegal() {
                   <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                     Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                   </p>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Legal teams can use Voicera's Emotion Coach to:</p>
-                  <Bullet>Train lawyers on how to better read and interpret witness' emotions</Bullet>
-                  <Bullet>Provide emotion-recognition skills training for witnesses, especially those who identify as neurodivergent or admit to struggling with deciphering emotions correctly.</Bullet>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Equip your platform's users to:</p>
+                  <Bullet>Train attorneys to better read and interpret witness emotions — natively within your product</Bullet>
+                  <Bullet>Deliver emotion-recognition coaching for witnesses, especially neurodivergent individuals who may need additional support in preparing for testimony.</Bullet>
                 </Reveal>
               </div>
               <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -339,19 +339,19 @@ export default function SincerityForLegal() {
             <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", flexDirection: "row-reverse" }}>
               <div style={{ flex: "1 1 480px", minWidth: 320 }}>
                 <Reveal delay={0.1}>
-                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 16, fontFamily: hf }}>HOW TO USE VOICERA'S EMOTION COACH AI</p>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 16, fontFamily: hf }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
                   <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
                   <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                   <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                   <Bullet>Review the results of your video analysis</Bullet>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach AI is privacy-friendly, accurate, and easy to use:</p>
-                  <Bullet>Data privacy: Facial expressions are analyzed locally, within your browser. Your face and image are not stored or sent to the cloud</Bullet>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach is privacy-friendly, accurate, and built for native integration:</p>
+                  <Bullet>Data privacy: Facial expressions are analyzed locally, within the browser. No face or image data is stored or sent to the cloud</Bullet>
                   <Bullet>Demographic diversity: The Emotion Coach AI model is trained on diverse datasets, ensuring accuracy across various demographics</Bullet>
-                  <Bullet>User-friendly: Requires only an internet connection and camera access to function</Bullet>
+                  <Bullet>Developer-friendly: Requires only an internet connection and camera access — no SDK or downloads needed</Bullet>
                 </Reveal>
                 <Reveal delay={0.25}>
                   <div style={{ marginTop: 28 }}>
-                    <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach for Free</CTA>
+                    <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach Demo</CTA>
                   </div>
                 </Reveal>
               </div>
@@ -366,7 +366,7 @@ export default function SincerityForLegal() {
               <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
                 <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Images are never stored or transmitted to the cloud." />
                 <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets to ensure accuracy across demographics, ethnicities, and cultural expression patterns." />
-                <FeatureCard icon="⚡" title="User-Friendly" desc="Requires only an internet connection and camera access. No installations, no downloads, no additional hardware." />
+                <FeatureCard icon="⚡" title="Developer-Friendly" desc="Requires only an internet connection and camera access. No SDK, downloads, or installations needed." />
               </div>
             </Reveal>
           </div>
@@ -381,11 +381,11 @@ export default function SincerityForLegal() {
                 background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                 marginBottom: 24,
               }}>
-                Start Preparing for Litigations & Depositions Better Today ⚖️
+                Enhance Your Legal Tech Platform with Credibility Intelligence ⚖️
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for Legal</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
             </Reveal>
           </div>
         </section>
@@ -399,11 +399,11 @@ export default function SincerityForLegal() {
           <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
             <Reveal>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-                Interested in learning more about how Voicera AI can help legal professionals better prepare for litigations and depositions? 📜
+                Ready to embed credibility intelligence into your legal tech platform? Let's talk integration. 📜
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
-              <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
             </Reveal>
           </div>
         </section>
