@@ -321,7 +321,7 @@ export default function SincerityForLawEnforcement() {
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotion Intelligence</Badge>
               <h2 style={{ fontFamily: headingFont, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
-              <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Vetting & Interrogations</h3>
+              <h3 style={{ fontFamily: headingFont, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Embed Emotion Analysis Into Investigative Platforms</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
               </p>
@@ -334,9 +334,9 @@ export default function SincerityForLawEnforcement() {
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                   Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                 </p>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Law Enforcement teams can use Voicera's Emotion Coach to:</p>
-                <Bullet>Train police officers and intelligence agents on how to better read and interpret emotional cues, especially for those who struggle with deciphering emotions correctly.</Bullet>
-                <Bullet>Analyze candidates emotions live to augment the vetting process with more accurate results.</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Enhance your platform with Emotion Coach to power:</p>
+                <Bullet>Agent training modules that help your users better read and interpret emotional cues, especially for those who struggle with deciphering emotions correctly.</Bullet>
+                <Bullet>Real-time emotion analysis during vetting workflows, delivered natively within your product for more accurate results.</Bullet>
               </Reveal>
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -349,19 +349,19 @@ export default function SincerityForLawEnforcement() {
           <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", flexDirection: "row-reverse" }}>
             <div style={{ flex: "1 1 480px", minWidth: 320 }}>
               <Reveal delay={0.1}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: headingFont }}>HOW TO USE VOICERA'S EMOTION COACH AI</p>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16, fontFamily: headingFont }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
                 <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                 <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                 <Bullet>Review the results of your video analysis</Bullet>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach AI is privacy-friendly, accurate, and easy to use:</p>
-                <Bullet>Data privacy: Facial expressions are analyzed locally, within your browser. Your face and image are not stored or sent to the cloud</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach is privacy-friendly, accurate, and built for native integration:</p>
+                <Bullet>Data privacy: Facial expressions are analyzed locally, within the browser. No face or image data is stored or sent to the cloud</Bullet>
                 <Bullet>Demographic diversity: The Emotion Coach AI model is trained on diverse datasets, ensuring accuracy across various demographics</Bullet>
-                <Bullet>User-friendly: Requires only an internet connection and camera access to function</Bullet>
+                <Bullet>Developer-friendly: Requires only an internet connection and camera access — no SDK or downloads needed</Bullet>
               </Reveal>
               <Reveal delay={0.25}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach for Free</CTA>
+                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach Demo</CTA>
                 </div>
               </Reveal>
             </div>
@@ -374,9 +374,9 @@ export default function SincerityForLawEnforcement() {
 
           <Reveal delay={0.2}>
             <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
-              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Images are never stored or transmitted to the cloud." />
+              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within the browser. Images are never stored or transmitted to the cloud." />
               <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets to ensure accuracy across demographics, ethnicities, and cultural expression patterns." />
-              <FeatureCard icon="⚡" title="Deployment-Ready" desc="Requires only an internet connection and camera access. No installations, no downloads, no additional hardware." />
+              <FeatureCard icon="⚡" title="Developer-Ready" desc="Requires only an internet connection and camera access. No SDK, installations, or additional hardware needed." />
             </div>
           </Reveal>
         </div>
