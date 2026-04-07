@@ -356,8 +356,8 @@ export default function SincerityForSales() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <JsonLd
-        title="Sincerity™ for Sales — Voicera"
-        description="Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence."
+        title="Sincerity™ for Sales Tech Platforms — Voicera"
+        description="Embed AI-powered credibility intelligence into your sales enablement platform. Help your users close bigger deals, faster — with trust signals built in."
         path="/solutions/sales"
       />
       <style>{`
@@ -395,28 +395,28 @@ export default function SincerityForSales() {
         {/* Watermark */}
         <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>💼</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
-          <Reveal delay={0.1}><Badge dark>Sales & Customer Service Training</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Sales Enablement Platforms</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{
               fontSize: "clamp(36px,5.5vw,62px)", fontWeight: 800, color: "#f1f5f9",
               letterSpacing: "-0.035em", lineHeight: 1.08, margin: "28px 0 20px",
             }}>
-              Improve Sales Outcomes{" "}
+              Embed Credibility Intelligence{" "}
               <span style={{
                 background: "linear-gradient(135deg,#60a5fa,#93c5fd)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              }}>with Sincerity™</span>
+              }}>into Your Platform</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 36px" }}>
-               Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence. 💼
+              Help your users close bigger deals, faster. Power your platform with AI-driven trust signals that decode buyer intent, coach reps, and surface credibility insights — natively.
             </p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Start Free</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Sales</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
@@ -431,21 +431,21 @@ export default function SincerityForSales() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Problem</Badge>
+              <Badge>The Gap in Sales Tech</Badge>
               <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>
-                Why Sales Teams Need Sincerity™
+                Why Sales Platforms Need a Credibility Layer
               </h2>
               <p style={{ fontSize: 16, color: "#64748b", maxWidth: 560, margin: "0 auto", lineHeight: 1.65 }}>
-                Trust is the currency of modern sales. Most teams are flying blind.
+                Your users' buyers demand trust. Without credibility intelligence, your platform is leaving revenue on the table.
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="73" label="of buyers say sales interactions feel transactional vs authentic" icon="🤝" />
-              <StatCard value="57" label="of sales calls contain negative emotions and uncertainty" icon="📉" />
-              <StatCard value="59" label="say sales reps fail at taking the time to understand them" icon="🎯" />
-              <StatCard value="89" label="of consumers switch to competitors after poor experiences" icon="🚪" />
+              <StatCard value="73" label="of buyers say sales interactions feel transactional — your users need tools to fix that" icon="🤝" />
+              <StatCard value="57" label="of sales calls contain negative emotions — invisible to platforms without sincerity data" icon="📉" />
+              <StatCard value="59" label="say reps fail to understand them — equip your users to close that gap" icon="🎯" />
+              <StatCard value="89" label="of consumers switch after poor experiences — help your users retain more customers" icon="🚪" />
             </div>
           </Reveal>
         </div>
@@ -458,48 +458,48 @@ export default function SincerityForSales() {
           alignItems: "center", flexWrap: "wrap",
         }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>AI-Powered Training</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                 Close Bigger Sales, Faster 📈
+                 Power Smarter Sales Workflows 📈
               </h2>
               <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>
-                Sincerity™: AI-Powered Sales Pitch Training
+                Sincerity™: A Data Layer for Sales Enablement
               </h3>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24, fontWeight: 600 }}>
-                Land your pitch, close deals faster, and understand customer intentions more accurately with Sincerity™ by:
+                Integrate Sincerity™ into your host platform to deliver credibility intelligence that equips your users to sell with confidence:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
               <Bullet sub={[]}>
-                Analyzing your verbal & non-verbal inconsistencies when delivering a pitch or customer inquiry, with <strong>30%</strong> greater accuracy than human capability
+                Surface verbal & non-verbal inconsistencies for your users during pitch delivery or customer inquiries, with <strong>30%</strong> greater accuracy than human capability
               </Bullet>
               <Bullet sub={[
-                'Only 32% describe the sales interactions as "trustworthy"',
+                'Only 32% of buyers describe sales interactions as "trustworthy"',
                 "73% of buyers say sales interactions feel transactional vs authentic",
               ]}>
-                Building trust with buyers and clients during virtual calls— the preferred method of communication for over <strong>70%</strong> of buyers because:
+                Help your users build trust with buyers during virtual calls — the preferred channel for over <strong>70%</strong> of buyers — by exposing signals they'd otherwise miss:
               </Bullet>
               <Bullet sub={[
                 "57% of sales calls contain negative emotions and uncertainty",
                 "59% say sales reps fail at taking the time to understand them",
               ]}>
-                Avoiding costly miscommunication and boosting empathetic communication. Test multiple pitches or customer interactions to improve your <strong>sincerity score</strong> and avoid negative consequences:
+                Embed empathetic communication coaching natively. Let your users test pitches and interactions to improve their <strong>sincerity score</strong> and avoid negative consequences:
               </Bullet>
               <Bullet sub={[
                 "Improving customer experiences boosts revenue by 15%",
                 "89% of consumers switch to competitors after poor customer experiences",
                 "42% of customers are willing to pay more for a friendly customer experience",
               ]}>
-                Increasing revenue by reliably training sales reps and customer service agents because:
+                Drive measurable revenue lift for your customers by enhancing your product with reliable rep coaching and credibility insights:
               </Bullet>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <SalesMediaPlaceholder type="image" label="Sales Team Using Sincerity™" aspect="4/3" />
+              <SalesMediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" aspect="4/3" />
             </Reveal>
           </div>
         </div>
@@ -509,12 +509,12 @@ export default function SincerityForSales() {
       <section style={{ background: "#fff", padding: "100px 32px", position: "relative" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <Reveal>
-            <Badge>Interactive Demo</Badge>
+            <Badge>See the Data Layer</Badge>
             <h2 style={{ fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
                See It in Action — Live Sales Call Intelligence 🎯
             </h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 700, margin: "0 auto 40px" }}>
-              Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns to surface trust signals your team would otherwise miss.
+              Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns — the same intelligence your platform can surface natively to its users.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -528,16 +528,16 @@ export default function SincerityForSales() {
           </Reveal>
           <Reveal delay={0.25}>
             <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 32px" }}>
-              This is the same AI your team will use to rehearse pitches, coach reps, and decode buyer intent on every call. Imagine this running on your team's actual conversations.
+              This is the same AI your platform can embed to power pitch rehearsal, rep coaching, and buyer intent decoding on every call. Imagine this running inside your product.
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue">
-                Ready to Use Sincerity™ With Your Team? Start Free
+                Explore the API — Start Free
               </CTA>
             </div>
             <p style={{ marginTop: 16 }}>
               <a href="https://voicera.io/contact-us/" style={{ fontSize: 14, color: "#2563EB", textDecoration: "none", fontWeight: 600 }}>
-                Or talk to our team about enterprise pricing →
+                Or talk to our partnerships team about integration →
               </a>
             </p>
           </Reveal>
@@ -549,29 +549,29 @@ export default function SincerityForSales() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
+              <Badge>Native Integration</Badge>
               <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>
-                Smarter Pitches and Customer Service in 3 Steps
+                Embed Credibility Intelligence in 3 Steps
               </h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Upload Videos to Sincerity™"
-                 desc="Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform." />
+              <StepCard num="1" emoji="🔗" title="Connect via API"
+                 desc="Integrate the Sincerity™ API into your platform's existing call recording or video pipeline. Your users upload media as usual — our data layer processes it in the background." />
              </Reveal>
              <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-               <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™"
-                 desc="Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener." />
+               <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI"
+                 desc="Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
              </Reveal>
              <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-               <StepCard num="3" emoji="💼" title="Enjoy More Confidence in Pitch Outcomes"
-                 desc="Leverage insights from AI analysis results to better detect verbal and non-verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust." />
+               <StepCard num="3" emoji="📊" title="Surface Insights to Your Users"
+                 desc="Deliver credibility scores, trust signals, and coaching prompts natively within your product. Your users get smarter — and your platform gets stickier." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
@@ -585,27 +585,27 @@ export default function SincerityForSales() {
         }}>
           <div style={{ flex: "1 1 480px", minWidth: 320 }}>
             <Reveal>
-              <Badge>Case Study</Badge>
+              <Badge>Integration Blueprint</Badge>
               <p style={{
                 fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const,
                 color: "#94a3b8", margin: "20px 0 16px",
-              }}>SMARTER PITCHES AND CUSTOMER SERVICE IN 3 STEPS</p>
+              }}>HOW PLATFORMS EMBED SINCERITY™</p>
             </Reveal>
             <Reveal delay={0.1}>
               <div style={{ fontSize: 15, color: "#334155", lineHeight: 1.75 }}>
                 <p style={{ marginBottom: 16 }}>
-                  <strong>1) Upload Videos to Sincerity™</strong> – Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform.
+                  <strong>1) Connect via API</strong> – Integrate the Sincerity™ API into your platform's existing call recording or video pipeline. Your users upload media as usual — our data layer processes it in the background.
                 </p>
                 <p style={{ marginBottom: 16 }}>
-                  <strong>2) Analyze with Sincerity™</strong> – Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener.
+                  <strong>2) Analyze with Multimodal AI</strong> – Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time.
                 </p>
                 <p style={{ marginBottom: 24 }}>
-                  <strong>3) Enjoy More Confidence in Pitch Outcomes & Customer Interactions</strong> – Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust.
+                  <strong>3) Surface Insights to Your Users</strong> – Deliver credibility scores, trust signals, and coaching prompts natively within your product. Your users get smarter — and your platform gets stickier.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -614,10 +614,10 @@ export default function SincerityForSales() {
                 <SalesMediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" aspect="16/9" />
               </div>
               <p style={{ fontSize: 13, color: "#64748b", textAlign: "center", lineHeight: 1.6 }}>
-                See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+                See Sincerity™ in action — our analysis of the Elizabeth Holmes case demonstrates the depth of credibility signals your platform could surface.
               </p>
               <p style={{ fontSize: 13, color: "#94a3b8", textAlign: "center", marginTop: 8, fontStyle: "italic" }}>
-                1 in 10 people can't identify emotions correctly and almost 50% of people can't understand emotions behind facial expressions.
+                1 in 10 people can't identify emotions correctly and almost 50% can't read facial expressions — that's why platforms need AI.
               </p>
             </Reveal>
           </div>
@@ -634,11 +634,11 @@ export default function SincerityForSales() {
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               marginBottom: 24,
             }}>
-              Start Closing Sales & Understanding Your Customers Better Today 
+              Enhance Your Sales Platform with Credibility Intelligence
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for Sales</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
@@ -662,11 +662,11 @@ export default function SincerityForSales() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 30, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.25, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning more about how Voicera AI can help sales and customer service professionals better prepare for pitches and customer interactions? 📊
+              Ready to embed credibility intelligence into your sales enablement platform? Let's talk integration.
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
           </Reveal>
         </div>
       </section>
