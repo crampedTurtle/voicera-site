@@ -395,28 +395,28 @@ export default function SincerityForSales() {
         {/* Watermark */}
         <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>💼</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
-          <Reveal delay={0.1}><Badge dark>Sales & Customer Service Training</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Sales Enablement Platforms</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{
               fontSize: "clamp(36px,5.5vw,62px)", fontWeight: 800, color: "#f1f5f9",
               letterSpacing: "-0.035em", lineHeight: 1.08, margin: "28px 0 20px",
             }}>
-              Improve Sales Outcomes{" "}
+              Embed Credibility Intelligence{" "}
               <span style={{
                 background: "linear-gradient(135deg,#60a5fa,#93c5fd)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              }}>with Sincerity™</span>
+              }}>into Your Platform</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 36px" }}>
-               Close bigger sales, faster. Land your pitch, understand customer intentions, and build trust with AI-powered credibility intelligence. 💼
+              Help your users close bigger deals, faster. Power your platform with AI-driven trust signals that decode buyer intent, coach reps, and surface credibility insights — natively.
             </p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Start Free</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Sales</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
