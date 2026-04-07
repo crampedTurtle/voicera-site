@@ -509,12 +509,12 @@ export default function SincerityForSales() {
       <section style={{ background: "#fff", padding: "100px 32px", position: "relative" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <Reveal>
-            <Badge>Interactive Demo</Badge>
+            <Badge>See the Data Layer</Badge>
             <h2 style={{ fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
                See It in Action — Live Sales Call Intelligence 🎯
             </h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 700, margin: "0 auto 40px" }}>
-              Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns to surface trust signals your team would otherwise miss.
+              Experience how Sincerity™ analyzes a sales conversation in real time. Watch the AI evaluate tone, micro-expressions, and speech patterns — the same intelligence your platform can surface natively to its users.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -528,16 +528,16 @@ export default function SincerityForSales() {
           </Reveal>
           <Reveal delay={0.25}>
             <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 32px" }}>
-              This is the same AI your team will use to rehearse pitches, coach reps, and decode buyer intent on every call. Imagine this running on your team's actual conversations.
+              This is the same AI your platform can embed to power pitch rehearsal, rep coaching, and buyer intent decoding on every call. Imagine this running inside your product.
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue">
-                Ready to Use Sincerity™ With Your Team? Start Free
+                Explore the API — Start Free
               </CTA>
             </div>
             <p style={{ marginTop: 16 }}>
               <a href="https://voicera.io/contact-us/" style={{ fontSize: 14, color: "#2563EB", textDecoration: "none", fontWeight: 600 }}>
-                Or talk to our team about enterprise pricing →
+                Or talk to our partnerships team about integration →
               </a>
             </p>
           </Reveal>
