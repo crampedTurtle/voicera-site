@@ -176,12 +176,12 @@ export default function SincerityForLawEnforcement() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <Helmet>
-        <title>Sincerity™ for Law Enforcement — Voicera</title>
-        <meta name="description" content="AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve decision-making." />
+        <title>Sincerity™ for Investigative Tech Platforms — Voicera</title>
+        <meta name="description" content="Embed AI-powered behavioral analysis into your interview recording, case management, or digital evidence platform. Help your users enhance interrogations and accelerate vetting." />
       </Helmet>
       <JsonLd
-        title="Sincerity™ for Law Enforcement — Voicera"
-        description="AI-powered behavioral analysis for law enforcement."
+        title="Sincerity™ for Investigative Tech Platforms — Voicera"
+        description="Embed AI-powered behavioral analysis into investigative tech platforms."
         path="/solutions/law-enforcement"
       />
       <style>{`
