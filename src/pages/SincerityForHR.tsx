@@ -263,16 +263,16 @@ export default function SincerityForHR() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Cost of Bad Hires</Badge>
-              <h2 style={{ fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why HR Teams Need Sincerity™</h2>
+              <Badge>The Gap in HR Tech</Badge>
+              <h2 style={{ fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why HR Platforms Need a Credibility Layer</h2>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="80" suffix="%" label="of candidates misrepresent qualifications during interviews" icon="🎭" />
-              <StatCard value="15" prefix="$" suffix="K" label="average annual cost per bad hire to companies" icon="💸" />
-              <StatCard value="40" suffix="+" label="average days HR spends trying to fill a position" icon="📅" />
-              <StatCard value="25" prefix="$" suffix="K" label="upper range cost per open position to fill" icon="📊" />
+              <StatCard value="80" suffix="%" label="of candidates misrepresent qualifications — your users need tools to catch it" icon="🎭" />
+              <StatCard value="15" prefix="$" suffix="K" label="average annual cost per bad hire — help your customers avoid it" icon="💸" />
+              <StatCard value="40" suffix="+" label="days to fill a position — equip your users to move faster" icon="📅" />
+              <StatCard value="25" prefix="$" suffix="K" label="upper range cost per open position — reduce this for your customers" icon="📊" />
             </div>
           </Reveal>
         </div>
