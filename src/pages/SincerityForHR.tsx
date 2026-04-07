@@ -203,12 +203,12 @@ export default function SincerityForHR() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <Helmet>
-        <title>Sincerity™ for HR — Voicera</title>
-        <meta name="description" content="AI-powered candidate authenticity analysis for HR teams. Reduce bad hires, save time and money with Sincerity™ by Voicera." />
+        <title>Sincerity™ for HR Tech Platforms — Voicera</title>
+        <meta name="description" content="Embed AI-powered candidate authenticity analysis into your HRIS, ATS, or interview intelligence platform. Help your customers reduce bad hires with Sincerity™." />
       </Helmet>
       <JsonLd
-        title="Sincerity™ for HR — Voicera"
-        description="AI-powered candidate authenticity analysis for HR teams."
+        title="Sincerity™ for HR Tech Platforms — Voicera"
+        description="Embed AI-powered candidate authenticity analysis into your HR tech platform."
         path="/solutions/hr"
       />
       <style>{`
