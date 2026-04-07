@@ -318,24 +318,24 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
-              <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Smarter Matching in 3 Steps</h2>
+              <Badge>Native Integration</Badge>
+              <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Embed Authenticity in 3 Steps</h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Users Submit a Video Introduction" desc="Encourage users to upload a short video answering fun or meaningful prompts—optionally analyzed by AI for sincerity and emotional cues." />
+              <StepCard num="1" emoji="🔗" title="Connect via API" desc="Integrate the Sincerity™ API into your platform's existing video or profile pipeline. Your users submit video introductions as usual — our data layer processes them in the background." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates voice tone, facial expressions, and body language to help determine sincerity and authentic emotional reactions." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI" desc="Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" emoji="💙" title="Make Confident Connections" desc="Leverage AI insights to highlight genuine profiles, flag inconsistencies, and help users connect with people who are truly interested and emotionally compatible." />
+              <StepCard num="3" emoji="📊" title="Surface Insights to Your Users" desc="Deliver authenticity scores, trust badges, and compatibility signals natively within your app. Help your users connect with genuine people — and make your platform stickier." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
