@@ -290,10 +290,10 @@ export default function SincerityForLegal() {
         <section style={{ background: "#fff", padding: "80px 32px" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
             <Reveal>
-              <Badge>Case Study</Badge>
+              <Badge>Proof of Capability</Badge>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.02em" }}>See Sincerity™ in Action</h2>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 32px" }}>
-                See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+                Watch our analysis of the Elizabeth Holmes case — the same credibility intelligence your platform can surface natively to its users.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
