@@ -203,12 +203,12 @@ export default function SincerityForHR() {
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <Helmet>
-        <title>Sincerity™ for HR — Voicera</title>
-        <meta name="description" content="AI-powered candidate authenticity analysis for HR teams. Reduce bad hires, save time and money with Sincerity™ by Voicera." />
+        <title>Sincerity™ for HR Tech Platforms — Voicera</title>
+        <meta name="description" content="Embed AI-powered candidate authenticity analysis into your HRIS, ATS, or interview intelligence platform. Help your customers reduce bad hires with Sincerity™." />
       </Helmet>
       <JsonLd
-        title="Sincerity™ for HR — Voicera"
-        description="AI-powered candidate authenticity analysis for HR teams."
+        title="Sincerity™ for HR Tech Platforms — Voicera"
+        description="Embed AI-powered candidate authenticity analysis into your HR tech platform."
         path="/solutions/hr"
       />
       <style>{`
@@ -235,23 +235,23 @@ export default function SincerityForHR() {
         {/* Watermark */}
         <div style={{ position: "absolute", bottom: "15%", right: "8%", opacity: 0.025, fontSize: 200, pointerEvents: "none", lineHeight: 1 }}>👥</div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 800 }}>
-          <Reveal delay={0.1}><Badge dark>Sincerity™ for HR</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering People Intelligence</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontSize: "clamp(36px,5.5vw,62px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.035em", lineHeight: 1.08, margin: "28px 0 20px", fontFamily: "Poppins,sans-serif" }}>
-              Bad Hires Cost{" "}
-              <span style={{ background: "linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Time & Money</span>
+              Bad Hires Cost Your{" "}
+              <span style={{ background: "linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Customers Time & Money</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 16px" }}>
-              <strong style={{ color: "#e0f2fe" }}>80%</strong> of candidates admit to misrepresenting their qualifications during interviews, costing companies <strong style={{ color: "#e0f2fe" }}>$15K/year</strong> per bad hire.
+              <strong style={{ color: "#e0f2fe" }}>80%</strong> of candidates admit to misrepresenting qualifications during interviews, costing companies <strong style={{ color: "#e0f2fe" }}>$15K/year</strong> per bad hire.
             </p>
-            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Voicera AI can help HR teams avoid this. 👥</p>
+            <p style={{ fontSize: 17, color: "#cbd5e1", fontWeight: 600 }}>Embed the credibility layer that helps your users avoid this. 👥</p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Try Sincerity™ for HR</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Sales</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
@@ -263,16 +263,16 @@ export default function SincerityForHR() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>The Cost of Bad Hires</Badge>
-              <h2 style={{ fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why HR Teams Need Sincerity™</h2>
+              <Badge>The Gap in HR Tech</Badge>
+              <h2 style={{ fontSize: 30, fontWeight: 800, color: "#0f172a", margin: "16px 0 12px", letterSpacing: "-0.025em" }}>Why HR Platforms Need a Credibility Layer</h2>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
-              <StatCard value="80" suffix="%" label="of candidates misrepresent qualifications during interviews" icon="🎭" />
-              <StatCard value="15" prefix="$" suffix="K" label="average annual cost per bad hire to companies" icon="💸" />
-              <StatCard value="40" suffix="+" label="average days HR spends trying to fill a position" icon="📅" />
-              <StatCard value="25" prefix="$" suffix="K" label="upper range cost per open position to fill" icon="📊" />
+              <StatCard value="80" suffix="%" label="of candidates misrepresent qualifications — your users need tools to catch it" icon="🎭" />
+              <StatCard value="15" prefix="$" suffix="K" label="average annual cost per bad hire — help your customers avoid it" icon="💸" />
+              <StatCard value="40" suffix="+" label="days to fill a position — equip your users to move faster" icon="📅" />
+              <StatCard value="25" prefix="$" suffix="K" label="upper range cost per open position — reduce this for your customers" icon="📊" />
             </div>
           </Reveal>
         </div>
@@ -282,31 +282,31 @@ export default function SincerityForHR() {
       <section style={{ background: "#f8fafc", padding: "100px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 500px", minWidth: 320 }}>
-            <Reveal><Badge>AI-Powered Recruiting</Badge></Reveal>
+            <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
             <Reveal delay={0.1}>
-              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Sincerity™ Optimizes Recruiting 📋</h2>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>Sincerity™: AI-Powered Candidate Authenticity Analysis</h3>
+              <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>Power Smarter Recruiting 📋</h2>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2563EB", margin: "0 0 24px" }}>Sincerity™: A Data Layer for HR Tech Platforms</h3>
             </Reveal>
             <Reveal delay={0.15}>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
-                HR spends an average of <strong>40+ days</strong> and <strong>$5K–$25K</strong> trying to fill a position. Sincerity™ can help your team save time, money, & labor inefficiencies by:
+                HR teams spend an average of <strong>40+ days</strong> and <strong>$5K–$25K</strong> to fill a position. Integrate Sincerity™ into your platform to help your customers save time, money, and labor inefficiencies by:
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <Bullet>Analyzing verbal and non-verbal inconsistencies that HR might miss</Bullet>
-              <Bullet>Providing an alternative to lengthy skills validation assessments</Bullet>
-              <Bullet>Accelerating candidate screening by reducing time spent on live interview analysis</Bullet>
-              <Bullet>Avoiding costly hiring mistakes by identifying unfit candidates quicker, with 30% greater accuracy than human capability</Bullet>
+              <Bullet>Surfacing verbal and non-verbal inconsistencies that recruiters might miss</Bullet>
+              <Bullet>Offering an embedded alternative to lengthy skills validation assessments</Bullet>
+              <Bullet>Accelerating candidate screening by reducing time your users spend on live interview analysis</Bullet>
+              <Bullet>Helping your customers avoid costly hiring mistakes by identifying unfit candidates quicker, with 30% greater accuracy than human capability</Bullet>
             </Reveal>
             <Reveal delay={0.3}>
               <div style={{ marginTop: 24 }}>
-                <CTA href="https://voicera.io/sincerity/" variant="blue">Try Sincerity™ for HR</CTA>
+                <CTA href="https://voicera.io/sincerity/" variant="blue">Explore the API</CTA>
               </div>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="HR Team Using Sincerity™" badge="Sincerity™ for HR" aspect="3/2" />
+              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
             </Reveal>
           </div>
         </div>
@@ -317,24 +317,24 @@ export default function SincerityForHR() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <Badge>How It Works</Badge>
-              <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Smarter Recruiting in 3 Steps</h2>
+              <Badge>Native Integration</Badge>
+              <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Embed Credibility Intelligence in 3 Steps</h2>
             </div>
           </Reveal>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <Reveal delay={0.1} style={{ flex: "1 1 280px" }}>
-              <StepCard num="1" emoji="🎥" title="Candidates Submit a Video Response" desc="Ask candidates to upload videos answering pre-set interview questions for (optional) AI analysis during initial screening or 2nd round." />
+              <StepCard num="1" emoji="🔗" title="Connect via API" desc="Integrate the Sincerity™ API into your platform's existing interview or video pipeline. Candidates submit responses as usual — our data layer processes them in the background." />
             </Reveal>
             <Reveal delay={0.2} style={{ flex: "1 1 280px" }}>
-              <StepCard num="2" emoji="🔍" title="Analyze with Sincerity™" desc="Voicera's multimodal AI evaluates each candidate's voice tone, facial expressions, & body language to determine sincerity levels when responding to different prompts." />
+              <StepCard num="2" emoji="🔍" title="Analyze with Multimodal AI" desc="Voicera's AI evaluates each candidate's voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time." />
             </Reveal>
             <Reveal delay={0.3} style={{ flex: "1 1 280px" }}>
-              <StepCard num="3" emoji="✅" title="Make Confident Hiring Decisions" desc="Leverage insights from AI analysis results to better detect inconsistencies for further inquiry, or to mitigate bias against candidates who may score low in other criteria, but high in sincerity." />
+              <StepCard num="3" emoji="📊" title="Surface Insights to Your Users" desc="Deliver credibility scores and inconsistency flags natively within your product. Equip your users to make confident hiring decisions — and make your platform stickier." />
             </Reveal>
           </div>
           <Reveal delay={0.35}>
             <div style={{ textAlign: "center", marginTop: 40 }}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </div>
           </Reveal>
         </div>
@@ -344,10 +344,10 @@ export default function SincerityForHR() {
       <section style={{ background: "#f8fafc", padding: "80px 32px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <Reveal>
-            <Badge>Case Study</Badge>
+            <Badge>Proof of Capability</Badge>
             <h2 style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "16px 0 16px", letterSpacing: "-0.025em" }}>See Sincerity™ in Action</h2>
             <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 600, margin: "0 auto 32px" }}>
-              See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+              Watch our analysis of the Elizabeth Holmes case — the same credibility intelligence your platform can surface natively to its users.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -365,7 +365,7 @@ export default function SincerityForHR() {
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <Badge>Emotion Intelligence</Badge>
               <h2 style={{ fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 16px" }}>Integrating Emotion Analysis Into HR Training</h3>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#2563EB", margin: "0 0 16px" }}>Embed Emotion Analysis Into Your HR Platform</h3>
               <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                 <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
               </p>
@@ -378,10 +378,10 @@ export default function SincerityForHR() {
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                   Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                 </p>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>HR teams can use Voicera's Emotion Coach to:</p>
-                <Bullet>Train leadership on how to better read and interpret employee's emotions</Bullet>
-                <Bullet>Provide skills training workshops on empathetic communications and public speaking</Bullet>
-                <Bullet>Better assist neurodivergent hires in their training and onboarding processes</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Enhance your platform with Emotion Coach to power:</p>
+                <Bullet>Leadership training modules that help your users better read and interpret employee emotions</Bullet>
+                <Bullet>Embedded skills training for empathetic communication and public speaking</Bullet>
+                <Bullet>Neurodivergent-friendly onboarding workflows natively within your product</Bullet>
               </Reveal>
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -394,19 +394,19 @@ export default function SincerityForHR() {
           <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", flexDirection: "row-reverse" }}>
             <div style={{ flex: "1 1 480px", minWidth: 320 }}>
               <Reveal delay={0.1}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16 }}>HOW TO USE VOICERA'S EMOTION COACH AI</p>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16 }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
                 <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
                 <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                 <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                 <Bullet>Review the results of your video analysis</Bullet>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach AI is privacy-friendly, accurate, and easy to use:</p>
-                <Bullet>Data privacy: Facial expressions are analyzed locally, within your browser. Your face and image are not stored or sent to the cloud</Bullet>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", margin: "24px 0 16px" }}>Emotion Coach is privacy-friendly, accurate, and built for native integration:</p>
+                <Bullet>Data privacy: Facial expressions are analyzed locally, within the browser. No face or image data is stored or sent to the cloud</Bullet>
                 <Bullet>Demographic diversity: The Emotion Coach AI model is trained on diverse datasets, ensuring accuracy across various demographics</Bullet>
-                <Bullet>User-friendly: Requires only an internet connection and camera access to function</Bullet>
+                <Bullet>Developer-friendly: Requires only an internet connection and camera access — no SDK or downloads needed</Bullet>
               </Reveal>
               <Reveal delay={0.25}>
                 <div style={{ marginTop: 28 }}>
-                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach for Free</CTA>
+                  <CTA href="https://voicera.io/emotion-coachme/" variant="blue">Try Emotion Coach Demo</CTA>
                 </div>
               </Reveal>
             </div>
@@ -419,9 +419,9 @@ export default function SincerityForHR() {
 
           <Reveal delay={0.2}>
             <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 56 }}>
-              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within your browser. Your face and image are never stored or sent to the cloud." />
+              <FeatureCard icon="🔒" title="Privacy-First" desc="Facial expressions are analyzed locally within the browser. No face or image data is ever stored or sent to the cloud." />
               <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets ensuring accuracy across various demographics and cultural expressions." />
-              <FeatureCard icon="⚡" title="User-Friendly" desc="Requires only an internet connection and camera access to function. No downloads or installations needed." />
+              <FeatureCard icon="⚡" title="Developer-Friendly" desc="Requires only an internet connection and camera access to function. No SDK, downloads, or installations needed." />
             </div>
           </Reveal>
         </div>
@@ -432,11 +432,11 @@ export default function SincerityForHR() {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#2563EB,#7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Start Hiring Smarter Today 👥
+              Enhance Your HR Platform with Credibility Intelligence 👥
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Try Sincerity™ for HR</CTA>
+            <CTA href="https://sincerity.voicera.io/auth/login" variant="blue" size="lg">Get API Access</CTA>
           </Reveal>
         </div>
       </section>
@@ -450,11 +450,11 @@ export default function SincerityForHR() {
         <div style={{ position: "relative", zIndex: 10, maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-              Interested in learning more about how Voicera AI can help HR professionals optimize recruiting? 📋
+              Ready to embed credibility intelligence into your HR tech platform? Let's talk integration.
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Contact Us</CTA>
+            <CTA href="https://voicera.io/contact-us/" variant="white" size="lg">Talk to Partnerships</CTA>
           </Reveal>
         </div>
       </section>
