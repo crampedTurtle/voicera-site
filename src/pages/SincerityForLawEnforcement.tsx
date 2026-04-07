@@ -213,22 +213,22 @@ export default function SincerityForLawEnforcement() {
           <div style={{ position: "absolute", left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", animation: "scanline 8s linear infinite" }} />
         </div>
         <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 820 }}>
-          <Reveal delay={0.1}><Badge dark>Vetting & Interrogations</Badge></Reveal>
+          <Reveal delay={0.1}><Badge dark>Powering Investigative Intelligence</Badge></Reveal>
           <Reveal delay={0.2}>
             <h1 style={{ fontFamily: headingFont, fontSize: "clamp(34px,5.5vw,60px)", fontWeight: 800, color: "#f1f5f9", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "28px 0 24px" }}>
-              Improve Security with{" "}
-              <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Sincerity™</span>
+              Embed Behavioral Analysis{" "}
+              <span style={{ background: "linear-gradient(135deg,#60a5fa,#93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>into Your Platform</span>
             </h1>
           </Reveal>
           <Reveal delay={0.35}>
             <p style={{ fontSize: 18, color: "#94a3b8", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 36px" }}>
-              AI-powered behavioral analysis for law enforcement, government agencies, and defense contractors. Enhance interrogations, accelerate vetting, and improve mission-critical decision-making. 🛡️
+              A data layer for interview recording systems, case management software, and digital evidence platforms. Power your product with AI-driven behavioral intelligence that enhances interrogations and accelerates vetting — natively. 🛡️
             </p>
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Try Sincerity™ for Law Enforcement</CTA>
-              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Contact Us</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/signup" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="https://voicera.io/contact-us/" variant="outline" size="lg">Talk to Partnerships</CTA>
             </div>
           </Reveal>
         </div>
