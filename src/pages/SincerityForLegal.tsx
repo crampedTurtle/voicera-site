@@ -324,9 +324,9 @@ export default function SincerityForLegal() {
                   <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 24 }}>
                     Voicera's Emotion Coach leverages real-time video analysis to evaluate a wide range of emotions, including happiness, sadness, anger, surprise, fear, neutrality, and disgust.
                   </p>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Legal teams can use Voicera's Emotion Coach to:</p>
-                  <Bullet>Train lawyers on how to better read and interpret witness' emotions</Bullet>
-                  <Bullet>Provide emotion-recognition skills training for witnesses, especially those who identify as neurodivergent or admit to struggling with deciphering emotions correctly.</Bullet>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", marginBottom: 16 }}>Equip your platform's users to:</p>
+                  <Bullet>Train attorneys to better read and interpret witness emotions — natively within your product</Bullet>
+                  <Bullet>Deliver emotion-recognition coaching for witnesses, especially neurodivergent individuals who may need additional support in preparing for testimony.</Bullet>
                 </Reveal>
               </div>
               <div style={{ flex: "1 1 400px", minWidth: 300 }}>
