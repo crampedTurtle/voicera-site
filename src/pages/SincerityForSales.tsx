@@ -585,27 +585,27 @@ export default function SincerityForSales() {
         }}>
           <div style={{ flex: "1 1 480px", minWidth: 320 }}>
             <Reveal>
-              <Badge>Case Study</Badge>
+              <Badge>Integration Blueprint</Badge>
               <p style={{
                 fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const,
                 color: "#94a3b8", margin: "20px 0 16px",
-              }}>SMARTER PITCHES AND CUSTOMER SERVICE IN 3 STEPS</p>
+              }}>HOW PLATFORMS EMBED SINCERITY™</p>
             </Reveal>
             <Reveal delay={0.1}>
               <div style={{ fontSize: 15, color: "#334155", lineHeight: 1.75 }}>
                 <p style={{ marginBottom: 16 }}>
-                  <strong>1) Upload Videos to Sincerity™</strong> – Sales professionals, customer service agents, and anyone who wants to improve their business pitch delivery can upload their videos or audio files to the Sincerity™ platform.
+                  <strong>1) Connect via API</strong> – Integrate the Sincerity™ API into your platform's existing call recording or video pipeline. Your users upload media as usual — our data layer processes it in the background.
                 </p>
                 <p style={{ marginBottom: 16 }}>
-                  <strong>2) Analyze with Sincerity™</strong> – Voicera's multimodal AI evaluates each person's voice tone, facial expressions, & body language to estimate how sincere or insincere a statement seems to a listener.
+                  <strong>2) Analyze with Multimodal AI</strong> – Voicera's AI evaluates voice tone, facial expressions, and body language to produce a queryable Sincerity™ Score — delivered back to your platform in real time.
                 </p>
                 <p style={{ marginBottom: 24 }}>
-                  <strong>3) Enjoy More Confidence in Pitch Outcomes & Customer Interactions</strong> – Leverage insights from AI analysis results to better detect verbal and non verbal inconsistencies to improve how sales and/or customer service professionals communicate with buyers and build trust.
+                  <strong>3) Surface Insights to Your Users</strong> – Deliver credibility scores, trust signals, and coaching prompts natively within your product. Your users get smarter — and your platform gets stickier.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Test Sincerity™ for Free</CTA>
+              <CTA href="https://sincerity.voicera.io/auth/login" variant="blue">Explore the API</CTA>
             </Reveal>
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
@@ -614,10 +614,10 @@ export default function SincerityForSales() {
                 <SalesMediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" aspect="16/9" />
               </div>
               <p style={{ fontSize: 13, color: "#64748b", textAlign: "center", lineHeight: 1.6 }}>
-                See Sincerity™ in action by watching our analysis of the Elizabeth Holmes case.
+                See Sincerity™ in action — our analysis of the Elizabeth Holmes case demonstrates the depth of credibility signals your platform could surface.
               </p>
               <p style={{ fontSize: 13, color: "#94a3b8", textAlign: "center", marginTop: 8, fontStyle: "italic" }}>
-                1 in 10 people can't identify emotions correctly and almost 50% of people can't understand emotions behind facial expressions.
+                1 in 10 people can't identify emotions correctly and almost 50% can't read facial expressions — that's why platforms need AI.
               </p>
             </Reveal>
           </div>
