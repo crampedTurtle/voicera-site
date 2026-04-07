@@ -309,9 +309,9 @@ export default function SincerityForLegal() {
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <Reveal>
               <div style={{ textAlign: "center", marginBottom: 56 }}>
-                <Badge>Emotion Intelligence</Badge>
+                <Badge>Emotional Intelligence</Badge>
                 <h2 style={{ fontFamily: hf, fontSize: 36, fontWeight: 800, color: "#0f172a", margin: "16px 0 8px", letterSpacing: "-0.025em" }}>Voicera Emotion Coach 🧠</h2>
-                <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Integrate Emotion Analysis Into Trial Preparation</h3>
+                <h3 style={{ fontFamily: hf, fontSize: 18, fontWeight: 700, color: "#1e40af", margin: "0 0 16px" }}>Embed Emotion Analysis to Power Litigation Prep</h3>
                 <p style={{ fontSize: 16, color: "#64748b", lineHeight: 1.7, maxWidth: 680, margin: "0 auto" }}>
                   <strong style={{ color: "#0f172a" }}>1 in 10</strong> people can't identify emotions correctly and almost <strong style={{ color: "#0f172a" }}>50%</strong> of people can't understand emotions behind facial expressions.
                 </p>
