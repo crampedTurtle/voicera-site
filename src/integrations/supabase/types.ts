@@ -89,6 +89,65 @@ export type Database = {
         }
         Relationships: []
       }
+      post_revisions: {
+        Row: {
+          author: string
+          category: string
+          content: string
+          created_at: string
+          created_by: string | null
+          excerpt: string
+          id: string
+          image: string
+          post_id: string
+          revision_number: number
+          seo_description: string
+          seo_title: string
+          tags: string[]
+          title: string
+        }
+        Insert: {
+          author?: string
+          category?: string
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string
+          id?: string
+          image?: string
+          post_id: string
+          revision_number?: number
+          seo_description?: string
+          seo_title?: string
+          tags?: string[]
+          title: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string
+          id?: string
+          image?: string
+          post_id?: string
+          revision_number?: number
+          seo_description?: string
+          seo_title?: string
+          tags?: string[]
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_revisions_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
