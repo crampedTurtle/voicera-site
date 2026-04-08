@@ -28,7 +28,9 @@ const InvestorsSection = () => {
   const orbY1 = useTransform(scrollYProgress, [0, 1], [40, -60]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [20, -80]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Client-side rate limiting: max 3 submissions per 10-minute window
@@ -52,12 +54,46 @@ const InvestorsSection = () => {
       return;
     }
 
-    // Record this submission for rate limiting
-    recordSubmission(RATE_LIMIT_KEY);
-
+    setSubmitting(true);
     setErrors({});
-    setSubmitted(true);
-    setTimeout(() => setUnlocked(true), 1200);
+
+    try {
+      const response = await fetch(
+        "https://api.hsforms.com/submissions/v3/integration/submit/342883709/6c1c7357-4fab-4317-94b1-3088818815b6",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fields: [
+              { name: "email", value: result.data.email },
+            ],
+            context: {
+              pageUri: window.location.href,
+              pageName: "Voicera - Investors",
+            },
+            legalConsentOptions: {
+              consent: {
+                consentToProcess: true,
+                text: "Consent to be added to our mailing list for any future updates",
+              },
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      // Record this submission for rate limiting
+      recordSubmission(RATE_LIMIT_KEY);
+      setSubmitted(true);
+      setTimeout(() => setUnlocked(true), 1200);
+    } catch {
+      setErrors({ rateLimit: "Something went wrong. Please try again." });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -191,10 +227,11 @@ const InvestorsSection = () => {
 
                   <button
                     type="submit"
-                    className="px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(255,255,255,0.2)] inline-flex items-center gap-2"
+                    disabled={submitting}
+                    className="px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(255,255,255,0.2)] inline-flex items-center gap-2 disabled:opacity-60 disabled:hover:scale-100"
                     style={{ background: "white", color: "hsl(225 80% 52%)" }}
                   >
-                    Submit <ArrowRight className="w-4 h-4" />
+                    {submitting ? "Submitting…" : "Submit"} <ArrowRight className="w-4 h-4" />
                   </button>
                 </motion.form>
               ) : (
