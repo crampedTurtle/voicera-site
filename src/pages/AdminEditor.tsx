@@ -642,13 +642,7 @@ const AdminEditor = () => {
 
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Read time:</span>
-                  <Input
-                    type="number"
-                    min={1}
-                    value={form.read_time}
-                    onChange={(e) => setForm((p) => ({ ...p, read_time: parseInt(e.target.value) || 1 }))}
-                    className="h-7 w-[130px] text-xs"
-                  />
+                  <span className="text-xs text-foreground">{autoReadTime} min (auto)</span>
                 </div>
               </div>
 
