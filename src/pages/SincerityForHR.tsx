@@ -308,7 +308,10 @@ export default function SincerityForHR() {
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <MediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" badge="Native Integration" aspect="3/2" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "3/2", borderRadius: 16, overflow: "hidden" }}>
+                <img src={hrVerticalImg} alt="Sincerity™ Embedded in Your Platform" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <div style={{ position: "absolute", top: 14, right: 14, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" as const, background: "#1d4ed8", color: "#ffffff", zIndex: 2 }}>Native Integration</div>
+              </div>
             </Reveal>
           </div>
         </div>
