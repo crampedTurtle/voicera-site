@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import lawEnforcementImg from "@/assets/law-enforcement-interrogation.jpg";
 import emotionCoachLEImg from "@/assets/emotion-coach-law-enforcement.png";
+import emotionDetectionLEImg from "@/assets/emotion-detection-law-enforcement.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
