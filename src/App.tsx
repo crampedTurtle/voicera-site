@@ -13,6 +13,7 @@ import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
 import AdminUsers from "./pages/AdminUsers.tsx";
+import AdminAuditLog from "./pages/AdminAuditLog.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import RssFeed from "./pages/RssFeed.tsx";
 import About from "./pages/About.tsx";
