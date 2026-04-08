@@ -717,10 +717,49 @@ const AdminEditor = () => {
             <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
               Featured Image
             </div>
-            <div className="p-4">
+            <div className="p-4 space-y-3">
               <ImageUpload
                 value={form.image}
                 onChange={(url) => setForm((p) => ({ ...p, image: url }))}
+              />
+              <div>
+                <Label className="text-xs flex items-center gap-1">
+                  Alt Text
+                  {altTextWarning && (
+                    <span className="inline-flex items-center gap-0.5 text-destructive">
+                      <AlertTriangle className="w-3 h-3" /> Required for publishing
+                    </span>
+                  )}
+                </Label>
+                <Input
+                  value={form.image_alt}
+                  onChange={(e) => setForm((p) => ({ ...p, image_alt: e.target.value }))}
+                  placeholder="Describe the image for accessibility"
+                  className="text-xs mt-1"
+                />
+              </div>
+              <div>
+                <Label className="text-xs">Caption</Label>
+                <Input
+                  value={form.image_caption}
+                  onChange={(e) => setForm((p) => ({ ...p, image_caption: e.target.value }))}
+                  placeholder="Optional image caption"
+                  className="text-xs mt-1"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Related Posts */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Related Posts
+            </div>
+            <div className="p-4">
+              <RelatedPostsSelector
+                value={form.related_posts}
+                onChange={(ids) => setForm((p) => ({ ...p, related_posts: ids }))}
+                currentPostId={id}
               />
             </div>
           </div>
