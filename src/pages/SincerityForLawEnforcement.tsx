@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import lawEnforcementImg from "@/assets/law-enforcement-interrogation.jpg";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
