@@ -236,7 +236,26 @@ function HeroSection() {
               We read every application and respond to every qualified submission within 5 business days.
             </p>
 
-            {/* HubSpot embed zone */}
+            {/*
+              HubSpot embed zone
+              ─────────────────────────────────────────────────────
+              When embedding the HubSpot form, use the current recommended method:
+              
+                hbspt.forms.create({
+                  region: "na1",
+                  portalId: "YOUR_PORTAL_ID",
+                  formId: "YOUR_FORM_ID",
+                  target: "#hubspot-form-container",
+                });
+              
+              Spam filtering:
+              - Enable "CAPTCHA (spam prevention)" in HubSpot under
+                Form Settings → Form options → Spam filtering.
+              - Enable "Block free email providers" if applicable.
+              - HubSpot automatically filters known spam submissions
+                server-side; no additional client-side config is needed.
+              ─────────────────────────────────────────────────────
+            */}
             <div
               id="hubspot-form-container"
               className="rounded-xl flex flex-col items-center justify-center gap-3 min-h-[240px] text-center"
