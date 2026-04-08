@@ -55,7 +55,7 @@ const AdminDashboard = () => {
   const [perPage, setPerPage] = useState(20);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { userRole, userId, loading: sessionLoading } = useAdminSession();
+  const { userRole, userId, loading: sessionLoading, logout } = useAdminSession();
 
   useEffect(() => {
     if (!sessionLoading) fetchPosts();
@@ -172,8 +172,7 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/voicera-admin");
+    await logout("manual");
   };
 
   const getStatusLabel = (status: string) => {
