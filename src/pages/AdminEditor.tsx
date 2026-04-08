@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,33 +7,38 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, X } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 
-const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
-const STATUSES = [
-  { value: "draft", label: "Draft" },
-  { value: "pending_review", label: "Pending Review" },
-  { value: "scheduled", label: "Scheduled" },
-  { value: "published", label: "Published" },
-  { value: "private", label: "Private" },
+const CATEGORIES = [
+  { value: "sales-intelligence", label: "Sales Intelligence" },
+  { value: "sales-enablement", label: "Sales Enablement" },
+  { value: "platform", label: "Platform" },
+  { value: "trust-credibility", label: "Trust & Credibility" },
+  { value: "hr-hiring", label: "HR & Hiring" },
+  { value: "press", label: "Press" },
 ] as const;
 
 const postSchema = z.object({
-  title: z.string().trim().min(1, "Title is required").max(300, "Title too long"),
-  slug: z.string().trim().min(1, "Slug is required").max(300, "Slug too long").regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Invalid slug format"),
-  excerpt: z.string().max(1000, "Excerpt too long").default(""),
-  content: z.string().max(200000, "Content too long").default(""),
-  author: z.string().trim().min(1).max(200, "Author too long").default("Voicera Team"),
+  title: z.string().trim().min(1, "Title is required").max(300),
+  slug: z.string().trim().min(1, "Slug is required").max(300).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Invalid slug format"),
+  excerpt: z.string().max(1000).default(""),
+  content: z.string().max(200000).default(""),
+  author: z.string().trim().min(1).max(200).default("Voicera Team"),
   category: z.string().min(1).max(100),
   image: z.string().max(2000).default(""),
   read_time: z.number().int().min(1).max(999),
-  external_url: z.string().url("Invalid URL").max(2000).or(z.literal("")).nullable().transform(v => v || null),
+  external_url: z.string().url().max(2000).or(z.literal("")).nullable().transform(v => v || null),
   source: z.string().max(200).nullable().transform(v => v || null),
   status: z.string().min(1),
+  visibility: z.string().min(1),
   scheduled_at: z.string().nullable().transform(v => v || null),
+  tags: z.array(z.string()),
+  seo_title: z.string().max(200).default(""),
+  seo_description: z.string().max(500).default(""),
 });
 
 const AdminEditor = () => {
@@ -43,6 +48,7 @@ const AdminEditor = () => {
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
   const { userRole, loading: sessionLoading } = useAdminSession();
+  const [tagInput, setTagInput] = useState("");
 
   const [form, setForm] = useState({
     title: "",
@@ -50,13 +56,17 @@ const AdminEditor = () => {
     excerpt: "",
     content: "",
     author: "Voicera Team",
-    category: "product" as string,
+    category: "platform",
     image: "",
     read_time: 5,
     external_url: "",
     source: "",
     status: "draft",
+    visibility: "public",
     scheduled_at: "",
+    tags: [] as string[],
+    seo_title: "",
+    seo_description: "",
   });
 
   useEffect(() => {
@@ -76,19 +86,24 @@ const AdminEditor = () => {
       return;
     }
 
+    const d = data as any;
     setForm({
-      title: data.title,
-      slug: data.slug,
-      excerpt: data.excerpt,
-      content: data.content,
-      author: data.author,
-      category: data.category,
-      image: data.image,
-      read_time: data.read_time,
-      external_url: data.external_url || "",
-      source: data.source || "",
-      status: (data as any).status || (data.published ? "published" : "draft"),
-      scheduled_at: (data as any).scheduled_at || "",
+      title: d.title,
+      slug: d.slug,
+      excerpt: d.excerpt,
+      content: d.content,
+      author: d.author,
+      category: d.category,
+      image: d.image,
+      read_time: d.read_time,
+      external_url: d.external_url || "",
+      source: d.source || "",
+      status: d.status || (d.published ? "published" : "draft"),
+      visibility: d.visibility || "public",
+      scheduled_at: d.scheduled_at || "",
+      tags: d.tags || [],
+      seo_title: d.seo_title || "",
+      seo_description: d.seo_description || "",
     });
   };
 
@@ -105,54 +120,51 @@ const AdminEditor = () => {
 
   const canPublish = userRole === "admin" || userRole === "editor";
 
-  // Contributors can only submit for review or save as draft
-  const availableStatuses = canPublish
-    ? STATUSES
-    : STATUSES.filter((s) => s.value === "draft" || s.value === "pending_review");
+  const addTag = useCallback(() => {
+    const tag = tagInput.trim().toLowerCase();
+    if (tag && !form.tags.includes(tag)) {
+      setForm((p) => ({ ...p, tags: [...p.tags, tag] }));
+    }
+    setTagInput("");
+  }, [tagInput, form.tags]);
+
+  const removeTag = (tag: string) => {
+    setForm((p) => ({ ...p, tags: p.tags.filter((t) => t !== tag) }));
+  };
 
   const handleSave = async () => {
-    // Enforce: contributors can't set published/private/scheduled
     if (!canPublish && (form.status === "published" || form.status === "private" || form.status === "scheduled")) {
       toast({ title: "Permission denied", description: "You can only save drafts or submit for review.", variant: "destructive" });
       return;
     }
-
     if (form.status === "scheduled" && !form.scheduled_at) {
-      toast({ title: "Validation error", description: "Please set a schedule date.", variant: "destructive" });
+      toast({ title: "Validation error", description: "Set a schedule date.", variant: "destructive" });
       return;
     }
 
     const parsed = postSchema.safeParse(form);
     if (!parsed.success) {
-      const firstError = parsed.error.errors[0];
-      toast({ title: "Validation error", description: firstError.message, variant: "destructive" });
+      toast({ title: "Validation error", description: parsed.error.errors[0].message, variant: "destructive" });
       return;
     }
 
     setSaving(true);
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
-      toast({ title: "Session expired", description: "Please log in again.", variant: "destructive" });
+      toast({ title: "Session expired", variant: "destructive" });
       navigate("/voicera-admin");
       return;
     }
 
-    const validData = parsed.data;
-
+    const v = parsed.data;
     const payload: Record<string, unknown> = {
-      title: validData.title,
-      slug: validData.slug,
-      excerpt: validData.excerpt,
-      content: validData.content,
-      author: validData.author,
-      category: validData.category,
-      image: validData.image,
-      read_time: validData.read_time,
-      external_url: validData.external_url,
-      source: validData.source,
-      status: validData.status,
-      published: validData.status === "published",
-      scheduled_at: validData.status === "scheduled" ? validData.scheduled_at : null,
+      title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
+      author: v.author, category: v.category, image: v.image, read_time: v.read_time,
+      external_url: v.external_url, source: v.source,
+      status: v.status, visibility: v.visibility,
+      published: v.status === "published",
+      scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
+      tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
       created_by: session.user.id,
     };
 
@@ -172,165 +184,297 @@ const AdminEditor = () => {
     setSaving(false);
   };
 
+  const wordCount = form.content.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
+
   if (sessionLoading) {
     return <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">Loading…</div>;
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+    <div className="min-h-screen bg-muted/20">
+      {/* Header */}
+      <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => navigate("/voicera-admin/dashboard")}>
             <ArrowLeft className="w-4 h-4 mr-1" /> Back
           </Button>
-          <h1 className="text-xl font-bold text-foreground">
-            {isEdit ? "Edit Post" : "New Post"}
+          <h1 className="text-lg font-bold text-foreground">
+            {isEdit ? "Edit Post" : "Add New Post"}
           </h1>
-          <span className="text-xs text-muted-foreground capitalize">({userRole})</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button onClick={handleSave} disabled={saving}>
-            <Save className="w-4 h-4 mr-1" /> {saving ? "Saving…" : "Save"}
-          </Button>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-6 py-8 space-y-6">
-        <div>
-          <Label htmlFor="title">Title</Label>
+      <div className="max-w-[1200px] mx-auto px-4 py-6 flex gap-6 items-start">
+        {/* Main content area */}
+        <div className="flex-1 min-w-0 space-y-4">
+          {/* Title */}
           <Input
-            id="title"
             value={form.title}
             onChange={(e) => handleTitleChange(e.target.value)}
-            placeholder="Post title"
+            placeholder="Enter title here"
+            className="text-xl font-semibold h-12 bg-background"
           />
-        </div>
 
-        <div>
-          <Label htmlFor="slug">Slug</Label>
-          <Input
-            id="slug"
-            value={form.slug}
-            onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))}
-            placeholder="post-url-slug"
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="excerpt">Excerpt</Label>
-          <Textarea
-            id="excerpt"
-            value={form.excerpt}
-            onChange={(e) => setForm((p) => ({ ...p, excerpt: e.target.value }))}
-            placeholder="Short description…"
-            rows={2}
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="content">Content</Label>
-          <Textarea
-            id="content"
-            value={form.content}
-            onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
-            placeholder="Write your blog post content here…"
-            rows={16}
-            className="font-mono text-sm"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="category">Category</Label>
-            <Select value={form.category} onValueChange={(v) => setForm((p) => ({ ...p, category: v }))}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {CATEGORIES.map((c) => (
-                  <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label htmlFor="author">Author</Label>
+          {/* Slug */}
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground">Permalink:</span>
             <Input
-              id="author"
-              value={form.author}
-              onChange={(e) => setForm((p) => ({ ...p, author: e.target.value }))}
+              value={form.slug}
+              onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))}
+              className="h-7 text-xs flex-1 max-w-md"
             />
           </div>
-        </div>
 
-        {/* Status + Scheduling */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label>Status</Label>
-            <Select value={form.status} onValueChange={(v) => setForm((p) => ({ ...p, status: v }))}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {availableStatuses.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          {/* Rich text editor */}
+          <RichTextEditor
+            content={form.content}
+            onChange={(html) => setForm((p) => ({ ...p, content: html }))}
+          />
 
-          {form.status === "scheduled" && (
-            <div>
-              <Label htmlFor="scheduled_at">Scheduled Date & Time</Label>
-              <Input
-                id="scheduled_at"
-                type="datetime-local"
-                value={form.scheduled_at}
-                onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
+          <div className="text-xs text-muted-foreground">Word count: {wordCount}</div>
+
+          {/* Excerpt */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <button
+              type="button"
+              className="w-full text-left px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30"
+            >
+              Excerpt
+            </button>
+            <div className="p-4">
+              <Textarea
+                value={form.excerpt}
+                onChange={(e) => setForm((p) => ({ ...p, excerpt: e.target.value }))}
+                placeholder="Write a short description…"
+                rows={3}
+                className="text-sm"
               />
             </div>
-          )}
-        </div>
-
-        <ImageUpload
-          value={form.image}
-          onChange={(url) => setForm((p) => ({ ...p, image: url }))}
-        />
-
-        <div>
-          <Label htmlFor="read_time">Read Time (min)</Label>
-          <Input
-            id="read_time"
-            type="number"
-            min={1}
-            value={form.read_time}
-            onChange={(e) => setForm((p) => ({ ...p, read_time: parseInt(e.target.value) || 1 }))}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="source">Source (for press)</Label>
-            <Input
-              id="source"
-              value={form.source}
-              onChange={(e) => setForm((p) => ({ ...p, source: e.target.value }))}
-              placeholder="e.g. TechCrunch"
-            />
           </div>
 
-          <div>
-            <Label htmlFor="external_url">External URL (for press)</Label>
-            <Input
-              id="external_url"
-              value={form.external_url}
-              onChange={(e) => setForm((p) => ({ ...p, external_url: e.target.value }))}
-              placeholder="https://..."
-            />
+          {/* Source / External URL (for press) */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Press / External Link
+            </div>
+            <div className="p-4 grid grid-cols-2 gap-4">
+              <div>
+                <Label className="text-xs">Source</Label>
+                <Input value={form.source} onChange={(e) => setForm((p) => ({ ...p, source: e.target.value }))} placeholder="e.g. TechCrunch" className="text-sm" />
+              </div>
+              <div>
+                <Label className="text-xs">External URL</Label>
+                <Input value={form.external_url} onChange={(e) => setForm((p) => ({ ...p, external_url: e.target.value }))} placeholder="https://..." className="text-sm" />
+              </div>
+            </div>
+          </div>
+
+          {/* SEO */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              SEO Settings
+            </div>
+            <div className="p-4 space-y-3">
+              <div>
+                <Label className="text-xs">SEO Title <span className="text-muted-foreground">({form.seo_title.length}/60)</span></Label>
+                <Input
+                  value={form.seo_title}
+                  onChange={(e) => setForm((p) => ({ ...p, seo_title: e.target.value }))}
+                  placeholder={form.title || "Page title for search engines"}
+                  maxLength={200}
+                  className="text-sm"
+                />
+              </div>
+              <div>
+                <Label className="text-xs">Meta Description <span className="text-muted-foreground">({form.seo_description.length}/160)</span></Label>
+                <Textarea
+                  value={form.seo_description}
+                  onChange={(e) => setForm((p) => ({ ...p, seo_description: e.target.value }))}
+                  placeholder={form.excerpt || "Description for search results"}
+                  maxLength={500}
+                  rows={3}
+                  className="text-sm"
+                />
+              </div>
+              {/* Preview */}
+              <div className="border border-border rounded p-3 bg-muted/20">
+                <p className="text-xs text-muted-foreground mb-1">Search preview:</p>
+                <p className="text-sm text-blue-600 dark:text-blue-400 font-medium truncate">
+                  {form.seo_title || form.title || "Post Title"}
+                </p>
+                <p className="text-xs text-green-700 dark:text-green-500 truncate">
+                  voicera.com/media/{form.slug || "post-slug"}
+                </p>
+                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                  {form.seo_description || form.excerpt || "Post description will appear here…"}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+
+        {/* Sidebar */}
+        <div className="w-[280px] shrink-0 space-y-4">
+          {/* Publish panel */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Publish
+            </div>
+            <div className="p-4 space-y-3">
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" className="flex-1 text-xs" onClick={handleSave} disabled={saving}>
+                  {saving ? "Saving…" : "Save Draft"}
+                </Button>
+                {form.status === "published" && form.slug && (
+                  <Button size="sm" variant="outline" className="text-xs" asChild>
+                    <a href={`/media/${form.slug}`} target="_blank" rel="noopener">Preview</a>
+                  </Button>
+                )}
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Status:</span>
+                  <Select value={form.status} onValueChange={(v) => setForm((p) => ({ ...p, status: v }))}>
+                    <SelectTrigger className="h-7 w-[130px] text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="draft">Draft</SelectItem>
+                      <SelectItem value="pending_review">Pending Review</SelectItem>
+                      {canPublish && <SelectItem value="scheduled">Scheduled</SelectItem>}
+                      {canPublish && <SelectItem value="published">Published</SelectItem>}
+                      {canPublish && <SelectItem value="private">Private</SelectItem>}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Visibility:</span>
+                  <Select value={form.visibility} onValueChange={(v) => setForm((p) => ({ ...p, visibility: v }))}>
+                    <SelectTrigger className="h-7 w-[130px] text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="public">Public</SelectItem>
+                      <SelectItem value="private">Private</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {form.status === "scheduled" && (
+                  <div>
+                    <Label className="text-xs text-muted-foreground">Publish on:</Label>
+                    <Input
+                      type="datetime-local"
+                      value={form.scheduled_at}
+                      onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
+                      className="h-7 text-xs mt-1"
+                    />
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Author:</span>
+                  <Input
+                    value={form.author}
+                    onChange={(e) => setForm((p) => ({ ...p, author: e.target.value }))}
+                    className="h-7 w-[130px] text-xs"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Read time:</span>
+                  <Input
+                    type="number"
+                    min={1}
+                    value={form.read_time}
+                    onChange={(e) => setForm((p) => ({ ...p, read_time: parseInt(e.target.value) || 1 }))}
+                    className="h-7 w-[130px] text-xs"
+                  />
+                </div>
+              </div>
+
+              <div className="border-t border-border pt-3">
+                <Button className="w-full" onClick={handleSave} disabled={saving}>
+                  <Save className="w-4 h-4 mr-1" />
+                  {saving ? "Saving…" : canPublish && form.status === "published" ? "Publish" : form.status === "pending_review" ? "Submit for Review" : "Save"}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Tags
+            </div>
+            <div className="p-4 space-y-2">
+              <div className="flex gap-1">
+                <Input
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
+                  placeholder="Add new tag"
+                  className="h-7 text-xs flex-1"
+                />
+                <Button size="sm" variant="outline" className="h-7 text-xs px-2" onClick={addTag}>
+                  Add
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">Separate tags with commas</p>
+              {form.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1">
+                  {form.tags.map((tag) => (
+                    <span key={tag} className="inline-flex items-center gap-0.5 bg-muted text-xs px-2 py-0.5 rounded">
+                      {tag}
+                      <button onClick={() => removeTag(tag)} className="hover:text-destructive">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Categories */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Categories
+            </div>
+            <div className="p-4">
+              <div className="space-y-1.5">
+                {CATEGORIES.map((c) => (
+                  <label key={c.value} className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      name="category"
+                      checked={form.category === c.value}
+                      onChange={() => setForm((p) => ({ ...p, category: c.value }))}
+                      className="accent-primary"
+                    />
+                    {c.label}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Image */}
+          <div className="bg-background border border-border rounded-lg overflow-hidden">
+            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
+              Featured Image
+            </div>
+            <div className="p-4">
+              <ImageUpload
+                value={form.image}
+                onChange={(url) => setForm((p) => ({ ...p, image: url }))}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
