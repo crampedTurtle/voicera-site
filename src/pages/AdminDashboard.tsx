@@ -309,7 +309,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredPosts.map((post) => (
+                {paginatedPosts.map((post) => (
                   <tr key={post.id} className="border-b border-border hover:bg-muted/30 transition-colors group">
                     <td className="px-3 py-2.5">
                       <Checkbox
