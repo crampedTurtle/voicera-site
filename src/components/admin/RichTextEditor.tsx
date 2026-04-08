@@ -12,6 +12,7 @@ import { Color } from "@tiptap/extension-text-style/color";
 import { FontSize } from "@tiptap/extension-text-style/font-size";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { validateFileUpload, generateSafeFilename } from "@/lib/sanitize";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   List, ListOrdered, Quote, Code, Heading1, Heading2, Heading3,
