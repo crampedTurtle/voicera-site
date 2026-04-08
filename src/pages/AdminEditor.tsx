@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, X } from "lucide-react";
+import { ArrowLeft, Save, X, Check, Loader2 } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { useAdminSession } from "@/hooks/use-admin-session";
