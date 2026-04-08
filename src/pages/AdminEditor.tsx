@@ -265,7 +265,7 @@ const AdminEditor = () => {
   return (
     <div className="min-h-screen bg-muted/20">
       {/* Header */}
-      <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
+       <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => navigate("/voicera-admin/dashboard")}>
             <ArrowLeft className="w-4 h-4 mr-1" /> Back
@@ -273,6 +273,17 @@ const AdminEditor = () => {
           <h1 className="text-lg font-bold text-foreground">
             {isEdit ? "Edit Post" : "Add New Post"}
           </h1>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          {autosaveStatus === "saving" && (
+            <span className="flex items-center gap-1"><Loader2 className="w-3 h-3 animate-spin" /> Saving…</span>
+          )}
+          {autosaveStatus === "saved" && (
+            <span className="flex items-center gap-1 text-green-600 dark:text-green-400"><Check className="w-3 h-3" /> Draft saved</span>
+          )}
+          {autosaveStatus === "error" && (
+            <span className="flex items-center gap-1 text-destructive">Autosave failed</span>
+          )}
         </div>
       </header>
 
