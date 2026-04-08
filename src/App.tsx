@@ -12,6 +12,7 @@ import SolutionPageComponent, { getSolutionBySlug, solutions } from "./pages/Sol
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
+import AdminUsers from "./pages/AdminUsers.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
