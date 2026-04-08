@@ -102,14 +102,6 @@ const BlogPost = () => {
 
       <main className="pt-24 pb-20">
         <article className="max-w-3xl mx-auto px-4 sm:px-6">
-          {/* Back link */}
-          <Link
-            to="/media"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Media
-          </Link>
 
           {/* Category */}
           <span className="gradient-pill capitalize mb-4 inline-block">
