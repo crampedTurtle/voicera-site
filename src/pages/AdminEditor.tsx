@@ -221,7 +221,7 @@ const AdminEditor = () => {
   useEffect(() => {
     autosaveTimerRef.current = setInterval(() => {
       autosave(formRef.current);
-    }, 30000);
+    }, 60000);
     return () => {
       if (autosaveTimerRef.current) clearInterval(autosaveTimerRef.current);
     };
