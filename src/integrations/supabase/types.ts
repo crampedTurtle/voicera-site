@@ -28,8 +28,10 @@ export type Database = {
           image: string
           published: boolean
           read_time: number
+          scheduled_at: string | null
           slug: string
           source: string | null
+          status: string
           title: string
           updated_at: string
         }
@@ -46,8 +48,10 @@ export type Database = {
           image?: string
           published?: boolean
           read_time?: number
+          scheduled_at?: string | null
           slug: string
           source?: string | null
+          status?: string
           title: string
           updated_at?: string
         }
@@ -64,8 +68,10 @@ export type Database = {
           image?: string
           published?: boolean
           read_time?: number
+          scheduled_at?: string | null
           slug?: string
           source?: string | null
+          status?: string
           title?: string
           updated_at?: string
         }
@@ -94,6 +100,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      has_editor_or_admin_role: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
