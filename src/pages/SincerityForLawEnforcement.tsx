@@ -400,7 +400,7 @@ export default function SincerityForLawEnforcement() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: headingFont, fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#1e40af,#3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Enhance Your Investigative Platform with Behavioral Intelligence 🛡️
+              Enhance Your Investigative Platform with Behavioral Intelligence
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
