@@ -446,7 +446,7 @@ export default function SincerityForDating() {
         <div style={{ maxWidth: 650, margin: "0 auto" }}>
           <Reveal>
             <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", lineHeight: 1.2, background: "linear-gradient(135deg,#2563EB,#8b5cf6,#db2777)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 24 }}>
-              Enhance Your Dating Platform with Authenticity Intelligence 💙
+              Enhance Your Dating Platform with Authenticity Intelligence 
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
