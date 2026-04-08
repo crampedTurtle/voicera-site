@@ -17,6 +17,7 @@ export type Database = {
       blog_posts: {
         Row: {
           author: string
+          canonical_url: string
           category: string
           content: string
           created_at: string
@@ -26,8 +27,16 @@ export type Database = {
           external_url: string | null
           id: string
           image: string
+          image_alt: string
+          image_caption: string
+          og_description: string
+          og_image: string
+          og_title: string
           published: boolean
           read_time: number
+          related_posts: string[]
+          robots_follow: boolean
+          robots_index: boolean
           scheduled_at: string | null
           seo_description: string
           seo_title: string
@@ -36,11 +45,13 @@ export type Database = {
           status: string
           tags: string[]
           title: string
+          twitter_card: string
           updated_at: string
           visibility: string
         }
         Insert: {
           author?: string
+          canonical_url?: string
           category?: string
           content?: string
           created_at?: string
@@ -50,8 +61,16 @@ export type Database = {
           external_url?: string | null
           id?: string
           image?: string
+          image_alt?: string
+          image_caption?: string
+          og_description?: string
+          og_image?: string
+          og_title?: string
           published?: boolean
           read_time?: number
+          related_posts?: string[]
+          robots_follow?: boolean
+          robots_index?: boolean
           scheduled_at?: string | null
           seo_description?: string
           seo_title?: string
@@ -60,11 +79,13 @@ export type Database = {
           status?: string
           tags?: string[]
           title: string
+          twitter_card?: string
           updated_at?: string
           visibility?: string
         }
         Update: {
           author?: string
+          canonical_url?: string
           category?: string
           content?: string
           created_at?: string
@@ -74,8 +95,16 @@ export type Database = {
           external_url?: string | null
           id?: string
           image?: string
+          image_alt?: string
+          image_caption?: string
+          og_description?: string
+          og_image?: string
+          og_title?: string
           published?: boolean
           read_time?: number
+          related_posts?: string[]
+          robots_follow?: boolean
+          robots_index?: boolean
           scheduled_at?: string | null
           seo_description?: string
           seo_title?: string
@@ -84,6 +113,7 @@ export type Database = {
           status?: string
           tags?: string[]
           title?: string
+          twitter_card?: string
           updated_at?: string
           visibility?: string
         }
