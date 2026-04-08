@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
