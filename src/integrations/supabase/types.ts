@@ -29,11 +29,15 @@ export type Database = {
           published: boolean
           read_time: number
           scheduled_at: string | null
+          seo_description: string
+          seo_title: string
           slug: string
           source: string | null
           status: string
+          tags: string[]
           title: string
           updated_at: string
+          visibility: string
         }
         Insert: {
           author?: string
@@ -49,11 +53,15 @@ export type Database = {
           published?: boolean
           read_time?: number
           scheduled_at?: string | null
+          seo_description?: string
+          seo_title?: string
           slug: string
           source?: string | null
           status?: string
+          tags?: string[]
           title: string
           updated_at?: string
+          visibility?: string
         }
         Update: {
           author?: string
@@ -69,11 +77,15 @@ export type Database = {
           published?: boolean
           read_time?: number
           scheduled_at?: string | null
+          seo_description?: string
+          seo_title?: string
           slug?: string
           source?: string | null
           status?: string
+          tags?: string[]
           title?: string
           updated_at?: string
+          visibility?: string
         }
         Relationships: []
       }

@@ -90,8 +90,10 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <JsonLd title={`${post.title} — Voicera`} description={post.excerpt} path={`/media/${post.slug}`} />
+      <JsonLd title={(post as any).seo_title || `${post.title} — Voicera`} description={(post as any).seo_description || post.excerpt} path={`/media/${post.slug}`} />
       <Helmet>
+        <title>{(post as any).seo_title || `${post.title} — Voicera`}</title>
+        <meta name="description" content={(post as any).seo_description || post.excerpt} />
         <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
         <meta property="og:type" content="article" />
         <meta property="og:image" content={post.image} />
@@ -145,12 +147,13 @@ const BlogPost = () => {
               prose-strong:text-foreground
               prose-img:rounded-xl prose-img:my-8"
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content, {
-              ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','a','ul','ol','li','strong','em','br','img','blockquote','pre','code','span','div','figure','figcaption','table','thead','tbody','tr','th','td','hr','sub','sup'],
-              ALLOWED_ATTR: ['href','src','alt','title','class','id','target','rel','width','height','loading','decoding'],
+              ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','a','ul','ol','li','strong','em','br','img','blockquote','pre','code','span','div','figure','figcaption','table','thead','tbody','tr','th','td','hr','sub','sup','iframe','u'],
+              ALLOWED_ATTR: ['href','src','alt','title','class','id','target','rel','width','height','loading','decoding','allowfullscreen','frameborder','allow','style'],
               ALLOW_DATA_ATTR: false,
               ADD_ATTR: ['rel'],
-              FORBID_TAGS: ['script','style','iframe','object','embed','form','input','textarea','select','button'],
-              FORBID_ATTR: ['onerror','onload','onclick','onmouseover','onfocus','onblur','style'],
+              ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+              FORBID_TAGS: ['script','object','embed','form','input','textarea','select','button'],
+              FORBID_ATTR: ['onerror','onload','onclick','onmouseover','onfocus','onblur'],
             }) }}
           />
         </article>
