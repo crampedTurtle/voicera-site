@@ -500,7 +500,11 @@ export default function SincerityForSales() {
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <SalesMediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" aspect="4/3" />
+              <img
+                src={salesVerticalImg}
+                alt="Sincerity™ Embedded in Your Platform"
+                style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: 16, display: "block" }}
+              />
             </Reveal>
           </div>
         </div>
