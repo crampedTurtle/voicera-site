@@ -172,8 +172,7 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/voicera-admin");
+    await logout("manual");
   };
 
   const getStatusLabel = (status: string) => {
