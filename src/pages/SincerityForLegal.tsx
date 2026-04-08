@@ -226,7 +226,7 @@ export default function SincerityForLegal() {
               <Reveal><Badge>Embedded Intelligence</Badge></Reveal>
               <Reveal delay={0.1}>
                 <h2 style={{ fontFamily: hf, fontSize: 34, fontWeight: 800, color: "#0f172a", margin: "20px 0 8px", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
-                  Power Trial Prep & Deposition Analysis Natively 📜
+                  Power Trial Prep & Deposition Analysis Natively 
                 </h2>
                 <h3 style={{ fontFamily: hf, fontSize: 17, fontWeight: 700, color: "#1e40af", margin: "0 0 24px" }}>
                   Sincerity™: A Data Layer for Legal Tech Platforms
@@ -412,7 +412,7 @@ export default function SincerityForLegal() {
           <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
             <Reveal>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-                Ready to embed credibility intelligence into your legal tech platform? Let's talk integration. 📜
+                Ready to embed credibility intelligence into your legal tech platform? Let's talk integration. 
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
