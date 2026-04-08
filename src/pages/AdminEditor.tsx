@@ -557,6 +557,12 @@ const AdminEditor = () => {
               />
             </div>
           </div>
+
+          {/* Revisions */}
+          <PostRevisions
+            postId={isEdit ? id : postIdRef.current}
+            onRestore={(rev) => setForm((p) => ({ ...p, ...rev }))}
+          />
         </div>
       </div>
     </div>
