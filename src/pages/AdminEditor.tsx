@@ -118,6 +118,8 @@ const AdminEditor = () => {
     }));
   };
 
+  const canPublish = userRole === "admin" || userRole === "editor";
+
   // Autosave
   const [autosaveStatus, setAutosaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const lastSavedRef = useRef<string>("");
