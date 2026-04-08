@@ -3,6 +3,9 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Lock, Unlock, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import FloatingCapsules from "./FloatingCapsules";
+import { checkRateLimit, recordSubmission } from "@/hooks/use-rate-limit";
+
+const RATE_LIMIT_KEY = "investor_email";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
@@ -12,7 +15,7 @@ const emailSchema = z.object({
 const InvestorsSection = () => {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; consent?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; consent?: string; rateLimit?: string }>({});
   const [submitted, setSubmitted] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,6 +30,17 @@ const InvestorsSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Client-side rate limiting: max 3 submissions per 10-minute window
+    const rl = checkRateLimit(RATE_LIMIT_KEY, 3, 10 * 60 * 1000);
+    if (!rl.allowed) {
+      const mins = Math.ceil(rl.resetInSeconds / 60);
+      setErrors({
+        rateLimit: `Too many submissions. Please try again in ${mins} minute${mins !== 1 ? "s" : ""}.`,
+      });
+      return;
+    }
+
     const result = emailSchema.safeParse({ email, consent });
     if (!result.success) {
       const fieldErrors: { email?: string; consent?: string } = {};
@@ -37,6 +51,10 @@ const InvestorsSection = () => {
       setErrors(fieldErrors);
       return;
     }
+
+    // Record this submission for rate limiting
+    recordSubmission(RATE_LIMIT_KEY);
+
     setErrors({});
     setSubmitted(true);
     setTimeout(() => setUnlocked(true), 1200);
@@ -111,6 +129,16 @@ const InvestorsSection = () => {
                   exit={{ opacity: 0, y: -10 }}
                   className="space-y-5 max-w-md"
                 >
+                  {/* Rate limit error */}
+                  {errors.rateLimit && (
+                    <div
+                      className="rounded-lg px-4 py-3 text-sm"
+                      style={{ background: "rgba(239,68,68,0.15)", color: "#FCA5A5" }}
+                    >
+                      {errors.rateLimit}
+                    </div>
+                  )}
+
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.9)" }}>
                       Email<span style={{ color: "rgba(255,255,255,0.5)" }}>*</span>

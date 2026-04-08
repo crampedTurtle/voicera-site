@@ -49,8 +49,7 @@ const StartBuildingModal = ({ open, onOpenChange }: StartBuildingModalProps) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: wire up form submission
-    console.log("Form submitted:", form);
+    // TODO: wire up form submission to backend
     onOpenChange(false);
   };
 
