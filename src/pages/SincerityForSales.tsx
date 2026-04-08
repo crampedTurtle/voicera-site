@@ -4,6 +4,7 @@ import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
+import salesVerticalImg from "@/assets/sales-vertical.png";
 
 // ─── ANIMATED WIREFRAME MESH ────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
