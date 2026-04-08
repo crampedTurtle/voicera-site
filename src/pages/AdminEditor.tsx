@@ -120,6 +120,8 @@ const AdminEditor = () => {
       author: d.author,
       category: d.category,
       image: d.image,
+      image_alt: d.image_alt || "",
+      image_caption: d.image_caption || "",
       read_time: d.read_time,
       external_url: d.external_url || "",
       source: d.source || "",
@@ -129,6 +131,14 @@ const AdminEditor = () => {
       tags: d.tags || [],
       seo_title: d.seo_title || "",
       seo_description: d.seo_description || "",
+      canonical_url: d.canonical_url || "",
+      og_title: d.og_title || "",
+      og_description: d.og_description || "",
+      og_image: d.og_image || "",
+      twitter_card: d.twitter_card || "summary_large_image",
+      robots_index: d.robots_index ?? true,
+      robots_follow: d.robots_follow ?? true,
+      related_posts: d.related_posts || [],
     });
   };
 
