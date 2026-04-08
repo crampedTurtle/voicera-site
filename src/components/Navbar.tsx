@@ -41,7 +41,7 @@ const companyLinks = [
 
 const platformColLinks = [
   { label: "Platform", href: "#product" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "Case Studies", href: "/#case-studies" },
   { label: "Voicera Labs", href: "/voicera-labs" },
 ];
 
