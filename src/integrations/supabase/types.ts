@@ -160,6 +160,42 @@ export type Database = {
         }
         Relationships: []
       }
+      partner_submissions: {
+        Row: {
+          business_email: string
+          company_name: string
+          company_website: string | null
+          created_at: string | null
+          first_name: string
+          id: string
+          job_title: string
+          last_name: string
+          partner_interest: string
+        }
+        Insert: {
+          business_email: string
+          company_name: string
+          company_website?: string | null
+          created_at?: string | null
+          first_name: string
+          id?: string
+          job_title: string
+          last_name: string
+          partner_interest: string
+        }
+        Update: {
+          business_email?: string
+          company_name?: string
+          company_website?: string | null
+          created_at?: string | null
+          first_name?: string
+          id?: string
+          job_title?: string
+          last_name?: string
+          partner_interest?: string
+        }
+        Relationships: []
+      }
       post_revisions: {
         Row: {
           author: string
