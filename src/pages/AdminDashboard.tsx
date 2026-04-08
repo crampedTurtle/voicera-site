@@ -1,11 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import AdminCsp from "@/components/admin/AdminCsp";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, LogOut, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Users } from "lucide-react";
+import { Plus, Trash2, LogOut, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Users, Loader2 } from "lucide-react";
 import { useAdminSession, type UserRole } from "@/hooks/use-admin-session";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -28,13 +28,13 @@ interface BlogPost {
   scheduled_at: string | null;
 }
 
-const STATUS_TABS: { key: string; label: string; filter: (p: BlogPost) => boolean }[] = [
-  { key: "all", label: "All", filter: () => true },
-  { key: "published", label: "Published", filter: (p) => p.status === "published" },
-  { key: "draft", label: "Drafts", filter: (p) => p.status === "draft" },
-  { key: "pending_review", label: "Pending", filter: (p) => p.status === "pending_review" },
-  { key: "scheduled", label: "Scheduled", filter: (p) => p.status === "scheduled" },
-  { key: "private", label: "Private", filter: (p) => p.status === "private" },
+const STATUS_TABS: { key: string; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "published", label: "Published" },
+  { key: "draft", label: "Drafts" },
+  { key: "pending_review", label: "Pending" },
+  { key: "scheduled", label: "Scheduled" },
+  { key: "private", label: "Private" },
 ];
 
 function canDelete(role: UserRole | null) {
@@ -45,63 +45,150 @@ function canPublish(role: UserRole | null) {
   return role === "admin" || role === "editor";
 }
 
+const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
+
 const AdminDashboard = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("all");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [bulkAction, setBulkAction] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [bulkProcessing, setBulkProcessing] = useState(false);
+  const [bulkProgress, setBulkProgress] = useState({ done: 0, total: 0 });
   const [perPage, setPerPage] = useState(20);
+  const [totalCount, setTotalCount] = useState(0);
+  const [tabCounts, setTabCounts] = useState<Record<string, number>>({});
+
+  // Cursor-based pagination state
+  const [cursorStack, setCursorStack] = useState<Array<{ updated_at: string; id: string }>>([]);
+  const [currentCursor, setCurrentCursor] = useState<{ updated_at: string; id: string } | null>(null);
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const currentPageNum = cursorStack.length + 1;
+
   const navigate = useNavigate();
   const { toast } = useToast();
   const { userRole, userId, loading: sessionLoading, logout } = useAdminSession();
 
+  // Debounce search input (300ms)
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
-    if (!sessionLoading) fetchPosts();
-  }, [sessionLoading]);
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    searchTimerRef.current = setTimeout(() => {
+      setDebouncedSearch(searchQuery);
+    }, 300);
+    return () => { if (searchTimerRef.current) clearTimeout(searchTimerRef.current); };
+  }, [searchQuery]);
 
-  const fetchPosts = async () => {
-    const { data, error } = await supabase
+  // Reset cursor when filters change
+  useEffect(() => {
+    setCursorStack([]);
+    setCurrentCursor(null);
+  }, [activeTab, debouncedSearch, perPage]);
+
+  // Fetch tab counts
+  const fetchCounts = useCallback(async () => {
+    const statuses = ["published", "draft", "pending_review", "scheduled", "private"];
+    const counts: Record<string, number> = {};
+    
+    const { count: allCount } = await supabase
       .from("blog_posts")
-      .select("id, title, slug, author, category, status, published, date, created_at, updated_at, created_by, scheduled_at")
-      .order("created_at", { ascending: false });
+      .select("id", { count: "exact", head: true });
+    counts.all = allCount || 0;
+
+    await Promise.all(statuses.map(async (status) => {
+      const { count } = await supabase
+        .from("blog_posts")
+        .select("id", { count: "exact", head: true })
+        .eq("status", status);
+      counts[status] = count || 0;
+    }));
+
+    setTabCounts(counts);
+  }, []);
+
+  // Fetch posts with cursor-based pagination and server-side filtering
+  const fetchPosts = useCallback(async () => {
+    setLoading(true);
+
+    let query = supabase
+      .from("blog_posts")
+      .select("id, title, slug, author, category, status, published, date, created_at, updated_at, created_by, scheduled_at", { count: "exact" })
+      .order("updated_at", { ascending: false })
+      .order("id", { ascending: false })
+      .limit(perPage + 1); // fetch one extra to detect next page
+
+    // Status filter
+    if (activeTab !== "all") {
+      query = query.eq("status", activeTab);
+    }
+
+    // Full-text search (server-side)
+    if (debouncedSearch.trim()) {
+      const searchTerms = debouncedSearch.trim().split(/\s+/).join(" & ");
+      query = query.textSearch("fts", searchTerms, { type: "plain", config: "english" });
+    }
+
+    // Cursor: fetch rows after the current cursor
+    if (currentCursor) {
+      query = query.or(
+        `updated_at.lt.${currentCursor.updated_at},and(updated_at.eq.${currentCursor.updated_at},id.lt.${currentCursor.id})`
+      );
+    }
+
+    const { data, error, count } = await query;
 
     if (error) {
       toast({ title: "Error loading posts", description: error.message, variant: "destructive" });
-    } else {
-      setPosts((data as BlogPost[]) || []);
+      setLoading(false);
+      return;
     }
+
+    const rows = (data as BlogPost[]) || [];
+    
+    // If we got more than perPage, there's a next page
+    if (rows.length > perPage) {
+      setHasNextPage(true);
+      setPosts(rows.slice(0, perPage));
+    } else {
+      setHasNextPage(false);
+      setPosts(rows);
+    }
+
+    if (count !== null && !currentCursor) {
+      setTotalCount(count);
+    }
+
     setLoading(false);
+  }, [activeTab, debouncedSearch, perPage, currentCursor, toast]);
+
+  useEffect(() => {
+    if (!sessionLoading) {
+      fetchPosts();
+      fetchCounts();
+    }
+  }, [sessionLoading, fetchPosts, fetchCounts]);
+
+  const goNextPage = () => {
+    if (posts.length === 0) return;
+    const lastPost = posts[posts.length - 1];
+    setCursorStack(prev => [...prev, currentCursor || { updated_at: "", id: "" }]);
+    setCurrentCursor({ updated_at: lastPost.updated_at, id: lastPost.id });
   };
 
-  const filteredPosts = useMemo(() => {
-    const tab = STATUS_TABS.find((t) => t.key === activeTab);
-    let result = tab ? posts.filter(tab.filter) : posts;
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter((p) => p.title.toLowerCase().includes(q) || p.author.toLowerCase().includes(q));
-    }
-    return result;
-  }, [posts, activeTab, searchQuery]);
+  const goPrevPage = () => {
+    if (cursorStack.length === 0) return;
+    const prev = [...cursorStack];
+    const prevCursor = prev.pop()!;
+    setCursorStack(prev);
+    setCurrentCursor(prevCursor.updated_at ? prevCursor : null);
+  };
 
-  // Reset page when filters change
-  useEffect(() => { setCurrentPage(1); }, [activeTab, searchQuery]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / perPage));
-  const paginatedPosts = useMemo(() => {
-    const start = (currentPage - 1) * perPage;
-    return filteredPosts.slice(start, start + perPage);
-  }, [filteredPosts, currentPage, perPage]);
-
-  const tabCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    STATUS_TABS.forEach((t) => {
-      counts[t.key] = posts.filter(t.filter).length;
-    });
-    return counts;
-  }, [posts]);
+  const goFirstPage = () => {
+    setCursorStack([]);
+    setCurrentCursor(null);
+  };
 
   const toggleSelect = (id: string) => {
     setSelected((prev) => {
@@ -113,48 +200,66 @@ const AdminDashboard = () => {
   };
 
   const toggleSelectAll = () => {
-    if (selected.size === paginatedPosts.length) {
+    if (selected.size === posts.length) {
       setSelected(new Set());
     } else {
-      setSelected(new Set(paginatedPosts.map((p) => p.id)));
+      setSelected(new Set(posts.map((p) => p.id)));
     }
   };
 
+  // Async bulk actions with progress
   const handleBulkAction = async () => {
     if (!bulkAction || selected.size === 0) return;
+    const ids = Array.from(selected);
 
     if (bulkAction === "delete") {
       if (!canDelete(userRole)) {
         toast({ title: "Permission denied", variant: "destructive" });
         return;
       }
-      if (!confirm(`Delete ${selected.size} post(s)?`)) return;
-      const { error } = await supabase.from("blog_posts").delete().in("id", Array.from(selected));
-      if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
-      } else {
-        toast({ title: `${selected.size} post(s) deleted` });
-      }
-    } else {
-      // Status change
-      if ((bulkAction === "published" || bulkAction === "private") && !canPublish(userRole)) {
-        toast({ title: "Permission denied", description: "You don't have permission to publish.", variant: "destructive" });
-        return;
-      }
-      const update: Record<string, unknown> = { status: bulkAction };
-      if (bulkAction === "published") update.published = true;
-      else update.published = false;
-
-      const { error } = await supabase.from("blog_posts").update(update).in("id", Array.from(selected));
-      if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
-      } else {
-        toast({ title: `${selected.size} post(s) updated` });
-      }
+      if (!confirm(`Delete ${ids.length} post(s)?`)) return;
+    } else if ((bulkAction === "published" || bulkAction === "private") && !canPublish(userRole)) {
+      toast({ title: "Permission denied", description: "You don't have permission to publish.", variant: "destructive" });
+      return;
     }
+
+    setBulkProcessing(true);
+    setBulkProgress({ done: 0, total: ids.length });
+
+    // Process in batches of 10 to avoid blocking
+    const BATCH_SIZE = 10;
+    let processed = 0;
+    let errorCount = 0;
+
+    for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+      const batch = ids.slice(i, i + BATCH_SIZE);
+
+      if (bulkAction === "delete") {
+        const { error } = await supabase.from("blog_posts").delete().in("id", batch);
+        if (error) errorCount++;
+      } else {
+        const update: Record<string, unknown> = { status: bulkAction };
+        update.published = bulkAction === "published";
+        const { error } = await supabase.from("blog_posts").update(update).in("id", batch);
+        if (error) errorCount++;
+      }
+
+      processed += batch.length;
+      setBulkProgress({ done: processed, total: ids.length });
+    }
+
+    setBulkProcessing(false);
     setSelected(new Set());
     setBulkAction("");
+
+    if (errorCount > 0) {
+      toast({ title: "Some operations failed", description: `${errorCount} batch(es) had errors.`, variant: "destructive" });
+    } else {
+      toast({ title: `${ids.length} post(s) ${bulkAction === "delete" ? "deleted" : "updated"}` });
+    }
+
     fetchPosts();
+    fetchCounts();
   };
 
   const deletePost = async (id: string) => {
@@ -168,6 +273,7 @@ const AdminDashboard = () => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } else {
       fetchPosts();
+      fetchCounts();
       toast({ title: "Post deleted" });
     }
   };
@@ -267,10 +373,15 @@ const AdminDashboard = () => {
                 {canDelete(userRole) && <SelectItem value="delete">Move to Trash</SelectItem>}
               </SelectContent>
             </Select>
-            <Button size="sm" variant="outline" className="h-8 text-xs" onClick={handleBulkAction} disabled={!bulkAction || selected.size === 0}>
-              Apply
+            <Button size="sm" variant="outline" className="h-8 text-xs" onClick={handleBulkAction} disabled={!bulkAction || selected.size === 0 || bulkProcessing}>
+              {bulkProcessing ? (
+                <span className="flex items-center gap-1">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  {bulkProgress.done}/{bulkProgress.total}
+                </span>
+              ) : "Apply"}
             </Button>
-            {selected.size > 0 && (
+            {selected.size > 0 && !bulkProcessing && (
               <span className="text-xs text-muted-foreground">{selected.size} selected</span>
             )}
           </div>
@@ -289,7 +400,7 @@ const AdminDashboard = () => {
         {/* Posts table */}
         {loading ? (
           <p className="text-muted-foreground text-sm py-8 text-center">Loading posts…</p>
-        ) : filteredPosts.length === 0 ? (
+        ) : posts.length === 0 ? (
           <div className="text-center py-12 border border-border rounded-lg">
             <p className="text-muted-foreground mb-4 text-sm">No posts found.</p>
             <Button asChild size="sm">
@@ -305,7 +416,7 @@ const AdminDashboard = () => {
                 <tr className="bg-muted/50 border-b border-border">
                   <th className="w-8 px-3 py-2.5">
                     <Checkbox
-                      checked={selected.size === paginatedPosts.length && paginatedPosts.length > 0}
+                      checked={selected.size === posts.length && posts.length > 0}
                       onCheckedChange={toggleSelectAll}
                     />
                   </th>
@@ -317,7 +428,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {paginatedPosts.map((post) => (
+                {posts.map((post) => (
                   <tr key={post.id} className="border-b border-border hover:bg-muted/30 transition-colors group">
                     <td className="px-3 py-2.5">
                       <Checkbox
@@ -384,55 +495,46 @@ const AdminDashboard = () => {
         {/* Pagination */}
         <div className="flex items-center justify-between mt-3">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{filteredPosts.length} item{filteredPosts.length !== 1 ? "s" : ""}</span>
+            <span>{tabCounts[activeTab] || 0} item{(tabCounts[activeTab] || 0) !== 1 ? "s" : ""}</span>
             <span>·</span>
-            <Select value={String(perPage)} onValueChange={(v) => { setPerPage(Number(v)); setCurrentPage(1); }}>
+            <Select value={String(perPage)} onValueChange={(v) => { setPerPage(Number(v)); }}>
               <SelectTrigger className="h-7 w-[70px] text-xs">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {[10, 20, 50, 100].map((n) => (
+                {PAGE_SIZE_OPTIONS.map((n) => (
                   <SelectItem key={n} value={String(n)}>{n} / page</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
 
-          {totalPages > 1 && (
-            <div className="flex items-center gap-1">
-              <Button
-                variant="outline" size="icon" className="h-7 w-7"
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage(1)}
-              >
-                <ChevronsLeft className="w-3.5 h-3.5" />
-              </Button>
-              <Button
-                variant="outline" size="icon" className="h-7 w-7"
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage((p) => p - 1)}
-              >
-                <ChevronLeft className="w-3.5 h-3.5" />
-              </Button>
-              <span className="text-xs text-muted-foreground px-2">
-                Page {currentPage} of {totalPages}
-              </span>
-              <Button
-                variant="outline" size="icon" className="h-7 w-7"
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage((p) => p + 1)}
-              >
-                <ChevronRight className="w-3.5 h-3.5" />
-              </Button>
-              <Button
-                variant="outline" size="icon" className="h-7 w-7"
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage(totalPages)}
-              >
-                <ChevronsRight className="w-3.5 h-3.5" />
-              </Button>
-            </div>
-          )}
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline" size="icon" className="h-7 w-7"
+              disabled={currentPageNum === 1}
+              onClick={goFirstPage}
+            >
+              <ChevronsLeft className="w-3.5 h-3.5" />
+            </Button>
+            <Button
+              variant="outline" size="icon" className="h-7 w-7"
+              disabled={currentPageNum === 1}
+              onClick={goPrevPage}
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </Button>
+            <span className="text-xs text-muted-foreground px-2">
+              Page {currentPageNum}
+            </span>
+            <Button
+              variant="outline" size="icon" className="h-7 w-7"
+              disabled={!hasNextPage}
+              onClick={goNextPage}
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Button>
+          </div>
         </div>
       </main>
     </div>
