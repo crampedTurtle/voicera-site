@@ -14,6 +14,7 @@ import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
 import AdminUsers from "./pages/AdminUsers.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import RssFeed from "./pages/RssFeed.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
 import Partners from "./pages/Partners.tsx";
