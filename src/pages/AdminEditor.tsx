@@ -302,6 +302,15 @@ const AdminEditor = () => {
   };
 
   const wordCount = form.content.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
+  const autoReadTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  // Auto-update read_time from word count
+  useEffect(() => {
+    setForm(p => p.read_time !== autoReadTime ? { ...p, read_time: autoReadTime } : p);
+  }, [autoReadTime]);
+
+  // Warn about missing alt text on publish
+  const altTextWarning = form.image && !form.image_alt && (form.status === "published" || form.status === "scheduled");
 
   if (sessionLoading) {
     return <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">Loading…</div>;
