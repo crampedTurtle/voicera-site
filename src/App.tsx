@@ -14,6 +14,7 @@ import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
 import AdminUsers from "./pages/AdminUsers.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import RssFeed from "./pages/RssFeed.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
 import Partners from "./pages/Partners.tsx";
@@ -64,6 +65,8 @@ const App = () => (
             <Route path="/api-docs" element={<ApiDocs />} />
             <Route path="/voicera-labs" element={<VoiceraLabs />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/feed.xml" element={<RssFeed />} />
+            <Route path="/feed/rss.xml" element={<RssFeed />} />
             <Route path="/voicera-admin" element={<AdminLogin />} />
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
             <Route path="/voicera-admin/editor" element={<AdminEditor />} />

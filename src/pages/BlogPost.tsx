@@ -70,6 +70,18 @@ const BlogPost = () => {
     year: "numeric",
   });
 
+  const p = post as any;
+  const canonicalUrl = p.canonical_url || `${SITE_URL}/media/${post.slug}`;
+  const ogTitle = p.og_title || p.seo_title || post.title;
+  const ogDescription = p.og_description || p.seo_description || post.excerpt;
+  const ogImage = p.og_image || post.image;
+  const twitterCard = p.twitter_card || "summary_large_image";
+  const robotsIndex = p.robots_index ?? true;
+  const robotsFollow = p.robots_follow ?? true;
+  const robotsContent = `${robotsIndex ? "index" : "noindex"}, ${robotsFollow ? "follow" : "nofollow"}`;
+  const imageAlt = p.image_alt || post.title;
+  const imageCaption = p.image_caption || "";
+
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -84,20 +96,33 @@ const BlogPost = () => {
       url: SITE_URL,
       logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.ico` },
     },
-    url: `${SITE_URL}/media/${post.slug}`,
-    mainEntityOfPage: `${SITE_URL}/media/${post.slug}`,
+    url: canonicalUrl,
+    mainEntityOfPage: canonicalUrl,
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <JsonLd title={(post as any).seo_title || `${post.title} — Voicera`} description={(post as any).seo_description || post.excerpt} path={`/media/${post.slug}`} />
+      <JsonLd title={p.seo_title || `${post.title} — Voicera`} description={p.seo_description || post.excerpt} path={`/media/${post.slug}`} />
       <Helmet>
-        <title>{(post as any).seo_title || `${post.title} — Voicera`}</title>
-        <meta name="description" content={(post as any).seo_description || post.excerpt} />
+        <title>{p.seo_title || `${post.title} — Voicera`}</title>
+        <meta name="description" content={p.seo_description || post.excerpt} />
+        <meta name="robots" content={robotsContent} />
+        <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
+
+        {/* Open Graph */}
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={post.image} />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={ogDescription} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="article:published_time" content={post.date} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content={twitterCard} />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={ogDescription} />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
 
       <Navbar />
@@ -128,15 +153,23 @@ const BlogPost = () => {
             <span>By {post.author}</span>
           </div>
 
-          {/* Hero image */}
-          <div className="rounded-2xl overflow-hidden mb-10">
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-auto object-cover"
-              loading="eager"
-            />
-          </div>
+          {/* Hero image with alt text, caption, and lazy loading */}
+          {post.image && (
+            <figure className="rounded-2xl overflow-hidden mb-10">
+              <img
+                src={post.image}
+                alt={imageAlt}
+                className="w-full h-auto object-cover"
+                loading="eager"
+                decoding="async"
+              />
+              {imageCaption && (
+                <figcaption className="text-xs text-muted-foreground text-center mt-2 px-2">
+                  {imageCaption}
+                </figcaption>
+              )}
+            </figure>
+          )}
 
           {/* Content */}
           <div
