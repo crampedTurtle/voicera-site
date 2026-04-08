@@ -12,6 +12,7 @@ import { Color } from "@tiptap/extension-text-style/color";
 import { FontSize } from "@tiptap/extension-text-style/font-size";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { validateFileUpload, generateSafeFilename } from "@/lib/sanitize";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   List, ListOrdered, Quote, Code, Heading1, Heading2, Heading3,
@@ -163,13 +164,13 @@ function Toolbar({ editor }: { editor: Editor }) {
       toast({ title: "Invalid file", description: "Select an image file.", variant: "destructive" });
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "File too large", description: "Max 5MB.", variant: "destructive" });
+    const validation = await validateFileUpload(file);
+    if (!validation.valid) {
+      toast({ title: "Invalid file", description: validation.error, variant: "destructive" });
       return;
     }
     setUploading(true);
-    const ext = file.name.split(".").pop();
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const filename = generateSafeFilename(file.name);
     const { error } = await supabase.storage.from("blog-images").upload(filename, file, { contentType: file.type });
     if (error) {
       toast({ title: "Upload failed", description: error.message, variant: "destructive" });

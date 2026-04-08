@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import AdminCsp from "@/components/admin/AdminCsp";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -209,6 +210,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <AdminCsp />
       {/* Top bar */}
       <header className="border-b border-border px-6 py-3 flex items-center justify-between bg-muted/30">
         <div className="flex items-center gap-3">

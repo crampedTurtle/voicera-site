@@ -13,8 +13,10 @@ import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import PostRevisions from "@/components/admin/PostRevisions";
 import RelatedPostsSelector from "@/components/admin/RelatedPostsSelector";
+import AdminCsp from "@/components/admin/AdminCsp";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
+import { sanitizeHtml, stripHtml, sanitizeSlug } from "@/lib/sanitize";
 
 const CATEGORIES = [
   { value: "sales-intelligence", label: "Sales Intelligence" },
@@ -176,15 +178,16 @@ const AdminEditor = () => {
 
     const v = parsed.data;
     const payload: Record<string, unknown> = {
-      title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
-      author: v.author, category: v.category, image: v.image, read_time: v.read_time,
-      image_alt: v.image_alt, image_caption: v.image_caption,
-      external_url: v.external_url, source: v.source,
+      title: stripHtml(v.title), slug: sanitizeSlug(v.slug), excerpt: stripHtml(v.excerpt),
+      content: sanitizeHtml(v.content),
+      author: stripHtml(v.author), category: stripHtml(v.category), image: v.image, read_time: v.read_time,
+      image_alt: stripHtml(v.image_alt), image_caption: stripHtml(v.image_caption),
+      external_url: v.external_url, source: v.source ? stripHtml(v.source) : null,
       status: v.status, visibility: v.visibility,
       published: v.status === "published",
       scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
-      tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
-      canonical_url: v.canonical_url, og_title: v.og_title, og_description: v.og_description,
+      tags: v.tags.map(t => stripHtml(t)), seo_title: stripHtml(v.seo_title), seo_description: stripHtml(v.seo_description),
+      canonical_url: v.canonical_url, og_title: stripHtml(v.og_title), og_description: stripHtml(v.og_description),
       og_image: v.og_image, twitter_card: v.twitter_card,
       robots_index: v.robots_index, robots_follow: v.robots_follow,
       related_posts: v.related_posts,
@@ -273,15 +276,16 @@ const AdminEditor = () => {
 
     const v = parsed.data;
     const payload: Record<string, unknown> = {
-      title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
-      author: v.author, category: v.category, image: v.image, read_time: v.read_time,
-      image_alt: v.image_alt, image_caption: v.image_caption,
-      external_url: v.external_url, source: v.source,
+      title: stripHtml(v.title), slug: sanitizeSlug(v.slug), excerpt: stripHtml(v.excerpt),
+      content: sanitizeHtml(v.content),
+      author: stripHtml(v.author), category: stripHtml(v.category), image: v.image, read_time: v.read_time,
+      image_alt: stripHtml(v.image_alt), image_caption: stripHtml(v.image_caption),
+      external_url: v.external_url, source: v.source ? stripHtml(v.source) : null,
       status: v.status, visibility: v.visibility,
       published: v.status === "published",
       scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
-      tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
-      canonical_url: v.canonical_url, og_title: v.og_title, og_description: v.og_description,
+      tags: v.tags.map(t => stripHtml(t)), seo_title: stripHtml(v.seo_title), seo_description: stripHtml(v.seo_description),
+      canonical_url: v.canonical_url, og_title: stripHtml(v.og_title), og_description: stripHtml(v.og_description),
       og_image: v.og_image, twitter_card: v.twitter_card,
       robots_index: v.robots_index, robots_follow: v.robots_follow,
       related_posts: v.related_posts,
@@ -321,6 +325,7 @@ const AdminEditor = () => {
 
   return (
     <div className="min-h-screen bg-muted/20">
+      <AdminCsp />
       {/* Header */}
        <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
         <div className="flex items-center gap-2">
