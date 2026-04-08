@@ -253,6 +253,9 @@ const AdminEditor = () => {
       toast({ title: "Validation error", description: "Set a schedule date.", variant: "destructive" });
       return;
     }
+    if (form.image && !form.image_alt && (form.status === "published" || form.status === "scheduled")) {
+      toast({ title: "Missing alt text", description: "Featured image requires alt text for publishing.", variant: "destructive" });
+      return;
 
     const parsed = postSchema.safeParse(form);
     if (!parsed.success) {
