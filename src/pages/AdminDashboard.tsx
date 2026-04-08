@@ -297,7 +297,7 @@ const AdminDashboard = () => {
                 <tr className="bg-muted/50 border-b border-border">
                   <th className="w-8 px-3 py-2.5">
                     <Checkbox
-                      checked={selected.size === filteredPosts.length && filteredPosts.length > 0}
+                      checked={selected.size === paginatedPosts.length && paginatedPosts.length > 0}
                       onCheckedChange={toggleSelectAll}
                     />
                   </th>
