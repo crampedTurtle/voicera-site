@@ -220,80 +220,9 @@ function HeroSection() {
 
         </div>
 
-        {/* RIGHT — HubSpot form card */}
+        {/* RIGHT — Partner Application Form */}
         <div className="flex-[1_1_380px] min-w-[320px]">
-          <div
-            className="rounded-[20px] p-8 pb-7"
-            style={{
-              background: "#fff",
-              boxShadow: `0 12px 56px ${C.blue}1A, 0 2px 16px rgba(0,0,0,0.07)`,
-              border: `1px solid ${C.border}`,
-            }}
-          >
-            <h2 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 800, fontSize: 22, color: C.dark, letterSpacing: "-0.5px", marginBottom: 4 }}>
-              Apply to Join the<br />Voicera Partner Program
-            </h2>
-            <p className="mb-6" style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: C.light, lineHeight: 1.5 }}>
-              We read every application and respond to every qualified submission within 5 business days.
-            </p>
-
-            {/*
-              HubSpot embed zone
-              ─────────────────────────────────────────────────────
-              When embedding the HubSpot form, use the current recommended method:
-              
-                hbspt.forms.create({
-                  region: "na1",
-                  portalId: "YOUR_PORTAL_ID",
-                  formId: "YOUR_FORM_ID",
-                  target: "#hubspot-form-container",
-                });
-              
-              Spam filtering:
-              - Enable "CAPTCHA (spam prevention)" in HubSpot under
-                Form Settings → Form options → Spam filtering.
-              - Enable "Block free email providers" if applicable.
-              - HubSpot automatically filters known spam submissions
-                server-side; no additional client-side config is needed.
-              ─────────────────────────────────────────────────────
-            */}
-            <div
-              id="hubspot-form-container"
-              className="rounded-xl flex flex-col items-center justify-center gap-3 min-h-[240px] text-center"
-              style={{ background: C.nearWhite, border: `2px dashed ${C.border}`, padding: "32px 20px" }}
-            >
-              <div className="font-mono text-[9px] font-semibold" style={{ color: C.blue, letterSpacing: 2.5 }}>HUBSPOT FORM EMBED</div>
-              <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: C.light, lineHeight: 1.6 }}>
-                Paste your HubSpot embed script here.<br />This container is pre-styled to match the page.
-              </div>
-              <code className="font-mono text-[10px] rounded-md px-3 py-1.5" style={{ color: C.blueLight, background: C.blueSoft }}>
-                {'<script charset="utf-8" ... />'}
-              </code>
-            </div>
-
-            {/* Cosmetic form preview */}
-            <div className="mt-5 flex flex-col gap-2.5">
-              {[["First Name", "Last Name"], ["Job Title", "Business Email"], ["Company Name", "Company Website URL"]].map((row, i) => (
-                <div key={i} className="flex gap-2.5">
-                  {row.map(f => (
-                    <div key={f} className="flex-1 rounded-lg px-3 py-2.5" style={{ background: "#fff", border: `1px solid ${C.border}` }}>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: C.light }}>{f}<span style={{ color: "#E05252" }}>*</span></div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-              <div className="rounded-lg px-3 py-2.5" style={{ background: "#fff", border: `1px solid ${C.border}` }}>
-                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: C.light }}>How would you like to partner?<span style={{ color: "#E05252" }}>*</span></div>
-              </div>
-              <div className="h-[5px] rounded-sm overflow-hidden mt-1" style={{ background: C.border }}>
-                <div className="h-full w-1/2 rounded-sm" style={{ background: C.dark }} />
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="font-mono text-[9px]" style={{ color: C.light }}>1 / 2</span>
-                <button className="rounded-lg border-none text-xs font-bold cursor-pointer" style={{ padding: "10px 24px", background: C.dark, color: "#fff" }}>Next →</button>
-              </div>
-            </div>
-          </div>
+          <PartnerForm />
         </div>
       </div>
     </section>
