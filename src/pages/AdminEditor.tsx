@@ -272,11 +272,16 @@ const AdminEditor = () => {
     const payload: Record<string, unknown> = {
       title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
       author: v.author, category: v.category, image: v.image, read_time: v.read_time,
+      image_alt: v.image_alt, image_caption: v.image_caption,
       external_url: v.external_url, source: v.source,
       status: v.status, visibility: v.visibility,
       published: v.status === "published",
       scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
       tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
+      canonical_url: v.canonical_url, og_title: v.og_title, og_description: v.og_description,
+      og_image: v.og_image, twitter_card: v.twitter_card,
+      robots_index: v.robots_index, robots_follow: v.robots_follow,
+      related_posts: v.related_posts,
       created_by: session.user.id,
     };
 
