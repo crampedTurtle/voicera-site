@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
+import hrVerticalImg from "@/assets/hr-vertical.png";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
