@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, X } from "lucide-react";
+import { ArrowLeft, Save, X, Check, Loader2 } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { useAdminSession } from "@/hooks/use-admin-session";
@@ -120,6 +120,78 @@ const AdminEditor = () => {
 
   const canPublish = userRole === "admin" || userRole === "editor";
 
+  // Autosave
+  const [autosaveStatus, setAutosaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const lastSavedRef = useRef<string>("");
+  const autosaveTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const postIdRef = useRef<string | undefined>(id);
+
+  const autosave = useCallback(async (currentForm: typeof form) => {
+    if (!currentForm.title.trim()) return; // nothing to save
+
+    const snapshot = JSON.stringify(currentForm);
+    if (snapshot === lastSavedRef.current) return; // no changes
+
+    setAutosaveStatus("saving");
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+
+    const parsed = postSchema.safeParse(currentForm);
+    if (!parsed.success) return;
+
+    const v = parsed.data;
+    const payload: Record<string, unknown> = {
+      title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
+      author: v.author, category: v.category, image: v.image, read_time: v.read_time,
+      external_url: v.external_url, source: v.source,
+      status: v.status, visibility: v.visibility,
+      published: v.status === "published",
+      scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
+      tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
+      created_by: session.user.id,
+    };
+
+    let error;
+    if (postIdRef.current) {
+      ({ error } = await supabase.from("blog_posts").update(payload).eq("id", postIdRef.current));
+    } else {
+      const { data, error: insertError } = await supabase.from("blog_posts").insert(payload as any).select("id").single();
+      error = insertError;
+      if (data) {
+        postIdRef.current = data.id;
+      }
+    }
+
+    if (error) {
+      setAutosaveStatus("error");
+    } else {
+      lastSavedRef.current = snapshot;
+      setAutosaveStatus("saved");
+      setTimeout(() => setAutosaveStatus((s) => s === "saved" ? "idle" : s), 3000);
+    }
+  }, []);
+
+  // Keep a ref to the latest form for the interval
+  const formRef = useRef(form);
+  formRef.current = form;
+
+  useEffect(() => {
+    autosaveTimerRef.current = setInterval(() => {
+      autosave(formRef.current);
+    }, 30000);
+    return () => {
+      if (autosaveTimerRef.current) clearInterval(autosaveTimerRef.current);
+    };
+  }, [autosave]);
+
+  // Set lastSavedRef when loading an existing post
+  useEffect(() => {
+    if (isEdit && form.title) {
+      lastSavedRef.current = JSON.stringify(form);
+    }
+  }, [isEdit]);
+
+
   const addTag = useCallback(() => {
     const tag = tagInput.trim().toLowerCase();
     if (tag && !form.tags.includes(tag)) {
@@ -193,7 +265,7 @@ const AdminEditor = () => {
   return (
     <div className="min-h-screen bg-muted/20">
       {/* Header */}
-      <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
+       <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => navigate("/voicera-admin/dashboard")}>
             <ArrowLeft className="w-4 h-4 mr-1" /> Back
@@ -201,6 +273,17 @@ const AdminEditor = () => {
           <h1 className="text-lg font-bold text-foreground">
             {isEdit ? "Edit Post" : "Add New Post"}
           </h1>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          {autosaveStatus === "saving" && (
+            <span className="flex items-center gap-1"><Loader2 className="w-3 h-3 animate-spin" /> Saving…</span>
+          )}
+          {autosaveStatus === "saved" && (
+            <span className="flex items-center gap-1 text-green-600 dark:text-green-400"><Check className="w-3 h-3" /> Draft saved</span>
+          )}
+          {autosaveStatus === "error" && (
+            <span className="flex items-center gap-1 text-destructive">Autosave failed</span>
+          )}
         </div>
       </header>
 
