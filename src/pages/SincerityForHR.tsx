@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 import hrVerticalImg from "@/assets/hr-vertical.png";
+import emotionCoachImg from "@/assets/emotion-coach-demo.png";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
