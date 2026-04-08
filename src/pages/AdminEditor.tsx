@@ -315,6 +315,19 @@ const AdminEditor = () => {
       toast({ title: "Error saving", description: error.message, variant: "destructive" });
     } else {
       toast({ title: isEdit ? "Post updated" : "Post created" });
+
+      // Run broken link check in background for published posts (non-blocking)
+      if (v.status === "published" && v.content) {
+        supabase.functions.invoke("check-links", {
+          body: { content: v.content },
+        }).then(({ data }) => {
+          if (data?.warnings?.length > 0) {
+            const linkList = data.warnings.map((w: any) => w.url).join("\n");
+            alert(`⚠️ Broken links detected:\n\n${linkList}\n\nThese links returned 404. Consider updating them.`);
+          }
+        }).catch(() => { /* silent */ });
+      }
+
       navigate("/voicera-admin/dashboard");
     }
     setSaving(false);
