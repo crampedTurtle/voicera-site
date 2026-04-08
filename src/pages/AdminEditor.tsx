@@ -328,7 +328,8 @@ const AdminEditor = () => {
             {isEdit ? "Edit Post" : "Add New Post"}
           </h1>
         </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {autoReadTime} min read · {wordCount} words</span>
           {autosaveStatus === "saving" && (
             <span className="flex items-center gap-1"><Loader2 className="w-3 h-3 animate-spin" /> Saving…</span>
           )}
