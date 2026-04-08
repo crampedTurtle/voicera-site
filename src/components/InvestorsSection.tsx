@@ -28,7 +28,9 @@ const InvestorsSection = () => {
   const orbY1 = useTransform(scrollYProgress, [0, 1], [40, -60]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [20, -80]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Client-side rate limiting: max 3 submissions per 10-minute window
@@ -52,12 +54,46 @@ const InvestorsSection = () => {
       return;
     }
 
-    // Record this submission for rate limiting
-    recordSubmission(RATE_LIMIT_KEY);
-
+    setSubmitting(true);
     setErrors({});
-    setSubmitted(true);
-    setTimeout(() => setUnlocked(true), 1200);
+
+    try {
+      const response = await fetch(
+        "https://api.hsforms.com/submissions/v3/integration/submit/342883709/6c1c7357-4fab-4317-94b1-3088818815b6",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fields: [
+              { name: "email", value: result.data.email },
+            ],
+            context: {
+              pageUri: window.location.href,
+              pageName: "Voicera - Investors",
+            },
+            legalConsentOptions: {
+              consent: {
+                consentToProcess: true,
+                text: "Consent to be added to our mailing list for any future updates",
+              },
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      // Record this submission for rate limiting
+      recordSubmission(RATE_LIMIT_KEY);
+      setSubmitted(true);
+      setTimeout(() => setUnlocked(true), 1200);
+    } catch {
+      setErrors({ rateLimit: "Something went wrong. Please try again." });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
