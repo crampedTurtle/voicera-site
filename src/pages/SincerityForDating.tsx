@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import datingVerticalImg from "@/assets/dating-vertical.png";
+import emotionCoachDatingImg from "@/assets/emotion-coach-dating.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
