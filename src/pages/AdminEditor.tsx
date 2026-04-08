@@ -33,6 +33,8 @@ const postSchema = z.object({
   author: z.string().trim().min(1).max(200).default("Voicera Team"),
   category: z.string().min(1).max(100),
   image: z.string().max(2000).default(""),
+  image_alt: z.string().max(500).default(""),
+  image_caption: z.string().max(500).default(""),
   read_time: z.number().int().min(1).max(999),
   external_url: z.string().url().max(2000).or(z.literal("")).nullable().transform(v => v || null),
   source: z.string().max(200).nullable().transform(v => v || null),
@@ -42,6 +44,14 @@ const postSchema = z.object({
   tags: z.array(z.string()),
   seo_title: z.string().max(200).default(""),
   seo_description: z.string().max(500).default(""),
+  canonical_url: z.string().max(2000).default(""),
+  og_title: z.string().max(200).default(""),
+  og_description: z.string().max(500).default(""),
+  og_image: z.string().max(2000).default(""),
+  twitter_card: z.string().default("summary_large_image"),
+  robots_index: z.boolean().default(true),
+  robots_follow: z.boolean().default(true),
+  related_posts: z.array(z.string()).default([]),
 });
 
 const AdminEditor = () => {
