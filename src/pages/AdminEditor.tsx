@@ -256,9 +256,21 @@ const AdminEditor = () => {
       toast({ title: "Validation error", description: "Set a schedule date.", variant: "destructive" });
       return;
     }
-    if (form.image && !form.image_alt && (form.status === "published" || form.status === "scheduled")) {
-      toast({ title: "Missing alt text", description: "Featured image requires alt text for publishing.", variant: "destructive" });
-      return;
+    // Image alt text enforcement for publish/schedule
+    if (form.status === "published" || form.status === "scheduled") {
+      if (form.image && !form.image_alt) {
+        toast({ title: "Missing alt text", description: "Featured image requires alt text for publishing.", variant: "destructive" });
+        return;
+      }
+      // Check for <img> tags missing alt in content
+      const imgRegex = /<img\b(?![^>]*\balt\s*=)[^>]*>/gi;
+      const missingAlts = form.content.match(imgRegex);
+      if (missingAlts && missingAlts.length > 0) {
+        const proceed = confirm(
+          `${missingAlts.length} image(s) in the post body are missing alt text. This affects accessibility and SEO.\n\nPublish anyway?`
+        );
+        if (!proceed) return;
+      }
     }
     const parsed = postSchema.safeParse(form);
     if (!parsed.success) {
