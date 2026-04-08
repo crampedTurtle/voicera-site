@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Save, X, Check, Loader2 } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
+import PostRevisions from "@/components/admin/PostRevisions";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 
