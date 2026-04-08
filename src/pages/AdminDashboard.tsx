@@ -112,10 +112,10 @@ const AdminDashboard = () => {
   };
 
   const toggleSelectAll = () => {
-    if (selected.size === filteredPosts.length) {
+    if (selected.size === paginatedPosts.length) {
       setSelected(new Set());
     } else {
-      setSelected(new Set(filteredPosts.map((p) => p.id)));
+      setSelected(new Set(paginatedPosts.map((p) => p.id)));
     }
   };
 
