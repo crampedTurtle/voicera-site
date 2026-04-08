@@ -369,7 +369,10 @@ const AdminEditor = () => {
             onChange={(html) => setForm((p) => ({ ...p, content: html }))}
           />
 
-          <div className="text-xs text-muted-foreground">Word count: {wordCount}</div>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span>Word count: {wordCount}</span>
+            <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> ~{autoReadTime} min read</span>
+          </div>
 
           {/* Excerpt */}
           <div className="bg-background border border-border rounded-lg overflow-hidden">
@@ -407,47 +410,163 @@ const AdminEditor = () => {
             </div>
           </div>
 
-          {/* SEO */}
+          {/* SEO Settings — Collapsible */}
           <div className="bg-background border border-border rounded-lg overflow-hidden">
-            <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
-              SEO Settings
-            </div>
-            <div className="p-4 space-y-3">
-              <div>
-                <Label className="text-xs">SEO Title <span className="text-muted-foreground">({form.seo_title.length}/60)</span></Label>
-                <Input
-                  value={form.seo_title}
-                  onChange={(e) => setForm((p) => ({ ...p, seo_title: e.target.value }))}
-                  placeholder={form.title || "Page title for search engines"}
-                  maxLength={200}
-                  className="text-sm"
-                />
+            <button
+              type="button"
+              onClick={() => setSeoOpen(!seoOpen)}
+              className="w-full flex items-center justify-between px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30 hover:bg-muted/50 transition-colors"
+            >
+              <span>SEO &amp; Social Settings</span>
+              {seoOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+            {seoOpen && (
+              <div className="p-4 space-y-4">
+                {/* SEO Title */}
+                <div>
+                  <Label className="text-xs">
+                    SEO Title{" "}
+                    <span className={form.seo_title.length >= 60 ? "text-destructive font-medium" : "text-muted-foreground"}>
+                      ({form.seo_title.length}/60)
+                    </span>
+                  </Label>
+                  <Input
+                    value={form.seo_title}
+                    onChange={(e) => setForm((p) => ({ ...p, seo_title: e.target.value }))}
+                    placeholder={form.title || "Page title for search engines"}
+                    maxLength={200}
+                    className="text-sm"
+                  />
+                </div>
+
+                {/* Meta Description */}
+                <div>
+                  <Label className="text-xs">
+                    Meta Description{" "}
+                    <span className={form.seo_description.length >= 160 ? "text-destructive font-medium" : "text-muted-foreground"}>
+                      ({form.seo_description.length}/160)
+                    </span>
+                  </Label>
+                  <Textarea
+                    value={form.seo_description}
+                    onChange={(e) => setForm((p) => ({ ...p, seo_description: e.target.value }))}
+                    placeholder={form.excerpt || "Description for search results"}
+                    maxLength={500}
+                    rows={3}
+                    className="text-sm"
+                  />
+                </div>
+
+                {/* Search Preview */}
+                <div className="border border-border rounded p-3 bg-muted/20">
+                  <p className="text-xs text-muted-foreground mb-1">Search preview:</p>
+                  <p className="text-sm text-blue-600 dark:text-blue-400 font-medium truncate">
+                    {form.seo_title || form.title || "Post Title"}
+                  </p>
+                  <p className="text-xs text-green-700 dark:text-green-500 truncate">
+                    voicera.com/media/{form.slug || "post-slug"}
+                  </p>
+                  <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                    {form.seo_description || form.excerpt || "Post description will appear here…"}
+                  </p>
+                </div>
+
+                {/* Canonical URL */}
+                <div>
+                  <Label className="text-xs">Canonical URL</Label>
+                  <Input
+                    value={form.canonical_url}
+                    onChange={(e) => setForm((p) => ({ ...p, canonical_url: e.target.value }))}
+                    placeholder={`https://voicera.com/media/${form.slug || ""}`}
+                    className="text-sm"
+                  />
+                  <p className="text-[10px] text-muted-foreground mt-0.5">Leave blank to use the default post URL</p>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="text-xs font-semibold text-foreground mb-2">Open Graph</p>
+                  <div className="space-y-3">
+                    <div>
+                      <Label className="text-xs">OG Title</Label>
+                      <Input
+                        value={form.og_title}
+                        onChange={(e) => setForm((p) => ({ ...p, og_title: e.target.value }))}
+                        placeholder={form.seo_title || form.title || "Uses SEO title if empty"}
+                        className="text-sm"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-xs">OG Description</Label>
+                      <Textarea
+                        value={form.og_description}
+                        onChange={(e) => setForm((p) => ({ ...p, og_description: e.target.value }))}
+                        placeholder={form.seo_description || form.excerpt || "Uses meta description if empty"}
+                        rows={2}
+                        className="text-sm"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-xs">OG Image</Label>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Input
+                          value={form.og_image}
+                          onChange={(e) => setForm((p) => ({ ...p, og_image: e.target.value }))}
+                          placeholder={form.image || "Uses featured image if empty"}
+                          className="text-sm flex-1"
+                        />
+                        {form.image && !form.og_image && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="text-xs shrink-0 h-8"
+                            onClick={() => setForm(p => ({ ...p, og_image: p.image }))}
+                          >
+                            Use Featured
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="text-xs font-semibold text-foreground mb-2">Twitter Card</p>
+                  <Select value={form.twitter_card} onValueChange={(v) => setForm(p => ({ ...p, twitter_card: v }))}>
+                    <SelectTrigger className="h-8 text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="summary">Summary (small image)</SelectItem>
+                      <SelectItem value="summary_large_image">Summary with Large Image</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="text-xs font-semibold text-foreground mb-2">Robots Meta</p>
+                  <div className="flex flex-col gap-2">
+                    <label className="flex items-center gap-2 text-xs cursor-pointer">
+                      <Checkbox
+                        checked={form.robots_index}
+                        onCheckedChange={(v) => setForm(p => ({ ...p, robots_index: !!v }))}
+                      />
+                      Allow search engines to index this page
+                    </label>
+                    <label className="flex items-center gap-2 text-xs cursor-pointer">
+                      <Checkbox
+                        checked={form.robots_follow}
+                        onCheckedChange={(v) => setForm(p => ({ ...p, robots_follow: !!v }))}
+                      />
+                      Allow search engines to follow links
+                    </label>
+                    <p className="text-[10px] text-muted-foreground">
+                      Robots: {form.robots_index ? "index" : "noindex"}, {form.robots_follow ? "follow" : "nofollow"}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <Label className="text-xs">Meta Description <span className="text-muted-foreground">({form.seo_description.length}/160)</span></Label>
-                <Textarea
-                  value={form.seo_description}
-                  onChange={(e) => setForm((p) => ({ ...p, seo_description: e.target.value }))}
-                  placeholder={form.excerpt || "Description for search results"}
-                  maxLength={500}
-                  rows={3}
-                  className="text-sm"
-                />
-              </div>
-              {/* Preview */}
-              <div className="border border-border rounded p-3 bg-muted/20">
-                <p className="text-xs text-muted-foreground mb-1">Search preview:</p>
-                <p className="text-sm text-blue-600 dark:text-blue-400 font-medium truncate">
-                  {form.seo_title || form.title || "Post Title"}
-                </p>
-                <p className="text-xs text-green-700 dark:text-green-500 truncate">
-                  voicera.com/media/{form.slug || "post-slug"}
-                </p>
-                <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
-                  {form.seo_description || form.excerpt || "Post description will appear here…"}
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
