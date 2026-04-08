@@ -13,6 +13,7 @@ import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import PostRevisions from "@/components/admin/PostRevisions";
 import RelatedPostsSelector from "@/components/admin/RelatedPostsSelector";
+import AdminCsp from "@/components/admin/AdminCsp";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 import { sanitizeHtml, stripHtml, sanitizeSlug } from "@/lib/sanitize";
