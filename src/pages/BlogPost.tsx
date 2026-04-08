@@ -90,8 +90,10 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <JsonLd title={`${post.title} — Voicera`} description={post.excerpt} path={`/media/${post.slug}`} />
+      <JsonLd title={(post as any).seo_title || `${post.title} — Voicera`} description={(post as any).seo_description || post.excerpt} path={`/media/${post.slug}`} />
       <Helmet>
+        <title>{(post as any).seo_title || `${post.title} — Voicera`}</title>
+        <meta name="description" content={(post as any).seo_description || post.excerpt} />
         <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
         <meta property="og:type" content="article" />
         <meta property="og:image" content={post.image} />
