@@ -68,6 +68,7 @@ const App = () => (
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
             <Route path="/voicera-admin/editor" element={<AdminEditor />} />
             <Route path="/voicera-admin/editor/:id" element={<AdminEditor />} />
+            <Route path="/voicera-admin/users" element={<AdminUsers />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
