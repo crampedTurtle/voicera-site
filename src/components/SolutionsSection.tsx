@@ -84,7 +84,7 @@ const CUSTOM_COMPONENTS = [
   { component: "Implementation Fee", price: "Inquire", cadence: "One-time", desc: "Covers container deployment support, InfoSec audits, and initial configuration." },
   { component: "Annual Platform License", price: "Custom", cadence: "Billed annually", desc: "Access to the core engine, model updates, and a dedicated account manager." },
   { component: "Metered Usage", price: "Unlimited", cadence: "Billed monthly in arrears", desc: "Telemetry-based usage billing tied to actual analysis hours." },
-  { component: "Capacity License (alt.)", price: "Inquire", cadence: "Billed annually per node", desc: "Alternative to metered usage for clients that cannot share telemetry. Flat fee per server/node running the container." },
+  
 ];
 
 // ─── SHARED STYLES ──────────────────────────────────────────────────
