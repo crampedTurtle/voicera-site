@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, LogOut, Search } from "lucide-react";
+import { Plus, Trash2, LogOut, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 import { useAdminSession, type UserRole } from "@/hooks/use-admin-session";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -51,6 +51,8 @@ const AdminDashboard = () => {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [bulkAction, setBulkAction] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(20);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { userRole, userId, loading: sessionLoading } = useAdminSession();
@@ -83,6 +85,15 @@ const AdminDashboard = () => {
     return result;
   }, [posts, activeTab, searchQuery]);
 
+  // Reset page when filters change
+  useEffect(() => { setCurrentPage(1); }, [activeTab, searchQuery]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / perPage));
+  const paginatedPosts = useMemo(() => {
+    const start = (currentPage - 1) * perPage;
+    return filteredPosts.slice(start, start + perPage);
+  }, [filteredPosts, currentPage, perPage]);
+
   const tabCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     STATUS_TABS.forEach((t) => {
@@ -101,10 +112,10 @@ const AdminDashboard = () => {
   };
 
   const toggleSelectAll = () => {
-    if (selected.size === filteredPosts.length) {
+    if (selected.size === paginatedPosts.length) {
       setSelected(new Set());
     } else {
-      setSelected(new Set(filteredPosts.map((p) => p.id)));
+      setSelected(new Set(paginatedPosts.map((p) => p.id)));
     }
   };
 
@@ -286,7 +297,7 @@ const AdminDashboard = () => {
                 <tr className="bg-muted/50 border-b border-border">
                   <th className="w-8 px-3 py-2.5">
                     <Checkbox
-                      checked={selected.size === filteredPosts.length && filteredPosts.length > 0}
+                      checked={selected.size === paginatedPosts.length && paginatedPosts.length > 0}
                       onCheckedChange={toggleSelectAll}
                     />
                   </th>
@@ -298,7 +309,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredPosts.map((post) => (
+                {paginatedPosts.map((post) => (
                   <tr key={post.id} className="border-b border-border hover:bg-muted/30 transition-colors group">
                     <td className="px-3 py-2.5">
                       <Checkbox
@@ -362,8 +373,58 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        <div className="text-xs text-muted-foreground mt-3">
-          {filteredPosts.length} item{filteredPosts.length !== 1 ? "s" : ""}
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span>{filteredPosts.length} item{filteredPosts.length !== 1 ? "s" : ""}</span>
+            <span>·</span>
+            <Select value={String(perPage)} onValueChange={(v) => { setPerPage(Number(v)); setCurrentPage(1); }}>
+              <SelectTrigger className="h-7 w-[70px] text-xs">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {[10, 20, 50, 100].map((n) => (
+                  <SelectItem key={n} value={String(n)}>{n} / page</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1">
+              <Button
+                variant="outline" size="icon" className="h-7 w-7"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(1)}
+              >
+                <ChevronsLeft className="w-3.5 h-3.5" />
+              </Button>
+              <Button
+                variant="outline" size="icon" className="h-7 w-7"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((p) => p - 1)}
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </Button>
+              <span className="text-xs text-muted-foreground px-2">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline" size="icon" className="h-7 w-7"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((p) => p + 1)}
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Button>
+              <Button
+                variant="outline" size="icon" className="h-7 w-7"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(totalPages)}
+              >
+                <ChevronsRight className="w-3.5 h-3.5" />
+              </Button>
+            </div>
+          )}
         </div>
       </main>
     </div>
