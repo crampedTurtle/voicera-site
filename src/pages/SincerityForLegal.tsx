@@ -412,7 +412,7 @@ export default function SincerityForLegal() {
           <div style={{ position: "relative", zIndex: 10, maxWidth: 720, margin: "0 auto" }}>
             <Reveal>
               <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 800, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 28 }}>
-                Ready to embed credibility intelligence into your legal tech platform? Let's talk integration. 📜
+                Ready to embed credibility intelligence into your legal tech platform? Let's talk integration. 
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
