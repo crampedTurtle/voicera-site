@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          action: string
+          changes: Json | null
+          created_at: string
+          id: string
+          post_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          changes?: Json | null
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          changes?: Json | null
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_log_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           author: string
@@ -23,6 +58,7 @@ export type Database = {
           created_at: string
           created_by: string | null
           date: string
+          deleted_at: string | null
           excerpt: string
           external_url: string | null
           fts: unknown
@@ -58,6 +94,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           date?: string
+          deleted_at?: string | null
           excerpt?: string
           external_url?: string | null
           fts?: unknown
@@ -93,6 +130,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           date?: string
+          deleted_at?: string | null
           excerpt?: string
           external_url?: string | null
           fts?: unknown
@@ -204,6 +242,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_trashed_posts: { Args: never; Returns: number }
       has_editor_or_admin_role: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
@@ -212,6 +251,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      publish_scheduled_posts: { Args: never; Returns: number }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "editor" | "contributor"

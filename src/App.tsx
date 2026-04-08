@@ -13,6 +13,7 @@ import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
 import AdminUsers from "./pages/AdminUsers.tsx";
+import AdminAuditLog from "./pages/AdminAuditLog.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import RssFeed from "./pages/RssFeed.tsx";
 import About from "./pages/About.tsx";
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/voicera-admin/editor" element={<AdminEditor />} />
             <Route path="/voicera-admin/editor/:id" element={<AdminEditor />} />
             <Route path="/voicera-admin/users" element={<AdminUsers />} />
+            <Route path="/voicera-admin/audit" element={<AdminAuditLog />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
