@@ -405,7 +405,7 @@ export default function SincerityForHR() {
             <div style={{ flex: "1 1 480px", minWidth: 320 }}>
               <Reveal delay={0.1}>
                 <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#94a3b8", marginBottom: 16 }}>HOW EMOTION COACH WORKS IN YOUR PLATFORM</p>
-                <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click 'Start' to begin the demo.</p>
+                <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.75, marginBottom: 16 }}>Click below to begin the demo.</p>
                 <Bullet>Grant permission for the demo to access the camera on your local device</Bullet>
                 <Bullet>Look directly at the camera and deliver your presentation</Bullet>
                 <Bullet>Review the results of your video analysis</Bullet>
