@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import legalVerticalImg from "@/assets/legal-vertical.png";
+import emotionCoachLegalImg from "@/assets/emotion-coach-legal.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
