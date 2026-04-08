@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import ImageUpload from "@/components/admin/ImageUpload";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import PostRevisions from "@/components/admin/PostRevisions";
+import RelatedPostsSelector from "@/components/admin/RelatedPostsSelector";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 
