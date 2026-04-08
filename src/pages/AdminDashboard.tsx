@@ -55,7 +55,7 @@ const AdminDashboard = () => {
   const [perPage, setPerPage] = useState(20);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { userRole, userId, loading: sessionLoading } = useAdminSession();
+  const { userRole, userId, loading: sessionLoading, logout } = useAdminSession();
 
   useEffect(() => {
     if (!sessionLoading) fetchPosts();
