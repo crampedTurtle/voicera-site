@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, LogOut, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Plus, Trash2, LogOut, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Users } from "lucide-react";
 import { useAdminSession, type UserRole } from "@/hooks/use-admin-session";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -221,6 +221,13 @@ const AdminDashboard = () => {
           </Button>
         </div>
         <div className="flex items-center gap-3">
+          {userRole === "admin" && (
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/voicera-admin/users">
+                <Users className="w-4 h-4 mr-1" /> Users
+              </Link>
+            </Button>
+          )}
           <span className="text-xs text-muted-foreground capitalize">{userRole}</span>
           <Button variant="ghost" size="sm" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-1" /> Logout

@@ -12,6 +12,7 @@ import SolutionPageComponent, { getSolutionBySlug, solutions } from "./pages/Sol
 import AdminLogin from "./pages/AdminLogin.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminEditor from "./pages/AdminEditor.tsx";
+import AdminUsers from "./pages/AdminUsers.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import About from "./pages/About.tsx";
 import Investors from "./pages/Investors.tsx";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
             <Route path="/voicera-admin/editor" element={<AdminEditor />} />
             <Route path="/voicera-admin/editor/:id" element={<AdminEditor />} />
+            <Route path="/voicera-admin/users" element={<AdminUsers />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
