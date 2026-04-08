@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Save } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
@@ -14,6 +13,13 @@ import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
 
 const CATEGORIES = ["sales-intelligence", "sales-enablement", "platform", "trust-credibility", "hr-hiring", "press"] as const;
+const STATUSES = [
+  { value: "draft", label: "Draft" },
+  { value: "pending_review", label: "Pending Review" },
+  { value: "scheduled", label: "Scheduled" },
+  { value: "published", label: "Published" },
+  { value: "private", label: "Private" },
+] as const;
 
 const postSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(300, "Title too long"),
@@ -26,9 +32,9 @@ const postSchema = z.object({
   read_time: z.number().int().min(1).max(999),
   external_url: z.string().url("Invalid URL").max(2000).or(z.literal("")).nullable().transform(v => v || null),
   source: z.string().max(200).nullable().transform(v => v || null),
-  published: z.boolean(),
+  status: z.string().min(1),
+  scheduled_at: z.string().nullable().transform(v => v || null),
 });
-
 
 const AdminEditor = () => {
   const { id } = useParams();
@@ -36,6 +42,7 @@ const AdminEditor = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
+  const { userRole, loading: sessionLoading } = useAdminSession();
 
   const [form, setForm] = useState({
     title: "",
@@ -48,10 +55,9 @@ const AdminEditor = () => {
     read_time: 5,
     external_url: "",
     source: "",
-    published: false,
+    status: "draft",
+    scheduled_at: "",
   });
-
-  useAdminSession();
 
   useEffect(() => {
     if (isEdit) loadPost();
@@ -81,7 +87,8 @@ const AdminEditor = () => {
       read_time: data.read_time,
       external_url: data.external_url || "",
       source: data.source || "",
-      published: data.published,
+      status: (data as any).status || (data.published ? "published" : "draft"),
+      scheduled_at: (data as any).scheduled_at || "",
     });
   };
 
@@ -96,7 +103,25 @@ const AdminEditor = () => {
     }));
   };
 
+  const canPublish = userRole === "admin" || userRole === "editor";
+
+  // Contributors can only submit for review or save as draft
+  const availableStatuses = canPublish
+    ? STATUSES
+    : STATUSES.filter((s) => s.value === "draft" || s.value === "pending_review");
+
   const handleSave = async () => {
+    // Enforce: contributors can't set published/private/scheduled
+    if (!canPublish && (form.status === "published" || form.status === "private" || form.status === "scheduled")) {
+      toast({ title: "Permission denied", description: "You can only save drafts or submit for review.", variant: "destructive" });
+      return;
+    }
+
+    if (form.status === "scheduled" && !form.scheduled_at) {
+      toast({ title: "Validation error", description: "Please set a schedule date.", variant: "destructive" });
+      return;
+    }
+
     const parsed = postSchema.safeParse(form);
     if (!parsed.success) {
       const firstError = parsed.error.errors[0];
@@ -113,8 +138,8 @@ const AdminEditor = () => {
     }
 
     const validData = parsed.data;
-    
-    const payload = {
+
+    const payload: Record<string, unknown> = {
       title: validData.title,
       slug: validData.slug,
       excerpt: validData.excerpt,
@@ -125,7 +150,9 @@ const AdminEditor = () => {
       read_time: validData.read_time,
       external_url: validData.external_url,
       source: validData.source,
-      published: validData.published,
+      status: validData.status,
+      published: validData.status === "published",
+      scheduled_at: validData.status === "scheduled" ? validData.scheduled_at : null,
       created_by: session.user.id,
     };
 
@@ -133,7 +160,7 @@ const AdminEditor = () => {
     if (isEdit) {
       ({ error } = await supabase.from("blog_posts").update(payload).eq("id", id!));
     } else {
-      ({ error } = await supabase.from("blog_posts").insert(payload));
+      ({ error } = await supabase.from("blog_posts").insert(payload as any));
     }
 
     if (error) {
@@ -145,6 +172,10 @@ const AdminEditor = () => {
     setSaving(false);
   };
 
+  if (sessionLoading) {
+    return <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">Loading…</div>;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border px-6 py-4 flex items-center justify-between">
@@ -155,15 +186,9 @@ const AdminEditor = () => {
           <h1 className="text-xl font-bold text-foreground">
             {isEdit ? "Edit Post" : "New Post"}
           </h1>
+          <span className="text-xs text-muted-foreground capitalize">({userRole})</span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <Switch
-              checked={form.published}
-              onCheckedChange={(published) => setForm((p) => ({ ...p, published }))}
-            />
-            <Label className="text-sm">{form.published ? "Published" : "Draft"}</Label>
-          </div>
           <Button onClick={handleSave} disabled={saving}>
             <Save className="w-4 h-4 mr-1" /> {saving ? "Saving…" : "Save"}
           </Button>
@@ -237,6 +262,35 @@ const AdminEditor = () => {
               onChange={(e) => setForm((p) => ({ ...p, author: e.target.value }))}
             />
           </div>
+        </div>
+
+        {/* Status + Scheduling */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Label>Status</Label>
+            <Select value={form.status} onValueChange={(v) => setForm((p) => ({ ...p, status: v }))}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {availableStatuses.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {form.status === "scheduled" && (
+            <div>
+              <Label htmlFor="scheduled_at">Scheduled Date & Time</Label>
+              <Input
+                id="scheduled_at"
+                type="datetime-local"
+                value={form.scheduled_at}
+                onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
+              />
+            </div>
+          )}
         </div>
 
         <ImageUpload
