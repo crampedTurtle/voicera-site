@@ -227,10 +227,11 @@ const InvestorsSection = () => {
 
                   <button
                     type="submit"
-                    className="px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(255,255,255,0.2)] inline-flex items-center gap-2"
+                    disabled={submitting}
+                    className="px-8 py-3.5 type-button rounded-xl hover:scale-[1.03] transition-all duration-200 hover:shadow-[0_4px_24px_rgba(255,255,255,0.2)] inline-flex items-center gap-2 disabled:opacity-60 disabled:hover:scale-100"
                     style={{ background: "white", color: "hsl(225 80% 52%)" }}
                   >
-                    Submit <ArrowRight className="w-4 h-4" />
+                    {submitting ? "Submitting…" : "Submit"} <ArrowRight className="w-4 h-4" />
                   </button>
                 </motion.form>
               ) : (
