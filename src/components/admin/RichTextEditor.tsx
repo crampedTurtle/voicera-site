@@ -7,20 +7,29 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
 import Youtube from "@tiptap/extension-youtube";
-import { Button } from "@/components/ui/button";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Color } from "@tiptap/extension-text-style/color";
+import { FontSize } from "@tiptap/extension-text-style/font-size";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   List, ListOrdered, Quote, Code, Heading1, Heading2, Heading3,
   AlignLeft, AlignCenter, AlignRight, Link as LinkIcon, Link2Off as Unlink,
-  ImageIcon, Video, Undo, Redo, Minus, Loader2,
+  ImageIcon, Video, Undo, Redo, Minus, Loader2, Palette, Type,
 } from "lucide-react";
 
 interface RichTextEditorProps {
   content: string;
   onChange: (html: string) => void;
 }
+
+const FONT_SIZES = ["12px", "14px", "16px", "18px", "20px", "24px", "28px", "32px", "36px", "48px"];
+const COLORS = [
+  "#000000", "#434343", "#666666", "#999999", "#cccccc", "#ffffff",
+  "#e53e3e", "#dd6b20", "#d69e2e", "#38a169", "#3182ce", "#805ad5",
+  "#e91e63", "#00bcd4", "#4caf50", "#ff9800", "#795548", "#607d8b",
+];
 
 function ToolbarButton({
   onClick, active, disabled, title, children,
@@ -39,6 +48,105 @@ function ToolbarButton({
     >
       {children}
     </button>
+  );
+}
+
+function FontSizeDropdown({ editor }: { editor: Editor }) {
+  const [open, setOpen] = useState(false);
+  const currentSize = editor.getAttributes("textStyle").fontSize || "";
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        title="Font Size"
+        className="flex items-center gap-0.5 px-1.5 py-1 rounded hover:bg-muted transition-colors text-muted-foreground text-xs min-w-[52px]"
+      >
+        <Type className="w-3.5 h-3.5" />
+        <span className="tabular-nums">{currentSize || "—"}</span>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute top-full left-0 mt-1 z-50 bg-popover border border-border rounded-md shadow-md py-1 min-w-[80px] max-h-48 overflow-y-auto">
+            <button
+              type="button"
+              className="w-full text-left px-3 py-1 text-xs hover:bg-muted text-muted-foreground"
+              onClick={() => { editor.chain().focus().unsetFontSize().run(); setOpen(false); }}
+            >
+              Default
+            </button>
+            {FONT_SIZES.map((size) => (
+              <button
+                key={size}
+                type="button"
+                className={`w-full text-left px-3 py-1 text-xs hover:bg-muted ${currentSize === size ? "bg-muted text-primary font-medium" : "text-foreground"}`}
+                onClick={() => { editor.chain().focus().setFontSize(size).run(); setOpen(false); }}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ColorPicker({ editor }: { editor: Editor }) {
+  const [open, setOpen] = useState(false);
+  const currentColor = editor.getAttributes("textStyle").color || "";
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        title="Text Color"
+        className="p-1.5 rounded hover:bg-muted transition-colors text-muted-foreground relative"
+      >
+        <Palette className="w-4 h-4" />
+        {currentColor && (
+          <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-3 h-0.5 rounded-full" style={{ backgroundColor: currentColor }} />
+        )}
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute top-full left-0 mt-1 z-50 bg-popover border border-border rounded-md shadow-md p-2 w-[168px]">
+            <div className="grid grid-cols-6 gap-1 mb-2">
+              {COLORS.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  title={color}
+                  className={`w-5 h-5 rounded border transition-transform hover:scale-125 ${currentColor === color ? "ring-2 ring-primary ring-offset-1" : "border-border"}`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => { editor.chain().focus().setColor(color).run(); setOpen(false); }}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              className="w-full text-left px-2 py-1 text-xs hover:bg-muted text-muted-foreground rounded"
+              onClick={() => { editor.chain().focus().unsetColor().run(); setOpen(false); }}
+            >
+              Remove color
+            </button>
+            <label className="flex items-center gap-1.5 px-2 py-1 text-xs text-muted-foreground cursor-pointer">
+              Custom:
+              <input
+                type="color"
+                defaultValue={currentColor || "#000000"}
+                className="w-5 h-5 p-0 border-0 rounded cursor-pointer"
+                onChange={(e) => { editor.chain().focus().setColor(e.target.value).run(); }}
+              />
+            </label>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
@@ -86,10 +194,7 @@ function Toolbar({ editor }: { editor: Editor }) {
   const setLink = useCallback(() => {
     const url = prompt("Link URL:", editor.getAttributes("link").href || "https://");
     if (url === null) return;
-    if (url === "") {
-      editor.chain().focus().unsetLink().run();
-      return;
-    }
+    if (url === "") { editor.chain().focus().unsetLink().run(); return; }
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
 
@@ -101,6 +206,11 @@ function Toolbar({ editor }: { editor: Editor }) {
       <ToolbarButton onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} title="Redo">
         <Redo className={iconSize} />
       </ToolbarButton>
+
+      <div className="w-px h-5 bg-border mx-1" />
+
+      <FontSizeDropdown editor={editor} />
+      <ColorPicker editor={editor} />
 
       <div className="w-px h-5 bg-border mx-1" />
 
@@ -193,6 +303,9 @@ const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
       StarterKit.configure({
         heading: { levels: [1, 2, 3, 4] },
       }),
+      TextStyle,
+      Color,
+      FontSize,
       Image.configure({ inline: false, allowBase64: false }),
       Link.configure({ openOnClick: false, autolink: true }),
       Underline,
