@@ -15,6 +15,7 @@ import PostRevisions from "@/components/admin/PostRevisions";
 import RelatedPostsSelector from "@/components/admin/RelatedPostsSelector";
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { z } from "zod";
+import { sanitizeHtml, stripHtml, sanitizeSlug } from "@/lib/sanitize";
 
 const CATEGORIES = [
   { value: "sales-intelligence", label: "Sales Intelligence" },
