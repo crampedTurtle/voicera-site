@@ -1,0 +1,6 @@
+
+ALTER TABLE public.blog_posts
+ADD COLUMN IF NOT EXISTS tags text[] NOT NULL DEFAULT '{}',
+ADD COLUMN IF NOT EXISTS visibility text NOT NULL DEFAULT 'public',
+ADD COLUMN IF NOT EXISTS seo_title text NOT NULL DEFAULT '',
+ADD COLUMN IF NOT EXISTS seo_description text NOT NULL DEFAULT '';
