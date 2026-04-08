@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import lawEnforcementImg from "@/assets/law-enforcement-interrogation.jpg";
 import emotionCoachLEImg from "@/assets/emotion-coach-law-enforcement.png";
+import emotionDetectionLEImg from "@/assets/emotion-detection-law-enforcement.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
@@ -376,7 +377,10 @@ export default function SincerityForLawEnforcement() {
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <Reveal delay={0.15} dir="right">
-                <MediaPlaceholder type="image" label="Emotion Detection Analysis" badge="AI Analysis" aspect="4/3" />
+                <a href="https://voicera.io/emotion-coachme/" target="_blank" rel="noopener noreferrer" style={{ display: "block", position: "relative", width: "100%", aspectRatio: "4/3", borderRadius: 16, overflow: "hidden", boxShadow: "0 12px 40px rgba(0,0,0,0.1)" }}>
+                  <img src={emotionDetectionLEImg} alt="Emotion Detection Analysis" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <div style={{ position: "absolute", top: 14, right: 14, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" as const, background: "#1e3a5f", color: "#ffffff", zIndex: 2, fontFamily: "Poppins,sans-serif" }}>AI Analysis</div>
+                </a>
               </Reveal>
             </div>
           </div>
