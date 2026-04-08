@@ -143,7 +143,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 }
 
 function scrollToForm() {
-  document.getElementById("hubspot-form-container")?.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("partner-form")?.scrollIntoView({ behavior: "smooth" });
 }
 
 function CTAButton({ children, className = "", filled = true }: { children: React.ReactNode; className?: string; filled?: boolean }) {
