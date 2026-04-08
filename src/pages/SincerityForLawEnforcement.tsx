@@ -347,7 +347,10 @@ export default function SincerityForLawEnforcement() {
             </div>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <Reveal delay={0.2} dir="left">
-                <MediaPlaceholder type="video" label="Emotion Coach Demo" badge="Interactive" aspect="16/10" />
+                <a href="https://voicera.io/emotion-coachme/" target="_blank" rel="noopener noreferrer" style={{ display: "block", position: "relative", width: "100%", aspectRatio: "16/10", borderRadius: 16, overflow: "hidden", boxShadow: "0 12px 40px rgba(0,0,0,0.1)" }}>
+                  <img src={emotionCoachLEImg} alt="Emotion Coach Demo" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <div style={{ position: "absolute", top: 14, right: 14, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" as const, background: "#1e3a5f", color: "#ffffff", zIndex: 2, fontFamily: "Poppins,sans-serif" }}>Interactive</div>
+                </a>
               </Reveal>
             </div>
           </div>
