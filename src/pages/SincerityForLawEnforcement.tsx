@@ -4,6 +4,7 @@ import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
+import YouTubeCase from "@/components/YouTubeCase";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────
 const WireframeMesh = ({ density = 28 }: { density?: number }) => {
@@ -308,7 +309,7 @@ export default function SincerityForLawEnforcement() {
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 24px 80px rgba(30,64,175,0.12), 0 0 0 1px rgba(30,64,175,0.06)" }}>
-              <MediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" badge="Video Demo" aspect="16/9" />
+              <YouTubeCase />
             </div>
           </Reveal>
         </div>

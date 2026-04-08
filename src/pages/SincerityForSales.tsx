@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import YouTubeCase from "@/components/YouTubeCase";
 
 // ─── ANIMATED WIREFRAME MESH ────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
@@ -611,7 +612,7 @@ export default function SincerityForSales() {
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
               <div style={{ marginBottom: 16 }}>
-                <SalesMediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" aspect="16/9" />
+                <YouTubeCase />
               </div>
               <p style={{ fontSize: 13, color: "#64748b", textAlign: "center", lineHeight: 1.6 }}>
                 See Sincerity™ in action — our analysis of the Elizabeth Holmes case demonstrates the depth of credibility signals your platform could surface.
