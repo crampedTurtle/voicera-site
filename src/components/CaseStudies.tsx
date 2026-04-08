@@ -141,7 +141,7 @@ const CaseStudies = () => {
   };
 
   return (
-    <section className="section-padding relative overflow-hidden bg-secondary">
+    <section id="case-studies" className="section-padding relative overflow-hidden bg-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-10">
           <span className="gradient-pill inline-block">CASE STUDIES</span>
