@@ -25,6 +25,7 @@ export type Database = {
           date: string
           excerpt: string
           external_url: string | null
+          fts: unknown
           id: string
           image: string
           image_alt: string
@@ -59,6 +60,7 @@ export type Database = {
           date?: string
           excerpt?: string
           external_url?: string | null
+          fts?: unknown
           id?: string
           image?: string
           image_alt?: string
@@ -93,6 +95,7 @@ export type Database = {
           date?: string
           excerpt?: string
           external_url?: string | null
+          fts?: unknown
           id?: string
           image?: string
           image_alt?: string
