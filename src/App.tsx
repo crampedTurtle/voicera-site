@@ -65,6 +65,8 @@ const App = () => (
             <Route path="/api-docs" element={<ApiDocs />} />
             <Route path="/voicera-labs" element={<VoiceraLabs />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/feed.xml" element={<RssFeed />} />
+            <Route path="/feed/rss.xml" element={<RssFeed />} />
             <Route path="/voicera-admin" element={<AdminLogin />} />
             <Route path="/voicera-admin/dashboard" element={<AdminDashboard />} />
             <Route path="/voicera-admin/editor" element={<AdminEditor />} />
