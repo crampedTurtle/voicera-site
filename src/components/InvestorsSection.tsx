@@ -66,6 +66,7 @@ const InvestorsSection = () => {
           body: JSON.stringify({
             fields: [
               { name: "email", value: result.data.email },
+              { name: "consent_to_be_added_to_our_mailing_list_for_any_future_updates", value: "true" },
             ],
             context: {
               pageUri: window.location.href,
