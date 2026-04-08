@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Upload, X, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { validateFileUpload, generateSafeFilename } from "@/lib/sanitize";
 
 interface ImageUploadProps {
   value: string;
