@@ -71,6 +71,8 @@ const AdminEditor = () => {
     author: "Voicera Team",
     category: "platform",
     image: "",
+    image_alt: "",
+    image_caption: "",
     read_time: 5,
     external_url: "",
     source: "",
@@ -80,7 +82,17 @@ const AdminEditor = () => {
     tags: [] as string[],
     seo_title: "",
     seo_description: "",
+    canonical_url: "",
+    og_title: "",
+    og_description: "",
+    og_image: "",
+    twitter_card: "summary_large_image",
+    robots_index: true,
+    robots_follow: true,
+    related_posts: [] as string[],
   });
+
+  const [seoOpen, setSeoOpen] = useState(false);
 
   useEffect(() => {
     if (isEdit) loadPost();
