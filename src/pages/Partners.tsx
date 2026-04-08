@@ -162,6 +162,153 @@ function CTAButton({ children, className = "", filled = true }: { children: Reac
   );
 }
 
+/* ════════════════════════════════════════════ PARTNER FORM */
+function PartnerForm() {
+  const [form, setForm] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (field: string, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("partner-form", {
+        body: {
+          firstName: form["First Name"],
+          lastName: form["Last Name"],
+          jobTitle: form["Job Title"],
+          businessEmail: form["Business Email"],
+          companyName: form["Company Name"],
+          companyWebsite: form["Company Website URL"],
+          partnerInterest: form["How would you like to partner?"],
+        },
+      });
+
+      if (fnError) throw fnError;
+      if (data?.error) throw new Error(data.error);
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div
+        id="partner-form"
+        className="rounded-[20px] p-8 pb-7 text-center"
+        style={{
+          background: "#fff",
+          boxShadow: `0 12px 56px ${C.blue}1A, 0 2px 16px rgba(0,0,0,0.07)`,
+          border: `1px solid ${C.border}`,
+        }}
+      >
+        <div className="text-4xl mb-4">✅</div>
+        <h2 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 800, fontSize: 22, color: C.dark, marginBottom: 8 }}>
+          Application Received
+        </h2>
+        <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: C.mid, lineHeight: 1.6 }}>
+          Thank you for your interest in partnering with Voicera. We review every application and will respond within 5 business days.
+        </p>
+      </div>
+    );
+  }
+
+  const fields: { label: string; required?: boolean; type?: string }[][] = [
+    [{ label: "First Name", required: true }, { label: "Last Name", required: true }],
+    [{ label: "Job Title", required: true }, { label: "Business Email", required: true, type: "email" }],
+    [{ label: "Company Name", required: true }, { label: "Company Website URL", type: "url" }],
+  ];
+
+  return (
+    <div
+      id="partner-form"
+      className="rounded-[20px] p-8 pb-7"
+      style={{
+        background: "#fff",
+        boxShadow: `0 12px 56px ${C.blue}1A, 0 2px 16px rgba(0,0,0,0.07)`,
+        border: `1px solid ${C.border}`,
+      }}
+    >
+      <h2 style={{ fontFamily: "system-ui, sans-serif", fontWeight: 800, fontSize: 22, color: C.dark, letterSpacing: "-0.5px", marginBottom: 4 }}>
+        Apply to Join the<br />Voicera Partner Program
+      </h2>
+      <p className="mb-6" style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: C.light, lineHeight: 1.5 }}>
+        We read every application and respond to every qualified submission within 5 business days.
+      </p>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+        {fields.map((row, i) => (
+          <div key={i} className="flex gap-2.5">
+            {row.map((f) => (
+              <div key={f.label} className="flex-1">
+                <input
+                  type={f.type || "text"}
+                  placeholder={`${f.label}${f.required ? " *" : ""}`}
+                  value={form[f.label] || ""}
+                  onChange={(e) => handleChange(f.label, e.target.value)}
+                  required={f.required}
+                  className="w-full rounded-lg px-3 py-2.5 text-[13px] outline-none transition-all focus:ring-2"
+                  style={{
+                    fontFamily: "system-ui, sans-serif",
+                    background: "#fff",
+                    border: `1px solid ${C.border}`,
+                    color: C.dark,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+        <textarea
+          placeholder="How would you like to partner? *"
+          value={form["How would you like to partner?"] || ""}
+          onChange={(e) => handleChange("How would you like to partner?", e.target.value)}
+          required
+          rows={3}
+          className="w-full rounded-lg px-3 py-2.5 text-[13px] outline-none transition-all focus:ring-2 resize-none"
+          style={{
+            fontFamily: "system-ui, sans-serif",
+            background: "#fff",
+            border: `1px solid ${C.border}`,
+            color: C.dark,
+          }}
+        />
+
+        {error && (
+          <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#E05252", margin: 0 }}>{error}</p>
+        )}
+
+        <div className="flex justify-end items-center mt-1">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="rounded-lg border-none text-xs font-bold cursor-pointer transition-shadow hover:shadow-lg disabled:opacity-60"
+            style={{
+              padding: "10px 24px",
+              background: `linear-gradient(135deg, ${C.blue}, ${C.blueDeep})`,
+              color: "#fff",
+              boxShadow: `0 4px 14px ${C.blue}44`,
+            }}
+          >
+            {submitting ? "Submitting…" : "Submit Application →"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
 /* ════════════════════════════════════════════ SECTION 1 — HERO */
 function HeroSection() {
   return (
