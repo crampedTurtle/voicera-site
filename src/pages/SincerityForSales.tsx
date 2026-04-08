@@ -4,6 +4,7 @@ import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
+import salesVerticalImg from "@/assets/sales-vertical.png";
 
 // ─── ANIMATED WIREFRAME MESH ────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
@@ -500,7 +501,11 @@ export default function SincerityForSales() {
           </div>
           <div style={{ flex: "1 1 400px", minWidth: 300 }}>
             <Reveal delay={0.2} dir="left">
-              <SalesMediaPlaceholder type="image" label="Sincerity™ Embedded in Your Platform" aspect="4/3" />
+              <img
+                src={salesVerticalImg}
+                alt="Sincerity™ Embedded in Your Platform"
+                style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: 16, display: "block" }}
+              />
             </Reveal>
           </div>
         </div>
