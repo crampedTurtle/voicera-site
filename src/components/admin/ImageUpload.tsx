@@ -26,14 +26,14 @@ const ImageUpload = ({ value, onChange }: ImageUploadProps) => {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "File too large", description: "Max size is 5MB.", variant: "destructive" });
+    const validation = await validateFileUpload(file);
+    if (!validation.valid) {
+      toast({ title: "Invalid file", description: validation.error, variant: "destructive" });
       return;
     }
 
     setUploading(true);
-    const ext = file.name.split(".").pop();
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const filename = generateSafeFilename(file.name);
 
     const { error } = await supabase.storage
       .from("blog-images")
