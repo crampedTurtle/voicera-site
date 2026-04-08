@@ -308,7 +308,7 @@ export default function SincerityForLawEnforcement() {
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 24px 80px rgba(30,64,175,0.12), 0 0 0 1px rgba(30,64,175,0.06)" }}>
-              <MediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" badge="Video Demo" aspect="16/9" />
+              <YouTubeCase />
             </div>
           </Reveal>
         </div>

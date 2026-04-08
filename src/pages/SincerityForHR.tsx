@@ -352,7 +352,7 @@ export default function SincerityForHR() {
           </Reveal>
           <Reveal delay={0.15}>
             <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 24px 80px rgba(37,99,235,0.12), 0 0 0 1px rgba(37,99,235,0.06)" }}>
-              <MediaPlaceholder type="video" label="Elizabeth Holmes Case Analysis" badge="Video Demo" aspect="16/9" />
+              <YouTubeCase />
             </div>
           </Reveal>
         </div>
