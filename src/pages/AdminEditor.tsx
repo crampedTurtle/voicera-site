@@ -118,7 +118,77 @@ const AdminEditor = () => {
     }));
   };
 
-  const canPublish = userRole === "admin" || userRole === "editor";
+  // Autosave
+  const [autosaveStatus, setAutosaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const lastSavedRef = useRef<string>("");
+  const autosaveTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const postIdRef = useRef<string | undefined>(id);
+
+  const autosave = useCallback(async (currentForm: typeof form) => {
+    if (!currentForm.title.trim()) return; // nothing to save
+
+    const snapshot = JSON.stringify(currentForm);
+    if (snapshot === lastSavedRef.current) return; // no changes
+
+    setAutosaveStatus("saving");
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+
+    const parsed = postSchema.safeParse(currentForm);
+    if (!parsed.success) return;
+
+    const v = parsed.data;
+    const payload: Record<string, unknown> = {
+      title: v.title, slug: v.slug, excerpt: v.excerpt, content: v.content,
+      author: v.author, category: v.category, image: v.image, read_time: v.read_time,
+      external_url: v.external_url, source: v.source,
+      status: v.status, visibility: v.visibility,
+      published: v.status === "published",
+      scheduled_at: v.status === "scheduled" ? v.scheduled_at : null,
+      tags: v.tags, seo_title: v.seo_title, seo_description: v.seo_description,
+      created_by: session.user.id,
+    };
+
+    let error;
+    if (postIdRef.current) {
+      ({ error } = await supabase.from("blog_posts").update(payload).eq("id", postIdRef.current));
+    } else {
+      const { data, error: insertError } = await supabase.from("blog_posts").insert(payload as any).select("id").single();
+      error = insertError;
+      if (data) {
+        postIdRef.current = data.id;
+      }
+    }
+
+    if (error) {
+      setAutosaveStatus("error");
+    } else {
+      lastSavedRef.current = snapshot;
+      setAutosaveStatus("saved");
+      setTimeout(() => setAutosaveStatus((s) => s === "saved" ? "idle" : s), 3000);
+    }
+  }, []);
+
+  // Keep a ref to the latest form for the interval
+  const formRef = useRef(form);
+  formRef.current = form;
+
+  useEffect(() => {
+    autosaveTimerRef.current = setInterval(() => {
+      autosave(formRef.current);
+    }, 30000);
+    return () => {
+      if (autosaveTimerRef.current) clearInterval(autosaveTimerRef.current);
+    };
+  }, [autosave]);
+
+  // Set lastSavedRef when loading an existing post
+  useEffect(() => {
+    if (isEdit && form.title) {
+      lastSavedRef.current = JSON.stringify(form);
+    }
+  }, [isEdit]);
+
 
   const addTag = useCallback(() => {
     const tag = tagInput.trim().toLowerCase();
