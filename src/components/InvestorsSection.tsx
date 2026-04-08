@@ -75,6 +75,7 @@ const InvestorsSection = () => {
               consent: {
                 consentToProcess: true,
                 text: "Consent to be added to our mailing list for any future updates",
+                communications: [],
               },
             },
           }),
