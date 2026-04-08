@@ -51,6 +51,8 @@ const AdminDashboard = () => {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [bulkAction, setBulkAction] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(20);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { userRole, userId, loading: sessionLoading } = useAdminSession();
