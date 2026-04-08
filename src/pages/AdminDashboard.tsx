@@ -221,6 +221,13 @@ const AdminDashboard = () => {
           </Button>
         </div>
         <div className="flex items-center gap-3">
+          {userRole === "admin" && (
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/voicera-admin/users">
+                <Users className="w-4 h-4 mr-1" /> Users
+              </Link>
+            </Button>
+          )}
           <span className="text-xs text-muted-foreground capitalize">{userRole}</span>
           <Button variant="ghost" size="sm" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-1" /> Logout
