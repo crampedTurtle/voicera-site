@@ -85,6 +85,15 @@ const AdminDashboard = () => {
     return result;
   }, [posts, activeTab, searchQuery]);
 
+  // Reset page when filters change
+  useEffect(() => { setCurrentPage(1); }, [activeTab, searchQuery]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / perPage));
+  const paginatedPosts = useMemo(() => {
+    const start = (currentPage - 1) * perPage;
+    return filteredPosts.slice(start, start + perPage);
+  }, [filteredPosts, currentPage, perPage]);
+
   const tabCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     STATUS_TABS.forEach((t) => {
