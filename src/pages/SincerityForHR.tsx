@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 import hrVerticalImg from "@/assets/hr-vertical.png";
 import emotionCoachImg from "@/assets/emotion-coach-demo.png";
+import emotionCoachDetectionImg from "@/assets/emotion-coach-detection.png";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
@@ -422,7 +423,7 @@ export default function SincerityForHR() {
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <Reveal delay={0.15} dir="right">
                 <a href="https://voicera.io/emotion-coachme/" target="_blank" rel="noopener noreferrer" style={{ display: "block", position: "relative", width: "100%", aspectRatio: "4/3", borderRadius: 16, overflow: "hidden" }}>
-                  <img src={emotionCoachImg} alt="Emotion Coach Detection" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <img src={emotionCoachDetectionImg} alt="Emotion Coach Detection" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                   <div style={{ position: "absolute", top: 14, right: 14, padding: "5px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" as const, background: "#1d4ed8", color: "#ffffff", zIndex: 2 }}>AI Analysis</div>
                 </a>
               </Reveal>
