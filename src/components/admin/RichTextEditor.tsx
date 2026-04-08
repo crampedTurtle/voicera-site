@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   List, ListOrdered, Quote, Code, Heading1, Heading2, Heading3,
-  AlignLeft, AlignCenter, AlignRight, Link as LinkIcon, LinkOff as Unlink,
+  AlignLeft, AlignCenter, AlignRight, Link as LinkIcon, Link2Off as Unlink,
   ImageIcon, Video, Undo, Redo, Minus, Loader2,
 } from "lucide-react";
 
