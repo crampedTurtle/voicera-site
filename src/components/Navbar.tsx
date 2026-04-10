@@ -130,7 +130,7 @@ const Navbar = ({ lightText = false }: { lightText?: boolean }) => {
                         transition={{ duration: 0.18 }}
                         className={`absolute top-full mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden z-50 ${
                           link.dropdownType === "solutions"
-                            ? "left-1/2 -translate-x-[55%] w-[720px] max-w-[calc(100vw-2rem)]"
+                            ? "left-1/2 -translate-x-[65%] w-[720px] max-w-[calc(100vw-2rem)]"
                             : "left-1/2 -translate-x-1/2 w-64"
                         }`}
                       >
