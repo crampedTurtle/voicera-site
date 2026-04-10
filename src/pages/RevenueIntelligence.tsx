@@ -181,7 +181,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
     white: h ? "#f1f5f9" : "#fff",
     outline: "transparent",
   };
-  const clr = { blue: "#fff", white: "#0f172a", outline: "#2563EB" };
+  const clr = { blue: "#fff", white: "#0f172a", outline: "#fff" };
   const sh = {
     blue: h ? "0 8px 32px rgba(37,99,235,0.4)" : "0 4px 16px rgba(37,99,235,0.25)",
     white: h ? "0 8px 24px rgba(0,0,0,0.15)" : "0 4px 12px rgba(0,0,0,0.08)",
@@ -197,7 +197,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
         padding: pad, borderRadius: 12, fontSize: size === "lg" ? 16 : 14, fontWeight: 700,
         fontFamily: "Poppins,sans-serif", textDecoration: "none",
         background: bg[variant], color: clr[variant], boxShadow: sh[variant],
-        border: variant === "outline" ? "2px solid #2563EB" : "none",
+        border: variant === "outline" ? "2px solid #fff" : "none",
         transform: h ? "translateY(-2px)" : "none",
         transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)", cursor: "pointer",
       }}
