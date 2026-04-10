@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, DollarSign, Users, Shield, Heart, Scale, BrainCircuit } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import voiceraLogoWhite from "@/assets/voicera-logo-white.png";
 import iconAnalyze from "@/assets/icon-analyze.png";
@@ -11,7 +11,7 @@ import { solutions } from "@/pages/SolutionPage";
 
 const solutionIcons: Record<string, React.ReactNode> = {
   sales: <DollarSign className="w-4 h-4 text-primary" />,
-  "revenue-intelligence": <DollarSign className="w-4 h-4 text-primary" />,
+  "revenue-intelligence": <BrainCircuit className="w-4 h-4 text-primary" />,
   hr: <Users className="w-4 h-4 text-primary" />,
   "law-enforcement": <Shield className="w-[18px] h-[18px] text-primary" />,
   dating: <Heart className="w-4 h-4 text-primary" />,
