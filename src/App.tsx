@@ -24,6 +24,7 @@ import TermsOfUse from "./pages/TermsOfUse.tsx";
 import ApiDocs from "./pages/ApiDocs.tsx";
 import VoiceraLabs from "./pages/VoiceraLabs.tsx";
 import SincerityForSales from "./pages/SincerityForSales.tsx";
+import RevenueIntelligence from "./pages/RevenueIntelligence.tsx";
 import SincerityForHR from "./pages/SincerityForHR.tsx";
 import SincerityForLawEnforcement from "./pages/SincerityForLawEnforcement.tsx";
 import SincerityForDating from "./pages/SincerityForDating.tsx";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/media" element={<Media />} />
             <Route path="/media/:slug" element={<BlogPost />} />
             <Route path="/solutions/sales" element={<SincerityForSales />} />
+            <Route path="/solutions/revenue-intelligence" element={<RevenueIntelligence />} />
             <Route path="/solutions/hr" element={<SincerityForHR />} />
             <Route path="/solutions/law-enforcement" element={<SincerityForLawEnforcement />} />
             <Route path="/solutions/dating" element={<SincerityForDating />} />

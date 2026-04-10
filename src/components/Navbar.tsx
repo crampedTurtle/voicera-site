@@ -11,6 +11,7 @@ import { solutions } from "@/pages/SolutionPage";
 
 const solutionIcons: Record<string, React.ReactNode> = {
   sales: <DollarSign className="w-4 h-4 text-primary" />,
+  "revenue-intelligence": <DollarSign className="w-4 h-4 text-primary" />,
   hr: <Users className="w-4 h-4 text-primary" />,
   "law-enforcement": <Shield className="w-[18px] h-[18px] text-primary" />,
   dating: <Heart className="w-4 h-4 text-primary" />,
