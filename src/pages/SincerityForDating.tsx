@@ -105,7 +105,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
     blue: { bg: h ? "linear-gradient(135deg,#1e40af,#7c3aed)" : "linear-gradient(135deg,#2563EB,#8b5cf6)", color: "#fff", shadow: h ? "0 8px 32px rgba(37,99,235,0.4)" : "0 4px 16px rgba(37,99,235,0.25)", border: "none" },
     rose: { bg: h ? "linear-gradient(135deg,#be185d,#7c3aed)" : "linear-gradient(135deg,#db2777,#8b5cf6)", color: "#fff", shadow: h ? "0 8px 32px rgba(219,39,119,0.4)" : "0 4px 16px rgba(219,39,119,0.25)", border: "none" },
     white: { bg: h ? "#f1f5f9" : "#fff", color: "#0f172a", shadow: h ? "0 8px 24px rgba(0,0,0,0.15)" : "0 4px 12px rgba(0,0,0,0.08)", border: "none" },
-    outline: { bg: "transparent", color: h ? "#c4b5fd" : "#ddd6fe", shadow: "none", border: "2px solid rgba(139,92,246,0.6)" },
+    outline: { bg: "transparent", color: "#fff", shadow: "none", border: "2px solid #fff" },
   };
   const st = styles[variant];
   return (

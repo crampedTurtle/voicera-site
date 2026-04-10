@@ -94,11 +94,11 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
   const [h, setH] = useState(false);
   const pad = size === "lg" ? "16px 36px" : "13px 28px";
   const bg: Record<string, string> = { blue: h ? "linear-gradient(135deg,#1d4ed8,#6d28d9)" : "linear-gradient(135deg,#2563EB,#7C3AED)", white: h ? "#f1f5f9" : "#fff", outline: "transparent" };
-  const clr: Record<string, string> = { blue: "#fff", white: "#0f172a", outline: h ? "#1d4ed8" : "#2563EB" };
+  const clr: Record<string, string> = { blue: "#fff", white: "#0f172a", outline: "#fff" };
   const sh: Record<string, string> = { blue: h ? "0 8px 32px rgba(37,99,235,0.4)" : "0 4px 16px rgba(37,99,235,0.25)", white: h ? "0 8px 24px rgba(0,0,0,0.15)" : "0 4px 12px rgba(0,0,0,0.08)", outline: "none" };
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: pad, borderRadius: 12, fontSize: size === "lg" ? 16 : 14, fontWeight: 700, fontFamily: "Poppins,sans-serif", textDecoration: "none", background: bg[variant], color: clr[variant], boxShadow: sh[variant], border: variant === "outline" ? "2px solid #2563EB" : "none", transform: h ? "translateY(-2px)" : "none", transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)", cursor: "pointer" }}
+      style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: pad, borderRadius: 12, fontSize: size === "lg" ? 16 : 14, fontWeight: 700, fontFamily: "Poppins,sans-serif", textDecoration: "none", background: bg[variant], color: clr[variant], boxShadow: sh[variant], border: variant === "outline" ? "2px solid #fff" : "none", transform: h ? "translateY(-2px)" : "none", transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)", cursor: "pointer" }}
     >{children}<span style={{ fontSize: 16, transform: h ? "translateX(3px)" : "none", transition: "transform 0.3s" }}>→</span></a>
   );
 };

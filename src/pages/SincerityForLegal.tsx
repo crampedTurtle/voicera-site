@@ -78,7 +78,7 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
   const styles: Record<string, any> = {
     blue: { bg: h ? "linear-gradient(135deg,#1e3a5f,#1d4ed8)" : "linear-gradient(135deg,#1e40af,#2563EB)", color: "#fff", shadow: h ? "0 8px 32px rgba(30,64,175,0.45)" : "0 4px 16px rgba(30,64,175,0.3)", border: "none" },
     white: { bg: h ? "#f1f5f9" : "#fff", color: "#0f172a", shadow: h ? "0 8px 24px rgba(0,0,0,0.15)" : "0 4px 12px rgba(0,0,0,0.08)", border: "none" },
-    outline: { bg: "transparent", color: h ? "#93c5fd" : "#bfdbfe", shadow: "none", border: "2px solid #60a5fa" },
+    outline: { bg: "transparent", color: "#fff", shadow: "none", border: "2px solid #fff" },
   };
   const st = styles[variant];
   return (
