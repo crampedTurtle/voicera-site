@@ -51,6 +51,7 @@ const About = () => {
             AI should make humans more accurate, not more passive. Trust should be measurable, not assumed. And in a world where the most important conversations happen on screen, the organizations that can read people clearly will always make better decisions than those who can't. That's why we built Voicera.
           </p>
         </div>
+      </section>
 
       <MissionSection />
 
