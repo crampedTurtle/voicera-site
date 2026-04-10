@@ -472,7 +472,7 @@ export default function RevenueIntelligence() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 20 }}>
               <StatCard value="93" label="of sales leaders miss forecast by more than 10% — the accuracy gap your platform can close" icon="📉" />
               <StatCard value="70" label="of churned accounts sent quiet, pre-cancellation signals months in advance — signals invisible to text-only analysis" icon="🔇" />
-              <StatCard value="2.1" suffix="M" label="average annual revenue leak per company from misread deal health and "happy ears"" icon="💸" />
+              <StatCard value="2.1" suffix="M" label={'average annual revenue leak per company from misread deal health and "happy ears"'} icon="💸" />
               <StatCard value="23" label="of RevOps leaders trust the data in their own CRM — rebuild that trust with objective signal" icon="📊" />
             </div>
           </Reveal>
