@@ -26,6 +26,18 @@ export const solutions: SolutionPageData[] = [
     ],
   },
   {
+    slug: "revenue-intelligence",
+    name: "Revenue Intelligence",
+    headline: "Revenue Intelligence & Forecast Accuracy",
+    description:
+      "Embed AI-powered deal credibility scoring into your RevOps platform. Sincerity™ decodes buyer commitment, flags churn risk, and improves forecast accuracy to within 5%.",
+    features: [
+      { title: "Commitment Detection", text: "Separate verbal yes from contractual intent with per-segment sincerity scoring." },
+      { title: "Pre-Churn Signals", text: "Catch resignation before the renewal conversation with early-warning credibility signals." },
+      { title: "Forecast Confidence", text: "Replace gut-feel with an auditable credibility score embedded in your forecasting engine." },
+    ],
+  },
+  {
     slug: "hr",
     name: "Sincerity™ for HR",
     headline: "Hire with Confidence, Not Guesswork",

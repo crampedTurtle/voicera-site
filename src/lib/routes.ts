@@ -44,6 +44,16 @@ export const siteRoutes: SiteRoute[] = [
     category: "Solutions",
   },
   {
+    path: "/solutions/revenue-intelligence",
+    title: "Revenue Intelligence API | Forecast Accuracy with Sincerity™ | Voicera",
+    description: "Embed AI-powered deal credibility scoring into your RevOps platform. Sincerity™ decodes buyer commitment, flags churn risk, and improves forecast accuracy to within 5%.",
+    priority: 0.8,
+    changefreq: "monthly",
+    lastmod: new Date().toISOString().split("T")[0],
+    showInSitemap: true,
+    category: "Solutions",
+  },
+  {
     path: "/solutions/hr",
     title: "Sincerity™ for HR — Voicera",
     description: "Hire with confidence using multimodal AI interview analysis that reduces bias and improves quality-of-hire.",
