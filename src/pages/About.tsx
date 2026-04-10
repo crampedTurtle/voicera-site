@@ -52,6 +52,22 @@ const About = () => {
         </div>
       </section>
 
+      {/* Our Mission */}
+      <section className="py-20 px-6">
+        <div className="max-w-[750px] mx-auto">
+          <div className="flex justify-center mb-8">
+            <span className="type-tag border border-border rounded-full px-4 py-1.5 text-foreground">
+              OUR MISSION
+            </span>
+          </div>
+          <div className="border-2 border-dashed border-border/60 rounded-2xl bg-muted/40 p-10 sm:p-14 text-center">
+            <p className="font-display text-lg sm:text-xl md:text-2xl font-medium text-foreground leading-relaxed italic">
+              To provide sincerity insights to organizations that enhances their confidence in the truth.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <TeamSection />
 
       {/* Careers + Media — two side-by-side cards */}
