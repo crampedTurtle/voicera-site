@@ -352,6 +352,15 @@ const Bullet = ({ children, sub }: { children: ReactNode; sub?: string[] }) => (
   </div>
 );
 
+// ─── FAQ DATA ───────────────────────────────────────────────────────────────
+const salesFaqItems = [
+  { q: "How do sales tech platforms embed Sincerity™?", a: "Via Voicera's REST API. Submit recorded calls, receive calibrated credibility scores and per-segment signals. The data layer integrates natively into your platform's existing pipeline and CRM sync." },
+  { q: "What sales workflows does Sincerity™ power?", a: "Deal qualification, buyer-intent scoring, rep coaching, and pipeline risk flagging. Host platforms surface these signals inside their own UX — Sincerity™ operates as invisible infrastructure." },
+  { q: "Is Sincerity™ a replacement for sales rep judgment?", a: "No. Sincerity™ is infrastructure that powers the host platform's features. Human judgment remains with the platform's users — reps and managers make the final call." },
+  { q: "How accurate is Sincerity™ for sales use cases?", a: "Sincerity™ returns calibrated confidence scores. Accuracy depends on audio/video quality, and the platform surfaces quality flags so host platforms can set appropriate thresholds." },
+  { q: "How is Sincerity™ priced for sales tech platforms?", a: "Three options — per-minute or per-hour API pricing with volume tiers, Platform Web App plans, and Custom Deployment for enterprise builders. See the Pricing section." },
+];
+
 // ═════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═════════════════════════════════════════════════════════════════════════════
@@ -362,6 +371,16 @@ export default function SincerityForSales() {
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
   }, []);
+
+  const salesFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: salesFaqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
