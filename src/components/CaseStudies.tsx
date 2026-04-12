@@ -131,6 +131,7 @@ const MobileCarousel = ({
 
 const CaseStudies = () => {
   const [videoOpen, setVideoOpen] = useState(false);
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
 
   const peekLeft = { title: "Coming Soon", number: "", subtitle: "", image: peekLeftImg, logo: undefined as string | undefined, tags: [] as string[] };
   const peekRight = { title: "Sales CRM", number: "", subtitle: "", image: peekRightImg, logo: undefined as string | undefined, tags: [] as string[] };
@@ -140,6 +141,8 @@ const CaseStudies = () => {
     if (cs.title === "Scott Ramey") {
       trackEvent("video_play", { video_title: "Scott Ramey Case Study" });
       setVideoOpen(true);
+    } else if (cs.title === "Policereports.ai") {
+      setComingSoonOpen(true);
     }
   };
 
