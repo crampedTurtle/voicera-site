@@ -64,7 +64,7 @@ const JsonLd = ({ title, description, path }: JsonLdProps) => {
       mainEntity: { "@id": `${SITE_URL}/#organization` },
       speakable: {
         "@type": "SpeakableSpecification",
-        cssSelector: ["h1", ".type-display", "[role='main'] p"],
+        cssSelector: ["h1", ".type-display", "main p"],
       },
     }),
   };

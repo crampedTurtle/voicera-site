@@ -1,0 +1,31 @@
+# Voicera
+
+> Voicera builds Sincerity™, a multimodal AI credibility intelligence platform that software builders embed into their own products as a native data layer. Voicera sells to Product Managers and CTOs at host platforms, not to end users. Founded 2024, based in Los Angeles.
+
+## What Sincerity™ does
+
+Sincerity™ analyzes audio, video, or composite multimodal signals to produce credibility intelligence. It is delivered as a native data layer that host platforms embed via API. The core output is a sincerity score plus supporting signals derived from voice, facial expression, and linguistic patterns.
+
+## Who Voicera serves
+
+Voicera is infrastructure for platform builders. Buyers are Product Managers and CTOs at software companies in sales tech, revenue intelligence, HR tech, law enforcement tech, dating, and legal tech. Voicera does not sell directly to end users — those are the users of the host platforms that embed Sincerity™.
+
+## Key pages
+
+- [Homepage](https://voicera.io/)
+- [Sales Tech](https://voicera.io/solutions/sales)
+- [Revenue Intelligence](https://voicera.io/solutions/revenue-intelligence)
+- [HR Tech](https://voicera.io/solutions/hr)
+- [Law Enforcement](https://voicera.io/solutions/law-enforcement)
+- [Dating](https://voicera.io/solutions/dating)
+- [Legal Tech](https://voicera.io/solutions/legal)
+- [API Documentation](https://voicera.io/api-docs)
+- [Voicera Labs](https://voicera.io/voicera-labs)
+- [About](https://voicera.io/about)
+- [Investors](https://voicera.io/investors)
+- [Partners](https://voicera.io/partners)
+- [Media](https://voicera.io/media)
+
+## Brand vocabulary
+
+Product name: Sincerity™. Logo mark: prism. Framing verbs: embed, power, native integration, data layer, host platform. Voicera does not describe Sincerity™ as a lie detector, polygraph, or surveillance tool.
