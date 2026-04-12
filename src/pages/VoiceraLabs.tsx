@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
-import { Helmet } from "react-helmet-async";
 import StickyNavbar from "@/components/StickyNavbar";
+import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import emotionCoachImg from "@/assets/emotion-coach-demo.png";
 
@@ -636,10 +636,11 @@ export default function VoiceraLabs() {
 
   return (
     <>
-      <Helmet>
-        <title>Voicera Labs – Explore AI Innovations | Voicera</title>
-        <meta name="description" content="Explore Voicera's latest AI models and capabilities in interactive demos. Try Sincerity AI, Emotion Coach, and Voicera Insights." />
-      </Helmet>
+      <JsonLd
+        title="Voicera Labs | Experimental Credibility Intelligence Tools"
+        description="Explore Voicera Labs — experimental Sincerity™ tools including Sincerity AI, Emotion Coach, and Voicera Insights for forward-looking platform builders."
+        path="/voicera-labs"
+      />
 
       <style>{`
         @keyframes labsFloatParticle {

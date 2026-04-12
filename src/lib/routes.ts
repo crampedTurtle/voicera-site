@@ -19,14 +19,14 @@ export interface SiteRoute {
   category?: string;
 }
 
-export const SITE_URL = "https://voicera.ai";
+export const SITE_URL = "https://voicera.io";
 
 export const siteRoutes: SiteRoute[] = [
   {
     path: "/",
     title: "Voicera — The Intelligence Layer for Human Credibility",
     description:
-      "Voicera uses multimodal AI to analyze verbal and non-verbal cues in real time — helping sales teams coach reps, qualify prospects faster, and close deals with data-backed confidence.",
+      "Voicera builds Sincerity™, multimodal AI credibility intelligence that software builders embed into their own platforms. Power your product with audio, video, and composite sincerity analysis via native API.",
     priority: 1.0,
     changefreq: "weekly",
     lastmod: new Date().toISOString().split("T")[0],

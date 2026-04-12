@@ -5,6 +5,7 @@ import emotionDetectionLegalImg from "@/assets/emotion-detection-legal.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────

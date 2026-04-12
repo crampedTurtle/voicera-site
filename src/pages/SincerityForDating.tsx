@@ -219,10 +219,6 @@ export default function SincerityForDating() {
 
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
-      <Helmet>
-        <title>Sincerity™ for Dating Platforms — Voicera</title>
-        <meta name="description" content="Embed AI-powered sincerity and emotion analysis into your dating app, matchmaking service, or relationship platform. Protect your users from catfishing and power authentic connections." />
-      </Helmet>
       <JsonLd
         title="Sincerity™ for Dating Platforms — Voicera"
         description="Embed AI-powered sincerity analysis into dating platforms."
