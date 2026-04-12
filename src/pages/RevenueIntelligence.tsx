@@ -277,43 +277,6 @@ const CapabilityCard = ({ num, emoji, title, subtitle, desc, signals }: {
   );
 };
 
-// ─── MEDIA PLACEHOLDER ──────────────────────────────────────────────────────
-const DemoPlaceholder = ({ label }: { label: string }) => {
-  const [h, setH] = useState(false);
-  return (
-    <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{
-        position: "relative", width: "100%", aspectRatio: "16/9", borderRadius: 16, overflow: "hidden",
-        background: "linear-gradient(160deg,#0f172a,#1e293b)",
-        boxShadow: h
-          ? "0 24px 64px rgba(37,99,235,0.18), 0 0 0 1px rgba(37,99,235,0.08)"
-          : "0 12px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03)",
-        transform: h ? "scale(1.01)" : "scale(1)",
-        transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)", cursor: "pointer",
-      }}
-    >
-      <div style={{
-        position: "absolute", top: 14, right: 14, padding: "4px 12px", borderRadius: 100,
-        fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const,
-        background: "rgba(37,99,235,0.9)", color: "#fff", backdropFilter: "blur(8px)", zIndex: 2,
-      }}>Interactive Demo</div>
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-        <div style={{
-          width: 72, height: 72, borderRadius: "50%",
-          background: "rgba(37,99,235,0.15)", border: "2px solid rgba(37,99,235,0.3)",
-          display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14,
-          backdropFilter: "blur(12px)",
-        }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <path d="M8 5.14v13.72a1 1 0 001.5.86l11.24-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#2563EB" />
-          </svg>
-        </div>
-        <span style={{ color: "#94a3b8", fontSize: 13, fontWeight: 600 }}>{label}</span>
-      </div>
-    </div>
-  );
-};
-
 // ─── FAQ DATA ───────────────────────────────────────────────────────────────
 const faqItems = [
   {
