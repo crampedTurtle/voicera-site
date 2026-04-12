@@ -389,6 +389,9 @@ export default function SincerityForSales() {
         description="Embed AI-powered credibility intelligence into your sales enablement platform. Help your users close bigger deals, faster — with trust signals built in."
         path="/solutions/sales"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(salesFaqSchema)}</script>
+      </Helmet>
       <style>{`
         @keyframes sfsFp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes sfsGlow{0%,100%{opacity:0.3}50%{opacity:0.5}}
