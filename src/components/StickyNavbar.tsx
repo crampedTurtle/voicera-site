@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
+import { trackEvent } from "@/lib/gtag";
 import { useNavigate } from "react-router-dom";
 
 const StickyNavbar = () => {
@@ -33,6 +34,7 @@ const StickyNavbar = () => {
                 href="https://sincerity.voicera.io/auth/login"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("cta_click", { cta_text: "Login", location: "sticky_nav" })}
                 className="gradient-border-rect px-5 py-2 type-button rounded-xl inline-flex items-center gap-1.5"
               >
                 <span className="btn-label inline-flex items-center gap-1.5">
@@ -40,7 +42,7 @@ const StickyNavbar = () => {
                 </span>
               </a>
               <button
-                onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' })}
+                onClick={() => { trackEvent("cta_click", { cta_text: "Book a Demo", location: "sticky_nav" }); (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }}
                 className="gradient-bg px-5 py-2 type-button text-white rounded-xl hover:scale-[1.03] transition-transform hover:shadow-[0_4px_20px_rgba(240,24,122,0.3)] inline-flex items-center gap-1.5"
               >
                 Book a Demo <ArrowUpRight className="w-3.5 h-3.5" />

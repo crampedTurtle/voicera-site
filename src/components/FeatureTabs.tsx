@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import awsBadge from "@/assets/powered-by-aws.webp";
+import { trackEvent } from "@/lib/gtag";
 
 /* ── Brand palette (aligned with design-system tokens) ── */
 const BLUE = "#3D52F4";
@@ -780,7 +781,7 @@ const FeatureTabs = () => {
             {TABS.map((t, i) => (
               <button
                 key={t.id}
-                onClick={() => setActive(i)}
+                onClick={() => { setActive(i); trackEvent("tab_switch", { tab_name: t.label, section: "feature_tabs" }); }}
                 className="flex items-center gap-1 md:gap-[7px] rounded-full border-none cursor-pointer transition-all duration-200 whitespace-nowrap"
                 style={{
                   padding: "8px 12px",
