@@ -5,7 +5,6 @@ import emotionDetectionDatingImg from "@/assets/emotion-detection-dating.png";
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 
