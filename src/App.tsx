@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -76,6 +76,7 @@ const App = () => (
             <Route path="/voicera-admin/editor/:id" element={<AdminEditor />} />
             <Route path="/voicera-admin/users" element={<AdminUsers />} />
             <Route path="/voicera-admin/audit" element={<AdminAuditLog />} />
+            <Route path="/pricing" element={<Navigate to="/#pricing" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
