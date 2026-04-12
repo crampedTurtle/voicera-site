@@ -5,6 +5,14 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 import salesVerticalImg from "@/assets/sales-vertical.png";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "@/lib/routes";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 // ─── ANIMATED WIREFRAME MESH ────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
@@ -631,6 +639,30 @@ export default function SincerityForSales() {
               </p>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section style={{ background: "#F7F9FC", padding: "100px 32px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <Badge>FAQ</Badge>
+              <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 0", letterSpacing: "-0.025em" }}>
+                Frequently Asked Questions
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <Accordion type="single" collapsible className="space-y-3">
+              {salesFaqItems.map((f, i) => (
+                <AccordionItem key={i} value={`faq-${i}`} className="bg-white border border-[#e2e8f0] rounded-xl px-6 overflow-hidden" style={{ borderBottom: "1px solid #e2e8f0" }}>
+                  <AccordionTrigger className="text-left text-[15px] font-semibold text-[#0f172a] hover:no-underline py-5">{f.q}</AccordionTrigger>
+                  <AccordionContent className="text-[14px] text-[#64748b] leading-[1.7] pb-5">{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </section>
 

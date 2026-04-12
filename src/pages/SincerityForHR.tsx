@@ -3,6 +3,14 @@ import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "@/lib/routes";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 import YouTubeCase from "@/components/YouTubeCase";
 import hrVerticalImg from "@/assets/hr-vertical.png";
 import emotionCoachImg from "@/assets/emotion-coach-demo.png";

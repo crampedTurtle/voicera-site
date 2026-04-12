@@ -7,6 +7,14 @@ import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "@/lib/routes";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 // ─── WIREFRAME MESH ─────────────────────────────────────────────────────────
 const WireframeMesh = ({ density = 28 }: { density?: number }) => {
