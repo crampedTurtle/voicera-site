@@ -147,20 +147,85 @@ interface CodeLine {
   indent?: number;
 }
 
-function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean }) {
+function AnimatedCode({ lines, active }: { lines: CodeLine[]; active: boolean }) {
   const [visible, setVisible] = useState<number[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!active) {
+      setVisible([]);
+      return;
+    }
     setVisible([]);
-    if (!active) return;
     const timers = lines.map((_, i) =>
-      setTimeout(() => setVisible((p) => [...p, i]), 300 + i * 350)
+      setTimeout(() => {
+        setVisible((p) => [...p, i]);
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      }, i * 120)
     );
     return () => timers.forEach(clearTimeout);
   }, [active, lines]);
 
   return (
-    <div style={{ background: CODE_BG, borderRadius: 12, padding: "14px 18px", marginTop: 12, minHeight: 72 }}>
+    <div
+      ref={containerRef}
+      style={{
+        background: CODE_BG, borderRadius: 12, padding: "14px 18px",
+        height: 120, overflowY: "auto", scrollBehavior: "smooth",
+        scrollbarWidth: "none",
+      }}
+    >
+      {lines.map((line, i) => (
+        <div
+          key={i}
+          style={{
+            fontFamily: "'Courier New',monospace",
+            fontSize: 12,
+            lineHeight: 1.85,
+            color: line.color,
+            paddingLeft: (line.indent || 0) * 14,
+            opacity: visible.includes(i) ? 1 : 0,
+            transform: visible.includes(i) ? "translateY(0)" : "translateY(4px)",
+            transition: "opacity 0.25s ease, transform 0.25s ease",
+            minHeight: line.text === "" ? 12 : undefined,
+          }}
+        >
+          {line.text || "\u00A0"}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean }) {
+  const [visible, setVisible] = useState<number[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setVisible([]);
+    if (!active) return;
+    const timers = lines.map((_, i) =>
+      setTimeout(() => {
+        setVisible((p) => [...p, i]);
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      }, 300 + i * 180)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [active, lines]);
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        background: CODE_BG, borderRadius: 12, padding: "14px 18px", marginTop: 12,
+        height: 120, overflowY: "auto", scrollBehavior: "smooth",
+        scrollbarWidth: "none",
+      }}
+    >
       {lines.map((line, i) => (
         <div
           key={i}
@@ -171,11 +236,12 @@ function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean })
             color: line.color || MID_TEXT,
             paddingLeft: (line.indent || 0) * 16,
             opacity: visible.includes(i) ? 1 : 0,
-            transform: visible.includes(i) ? "translateX(0)" : "translateX(-8px)",
-            transition: "opacity 0.3s ease, transform 0.3s ease",
+            transform: visible.includes(i) ? "translateY(0)" : "translateY(4px)",
+            transition: "opacity 0.25s ease, transform 0.25s ease",
+            minHeight: line.text === "" ? 12 : undefined,
           }}
         >
-          {line.text}
+          {line.text || "\u00A0"}
         </div>
       ))}
     </div>
@@ -816,22 +882,7 @@ const FeatureTabs = () => {
                 {tab.visual === "flow" && <APIFlowDiagram />}
 
                 {/* Request code */}
-                <div style={{ background: CODE_BG, borderRadius: 12, padding: "14px 18px" }}>
-                  {tab.code.map((line, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        fontFamily: "'Courier New',monospace",
-                        fontSize: 12,
-                        lineHeight: 1.85,
-                        color: line.color,
-                        paddingLeft: (line.indent || 0) * 14,
-                      }}
-                    >
-                      {line.text}
-                    </div>
-                  ))}
-                </div>
+                <AnimatedCode lines={tab.code} active={true} key={`code-${tab.id}`} />
 
                 {/* Animated output */}
                 <AnimatedJSON lines={tab.output} active={outputActive} />
