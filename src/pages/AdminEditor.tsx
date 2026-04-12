@@ -795,9 +795,9 @@ const AdminEditor = () => {
                     )}
                   </div>
                 )}
+              </div>
             </div>
           </div>
-
           {/* Tags */}
           <div className="bg-background border border-border rounded-lg overflow-hidden">
             <div className="px-4 py-2.5 font-semibold text-sm border-b border-border bg-muted/30">
