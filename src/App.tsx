@@ -31,6 +31,7 @@ import SincerityForDating from "./pages/SincerityForDating.tsx";
 import SincerityForLegal from "./pages/SincerityForLegal.tsx";
 import CookieBanner from "./components/CookieBanner.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import GaRouteTracker from "./components/GaRouteTracker.tsx";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
         <CookieBanner />
         <BrowserRouter>
           <ScrollToTop />
+          <GaRouteTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
