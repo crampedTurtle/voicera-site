@@ -593,15 +593,6 @@ export default function RevenueIntelligence() {
               Watch Sincerity™ analyze a late-stage negotiation in real time. See the exact moment the AI separates a buyer who is <em>browsing</em> from a buyer who is <em>buying</em> — the same signal your platform can surface natively to deliver measurable forecast clarity.
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div style={{
-              borderRadius: 20, overflow: "hidden",
-              boxShadow: "0 24px 80px rgba(37,99,235,0.12), 0 0 0 1px rgba(37,99,235,0.06)",
-              marginBottom: 24,
-            }}>
-              <DemoPlaceholder label="Deal Review Intelligence Demo" />
-            </div>
-          </Reveal>
           <Reveal delay={0.25}>
             <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7, maxWidth: 640, margin: "0 auto 32px" }}>
               This is the same API powering deal scoring, churn alerts, and pipeline health inside partner platforms today.
