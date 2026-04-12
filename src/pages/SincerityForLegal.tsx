@@ -173,6 +173,11 @@ export default function SincerityForLegal() {
 
   return (
     <>
+      <JsonLd
+        title="Sincerity™ for Legal Tech Platforms | Voicera"
+        description="Embed multimodal credibility intelligence into legal tech. Sincerity™ powers deposition, testimony, and client-interview analysis as a native data layer for legal platforms."
+        path="/solutions/legal"
+      />
       <style>{`
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes glow{0%,100%{opacity:0.25}50%{opacity:0.4}}

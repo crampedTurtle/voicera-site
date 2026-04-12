@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import voiceraLogo from "@/assets/voicera-logo-new.png";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 
 /* ═══════════════════════════════════════════════════════════════════════
    VOICERA SINCERITY™ — API DOCUMENTATION LIBRARY v2.1.0
@@ -654,6 +655,11 @@ export default function VoiceraDocs() {
 
   return (
     <div style={{ fontFamily: F.b, color: C.tx, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <JsonLd
+        title="Voicera API Documentation | Sincerity™ Developer Reference"
+        description="Complete API reference for Sincerity™ by Voicera. Authentication, endpoints, response schemas, and code examples for embedding credibility intelligence into your platform."
+        path="/api-docs"
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
         *::-webkit-scrollbar { width: 6px; height: 6px; }
