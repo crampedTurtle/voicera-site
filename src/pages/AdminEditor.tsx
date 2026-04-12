@@ -654,14 +654,58 @@ const AdminEditor = () => {
                 </div>
 
                 {form.status === "scheduled" && (
-                  <div>
-                    <Label className="text-xs text-muted-foreground">Publish on:</Label>
-                    <Input
-                      type="datetime-local"
-                      value={form.scheduled_at}
-                      onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
-                      className="h-7 text-xs mt-1"
-                    />
+                  <div className="bg-muted/30 border border-border rounded p-2.5 space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                      <CalendarClock className="w-3.5 h-3.5" />
+                      Scheduled for {form.scheduled_at ? new Date(form.scheduled_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }) : "—"}
+                    </div>
+                    <p className="text-[10px] text-muted-foreground">
+                      {Intl.DateTimeFormat().resolvedOptions().timeZone}
+                    </p>
+                    <div className="flex gap-2 mt-1">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button size="sm" variant="outline" className="h-6 text-[10px] px-2">Reschedule</Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[260px] p-3 space-y-3" align="start">
+                          <p className="text-xs font-semibold text-foreground">Reschedule Post</p>
+                          <div>
+                            <Label className="text-xs">Date &amp; Time</Label>
+                            <Input
+                              type="datetime-local"
+                              value={form.scheduled_at}
+                              onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
+                              className="h-8 text-xs mt-1"
+                            />
+                          </div>
+                          <p className="text-[10px] text-muted-foreground">
+                            Will publish at {form.scheduled_at ? new Date(form.scheduled_at).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "—"} {Intl.DateTimeFormat().resolvedOptions().timeZone}
+                          </p>
+                          {form.scheduled_at && new Date(form.scheduled_at) <= new Date() && (
+                            <p className="text-[10px] text-destructive">Please choose a future date and time.</p>
+                          )}
+                          <Button
+                            size="sm"
+                            className="w-full text-xs"
+                            disabled={!form.scheduled_at || new Date(form.scheduled_at) <= new Date()}
+                            onClick={handleSave}
+                          >
+                            Update Schedule
+                          </Button>
+                        </PopoverContent>
+                      </Popover>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-6 text-[10px] px-2"
+                        onClick={() => {
+                          setForm((p) => ({ ...p, status: "published", scheduled_at: "" }));
+                          setTimeout(() => handleSave(), 0);
+                        }}
+                      >
+                        Publish Now
+                      </Button>
+                    </div>
                   </div>
                 )}
 
@@ -681,11 +725,76 @@ const AdminEditor = () => {
               </div>
 
               <div className="border-t border-border pt-3">
-                <Button className="w-full" onClick={handleSave} disabled={saving}>
-                  <Save className="w-4 h-4 mr-1" />
-                  {saving ? "Saving…" : canPublish && form.status === "published" ? "Publish" : form.status === "pending_review" ? "Submit for Review" : "Save"}
-                </Button>
-              </div>
+                {form.status === "scheduled" ? (
+                  <Button className="w-full" onClick={handleSave} disabled={saving || !form.scheduled_at || new Date(form.scheduled_at) <= new Date()}>
+                    <CalendarClock className="w-4 h-4 mr-1" />
+                    {saving ? "Saving…" : "Schedule Post"}
+                  </Button>
+                ) : (
+                  <div className="flex">
+                    <Button
+                      className="flex-1 rounded-r-none"
+                      onClick={() => {
+                        if (canPublish) setForm((p) => ({ ...p, status: "published" }));
+                        setTimeout(() => handleSave(), 0);
+                      }}
+                      disabled={saving}
+                    >
+                      <Save className="w-4 h-4 mr-1" />
+                      {saving ? "Saving…" : canPublish && form.status === "published" ? "Publish" : form.status === "pending_review" ? "Submit for Review" : canPublish ? "Publish" : "Save"}
+                    </Button>
+                    {canPublish && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button className="rounded-l-none border-l border-primary-foreground/20 px-2" disabled={saving}>
+                            <ChevronDown className="w-4 h-4" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[260px] p-3 space-y-3" align="end">
+                          <p className="text-xs font-semibold text-foreground">Schedule Post</p>
+                          <div>
+                            <Label className="text-xs">Date &amp; Time</Label>
+                            <Input
+                              type="datetime-local"
+                              value={form.scheduled_at || (() => {
+                                const tomorrow = new Date();
+                                tomorrow.setDate(tomorrow.getDate() + 1);
+                                tomorrow.setHours(9, 0, 0, 0);
+                                return tomorrow.toISOString().slice(0, 16);
+                              })()}
+                              onChange={(e) => setForm((p) => ({ ...p, scheduled_at: e.target.value }))}
+                              className="h-8 text-xs mt-1"
+                            />
+                          </div>
+                          <p className="text-[10px] text-muted-foreground">
+                            Will publish at {form.scheduled_at ? new Date(form.scheduled_at).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "9:00 AM"} {Intl.DateTimeFormat().resolvedOptions().timeZone}
+                          </p>
+                          {form.scheduled_at && new Date(form.scheduled_at) <= new Date() && (
+                            <p className="text-[10px] text-destructive">Please choose a future date and time.</p>
+                          )}
+                          <Button
+                            size="sm"
+                            className="w-full text-xs"
+                            disabled={!form.scheduled_at || new Date(form.scheduled_at) <= new Date()}
+                            onClick={() => {
+                              setForm((p) => ({ ...p, status: "scheduled" }));
+                              setTimeout(() => handleSave(), 0);
+                            }}
+                          >
+                            <CalendarClock className="w-3.5 h-3.5 mr-1" />
+                            Schedule Post
+                          </Button>
+                          <button
+                            className="text-xs text-muted-foreground hover:text-foreground w-full text-center"
+                            onClick={() => document.body.click()}
+                          >
+                            Cancel
+                          </button>
+                        </PopoverContent>
+                      </Popover>
+                    )}
+                  </div>
+                )}
             </div>
           </div>
 
