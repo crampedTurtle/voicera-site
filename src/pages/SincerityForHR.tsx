@@ -204,12 +204,31 @@ const FeatureCard = ({ icon, title, desc }: { icon: string; title: string; desc:
   );
 };
 
+// ─── FAQ DATA ───────────────────────────────────────────────────────────────
+const hrFaqItems = [
+  { q: "How do HR tech platforms embed Sincerity™?", a: "Through Voicera's REST API. Submit interview recordings and receive calibrated credibility and authenticity scores. The data integrates natively into your ATS, HRIS, or interview intelligence product." },
+  { q: "What HR workflows does Sincerity™ power?", a: "Candidate vetting, interview authenticity scoring, structured interview coaching, and hiring-quality analytics. Host platforms surface these signals inside their own recruiter workflows." },
+  { q: "Is Sincerity™ a replacement for recruiter judgment?", a: "No. Sincerity™ is infrastructure that powers the host platform's features. Human judgment and due process remain with the platform's users." },
+  { q: "How accurate is Sincerity™ for HR use cases?", a: "Sincerity™ returns calibrated confidence scores. Accuracy depends on audio/video quality, and the platform surfaces quality flags so host platforms can set appropriate thresholds." },
+  { q: "How is Sincerity™ priced for HR tech platforms?", a: "Three options — per-minute or per-hour API pricing with volume tiers, Platform Web App plans, and Custom Deployment for enterprise builders. See the Pricing section." },
+];
+
 // ═════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═════════════════════════════════════════════════════════════════════════════
 export default function SincerityForHR() {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => { const h = () => setScrollY(window.scrollY); window.addEventListener("scroll", h, { passive: true }); return () => window.removeEventListener("scroll", h); }, []);
+
+  const hrFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: hrFaqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
@@ -218,6 +237,9 @@ export default function SincerityForHR() {
         description="Embed AI-powered candidate authenticity analysis into your HR tech platform."
         path="/solutions/hr"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(hrFaqSchema)}</script>
+      </Helmet>
       <style>{`
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes glow{0%,100%{opacity:0.3}50%{opacity:0.5}}
@@ -439,6 +461,28 @@ export default function SincerityForHR() {
               <FeatureCard icon="🌍" title="Demographic Diversity" desc="Trained on diverse datasets ensuring accuracy across various demographics and cultural expressions." />
               <FeatureCard icon="⚡" title="Developer-Friendly" desc="Requires only an internet connection and camera access to function. No SDK, downloads, or installations needed." />
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section style={{ background: "#F7F9FC", padding: "100px 32px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <Badge>FAQ</Badge>
+              <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 0", letterSpacing: "-0.025em" }}>Frequently Asked Questions</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <Accordion type="single" collapsible className="space-y-3">
+              {hrFaqItems.map((f, i) => (
+                <AccordionItem key={i} value={`faq-${i}`} className="bg-white border border-[#e2e8f0] rounded-xl px-6 overflow-hidden" style={{ borderBottom: "1px solid #e2e8f0" }}>
+                  <AccordionTrigger className="text-left text-[15px] font-semibold text-[#0f172a] hover:no-underline py-5">{f.q}</AccordionTrigger>
+                  <AccordionContent className="text-[14px] text-[#64748b] leading-[1.7] pb-5">{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </Reveal>
         </div>
       </section>
