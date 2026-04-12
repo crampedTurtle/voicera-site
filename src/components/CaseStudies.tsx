@@ -229,6 +229,38 @@ const CaseStudies = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Coming Soon Modal */}
+      <AnimatePresence>
+        {comingSoonOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            onClick={() => setComingSoonOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative bg-card border border-border rounded-2xl px-10 py-8 text-center shadow-xl max-w-sm"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setComingSoonOpen(false)}
+                className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <span className="gradient-pill inline-block mb-4">CASE STUDY</span>
+              <h3 className="font-display text-foreground text-xl font-bold">Case Study Coming Soon</h3>
+              <p className="text-muted-foreground text-sm mt-2">Stay tuned for a detailed look at how Policereports.ai integrates Sincerity™.</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
