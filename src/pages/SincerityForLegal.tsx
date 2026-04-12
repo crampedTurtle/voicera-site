@@ -174,10 +174,29 @@ const FeatureCard = ({ icon, title, desc }: { icon: string; title: string; desc:
 };
 
 // ═════════════════════════════════════════════════════════════════════════════
+// ─── FAQ DATA ───────────────────────────────────────────────────────────────
+const legalFaqItems = [
+  { q: "How do legal tech platforms embed Sincerity™?", a: "Through Voicera's REST API. Submit deposition recordings, witness interviews, or client consultations and receive calibrated credibility analysis scores. The data integrates natively into your legal tech product." },
+  { q: "What legal workflows does Sincerity™ power?", a: "Deposition credibility analysis, witness preparation coaching, client-interview assessment, and testimony consistency scoring. Host platforms surface these signals within their own legal workflow UX." },
+  { q: "Is Sincerity™ a replacement for attorney judgment?", a: "No. Sincerity™ is infrastructure that powers the host platform's features. Human judgment and due process remain with the platform's users." },
+  { q: "How accurate is Sincerity™ for legal use cases?", a: "Sincerity™ returns calibrated confidence scores. Accuracy depends on audio/video quality, and the platform surfaces quality flags so host platforms can set appropriate thresholds." },
+  { q: "How is Sincerity™ priced for legal tech platforms?", a: "Three options — per-minute or per-hour API pricing with volume tiers, Platform Web App plans, and Custom Deployment for enterprise builders. See the Pricing section." },
+];
+
 export default function SincerityForLegal() {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => { const h = () => setScrollY(window.scrollY); window.addEventListener("scroll", h, { passive: true }); return () => window.removeEventListener("scroll", h); }, []);
   const hf = "'Poppins',sans-serif";
+
+  const legalFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: legalFaqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <>
@@ -186,6 +205,9 @@ export default function SincerityForLegal() {
         description="Embed multimodal credibility intelligence into legal tech. Sincerity™ powers deposition, testimony, and client-interview analysis as a native data layer for legal platforms."
         path="/solutions/legal"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(legalFaqSchema)}</script>
+      </Helmet>
       <style>{`
         @keyframes fp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes glow{0%,100%{opacity:0.25}50%{opacity:0.4}}
