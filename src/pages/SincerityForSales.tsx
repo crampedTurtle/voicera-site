@@ -5,6 +5,14 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 import salesVerticalImg from "@/assets/sales-vertical.png";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "@/lib/routes";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 // ─── ANIMATED WIREFRAME MESH ────────────────────────────────────────────────
 const WireframeMesh = ({ darkMode = true, density = 28 }: { darkMode?: boolean; density?: number }) => {
@@ -344,6 +352,15 @@ const Bullet = ({ children, sub }: { children: ReactNode; sub?: string[] }) => (
   </div>
 );
 
+// ─── FAQ DATA ───────────────────────────────────────────────────────────────
+const salesFaqItems = [
+  { q: "How do sales tech platforms embed Sincerity™?", a: "Via Voicera's REST API. Submit recorded calls, receive calibrated credibility scores and per-segment signals. The data layer integrates natively into your platform's existing pipeline and CRM sync." },
+  { q: "What sales workflows does Sincerity™ power?", a: "Deal qualification, buyer-intent scoring, rep coaching, and pipeline risk flagging. Host platforms surface these signals inside their own UX — Sincerity™ operates as invisible infrastructure." },
+  { q: "Is Sincerity™ a replacement for sales rep judgment?", a: "No. Sincerity™ is infrastructure that powers the host platform's features. Human judgment remains with the platform's users — reps and managers make the final call." },
+  { q: "How accurate is Sincerity™ for sales use cases?", a: "Sincerity™ returns calibrated confidence scores. Accuracy depends on audio/video quality, and the platform surfaces quality flags so host platforms can set appropriate thresholds." },
+  { q: "How is Sincerity™ priced for sales tech platforms?", a: "Three options — per-minute or per-hour API pricing with volume tiers, Platform Web App plans, and Custom Deployment for enterprise builders. See the Pricing section." },
+];
+
 // ═════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═════════════════════════════════════════════════════════════════════════════
@@ -355,6 +372,16 @@ export default function SincerityForSales() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
+  const salesFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: salesFaqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
       <JsonLd
@@ -362,6 +389,9 @@ export default function SincerityForSales() {
         description="Embed AI-powered credibility intelligence into your sales enablement platform. Help your users close bigger deals, faster — with trust signals built in."
         path="/solutions/sales"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(salesFaqSchema)}</script>
+      </Helmet>
       <style>{`
         @keyframes sfsFp{0%,100%{transform:translate(0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-28px)}75%{transform:translate(14px,-12px)}}
         @keyframes sfsGlow{0%,100%{opacity:0.3}50%{opacity:0.5}}
@@ -631,6 +661,30 @@ export default function SincerityForSales() {
               </p>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section style={{ background: "#F7F9FC", padding: "100px 32px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <Badge>FAQ</Badge>
+              <h2 style={{ fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 0", letterSpacing: "-0.025em" }}>
+                Frequently Asked Questions
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <Accordion type="single" collapsible className="space-y-3">
+              {salesFaqItems.map((f, i) => (
+                <AccordionItem key={i} value={`faq-${i}`} className="bg-white border border-[#e2e8f0] rounded-xl px-6 overflow-hidden" style={{ borderBottom: "1px solid #e2e8f0" }}>
+                  <AccordionTrigger className="text-left text-[15px] font-semibold text-[#0f172a] hover:no-underline py-5">{f.q}</AccordionTrigger>
+                  <AccordionContent className="text-[14px] text-[#64748b] leading-[1.7] pb-5">{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </section>
 

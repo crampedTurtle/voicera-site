@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import StartBuildingModal from "./StartBuildingModal";
@@ -385,9 +385,28 @@ const CustomView = ({ onTalkToSales }: { onTalkToSales: () => void }) => (
 
 // ─── MAIN SECTION ───────────────────────────────────────────────────
 const SolutionsSection = () => {
-  const [product, setProduct] = useState<ProductTab>("api");
+  const [product, setProduct] = useState<ProductTab>(() => {
+    const hash = window.location.hash;
+    if (hash === "#pricing-platform") return "platform";
+    if (hash === "#pricing-custom") return "custom";
+    return "api";
+  });
   const [modalOpen, setModalOpen] = useState(false);
   const location = useLocation();
+
+  // Sync hash → tab on hash change
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash === "#pricing-api") setProduct("api");
+    else if (hash === "#pricing-platform") setProduct("platform");
+    else if (hash === "#pricing-custom") setProduct("custom");
+  }, [location.hash]);
+
+  // Update hash when tab changes
+  const handleTabChange = (tab: ProductTab) => {
+    setProduct(tab);
+    window.history.replaceState(null, "", `#pricing-${tab}`);
+  };
 
   // Auto-open Start Building modal when anchored
   const autoOpenFree = location.hash === "#pricing-sandbox";
@@ -442,7 +461,7 @@ const SolutionsSection = () => {
 
         {/* Product tabs */}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <ProductTabs value={product} onChange={setProduct} />
+          <ProductTabs value={product} onChange={handleTabChange} />
         </div>
 
         {/* Views */}
