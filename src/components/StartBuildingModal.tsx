@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { trackEvent } from "@/lib/gtag";
 
 const C = {
   blue: "#3D52F4",
@@ -49,6 +50,7 @@ const StartBuildingModal = ({ open, onOpenChange }: StartBuildingModalProps) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackEvent("form_submit", { form_name: "start_building", business_email: form["Business Email"] || "" });
     // TODO: wire up form submission to backend
     onOpenChange(false);
   };

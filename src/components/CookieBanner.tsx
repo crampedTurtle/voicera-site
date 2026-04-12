@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
+import { trackEvent } from "@/lib/gtag";
 
 const CONSENT_KEY = "voicera_cookie_consent";
 
@@ -38,12 +39,13 @@ const CookieBanner = () => {
 
   const saveConsent = (state: ConsentState) => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...state, timestamp: new Date().toISOString() }));
+    trackEvent("cookie_consent", { analytics: state.analytics, marketing: state.marketing });
     setVisible(false);
   };
 
-  const acceptAll = () => saveConsent({ necessary: true, analytics: true, marketing: true });
-  const rejectAll = () => saveConsent({ necessary: true, analytics: false, marketing: false });
-  const savePreferences = () => saveConsent(consent);
+  const acceptAll = () => { trackEvent("cookie_consent_action", { action: "accept_all" }); saveConsent({ necessary: true, analytics: true, marketing: true }); };
+  const rejectAll = () => { trackEvent("cookie_consent_action", { action: "reject_all" }); saveConsent({ necessary: true, analytics: false, marketing: false }); };
+  const savePreferences = () => { trackEvent("cookie_consent_action", { action: "save_preferences" }); saveConsent(consent); };
 
   return (
     <AnimatePresence>
