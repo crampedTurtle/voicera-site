@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import StartBuildingModal from "./StartBuildingModal";
 import PricingCapsules from "./PricingCapsules";
+import { trackEvent } from "@/lib/gtag";
 
 // ─── DESIGN TOKENS ──────────────────────────────────────────────────
 const INK = "#0B1020";
@@ -133,7 +134,7 @@ const ProductTabs = ({ value, onChange }: { value: ProductTab; onChange: (v: Pro
       {tabs.map(t => {
         const active = value === t.id;
         return (
-          <button key={t.id} onClick={() => onChange(t.id)} style={{
+          <button key={t.id} onClick={() => { onChange(t.id); trackEvent("tab_switch", { tab_name: t.label, section: "pricing_tabs" }); }} style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "10px 18px", borderRadius: 10, border: "none",
             background: active ? INK : "transparent",
@@ -396,8 +397,9 @@ const SolutionsSection = () => {
     }
   });
 
-  const handleStartBuilding = () => setModalOpen(true);
+  const handleStartBuilding = () => { trackEvent("cta_click", { cta_text: "Start Building", location: "pricing" }); setModalOpen(true); };
   const handleTalkToSales = () => {
+    trackEvent("cta_click", { cta_text: "Talk to Sales", location: "pricing" });
     (window as any).Calendly?.initPopupWidget({ url: "https://calendly.com/kevins-voicera-calendar/30min" });
   };
 

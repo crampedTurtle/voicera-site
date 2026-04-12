@@ -7,6 +7,7 @@ import policeImg from "@/assets/case-study-police.jpg";
 import policeLogo from "@/assets/case-study-police-logo.png";
 import peekLeftImg from "@/assets/case-study-peek-left.jpg";
 import peekRightImg from "@/assets/case-study-peek-right.jpg";
+import { trackEvent } from "@/lib/gtag";
 
 const CASE_STUDIES = [
   {
@@ -135,7 +136,9 @@ const CaseStudies = () => {
   const peekRight = { title: "Sales CRM", number: "", subtitle: "", image: peekRightImg, logo: undefined as string | undefined, tags: [] as string[] };
 
   const handleTileClick = (cs: (typeof CASE_STUDIES)[number]) => {
+    trackEvent("case_study_click", { case_study: cs.title });
     if (cs.title === "Scott Ramey") {
+      trackEvent("video_play", { video_title: "Scott Ramey Case Study" });
       setVideoOpen(true);
     }
   };
