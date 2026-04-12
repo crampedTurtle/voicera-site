@@ -421,6 +421,28 @@ export default function SincerityForLegal() {
           </div>
         </section>
 
+        {/* ═══ FAQ ═══ */}
+        <section style={{ background: "#F7F9FC", padding: "100px 32px" }}>
+          <div style={{ maxWidth: 800, margin: "0 auto" }}>
+            <Reveal>
+              <div style={{ textAlign: "center", marginBottom: 48 }}>
+                <Badge>FAQ</Badge>
+                <h2 style={{ fontFamily: hf, fontSize: 32, fontWeight: 800, color: "#0f172a", margin: "16px 0 0", letterSpacing: "-0.025em" }}>Frequently Asked Questions</h2>
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <Accordion type="single" collapsible className="space-y-3">
+                {legalFaqItems.map((f, i) => (
+                  <AccordionItem key={i} value={`faq-${i}`} className="bg-white border border-[#e2e8f0] rounded-xl px-6 overflow-hidden" style={{ borderBottom: "1px solid #e2e8f0" }}>
+                    <AccordionTrigger className="text-left text-[15px] font-semibold text-[#0f172a] hover:no-underline py-5">{f.q}</AccordionTrigger>
+                    <AccordionContent className="text-[14px] text-[#64748b] leading-[1.7] pb-5">{f.a}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ═══ CLOSE CTA ══════════════════════════════════════════════════ */}
         <section style={{ background: "#fff", padding: "80px 32px", textAlign: "center" }}>
           <div style={{ maxWidth: 650, margin: "0 auto" }}>
