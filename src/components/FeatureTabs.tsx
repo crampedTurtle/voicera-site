@@ -882,22 +882,7 @@ const FeatureTabs = () => {
                 {tab.visual === "flow" && <APIFlowDiagram />}
 
                 {/* Request code */}
-                <div style={{ background: CODE_BG, borderRadius: 12, padding: "14px 18px" }}>
-                  {tab.code.map((line, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        fontFamily: "'Courier New',monospace",
-                        fontSize: 12,
-                        lineHeight: 1.85,
-                        color: line.color,
-                        paddingLeft: (line.indent || 0) * 14,
-                      }}
-                    >
-                      {line.text}
-                    </div>
-                  ))}
-                </div>
+                <AnimatedCode lines={tab.code} active={true} key={`code-${tab.id}`} />
 
                 {/* Animated output */}
                 <AnimatedJSON lines={tab.output} active={outputActive} />
