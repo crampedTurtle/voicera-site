@@ -524,12 +524,16 @@ export default function SincerityForSales() {
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <div style={{
-              borderRadius: 20, overflow: "hidden",
-              boxShadow: "0 24px 80px rgba(37,99,235,0.12), 0 0 0 1px rgba(37,99,235,0.06)",
-              marginBottom: 24,
-            }}>
-              <SalesMediaPlaceholder type="video" label="Sales Call Intelligence Demo" aspect="16/9" />
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+              <iframe
+                src="https://demo.voicera.io/"
+                width="720"
+                height="900"
+                style={{ border: "none", borderRadius: 20, maxWidth: "100%" }}
+                loading="lazy"
+                title="Sales Call Intelligence Demo"
+                allow="camera; microphone"
+              />
             </div>
           </Reveal>
           <Reveal delay={0.25}>
