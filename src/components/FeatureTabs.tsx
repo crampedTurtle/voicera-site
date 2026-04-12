@@ -149,23 +149,41 @@ interface CodeLine {
 
 function AnimatedCode({ lines, active }: { lines: CodeLine[]; active: boolean }) {
   const [visible, setVisible] = useState<number[]>([]);
+  const [fading, setFading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!active) {
+    if (!active) { setVisible([]); setFading(false); return; }
+
+    let cancelled = false;
+    const LINE_DELAY = 120;
+    const PAUSE_AT_END = 2000;
+    const FADE_DURATION = 600;
+
+    function runCycle() {
+      if (cancelled) return;
       setVisible([]);
-      return;
+      setFading(false);
+      if (containerRef.current) containerRef.current.scrollTop = 0;
+
+      const timers: ReturnType<typeof setTimeout>[] = [];
+      lines.forEach((_, i) => {
+        timers.push(setTimeout(() => {
+          if (cancelled) return;
+          setVisible((p) => [...p, i]);
+          if (containerRef.current) containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }, i * LINE_DELAY));
+      });
+
+      const totalReveal = lines.length * LINE_DELAY;
+      timers.push(setTimeout(() => { if (!cancelled) setFading(true); }, totalReveal + PAUSE_AT_END));
+      timers.push(setTimeout(() => { if (!cancelled) runCycle(); }, totalReveal + PAUSE_AT_END + FADE_DURATION));
+
+      return timers;
     }
-    setVisible([]);
-    const timers = lines.map((_, i) =>
-      setTimeout(() => {
-        setVisible((p) => [...p, i]);
-        if (containerRef.current) {
-          containerRef.current.scrollTop = containerRef.current.scrollHeight;
-        }
-      }, i * 120)
-    );
-    return () => timers.forEach(clearTimeout);
+
+    const timers = runCycle();
+    return () => { cancelled = true; timers?.forEach(clearTimeout); };
   }, [active, lines]);
 
   return (
@@ -175,6 +193,8 @@ function AnimatedCode({ lines, active }: { lines: CodeLine[]; active: boolean })
         background: CODE_BG, borderRadius: 12, padding: "14px 18px",
         height: 120, overflowY: "auto", scrollBehavior: "smooth",
         scrollbarWidth: "none",
+        opacity: fading ? 0 : 1,
+        transition: "opacity 0.5s ease",
       }}
     >
       {lines.map((line, i) => (
@@ -201,20 +221,43 @@ function AnimatedCode({ lines, active }: { lines: CodeLine[]; active: boolean })
 
 function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean }) {
   const [visible, setVisible] = useState<number[]>([]);
+  const [fading, setFading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setVisible([]);
+    setVisible([]); setFading(false);
     if (!active) return;
-    const timers = lines.map((_, i) =>
-      setTimeout(() => {
-        setVisible((p) => [...p, i]);
-        if (containerRef.current) {
-          containerRef.current.scrollTop = containerRef.current.scrollHeight;
-        }
-      }, 300 + i * 180)
-    );
-    return () => timers.forEach(clearTimeout);
+
+    let cancelled = false;
+    const LINE_DELAY = 180;
+    const PAUSE_AT_END = 2000;
+    const FADE_DURATION = 600;
+    const INITIAL_DELAY = 300;
+
+    function runCycle() {
+      if (cancelled) return;
+      setVisible([]);
+      setFading(false);
+      if (containerRef.current) containerRef.current.scrollTop = 0;
+
+      const timers: ReturnType<typeof setTimeout>[] = [];
+      lines.forEach((_, i) => {
+        timers.push(setTimeout(() => {
+          if (cancelled) return;
+          setVisible((p) => [...p, i]);
+          if (containerRef.current) containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }, INITIAL_DELAY + i * LINE_DELAY));
+      });
+
+      const totalReveal = INITIAL_DELAY + lines.length * LINE_DELAY;
+      timers.push(setTimeout(() => { if (!cancelled) setFading(true); }, totalReveal + PAUSE_AT_END));
+      timers.push(setTimeout(() => { if (!cancelled) runCycle(); }, totalReveal + PAUSE_AT_END + FADE_DURATION));
+
+      return timers;
+    }
+
+    const timers = runCycle();
+    return () => { cancelled = true; timers?.forEach(clearTimeout); };
   }, [active, lines]);
 
   return (
@@ -224,6 +267,8 @@ function AnimatedJSON({ lines, active }: { lines: CodeLine[]; active: boolean })
         background: CODE_BG, borderRadius: 12, padding: "14px 18px", marginTop: 12,
         height: 120, overflowY: "auto", scrollBehavior: "smooth",
         scrollbarWidth: "none",
+        opacity: fading ? 0 : 1,
+        transition: "opacity 0.5s ease",
       }}
     >
       {lines.map((line, i) => (
