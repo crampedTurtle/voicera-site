@@ -255,42 +255,6 @@ export type Database = {
           },
         ]
       }
-      start_building_submissions: {
-        Row: {
-          business_email: string
-          company_name: string
-          company_website: string | null
-          created_at: string | null
-          first_name: string
-          id: string
-          job_title: string
-          last_name: string
-          use_case: string
-        }
-        Insert: {
-          business_email: string
-          company_name: string
-          company_website?: string | null
-          created_at?: string | null
-          first_name: string
-          id?: string
-          job_title: string
-          last_name: string
-          use_case: string
-        }
-        Update: {
-          business_email?: string
-          company_name?: string
-          company_website?: string | null
-          created_at?: string | null
-          first_name?: string
-          id?: string
-          job_title?: string
-          last_name?: string
-          use_case?: string
-        }
-        Relationships: []
-      }
       user_roles: {
         Row: {
           id: string
