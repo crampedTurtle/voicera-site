@@ -5,7 +5,6 @@ import emotionDetectionLEImg from "@/assets/emotion-detection-law-enforcement.pn
 import Navbar from "@/components/Navbar";
 import StickyNavbar from "@/components/StickyNavbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
 import JsonLd from "@/components/JsonLd";
 import YouTubeCase from "@/components/YouTubeCase";
 
@@ -179,10 +178,6 @@ export default function SincerityForLawEnforcement() {
 
   return (
     <div style={{ fontFamily: "Poppins,sans-serif", color: "#0f172a", overflowX: "hidden" }}>
-      <Helmet>
-        <title>Sincerity™ for Investigative Tech Platforms — Voicera</title>
-        <meta name="description" content="Embed AI-powered behavioral analysis into your interview recording, case management, or digital evidence platform. Help your users enhance interrogations and accelerate vetting." />
-      </Helmet>
       <JsonLd
         title="Sincerity™ for Investigative Tech Platforms — Voicera"
         description="Embed AI-powered behavioral analysis into investigative tech platforms."
@@ -255,7 +250,7 @@ export default function SincerityForLawEnforcement() {
             <Reveal delay={0.2}>
               <Bullet>Enhance decision-making accuracy for time-sensitive missions by flagging inconsistent or suspicious responses within your product.</Bullet>
               <Bullet>Minimize the risk of acting on false intelligence, faster, with data-driven behavioral insights delivered natively.</Bullet>
-              <Bullet>Reduce human error and reliance on polygraphs with AI-augmented vetting that analyzes verbal & non-verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
+              <Bullet>Reduce human error and reliance on legacy interview assessment tools with AI-augmented vetting that analyzes verbal & non-verbal inconsistencies with <strong>30% greater accuracy</strong> than human capability.</Bullet>
               <Bullet>Equip your users to more reliably train agents on reading and interpreting deceptive and emotional cues via embedded video and audio analysis.</Bullet>
             </Reveal>
             <Reveal delay={0.3}>

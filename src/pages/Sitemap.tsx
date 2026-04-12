@@ -21,7 +21,7 @@ const Sitemap = () => {
       <main className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="type-display mb-4">Sitemap</h1>
         <p className="type-body mb-12 max-w-2xl">
-          A complete index of all pages on voicera.ai. This sitemap is
+          A complete index of all pages on voicera.io. This sitemap is
           automatically kept in sync as new pages and content are added.
         </p>
 

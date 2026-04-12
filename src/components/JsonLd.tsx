@@ -124,16 +124,23 @@ const JsonLd = ({ title, description, path }: JsonLdProps) => {
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Voicera" />
+      {/* TODO: Supply /public/og-image.png as a 1200×630 branded PNG */}
+      <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(webSiteSchema)}
-      </script>
+      {path === "/" && (
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+      )}
+      {path === "/" && (
+        <script type="application/ld+json">
+          {JSON.stringify(webSiteSchema)}
+        </script>
+      )}
       <script type="application/ld+json">
         {JSON.stringify(webPageSchema)}
       </script>

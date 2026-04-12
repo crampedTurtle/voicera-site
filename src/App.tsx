@@ -45,6 +45,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <GaRouteTracker />
+          <main>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/media" element={<Media />} />
@@ -82,6 +83,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </main>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

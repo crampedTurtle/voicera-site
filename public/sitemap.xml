@@ -5,73 +5,73 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://voicera.ai</loc>
+    <loc>https://voicera.io</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/sales</loc>
+    <loc>https://voicera.io/solutions/sales</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/revenue-intelligence</loc>
+    <loc>https://voicera.io/solutions/revenue-intelligence</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/hr</loc>
+    <loc>https://voicera.io/solutions/hr</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/law-enforcement</loc>
+    <loc>https://voicera.io/solutions/law-enforcement</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/dating</loc>
+    <loc>https://voicera.io/solutions/dating</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/solutions/legal</loc>
+    <loc>https://voicera.io/solutions/legal</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/media</loc>
+    <loc>https://voicera.io/media</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/about</loc>
+    <loc>https://voicera.io/about</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/investors</loc>
+    <loc>https://voicera.io/investors</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/partners</loc>
+    <loc>https://voicera.io/partners</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voicera.ai/api-docs</loc>
+    <loc>https://voicera.io/api-docs</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
