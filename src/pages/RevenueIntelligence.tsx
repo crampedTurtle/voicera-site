@@ -689,7 +689,7 @@ export default function RevenueIntelligence() {
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <CTA href="/contact?type=partnerships" variant="white" size="lg">Talk to Partnerships</CTA>
+            <CTA variant="white" size="lg" onClick={() => { (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }}>Talk to Sales</CTA>
           </Reveal>
         </div>
       </section>
