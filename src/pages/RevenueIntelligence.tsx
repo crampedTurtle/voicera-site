@@ -386,7 +386,7 @@ export default function RevenueIntelligence() {
           </Reveal>
           <Reveal delay={0.45}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="/contact?type=api" variant="blue" size="lg">Get API Access</CTA>
+              <CTA href="/#pricing-api" variant="blue" size="lg">Get API Access</CTA>
               <CTA variant="outline" size="lg" onClick={() => { (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/kevins-voicera-calendar/30min' }); }}>Talk to Sales</CTA>
             </div>
           </Reveal>
