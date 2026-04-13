@@ -174,7 +174,7 @@ const Badge = ({ children, dark }: { children: ReactNode; dark?: boolean }) => (
 );
 
 // ─── CTA BUTTON ─────────────────────────────────────────────────────────────
-const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children: ReactNode; href?: string; variant?: "blue" | "white" | "outline"; size?: "md" | "lg" }) => {
+const CTA = ({ children, href = "#", variant = "blue", size = "md", onClick }: { children: ReactNode; href?: string; variant?: "blue" | "white" | "outline"; size?: "md" | "lg"; onClick?: () => void }) => {
   const [h, setH] = useState(false);
   const bg = {
     blue: h ? "linear-gradient(135deg,#1d4ed8,#2563eb)" : "linear-gradient(135deg,#2563EB,#3b82f6)",
@@ -190,7 +190,8 @@ const CTA = ({ children, href = "#", variant = "blue", size = "md" }: { children
   const pad = size === "lg" ? "16px 36px" : "13px 28px";
   const isExternal = href.startsWith("http");
   return (
-    <a href={href} {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    <a href={onClick ? undefined : href} {...(isExternal && !onClick ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      onClick={onClick ? (e) => { e.preventDefault(); onClick(); } : undefined}
       onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
       style={{
         display: "inline-flex", alignItems: "center", gap: 8,
