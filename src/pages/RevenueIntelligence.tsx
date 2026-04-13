@@ -562,7 +562,7 @@ export default function RevenueIntelligence() {
               This is the same API powering deal scoring, churn alerts, and pipeline health inside partner platforms today.
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="/api-docs" variant="blue">Explore the API — Start Free</CTA>
+              <CTA href="/#pricing-api" variant="blue">Explore the API — Start Free</CTA>
             </div>
           </Reveal>
         </div>
