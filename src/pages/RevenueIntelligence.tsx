@@ -660,7 +660,7 @@ export default function RevenueIntelligence() {
           </Reveal>
           <Reveal delay={0.1}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <CTA href="/api-docs" variant="blue" size="lg">Explore the API — Start Free</CTA>
+              <CTA href="/#pricing-api" variant="blue" size="lg">Explore the API — Start Free</CTA>
               <CTA href="/contact?type=partnerships" variant="outline" size="lg">Talk to Partnerships About Integration</CTA>
             </div>
           </Reveal>
